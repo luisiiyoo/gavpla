@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBarHeader should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="NavBarHeader"
+    data-testid="headerContainer"
+    style="display: block;"
+  >
+    <div
+      class="NavBarHeader-Title"
+      data-testid="headerTitle"
+    >
+      Heee
+    </div>
+  </div>
+</DocumentFragment>
+`;

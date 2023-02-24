@@ -1,0 +1,15 @@
+.MainComponent {
+  color: white;
+  flex-grow: 2;
+  height: 100vh;
+  overflow: auto;
+  padding: 10px 15px 10px 15px;
+  margin-top: 0;
+}
+
+.Container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}

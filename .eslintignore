@@ -1,4 +1,6 @@
-.eslintrc.js
-ios/
-android/
-*.config.js
+/coverage
+/dist
+/node_modules
+/plop-templates
+/src/serviceWorker.ts
+/src/react-app-env.d.ts

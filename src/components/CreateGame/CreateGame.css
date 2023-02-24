@@ -1,0 +1,65 @@
+.CreateGame {
+  height: 95%;
+  width: 100%;
+}
+
+.CreateGame-Panel {
+  margin-top: 5%;
+  margin-right: 10%;
+  margin-left: 10%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.CreateGame-Panel input {
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  font-size: 90%;
+  flex-grow: 3;
+}
+
+.CreateGame-Panel button {
+  padding: 8px 30px;
+  border-radius: 6px;
+  border: none;
+  flex-grow: 1;
+  word-break: break-all;
+  color: var(--font-color-app);
+  text-decoration: none;
+  background-color: var(--color-app);
+  height: inherit;
+  font-size: 60%;
+  margin: 0 5px;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.CreateGame-Panel button:disabled {
+  background: var(--dark-color-app);
+}
+
+.IDContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 50px;
+  font-size: 120%;
+}
+
+.TagID {
+  text-align: center;
+  color: var(--color-app);
+}
+.ID {
+  text-align: center;
+  color: var(--font-color-app);
+  text-shadow: 1px 2px 2px var(--dark-color-app);
+  margin-left: 15px;
+  margin-right: 15px;
+}

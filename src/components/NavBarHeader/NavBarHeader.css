@@ -1,0 +1,14 @@
+.NavBarHeader {
+  background-color: inherit;
+  color: var(--font-color-app);
+  white-space: nowrap;
+}
+
+.NavBarHeader-Title {
+  align-items: center;
+  font-size: 1em;
+  justify-content: center;
+  line-height: 20px;
+  padding: 20px 0;
+  text-align: left;
+}

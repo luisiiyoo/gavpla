@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar should take a snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="sidenav---sidenav---_2tBP sidenav---expanded---1KdUL"
+  >
+    <button
+      aria-expanded="true"
+      class="sidenav---sidenav-toggle---1KRjR"
+      data-testid="toggleNavBar"
+      role="button"
+    >
+      <span
+        class="sidenav---icon-bar---u1f02"
+      />
+      <span
+        class="sidenav---icon-bar---u1f02"
+      />
+      <span
+        class="sidenav---icon-bar---u1f02"
+      />
+    </button>
+    <div
+      class="NavBarHeader"
+      data-testid="headerContainer"
+      style="display: block;"
+    >
+      <div
+        class="NavBarHeader-Title"
+        data-testid="headerTitle"
+      >
+        MyApp
+      </div>
+    </div>
+    <div
+      class="sidenav---sidenav-nav---3tvij sidenav---expanded---1KdUL"
+      role="menu"
+    >
+      <div
+        class="sidenav---sidenav-navitem---uwIJ-"
+        role="presentation"
+      >
+        <div
+          class="sidenav---navitem---9uL5T"
+          data-testid="my-home"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="sidenav---navicon---3gCRo"
+          >
+            <i
+              class="fa fa-fw fa-heartbeat NavBar-Icon"
+            />
+          </div>
+          <div
+            class="sidenav---navtext---1AE_f"
+            style="font-size: 1.3em; vertical-align: middle;"
+          >
+            My Home
+          </div>
+        </div>
+      </div>
+      <div
+        class="sidenav---sidenav-navitem---uwIJ- sidenav---expandable---3_dr7"
+        role="presentation"
+      >
+        <div
+          class="sidenav---navitem---9uL5T"
+          data-testid="free-code-camp"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="sidenav---navicon---3gCRo"
+          >
+            <i
+              class="fa fa-fw fa-beer NavBar-Icon"
+            />
+          </div>
+          <div
+            class="sidenav---navtext---1AE_f"
+            style="font-size: 1.3em; vertical-align: middle;"
+          >
+            Free Code Camp
+          </div>
+        </div>
+        <div
+          class="sidenav---sidenav-subnav---1EN61"
+          role="menu"
+        >
+          <div
+            class="sidenav---sidenav-subnavitem---1cD47"
+            role="heading"
+          >
+            Free Code Camp
+          </div>
+          <div
+            class="sidenav---sidenav-subnavitem---1cD47"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              data-testid="sub-page"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navtext---1AE_f"
+                style="padding-left: 10px; font-size: 1.0em; vertical-align: middle;"
+              >
+                SubPage
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

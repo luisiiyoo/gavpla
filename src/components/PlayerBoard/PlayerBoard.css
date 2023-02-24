@@ -1,0 +1,36 @@
+.PlayerBoard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ccc;
+  border-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.PlayerBoard-Title {
+  color: var(--dark-color-app);
+  font-size: 75%;
+  text-align: center;
+  text-shadow: 1px 2px 2px var(--color-app);
+}
+.PlayerBoard-Cards {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10;
+  margin-bottom: 20px;
+}
+
+.PC {
+  color: #000;
+  text-shadow: 1px 2px 2px #000;
+}
+
+.Rotate {
+  -webkit-transform: rotate(180deg);
+}
+
+.Tooltip {
+  margin: 0;
+}

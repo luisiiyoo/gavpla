@@ -1,0 +1,6 @@
+coverage
+dist
+plop-templates
+node_modules
+src/serviceWorker.ts
+src/react-app-env.d.ts

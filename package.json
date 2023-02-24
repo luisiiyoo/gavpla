@@ -1,26 +1,46 @@
 {
-  "name": "license-plates-frontend",
-  "version": "0.1.0",
+  "name": "cards-game",
+  "author": {
+    "name": "Luis Gonzalez Guzman",
+    "email": "luis.gonzalez.guzman.93@gmail.com",
+    "url": "https://www.linkedin.com/in/luis-gonz%C3%A1lez-guzm%C3%A1n-2b464b139/"
+  },
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.x"
+  },
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^29.4.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "eslint-plugin-jest": "^27.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "@trendmicro/react-sidenav": "^0.5.0",
+    "@types/react-notifications-component": "^2.4.0",
+    "axios": "^0.19.2",
+    "change-case": "^4.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-notifications-component": "^2.4.1",
+    "react-redux": "^7.2.0",
+    "react-resize-panel": "^0.3.5",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.0",
+    "react-tooltip": "^4.2.10",
+    "redux": "^4.0.5",
+    "serve": "^11.3.2",
+    "tippy.js": "^5.2.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "PORT=3030 HOST=0.0.0.0 react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
+    "heroku-postbuild": "yarn run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint --cache --ext .ts,.tsx --format=pretty --fix ./",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css, md}'",
+    "type:check": "tsc"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -35,14 +55,27 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^18.14.1",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "eslint": "^8.34.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.2.4",
-    "eslint-plugin-promise": "^6.0.0",
-    "typescript": "^4.7.4"
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "@types/jest": "24.0.0",
+    "@types/node": "12.0.0",
+    "@types/react": "16.9.0",
+    "@types/react-dom": "16.9.0",
+    "@types/react-router-dom": "5.1.5",
+    "@types/testing-library__jest-dom": "^5.7.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-formatter-pretty": "^3.0.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-jest-dom": "^2.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-unicorn": "^20.1.0",
+    "prettier": "^2.0.5",
+    "typescript": "~3.7.2"
   }
 }
