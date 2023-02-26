@@ -3,7 +3,7 @@ import CreateGame from 'src/components/CreateGame';
 import GamesBoard from 'src/components/GamesBoard';
 import HomePage from 'src/components/HomePage';
 import PlayGame from 'src/components/PlayGame';
-import { AbstractNavItem, NavItem } from 'src/model/navItem';
+import { AbstractNavItem, NavItem } from './Router.types';
 
 const navigationItems: NavItem[] = [
   {

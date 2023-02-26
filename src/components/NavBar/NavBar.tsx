@@ -5,7 +5,7 @@ import {
   setSelectedRoute,
   setExpandNavBar,
 } from 'src/redux/actions/MainComponent';
-import { NavItem } from 'src/model/navItem';
+import { NavItem } from 'src/routers/Router.types';
 import NavBarHeader from 'src/components/NavBarHeader';
 import { NavBarProps, OnSelectNavItem, RenderNavItem } from './NavBar.types';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';

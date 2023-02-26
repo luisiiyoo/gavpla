@@ -1,4 +1,4 @@
-import { NavItem } from '../model/navItem';
+import { NavItem } from 'src/routers/Router.types';
 
 export const navBarItemsMock: NavItem[] = [
   {

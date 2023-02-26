@@ -1,4 +1,4 @@
-import { NavItem } from 'src/model/navItem';
+import { NavItem } from 'src/routers/Router.types';
 
 interface History {
   push(path: string): void;
