@@ -7,9 +7,7 @@ const HomePage: React.FC = () => (
     <h2>{frontConfig.serverName}</h2>
     <h3>Description</h3>
     {/* <h4>Instructions</h4> */}
-    <p>
-      TBD
-    </p>
+    <p>TBD</p>
 
     <div className="AuthorContainer">
       <h3>Author</h3>

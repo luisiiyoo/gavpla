@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { store } from 'react-notifications-component';
-import { createNotification } from '../../utils/helpers';
 import { Game, defaultGame } from 'src/model/game';
 import { SearchPanelProps, ControlGameProps } from './PlayGame.types';
+import { createNotification } from '../../utils/helpers';
 import PlayerBoard from '../PlayerBoard';
 import connector from '../../connector';
 import './PlayGame.css';
@@ -78,8 +78,10 @@ const PlayGame: React.FC = () => {
       setDisableGame(true);
       await specificFn();
       disableDelete = false;
-    } catch (err) {
-      store.addNotification(createNotification('danger', err.message, 'Error'));
+    } catch (error) {
+      store.addNotification(
+        createNotification('danger', error.message, 'Error'),
+      );
       if (restoreDefaultGame) setGame(defaultGame);
     } finally {
       disableSerchPanel(false);

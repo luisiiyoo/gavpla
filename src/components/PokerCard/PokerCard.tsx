@@ -4,7 +4,7 @@ import cardFaceDownImg from '../../img/card_face_down.png';
 import blackCardFaceDownImg from '../../img/back.svg';
 import './PokerCard.css';
 
-const suitCharToString = (suit: String) => {
+const suitCharToString = (suit: string) => {
   switch (suit) {
     case '♣':
       return 'club';

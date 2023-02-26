@@ -1,6 +1,5 @@
 import axios from 'axios';
 import frontConfig from 'src/config/server';
-
 import {
   BackendUnavailableError,
   GameNotFoundError,
@@ -15,7 +14,7 @@ import {
 } from '../model/backendResponse';
 import { Game } from '../model/game';
 
-const { backendHost:BACKEND_URL } = frontConfig;
+const { backendHost: BACKEND_URL } = frontConfig;
 
 export class BackendConnector {
   async checkBackendHealth(): Promise<boolean> {
@@ -24,17 +23,17 @@ export class BackendConnector {
       const response = await axios.get(url);
       const healthResponse: HealthResponse = response.data;
       return !!healthResponse;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 
@@ -45,17 +44,17 @@ export class BackendConnector {
       const response = await axios.get(url);
       const games: Game[] = response.data;
       return games;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 
@@ -65,18 +64,18 @@ export class BackendConnector {
       const response = await axios.get(url);
       const games: Game = response.data;
       return games;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
       if (message.includes('Not found')) throw new GameNotFoundError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 
@@ -86,17 +85,17 @@ export class BackendConnector {
       const response = await axios.get(url);
       const handResp: TakeHandResponse = response.data;
       return handResp;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 
@@ -110,17 +109,17 @@ export class BackendConnector {
       const response = await axios.put(url, body);
       const turnDetails: PlayTurnResponse = response.data;
       return turnDetails;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 
@@ -131,17 +130,17 @@ export class BackendConnector {
       const response = await axios.post(url, body);
       const { _id: idGame }: CreateGameResponse = response.data;
       return idGame;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 
@@ -151,17 +150,17 @@ export class BackendConnector {
       const response = await axios.delete(url);
       const { success }: DeleteGameResponse = response.data;
       return success;
-    } catch (err) {
-      const { message } = err;
+    } catch (error_) {
+      const { message } = error_;
       if (message.includes('ECONNREFUSED')) throw new BackendUnavailableError();
-      if (!!err.response) {
+      if (error_.response) {
         const {
           data: { error },
           status,
-        } = err.response;
+        } = error_.response;
         throw new AbstractError(error || message, status);
       }
-      throw err;
+      throw error_;
     }
   }
 }

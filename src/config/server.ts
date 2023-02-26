@@ -8,9 +8,7 @@ interface FrontendConfig {
   backendHost: string;
 }
 
-if (
-  !process.env.REACT_APP_BACKEND_HOST 
-) {
+if (!process.env.REACT_APP_BACKEND_HOST) {
   console.warn(
     '.env file was not created, default values will used.'.toUpperCase(),
   );

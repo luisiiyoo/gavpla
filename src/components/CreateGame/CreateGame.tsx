@@ -25,8 +25,10 @@ const CreateGame: React.FC = () => {
       store.addNotification(
         createNotification('success', `Game found.`, 'Success'),
       );
-    } catch (err) {
-      store.addNotification(createNotification('danger', err.message, 'Error'));
+    } catch (error) {
+      store.addNotification(
+        createNotification('danger', error.message, 'Error'),
+      );
     } finally {
       setDisableComponents(false);
       setPlayerName('');

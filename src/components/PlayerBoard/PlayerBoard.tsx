@@ -1,7 +1,7 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import { PlayerBoardProps } from './PlayerBoard.types';
 import { PokerCard, PokerCardFaceDown } from '../PokerCard';
-import ReactTooltip from 'react-tooltip';
 import './PlayerBoard.css';
 
 const PlayerBoard: React.FC<PlayerBoardProps> = ({
@@ -31,7 +31,7 @@ const PlayerBoard: React.FC<PlayerBoardProps> = ({
       };
 
   const sumRanks =
-    cardsHand.length < 1
+    cardsHand.length === 0
       ? 0
       : idxCardsSelectedPlayer
           .map((idx) => cardsHand[idx].rank)

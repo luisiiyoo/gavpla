@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { Game } from 'src/model/game';
+import { GamesBoardProps } from './GamesBoard.types';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 import connector from '../../connector';
-import { GamesBoardProps } from './GamesBoard.types';
-import { Game } from 'src/model/game';
 import FilterGridPanel from '../FilterGridPanel';
 import { ItemPanel } from '../FilterGridPanel/FilterGridPanel.types';
 import './GamesBoard.css';
@@ -43,22 +43,22 @@ const GamesBoard: React.FC<GamesBoardProps> = ({ finished }) => {
   const Component = isError ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
-      <>
-        <h2>{title}</h2>
-        <FilterGridPanel
-          items={games.map((game) => {
-            const itemPanel: ItemPanel = {
-              player: game._name_p1,
-              date: game._created_date,
-              id: game._id,
-              winner: game._winner,
-              image: `https://avatars.dicebear.com/api/gridy/${game._id}.svg`,//'http://placehold.it/120x120',
-            };
-            return itemPanel;
-          })}
-        />
-      </>
-    );
+    <>
+      <h2>{title}</h2>
+      <FilterGridPanel
+        items={games.map((game) => {
+          const itemPanel: ItemPanel = {
+            player: game._name_p1,
+            date: game._created_date,
+            id: game._id,
+            winner: game._winner,
+            image: `https://avatars.dicebear.com/api/gridy/${game._id}.svg`, //'http://placehold.it/120x120',
+          };
+          return itemPanel;
+        })}
+      />
+    </>
+  );
   return (
     <div className="GamesBoard" data-testid="GamesBoard">
       {isLoading ? <Loader /> : Component}

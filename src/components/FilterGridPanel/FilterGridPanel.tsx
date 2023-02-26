@@ -8,7 +8,13 @@ const ItemGridPanel: React.FC<ItemPanel> = (props) => {
   return (
     <li className="ItemPanel">
       <div className="ItemPanel-Left">
-        {image && <img className="ItemPanel-Image" src={image} alt={`${player}'s avatar`} />}
+        {image && (
+          <img
+            className="ItemPanel-Image"
+            src={image}
+            alt={`${player}'s avatar`}
+          />
+        )}
       </div>
       <div className="ItemPanel-Right">
         <div className="ItemPanel-Player">{`Player: ${player}`}</div>
@@ -17,7 +23,7 @@ const ItemGridPanel: React.FC<ItemPanel> = (props) => {
         )}`}</div>
         <div className="ItemPanel-ID">{`ID: ${id}`}</div>
         <div className="ItemPanel-Winner">
-          {!!winner ? `Winner: ${winner}` : 'No Winner'}
+          {winner ? `Winner: ${winner}` : 'No Winner'}
         </div>
       </div>
     </li>
@@ -64,7 +70,7 @@ const FilterGridPanel: React.FC<FilterGridPanelProps> = (props) => {
   if (textFilter.length > 0) {
     const textToFilter = textFilter.trim().toLowerCase();
     itemsFiltered = items.filter(({ player, winner }: ItemPanel) => {
-      const players = `${player} ${!!winner ? winner : ''}`.toLowerCase();
+      const players = `${player} ${winner ? winner : ''}`.toLowerCase();
       return players.includes(textToFilter);
     });
   }
