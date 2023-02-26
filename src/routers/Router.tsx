@@ -41,13 +41,7 @@ const Routes: React.FC<RouterProps> = () => {
   return (
     <BrowserRouter>
       <Route
-        render={({ history }) => (
-          <NavBar
-            history={history}
-            navBarItems={navigationItems}
-            navBarTitle={''}
-          />
-        )}
+        render={({ history }) => <NavBar history={history} navBarTitle={''} />}
       />
       <div className="Container">
         <MainComponent isExpandedNavBar={isExpandedNavBar} />

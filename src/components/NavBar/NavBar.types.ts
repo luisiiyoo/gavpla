@@ -17,7 +17,6 @@ export interface OnSelectNavItem {
 export interface NavBarProps {
   navBarTitle: string;
   history: History;
-  navBarItems: NavItem[];
 }
 
 export interface RenderNavItem {
