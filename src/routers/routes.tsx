@@ -7,40 +7,34 @@ import { AbstractNavItem, NavItem } from './Router.types';
 
 const navigationItems: NavItem[] = [
   {
-    route: '',
     title: 'Home',
+    route: '',
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
   },
   {
-    route: 'games',
-    title: 'Games',
-    iconClass: 'fa fa-fw fa-search',
+    title: 'Collection',
+    route: 'collection',
+    iconClass: 'fa fw fa-earth-americas',
     childs: [
       {
-        idChild: 'find_game/in-progress',
-        route: 'find_game/in-progress',
-        title: 'In Progress',
+        title: 'Personal',
+        idChild: 'collection.personal',
+        route: 'collection/personal',
         functionalComponent: () => <GamesBoard finished={true} />,
-      },
-      {
-        idChild: 'find_game/finished',
-        route: 'find_game/finished',
-        title: 'Finished',
-        functionalComponent: () => <GamesBoard finished={false} />,
       },
     ],
   },
   {
-    route: 'create-game',
-    title: 'Create Game',
-    iconClass: 'fa fa-fw fa-plus',
+    title: 'Shop',
+    route: 'shop',
+    iconClass: 'fa fa-fw fa-cart-shopping',
     functionalComponent: () => <CreateGame />,
   },
   {
-    route: 'play-game',
-    title: 'Play Game',
-    iconClass: 'fa fa-fw fa-gamepad',
+    title: 'Contributors',
+    route: 'contributors',
+    iconClass: 'fa fa-fw fa-users',
     functionalComponent: () => <PlayGame />,
   },
 ];
