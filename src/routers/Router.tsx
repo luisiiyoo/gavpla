@@ -19,12 +19,12 @@ const MainComponent: React.FC<MainComponentProps> = ({
   isExpandedNavBar,
   navBarItems,
 }) => {
-  const routes: NavItemChild[] = [];
-  navBarItems.forEach(({ childs = [] }) => {
-    childs.forEach((journeyRoute: NavItemChild) => {
-      routes.push(journeyRoute);
-    });
-  });
+  // const routes: NavItemChild[] = [];
+  // navBarItems.forEach(({ childs = [] }) => {
+  //   childs.forEach((journeyRoute: NavItemChild) => {
+  //     routes.push(journeyRoute);
+  //   });
+  // });
 
   return (
     <div
@@ -36,21 +36,25 @@ const MainComponent: React.FC<MainComponentProps> = ({
     >
       <Switch>
         <Route path="/" exact={true} component={() => <HomePage />} />
-        <Route
+        {/* <Route
           path={`/${ROUTES.HOME}`}
           exact={true}
           component={() => <HomePage />}
-        />
+        /> */}
         <Route
           path={`/${ROUTES.GAMES_FINISHED}`}
+          exact={true}
           component={() => <GamesBoard finished={true} />}
         />
         <Route
           path={`/${ROUTES.GAMES_IN_PROGRESS}`}
+          exact={true}
           component={() => <GamesBoard finished={false} />}
         />
-        <Route path={`/${ROUTES.PLAY}`} component={() => <PlayGame />} />
-        <Route path={`/${ROUTES.CREATE}`} component={() => <CreateGame />} />
+        <Route path={`/${ROUTES.PLAY}`} 
+        exact={true} 
+        component={() => <PlayGame />} />
+        <Route path={`/${ROUTES.CREATE}`}  exact={true} component={() => <CreateGame />} />
         <Route component={() => <PageNotFound />} />
       </Switch>
     </div>

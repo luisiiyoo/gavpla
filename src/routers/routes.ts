@@ -1,3 +1,4 @@
+import HomePage from 'src/components/HomePage';
 import { NavItem } from '../model/navItem';
 
 export const ROUTES = {
@@ -11,7 +12,7 @@ export const ROUTES = {
 
 export const navigationItems: NavItem[] = [
   {
-    route: ROUTES.HOME,
+    route: '', //ROUTES.HOME
     title: 'Home',
     iconClass: 'fa fa-fw fa-home',
   },

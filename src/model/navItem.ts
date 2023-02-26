@@ -9,4 +9,5 @@ export interface NavItem {
   title: string;
   iconClass?: string;
   childs?: NavItemChild[];
+  // functionalcomponent: string;
 }
