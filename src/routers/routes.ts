@@ -17,29 +17,29 @@ export const navigationItems: NavItem[] = [
     iconClass: 'fa fa-fw fa-home',
   },
   {
-    route: ROUTES.GAMES,
+    route: 'games',
     title: 'Games',
     iconClass: 'fa fa-fw fa-search',
     childs: [
       {
-        idChild: ROUTES.GAMES_IN_PROGRESS,
-        route: ROUTES.GAMES_IN_PROGRESS,
+        idChild: 'find_game/in-progress',
+        route: 'find_game/in-progress',
         title: 'In Progress',
       },
       {
-        idChild: ROUTES.GAMES_FINISHED,
-        route: ROUTES.GAMES_FINISHED,
+        idChild: 'find_game/finished',
+        route: 'find_game/finished',
         title: 'Finished',
       },
     ],
   },
   {
-    route: ROUTES.CREATE,
+    route: 'create-game',
     title: 'Create Game',
     iconClass: 'fa fa-fw fa-plus',
   },
   {
-    route: ROUTES.PLAY,
+    route: 'play-game',
     title: 'Play Game',
     iconClass: 'fa fa-fw fa-gamepad',
   },

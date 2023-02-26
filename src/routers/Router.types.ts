@@ -6,5 +6,4 @@ export interface RouterProps {
 
 export interface MainComponentProps {
   isExpandedNavBar: boolean;
-  navBarItems: NavItem[];
 }

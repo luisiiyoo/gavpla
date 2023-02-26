@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { NavItemChild } from 'src/model/navItem';
 import { RouterProps, MainComponentProps } from './Router.types';
 import PageNotFound from '../components/PageNotFound';
 import NavBar from '../components/NavBar';
@@ -16,16 +15,8 @@ const MAX_NAVBAR_MARGIN = 240;
 const MIN_NAVBAR_MARGIN = 64;
 
 const MainComponent: React.FC<MainComponentProps> = ({
-  isExpandedNavBar,
-  navBarItems,
+  isExpandedNavBar
 }) => {
-  // const routes: NavItemChild[] = [];
-  // navBarItems.forEach(({ childs = [] }) => {
-  //   childs.forEach((journeyRoute: NavItemChild) => {
-  //     routes.push(journeyRoute);
-  //   });
-  // });
-
   return (
     <div
       className="MainComponent"
@@ -36,11 +27,6 @@ const MainComponent: React.FC<MainComponentProps> = ({
     >
       <Switch>
         <Route path="/" exact={true} component={() => <HomePage />} />
-        {/* <Route
-          path={`/${ROUTES.HOME}`}
-          exact={true}
-          component={() => <HomePage />}
-        /> */}
         <Route
           path={`/${ROUTES.GAMES_FINISHED}`}
           exact={true}
@@ -61,7 +47,7 @@ const MainComponent: React.FC<MainComponentProps> = ({
   );
 };
 
-const Routes: React.FC<RouterProps> = ({ navBarItems = navigationItems }) => {
+const Routes: React.FC<RouterProps> = () => {
   const { main } = useSelector((state) => state);
   const { expand: isExpandedNavBar } = main;
 
@@ -71,7 +57,7 @@ const Routes: React.FC<RouterProps> = ({ navBarItems = navigationItems }) => {
         render={({ history }) => (
           <NavBar
             history={history}
-            navBarItems={navBarItems}
+            navBarItems={navigationItems}
             navBarTitle={""}
           />
         )}
@@ -79,7 +65,6 @@ const Routes: React.FC<RouterProps> = ({ navBarItems = navigationItems }) => {
       <div className="Container">
         <MainComponent
           isExpandedNavBar={isExpandedNavBar}
-          navBarItems={navBarItems}
         />
       </div>
     </BrowserRouter>
