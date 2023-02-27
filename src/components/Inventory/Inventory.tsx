@@ -1,13 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import frontConfig from 'src/config/server';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import './Inventory.css';
-import ReactTooltip from 'react-tooltip';
 import './Maps.css';
 
 const GEO_URL =
@@ -19,12 +13,14 @@ export interface MapChartProps {
 
 const MapChart: React.FC<MapChartProps> = ({ setTooltipContent }) => {
   return (
-    <div style={{ height: 10 }}>
+    <div style={{ borderStyle: 'double' }}>
       <ComposableMap
-        projection="geoAzimuthalEqualArea"
+        width={800}
+        height={400}
+        projection="geoAlbers"
         projectionConfig={{
-          rotate: [100, -20, 3],
-          scale: 1300,
+          scale: 1100,
+          center: [-5, 25],
         }}
       >
         <Geographies geography={GEO_URL}>
@@ -58,6 +54,7 @@ const MapChart: React.FC<MapChartProps> = ({ setTooltipContent }) => {
                       outline: 'none',
                     },
                     pressed: {
+                      fill: '#2e7509',
                       outline: 'none',
                     },
                   }}
@@ -80,14 +77,6 @@ const HomePage: React.FC = () => {
         {stateName ? `México - ${stateName}` : 'México'}
       </h4>
       <MapChart setTooltipContent={setStateName} />
-      <ReactTooltip id={'mexicanMap'} type="dark">
-        {' '}
-        State: {stateName}
-      </ReactTooltip>
-      {/* <ReactTooltip id={"mexicanMap"} type="dark">
-      
-      <p className="Tooltip">{`State ${stateName}`}</p>
-    </ReactTooltip> */}
     </div>
   );
 };
