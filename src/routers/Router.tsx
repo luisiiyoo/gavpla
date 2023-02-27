@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { RouterProps, MainComponentProps } from './Router.types';
-import { navigationFCItems, navigationItems } from './routes';
+import { navigationFCItems } from './routes';
 import PageNotFound from '../components/PageNotFound';
 import NavBar from '../components/NavBar';
 import './Router.css';
