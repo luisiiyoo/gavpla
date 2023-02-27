@@ -25,16 +25,16 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useConstructor(async () => {
-    try {
-      // await connector.checkBackendHealth();
-    } catch (error_) {
-      setError({
-        statusCode: error_.statusCode,
-        message: error_.message,
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    // await connector.checkBackendHealth();
+    // } catch (error) {
+    //   setError({
+    //     statusCode: error.statusCode,
+    //     message: error.message,
+    //   });
+    // } finally {
+    setIsLoading(false);
+    // }
   });
 
   const isError = !!error.message;

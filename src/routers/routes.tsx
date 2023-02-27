@@ -1,9 +1,9 @@
 import React from 'react';
-import CreateGame from 'src/components/CreateGame';
-import GamesBoard from 'src/components/GamesBoard';
+// import CreateGame from 'src/components/CreateGame';
+// import GamesBoard from 'src/components/GamesBoard';
 import HomePage from 'src/components/HomePage';
 import Inventory from 'src/components/Inventory';
-import PlayGame from 'src/components/PlayGame';
+// import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
 
 const navigationItems: NavItem[] = [
@@ -19,31 +19,31 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa fa-fw fa-boxes-stacked',
     functionalComponent: () => <Inventory />,
   },
-  {
-    title: 'Collection',
-    route: 'collection',
-    iconClass: 'fa fw fa-earth-americas',
-    childs: [
-      {
-        title: 'Personal',
-        idChild: 'collection.personal',
-        route: 'collection/personal',
-        functionalComponent: () => <GamesBoard finished={true} />,
-      },
-    ],
-  },
-  {
-    title: 'Shop',
-    route: 'shop',
-    iconClass: 'fa fa-fw fa-cart-shopping',
-    functionalComponent: () => <CreateGame />,
-  },
-  {
-    title: 'Contributors',
-    route: 'contributors',
-    iconClass: 'fa fa-fw fa-users',
-    functionalComponent: () => <PlayGame />,
-  },
+  // {
+  //   title: 'Collection',
+  //   route: 'collection',
+  //   iconClass: 'fa fw fa-earth-americas',
+  //   childs: [
+  //     {
+  //       title: 'Personal',
+  //       idChild: 'collection.personal',
+  //       route: 'collection/personal',
+  //       functionalComponent: () => <GamesBoard finished={true} />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Shop',
+  //   route: 'shop',
+  //   iconClass: 'fa fa-fw fa-cart-shopping',
+  //   functionalComponent: () => <CreateGame />,
+  // },
+  // {
+  //   title: 'Contributors',
+  //   route: 'contributors',
+  //   iconClass: 'fa fa-fw fa-users',
+  //   functionalComponent: () => <PlayGame />,
+  // },
 ];
 
 const getFunctionalComponent = (

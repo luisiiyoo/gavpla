@@ -13,10 +13,10 @@ export class UnauthorizedUserError extends AbstractError {
   }
 }
 
-export class GameNotFoundError extends AbstractError {
-  constructor(message = 'Game not found.') {
+export class NotFoundError extends AbstractError {
+  constructor(message = 'Not found.') {
     super(message, 404);
-    this.name = 'GameNotFoundError';
+    this.name = 'NotFoundError';
   }
 }
 

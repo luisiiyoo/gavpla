@@ -1,1 +1,1 @@
-export { default, BackendConnector } from './connector';
+export { default, BackendConnector } from './backend';
