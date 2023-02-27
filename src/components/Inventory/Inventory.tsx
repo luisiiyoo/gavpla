@@ -6,12 +6,18 @@ import './Maps.css';
 
 const GEO_URL =
   'https://gist.githubusercontent.com/leenoah1/535b386ec5f5abdb2142258af395c388/raw/a045778d28609abc036f95702d6a44045ae7ca99/geo-data.json';
+const SELECTED_STATE_COLOR = '#2e7509';
+const HOVER_STATE_COLOR = '#EAEAEC';
 
 export interface MapChartProps {
-  setTooltipContent: Dispatch<SetStateAction<string>>;
+  setSelectedState: Dispatch<SetStateAction<string>>;
+  selectedState: string;
 }
 
-const MapChart: React.FC<MapChartProps> = ({ setTooltipContent }) => {
+const MapChart: React.FC<MapChartProps> = ({
+  setSelectedState,
+  selectedState,
+}) => {
   return (
     <div style={{ borderStyle: 'double' }}>
       <ComposableMap
@@ -27,34 +33,38 @@ const MapChart: React.FC<MapChartProps> = ({ setTooltipContent }) => {
           {({ geographies }) =>
             geographies.map((geo, index) => {
               // console.log("Hola", index, geo.properties);
+              const stateName = geo.properties.NAME_1;
+              const isStateSelected = selectedState === stateName;
 
               return (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  onMouseEnter={(event) => {
-                    const {
-                      target: { value },
-                    } = event;
-                    console.log(event);
-                    console.log(geo.properties);
-                    setTooltipContent(`${geo.properties.NAME_1}`);
-                  }}
-                  onMouseLeave={() => {
-                    setTooltipContent('');
-                  }}
+                  // onMouseEnter={(event) => {
+                  //   const {
+                  //     target: { value },
+                  //   } = event;
+                  //   console.log(event);
+                  //   console.log(geo.properties);
+                  //   setSelectedState(`${geo.properties.NAME_1}`);
+                  // }}
+                  // onMouseLeave={() => {
+                  //   setSelectedState('');
+                  // }}
+                  onClick={() => setSelectedState(stateName)}
+                  fill={isStateSelected ? SELECTED_STATE_COLOR : undefined}
                   style={{
                     default: {
                       strokeWidth: 2,
-                      stroke: '#D6D6DA',
+                      stroke: HOVER_STATE_COLOR, //'#D6D6DA',
                       outline: 'none',
                     },
                     hover: {
-                      fill: '#EAEAEC',
+                      fill: HOVER_STATE_COLOR,
                       outline: 'none',
                     },
                     pressed: {
-                      fill: '#2e7509',
+                      fill: SELECTED_STATE_COLOR,
                       outline: 'none',
                     },
                   }}
@@ -69,14 +79,17 @@ const MapChart: React.FC<MapChartProps> = ({ setTooltipContent }) => {
 };
 
 const HomePage: React.FC = () => {
-  const [stateName, setStateName] = useState('');
+  const [selectedState, setSelectedState] = useState('');
   return (
     <div className="HomePage">
       <h2>Inventory</h2>
-      <h4 className="stateName">
-        {stateName ? `México - ${stateName}` : 'México'}
+      <h4 className="SelectedState">
+        {selectedState ? `México - ${selectedState}` : 'México'}
       </h4>
-      <MapChart setTooltipContent={setStateName} />
+      <MapChart
+        setSelectedState={setSelectedState}
+        selectedState={selectedState}
+      />
     </div>
   );
 };
