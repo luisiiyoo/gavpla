@@ -31,3 +31,7 @@ yarn-error.log*
 cypress.env.json
 
 /lib
+
+# Credentials
+google-credentials.json
+google-token.json

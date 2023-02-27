@@ -1,0 +1,13 @@
+.HomePage {
+  margin: 10px 50px 10px 50px;
+}
+
+.HomePage p {
+  text-indent: 50px;
+  text-align: justify;
+  font-style: italic;
+}
+
+.AuthorEmail {
+  color: var(--color-app);
+}

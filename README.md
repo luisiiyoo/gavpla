@@ -27,6 +27,16 @@ brew install yarn
 yarn install
 ```
 
+## Set environment variables
+
+Create a copy of the `.env.sample` and rename it to `.env` and update the values.
+
+
+## Set environment variables
+
+Get a Google credentials ([OAtuh 2.0 Client id](https://console.cloud.google.com/apis/credentials?project=license-plates-project)) file and rename it to `google-credentials.json` 
+
+
 ## Run the app
 
 When yarn finishes the installation of dependencies you are ready to launch the app.

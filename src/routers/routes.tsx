@@ -2,6 +2,7 @@ import React from 'react';
 import CreateGame from 'src/components/CreateGame';
 import GamesBoard from 'src/components/GamesBoard';
 import HomePage from 'src/components/HomePage';
+import Inventory from 'src/components/Inventory';
 import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
 
@@ -11,6 +12,12 @@ const navigationItems: NavItem[] = [
     route: '',
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
+  },
+  {
+    title: 'Inventory',
+    route: 'inventory',
+    iconClass: 'fa fa-fw fa-boxes-stacked',
+    functionalComponent: () => <Inventory />,
   },
   {
     title: 'Collection',
