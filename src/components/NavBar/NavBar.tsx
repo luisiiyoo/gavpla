@@ -50,7 +50,7 @@ const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
 };
 
 const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
-  const { route, expand } = useSelector((state) => state.main);
+  const { route, expand } = useSelector((state: any) => state.main);
   const dispatch = useDispatch();
 
   return (

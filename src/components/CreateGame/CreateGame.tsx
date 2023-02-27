@@ -53,7 +53,7 @@ const CreateGame: React.FC = () => {
           Create Game
         </button>
         <button
-          onClick={() => window.location.reload(true)}
+          onClick={() => window.location.reload()}
           disabled={disableComponents}
         >
           Clean

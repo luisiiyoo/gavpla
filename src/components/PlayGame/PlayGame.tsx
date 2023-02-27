@@ -35,7 +35,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
         Delete
       </button>
       <button
-        onClick={() => window.location.reload(true)}
+        onClick={() => window.location.reload()}
         disabled={disableRefresh}
       >
         Clean

@@ -94,7 +94,7 @@ const FilterGridPanel: React.FC<FilterGridPanelProps> = (props) => {
         </button>
         <button
           className="ControlPanel-Sort"
-          onClick={() => window.location.reload(true)}
+          onClick={() => window.location.reload()}
         >
           Refresh
         </button>
