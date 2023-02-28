@@ -34,7 +34,10 @@ Create a copy of the `.env.sample` and rename it to `.env` and update the values
 
 ## Set environment variables
 
-Get a Google credentials ([OAtuh 2.0 Client id](https://console.cloud.google.com/apis/credentials?project=license-plates-project)) file and rename it to `google-credentials.json` 
+Get a Google credentials ([OAtuh 2.0 Client id](https://console.cloud.google.com/iam-admin/serviceaccounts/details/117424898213998225962/keys?project=license-plates-project)) file and rename it to `google-credentials.json` 
+
+See tutorial:
+https://dev.to/calvinpak/how-to-read-write-google-sheets-with-react-193l
 
 
 ## Run the app

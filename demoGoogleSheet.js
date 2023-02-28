@@ -73,7 +73,7 @@ async function authorize() {
 async function listMajors(auth) {
   const sheets = google.sheets({ version: 'v4', auth });
   const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: '1jQ9YjnVyMIihlfPcmAIyzGay0E0BGVPKHI9GiTbV6lg', //'1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+    spreadsheetId: '1jQ9YjnVyMIihlfPcmAIyzGay0E0BGVPKHI9GiTbV6lg',
     range: 'mexico!B2:M34',
   });
   const rows = res.data.values;
