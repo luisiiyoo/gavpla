@@ -26,8 +26,8 @@ const HomePage: React.FC = () => {
       console.log('Get Information from Google Spreadsheet');
       const sheet = await loadGoogleSheet();
 
-      console.log(getDataFromSheetByState(sheet));
-      console.log(getDataFromSheetByYears(sheet));
+      // console.log(getDataFromSheetByState(sheet));
+      // console.log(getDataFromSheetByYears(sheet))
     } catch (error) {
       console.error(error);
       setError({
