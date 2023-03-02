@@ -12,11 +12,12 @@ import mexStateCenterCoordinates from 'src/components/Maps/MexMap/MexStateCenter
 const GEO_URL =
   'https://gist.githubusercontent.com/leenoah1/535b386ec5f5abdb2142258af395c388/raw/a045778d28609abc036f95702d6a44045ae7ca99/geo-data.json';
 const SELECTED_STATE_COLOR = '#2e7509';
-const HOVER_STATE_COLOR = '#EAEAEC';
-const DEFAULT_STATE_COLOR = undefined;
+const FILTERED_STATE_COLOR = '#9f131a';
+const HOVER_STATE_COLOR = '#FFF';
+const DEFAULT_STATE_COLOR = '#000';
 const style: React.CSSProperties = {
-  borderStyle: 'double',
-  width: '60%',
+  // borderStyle: 'double',
+  width: '70%',
   alignContent: 'center',
   textAlign: 'center',
   display: 'flex',
@@ -24,9 +25,9 @@ const style: React.CSSProperties = {
 };
 
 export interface MexMapProps {
-  setSelectedState: Dispatch<SetStateAction<string>>;
+  handleSelectState: (state: string) => void;
   selectedState: string;
-  filterStates?: string[];
+  filterStates: string[];
 }
 
 export interface Geo {
@@ -35,10 +36,10 @@ export interface Geo {
 }
 
 export const MexMap: React.FC<MexMapProps> = ({
-  setSelectedState,
+  handleSelectState,
   selectedState,
+  filterStates,
 }) => {
-  const mapCoordinateStates = new Map<string, number[]>();
   return (
     <div
       className="MexMap"
@@ -59,35 +60,28 @@ export const MexMap: React.FC<MexMapProps> = ({
               geographies.map((geo) => {
                 const stateName = geo.properties.NAME_1;
                 const isStateSelected = selectedState === stateName;
-                const geoCoordinates = geo.geometry.coordinates;
-                const coordinates: number[][] = [];
-                flatArray(geoCoordinates, coordinates);
-                const coordinatesCenter = calculatePolygonCenter(coordinates);
-
-                // console.log(stateName, coordinatesCenter);
-                mapCoordinateStates.set(stateName, coordinatesCenter);
-                // console.log(
-                //   JSON.stringify(Object.fromEntries(mapCoordinateStates)),
-                // );
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    // onMouseEnter={(event) => {
-                    //   const {
-                    //     target: { value },
-                    //   } = event;
-                    //   console.log(event);
-                    //   console.log(geo.properties);
-                    //   setSelectedState(`${geo.properties.NAME_1}`);
-                    // }}
-                    // onMouseLeave={() => {
-                    //   setSelectedState('');
-                    // }}
-                    onClick={() => setSelectedState(stateName)}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      if (e.nativeEvent.button === 0) {
+                        // Left click
+                        handleSelectState(stateName);
+                      } else if (e.nativeEvent.button === 2) {
+                        // Right click
+                        handleSelectState('');
+                      }
+                    }}
+                    onContextMenu={(e) => {
+                      e.preventDefault();
+                    }}
                     fill={
                       isStateSelected
-                        ? SELECTED_STATE_COLOR
+                        ? SELECTED_STATE_COLOR //filterStates
+                        : filterStates.includes(stateName)
+                        ? FILTERED_STATE_COLOR
                         : DEFAULT_STATE_COLOR
                     }
                     style={{
@@ -115,12 +109,21 @@ export const MexMap: React.FC<MexMapProps> = ({
             Array.from(new Map(Object.entries(mexStateCenterCoordinates))).map(
               ([stateName, { code, center }], key) => {
                 return (
-                  <Marker key={key} coordinates={center} fill="#777">
+                  <Marker
+                    key={key}
+                    coordinates={center}
+                    fill="#777"
+                    onContextMenu={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
                     <text
                       textAnchor="middle"
-                      fill={getComputedStyle(
-                        document.documentElement,
-                      ).getPropertyValue('--sidenav-background-app')}
+                      fill={
+                        filterStates.includes(stateName)
+                          ? DEFAULT_STATE_COLOR
+                          : FILTERED_STATE_COLOR
+                      }
                       fontSize={5}
                       fontWeight="bold"
                     >
@@ -135,6 +138,14 @@ export const MexMap: React.FC<MexMapProps> = ({
       </div>
     </div>
   );
+};
+
+const getPolygonCenter = (geo) => {
+  const geoCoordinates = geo.geometry.coordinates;
+  const coordinates: number[][] = [];
+  flatArray(geoCoordinates, coordinates);
+  const coordinatesCenter = calculatePolygonCenter(coordinates);
+  return coordinatesCenter;
 };
 
 const flatArray = (array: Array<any>, result: number[][]) => {

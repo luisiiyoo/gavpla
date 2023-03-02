@@ -29,13 +29,14 @@ const Inventory: React.FC = () => {
     setDateStateData(dateStateData.set(years, states));
   };
 
-  const [selectedYears, setSelectedYears] = useState('68-69');
+  const [selectedYears, setSelectedYears] = useState('72-73');
   const [selectedState, setSelectedState] = useState('');
   const [filterStates, setFilterStates] = useState(new Array<string>());
+
   const handleSelectState = (state: string) => {
     setSelectedState(state);
-    setFilterStates(dateStateData.get(selectedYears) || []);
-    console.log('filterStates: ', filterStates);
+    setFilterStates(Array.from(dateStateData.get(selectedYears) || []));
+    // console.log(state,', filterStates: ', filterStates);
   };
 
   useConstructor(async () => {
@@ -47,7 +48,9 @@ const Inventory: React.FC = () => {
       data.forEach((states, years) => {
         updateDateStateData(years, states || []);
       });
-      console.log(dateStateData); // updateDateStateData("68-69", data.get("68-69") || [])
+      setFilterStates(Array.from(dateStateData.get(selectedYears) || []));
+      // console.log(selectedState,', filterStates: ', filterStates);
+      // console.log(dateStateData); // updateDateStateData("68-69", data.get("68-69") || [])
     } catch (error) {
       console.error(error);
       setError({
@@ -59,6 +62,9 @@ const Inventory: React.FC = () => {
     }
   });
 
+  const subTitle = `México${selectedState && ` - ${selectedState}`}${
+    selectedYears && ` (${selectedYears})`
+  }`;
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
@@ -68,13 +74,11 @@ const Inventory: React.FC = () => {
       ) : (
         <>
           <h2>Inventory</h2>
-          <h4 className="SelectedState">
-            {selectedState ? `México - ${selectedState}` : 'México'}
-          </h4>
+          <h4 className="SelectedState">{subTitle}</h4>
           <MexMap
-            setSelectedState={setSelectedState}
+            handleSelectState={handleSelectState}
             selectedState={selectedState}
-            filterStates={[]}
+            filterStates={filterStates}
           />
         </>
       )}
