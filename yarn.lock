@@ -9661,6 +9661,11 @@ react-notifications-component@^2.4.1:
   dependencies:
     prop-types "^15.6.2"
 
+react-ranger@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-ranger/-/react-ranger-2.1.0.tgz#a9007d67a7871736fffc5fe0d7c54a736771e9a1"
+  integrity sha512-d8ezhyX3v/KlN8SkyoE5e8Dybsdmn94eUAqBDsAPrVhZde8sVt6pLJw4fC784KiMmS4LyAjvtjGxhAEqjjGYgw==
+
 react-redux@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"

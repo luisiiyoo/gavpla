@@ -14,10 +14,19 @@ const GEO_URL =
 const SELECTED_STATE_COLOR = '#2e7509';
 const HOVER_STATE_COLOR = '#EAEAEC';
 const DEFAULT_STATE_COLOR = undefined;
+const style: React.CSSProperties = {
+  borderStyle: 'double',
+  width: '60%',
+  alignContent: 'center',
+  textAlign: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+};
 
 export interface MexMapProps {
   setSelectedState: Dispatch<SetStateAction<string>>;
   selectedState: string;
+  filterStates?: string[];
 }
 
 export interface Geo {
@@ -31,92 +40,99 @@ export const MexMap: React.FC<MexMapProps> = ({
 }) => {
   const mapCoordinateStates = new Map<string, number[]>();
   return (
-    <div style={{ borderStyle: 'double' }}>
-      <ComposableMap
-        width={800}
-        height={400}
-        projection="geoAlbers"
-        projectionConfig={{
-          scale: 1100,
-          center: [-5, 25],
-        }}
-      >
-        <Geographies geography={GEO_URL}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const stateName = geo.properties.NAME_1;
-              const isStateSelected = selectedState === stateName;
-              const geoCoordinates = geo.geometry.coordinates;
-              const coordinates: number[][] = [];
-              flatArray(geoCoordinates, coordinates);
-              const coordinatesCenter = calculatePolygonCenter(coordinates);
+    <div
+      className="MexMap"
+      style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+    >
+      <div style={style}>
+        <ComposableMap
+          width={550}
+          height={400}
+          projection="geoAlbers"
+          projectionConfig={{
+            scale: 1100,
+            center: [-5, 24.6],
+          }}
+        >
+          <Geographies geography={GEO_URL}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const stateName = geo.properties.NAME_1;
+                const isStateSelected = selectedState === stateName;
+                const geoCoordinates = geo.geometry.coordinates;
+                const coordinates: number[][] = [];
+                flatArray(geoCoordinates, coordinates);
+                const coordinatesCenter = calculatePolygonCenter(coordinates);
 
-              // console.log(stateName, coordinatesCenter);
-              mapCoordinateStates.set(stateName, coordinatesCenter);
-              // console.log(
-              //   JSON.stringify(Object.fromEntries(mapCoordinateStates)),
-              // );
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  // onMouseEnter={(event) => {
-                  //   const {
-                  //     target: { value },
-                  //   } = event;
-                  //   console.log(event);
-                  //   console.log(geo.properties);
-                  //   setSelectedState(`${geo.properties.NAME_1}`);
-                  // }}
-                  // onMouseLeave={() => {
-                  //   setSelectedState('');
-                  // }}
-                  onClick={() => setSelectedState(stateName)}
-                  fill={
-                    isStateSelected ? SELECTED_STATE_COLOR : DEFAULT_STATE_COLOR
-                  }
-                  style={{
-                    default: {
-                      strokeWidth: 1,
-                      stroke: HOVER_STATE_COLOR,
-                      outline: 'none',
-                    },
-                    hover: {
-                      fill: HOVER_STATE_COLOR,
-                      outline: 'none',
-                    },
-                    pressed: {
-                      fill: SELECTED_STATE_COLOR,
-                      outline: 'none',
-                    },
-                  }}
-                />
-              );
-            })
+                // console.log(stateName, coordinatesCenter);
+                mapCoordinateStates.set(stateName, coordinatesCenter);
+                // console.log(
+                //   JSON.stringify(Object.fromEntries(mapCoordinateStates)),
+                // );
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    // onMouseEnter={(event) => {
+                    //   const {
+                    //     target: { value },
+                    //   } = event;
+                    //   console.log(event);
+                    //   console.log(geo.properties);
+                    //   setSelectedState(`${geo.properties.NAME_1}`);
+                    // }}
+                    // onMouseLeave={() => {
+                    //   setSelectedState('');
+                    // }}
+                    onClick={() => setSelectedState(stateName)}
+                    fill={
+                      isStateSelected
+                        ? SELECTED_STATE_COLOR
+                        : DEFAULT_STATE_COLOR
+                    }
+                    style={{
+                      default: {
+                        strokeWidth: 1,
+                        stroke: HOVER_STATE_COLOR,
+                        outline: 'none',
+                      },
+                      hover: {
+                        fill: HOVER_STATE_COLOR,
+                        outline: 'none',
+                      },
+                      pressed: {
+                        fill: SELECTED_STATE_COLOR,
+                        outline: 'none',
+                      },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+          {
+            // useMarkers &&
+            Array.from(new Map(Object.entries(mexStateCenterCoordinates))).map(
+              ([stateName, { code, center }], key) => {
+                return (
+                  <Marker key={key} coordinates={center} fill="#777">
+                    <text
+                      textAnchor="middle"
+                      fill={getComputedStyle(
+                        document.documentElement,
+                      ).getPropertyValue('--sidenav-background-app')}
+                      fontSize={5}
+                      fontWeight="bold"
+                    >
+                      {code}
+                    </text>
+                  </Marker>
+                );
+              },
+            )
           }
-        </Geographies>
-        {
-          // useMarkers &&
-          Array.from(new Map(Object.entries(mexStateCenterCoordinates))).map(
-            ([stateName, { code, center }], key) => {
-              return (
-                <Marker key={key} coordinates={center} fill="#777">
-                  <text
-                    textAnchor="middle"
-                    fill={getComputedStyle(
-                      document.documentElement,
-                    ).getPropertyValue('--sidenav-background-app')}
-                    fontSize={5}
-                    fontWeight="bold"
-                  >
-                    {code}
-                  </text>
-                </Marker>
-              );
-            },
-          )
-        }
-      </ComposableMap>
+        </ComposableMap>
+      </div>
     </div>
   );
 };
