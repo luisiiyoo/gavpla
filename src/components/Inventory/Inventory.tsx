@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import {
-  getDataFromSheetByState,
+  // getDataFromSheetByState,
   getDataFromSheetByYears,
   loadGoogleSheet,
 } from 'src/connector/google';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 import { MexMap } from '../Maps/MexMap';
+import Header from '../Header';
+import { MexOptionsPanel } from '../OptionsPanel/MexOptionsPanel';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -29,14 +31,14 @@ const Inventory: React.FC = () => {
     setDateStateData(dateStateData.set(years, states));
   };
 
-  const [selectedYears, setSelectedYears] = useState('72-73');
+  const [selectedYears, setSelectedYears] = useState('68-69'); //72-73
   const [selectedState, setSelectedState] = useState('');
   const [filterStates, setFilterStates] = useState(new Array<string>());
 
   const handleSelectState = (state: string) => {
     setSelectedState(state);
     setFilterStates(Array.from(dateStateData.get(selectedYears) || []));
-    // console.log(state,', filterStates: ', filterStates);
+    console.log(state,', filterStates: ', filterStates);
   };
 
   useConstructor(async () => {
@@ -45,6 +47,7 @@ const Inventory: React.FC = () => {
       const sheet = await loadGoogleSheet();
 
       const data = getDataFromSheetByYears(sheet);
+      
       data.forEach((states, years) => {
         updateDateStateData(years, states || []);
       });
@@ -73,13 +76,15 @@ const Inventory: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <h2>Inventory</h2>
-          <h4 className="SelectedState">{subTitle}</h4>
+          <Header title='Inventory' subTitle={subTitle}/>
+          <MexOptionsPanel />
+          
           <MexMap
             handleSelectState={handleSelectState}
             selectedState={selectedState}
             filterStates={filterStates}
           />
+          
         </>
       )}
     </div>

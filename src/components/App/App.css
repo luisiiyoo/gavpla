@@ -26,8 +26,9 @@ h2 {
   margin: 15px 15px 15px 15px;
 }
 
-h4 {
+h4, label {
   text-align: center;
+  vertical-align: middle;
   color: var(--font-color-app);
   text-shadow: 1px 2px 2px var(--color-app);
   margin: 15px 15px 15px 15px;
