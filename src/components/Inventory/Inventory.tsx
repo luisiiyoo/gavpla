@@ -38,7 +38,7 @@ const Inventory: React.FC = () => {
   const handleSelectState = (state: string) => {
     setSelectedState(state);
     setFilterStates(Array.from(dateStateData.get(selectedYears) || []));
-    console.log(state,', filterStates: ', filterStates);
+    console.log(state, ', filterStates: ', filterStates);
   };
 
   useConstructor(async () => {
@@ -47,7 +47,7 @@ const Inventory: React.FC = () => {
       const sheet = await loadGoogleSheet();
 
       const data = getDataFromSheetByYears(sheet);
-      
+
       data.forEach((states, years) => {
         updateDateStateData(years, states || []);
       });
@@ -76,15 +76,14 @@ const Inventory: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <Header title='Inventory' subTitle={subTitle}/>
+          <Header title="Inventory" subTitle={subTitle} />
           <MexOptionsPanel />
-          
+
           <MexMap
             handleSelectState={handleSelectState}
             selectedState={selectedState}
             filterStates={filterStates}
           />
-          
         </>
       )}
     </div>

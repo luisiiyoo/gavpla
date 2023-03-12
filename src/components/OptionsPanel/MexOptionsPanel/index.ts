@@ -1,1 +1,1 @@
-export {MexOptionsPanel} from './MexOptionsPanel'
+export { MexOptionsPanel } from './MexOptionsPanel';

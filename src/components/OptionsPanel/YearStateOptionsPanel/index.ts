@@ -1,1 +1,1 @@
-export {YearOptionsPanel} from './YearOptionsPanel'
+export { YearOptionsPanel } from './YearOptionsPanel';
