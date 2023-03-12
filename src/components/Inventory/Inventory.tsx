@@ -8,7 +8,7 @@ import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 import { MexMap } from '../Maps/MexMap';
 import Header from '../Header';
-import { MexOptionsPanel } from '../OptionsPanel/MexOptionsPanel';
+import MexOptionsPanel from '../OptionsPanel/MexOptionsPanel';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -46,9 +46,9 @@ const Inventory: React.FC = () => {
       console.log('Get Information from Google Spreadsheet');
       const sheet = await loadGoogleSheet();
 
-      const data = getDataFromSheetByYears(sheet);
-
-      data.forEach((states, years) => {
+      const dataByYears = getDataFromSheetByYears(sheet);
+      console.log(dataByYears);
+      dataByYears.forEach((states, years) => {
         updateDateStateData(years, states || []);
       });
       setFilterStates(Array.from(dateStateData.get(selectedYears) || []));

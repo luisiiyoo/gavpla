@@ -10,10 +10,11 @@ import mexStateCenterCoordinates from 'src/components/Maps/MexMap/MexStateCenter
 
 const GEO_URL =
   'https://gist.githubusercontent.com/leenoah1/535b386ec5f5abdb2142258af395c388/raw/a045778d28609abc036f95702d6a44045ae7ca99/geo-data.json';
-const SELECTED_STATE_COLOR = '#2e7509';
+
 const FILTERED_STATE_COLOR = '#9f131a';
 const HOVER_STATE_COLOR = '#FFF';
 const DEFAULT_STATE_COLOR = '#000';
+
 const style: React.CSSProperties = {
   // borderStyle: 'double',
   width: '70%',
@@ -78,7 +79,9 @@ export const MexMap: React.FC<MexMapProps> = ({
                     }}
                     fill={
                       isStateSelected
-                        ? SELECTED_STATE_COLOR //filterStates
+                        ? getComputedStyle(
+                            document.documentElement,
+                          ).getPropertyValue('--selected-item-color')
                         : filterStates.includes(stateName)
                         ? FILTERED_STATE_COLOR
                         : DEFAULT_STATE_COLOR
@@ -94,7 +97,7 @@ export const MexMap: React.FC<MexMapProps> = ({
                         outline: 'none',
                       },
                       pressed: {
-                        fill: SELECTED_STATE_COLOR,
+                        fill: HOVER_STATE_COLOR,
                         outline: 'none',
                       },
                     }}

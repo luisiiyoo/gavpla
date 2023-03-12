@@ -1,1 +1,2 @@
-export { MexOptionsPanel } from './MexOptionsPanel';
+export { default } from './MexOptionsPanel';
+export type { MexOptionsPanelProps } from './MexOptionsPanel';

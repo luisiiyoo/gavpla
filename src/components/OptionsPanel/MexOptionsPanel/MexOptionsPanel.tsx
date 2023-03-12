@@ -1,26 +1,27 @@
 import React from 'react';
-import { YearOptionsPanel } from '../YearStateOptionsPanel';
+import SelectOptionsPanel from '../SelectOptionsPanel';
 
 const style: React.CSSProperties = {
+  // borderStyle: 'double',
   width: '100%',
-  borderStyle: 'double',
   marginTop: '1.5%',
   marginBottom: '1.5%',
   display: 'flex',
   justifyContent: 'center',
-  // justifyContent: "space-between",
 };
 
 export interface MexOptionsPanelProps {}
 
-export const MexOptionsPanel = ({}: MexOptionsPanelProps) => {
+const MexOptionsPanel = ({}: MexOptionsPanelProps) => {
   return (
-    <div className="MexOptionsPanel" style={style}>
+    <div className="MexOptionsPanel box--gradient silver" style={style}>
       <div style={{ ...style, justifyContent: 'space-between', width: '80%' }}>
-        <YearOptionsPanel />
+        <SelectOptionsPanel label={'Year:'} />
         {/* <YearOptionsPanel /> */}
-        <YearOptionsPanel />
+        <SelectOptionsPanel label={'States'} />
       </div>
     </div>
   );
 };
+
+export default MexOptionsPanel;

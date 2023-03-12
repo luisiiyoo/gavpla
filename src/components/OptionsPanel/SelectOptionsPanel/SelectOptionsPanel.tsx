@@ -2,13 +2,12 @@ import React from 'react';
 import Select, { StylesConfig } from 'react-select';
 
 const fontSize = 'x-large';
-const colourStyles: StylesConfig = {
+const selectStyles: StylesConfig = {
   control: (styles) => ({
     ...styles,
     backgroundColor: 'white',
     color: 'black',
     fontSize,
-    height: 'inherited',
   }),
   option: (styles) => ({
     ...styles,
@@ -16,18 +15,11 @@ const colourStyles: StylesConfig = {
     color: 'black',
     fontSize,
   }),
-  // input: (styles) => ({ ...styles, height: "10%",}),
+  input: (styles) => ({ ...styles, fontSize }),
 };
 
 const style: React.CSSProperties = {
-  // borderStyle: 'double',
-
-  // justifyContent: 'center',
-  // marginTop: "1%",
-  // marginBottom:"1.5%",
-  width: '50%',
-  display: 'flex',
-  justifyContent: 'center',
+  width: '30%',
   verticalAlign: 'top',
   textAlign: 'center',
 };
@@ -40,19 +32,29 @@ const options = [
   // { value: '72-73', label: '1972-1973' }
 ];
 
-export interface YearOptionsPanel {}
+export type OptionsSelect = {
+  value: string;
+  label: string;
+};
 
-export const YearOptionsPanel = ({}: YearOptionsPanel) => {
+export interface SelectOptionsPanelProps {
+  label: string;
+  options?: OptionsSelect;
+}
+
+const SelectOptionsPanel = ({ label }: SelectOptionsPanelProps) => {
   return (
-    <div className="YearOptionsPanel" style={style}>
-      <label style={{ fontSize }}>{'Year:'}</label>
+    <div className="SelectOptionsPanel" style={style}>
+      <label>{label}</label>
       <Select
         options={options}
         isClearable
         isLoading={false}
-        styles={colourStyles}
+        styles={selectStyles}
         // value={""}
       />
     </div>
   );
 };
+
+export default SelectOptionsPanel;
