@@ -26,11 +26,9 @@ const Inventory: React.FC = () => {
   });
 
   // Data variables
-  const [dateStateData, setDateStateData] = useState(
-    new Map<string, string[]>(),
-  );
-  const updateDateStateData = (years: string, states: string[]) => {
-    setDateStateData(dateStateData.set(years, states));
+  const [dataByYear, setDataByYear] = useState(new Map<string, string[]>());
+  const updateDataByYear = (years: string, states: string[]) => {
+    setDataByYear(dataByYear.set(years, states));
   };
 
   const [stateOptions, setStateOptions] = useState(new Array<string>());
@@ -44,13 +42,14 @@ const Inventory: React.FC = () => {
   // Handlers
   const handleSelectState = (state: string) => {
     setSelectedState(state);
-    setFilterStates(Array.from(dateStateData.get(selectedYear) || []));
+    setFilterStates(Array.from(dataByYear.get(selectedYear) || []));
     // console.log(state, ', filterStates: ', filterStates);
   };
 
   const handleSelectYear = (year: string) => {
     console.log('year -> ', year);
     setSelectedYear(year);
+    setFilterStates(Array.from(dataByYear.get(year) || []));
   };
 
   // Constructor
@@ -71,9 +70,9 @@ const Inventory: React.FC = () => {
 
       // Update data variable
       dataByYear.forEach((states, years) => {
-        updateDateStateData(years, states || []);
+        updateDataByYear(years, states || []);
       });
-      setFilterStates(Array.from(dateStateData.get(selectedYear) || []));
+      setFilterStates(Array.from(dataByYear.get(selectedYear) || []));
     } catch (error) {
       console.error(error);
       setError({
