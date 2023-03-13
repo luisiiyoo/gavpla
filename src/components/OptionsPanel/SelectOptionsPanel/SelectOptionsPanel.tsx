@@ -1,5 +1,5 @@
 import React from 'react';
-import Select, { StylesConfig } from 'react-select';
+import Select, { ActionMeta, StylesConfig } from 'react-select';
 
 const fontSize = 'x-large';
 const selectStyles: StylesConfig = {
@@ -18,20 +18,6 @@ const selectStyles: StylesConfig = {
   input: (styles) => ({ ...styles, fontSize }),
 };
 
-const style: React.CSSProperties = {
-  width: '30%',
-  verticalAlign: 'top',
-  textAlign: 'center',
-};
-const options = [
-  { value: '68-69', label: '68-69' },
-  { value: '70-71', label: '70-71' },
-  { value: '72-73', label: '72-73' },
-  // { value: '68-69', label: '1968-1969' },
-  // { value: '70-71', label: '1970-1971' },
-  // { value: '72-73', label: '1972-1973' }
-];
-
 export type OptionsSelect = {
   value: string;
   label: string;
@@ -39,19 +25,38 @@ export type OptionsSelect = {
 
 export interface SelectOptionsPanelProps {
   label: string;
-  options?: OptionsSelect;
+  options?: Array<string>;
+  style?: React.CSSProperties;
+  selectionHandler: (state: string) => void;
+  selectionValue: string;
 }
 
-const SelectOptionsPanel = ({ label }: SelectOptionsPanelProps) => {
+const convertArrayToOptions = (values: Array<string>) => {
+  return values.map((val) => ({ value: val, label: val }));
+};
+
+const SelectOptionsPanel = ({
+  label,
+  style,
+  options,
+  selectionHandler,
+  selectionValue,
+}: SelectOptionsPanelProps) => {
+  const convertedOptions = convertArrayToOptions(options || []);
+
   return (
     <div className="SelectOptionsPanel" style={style}>
       <label>{label}</label>
       <Select
-        options={options}
+        options={convertedOptions}
         isClearable
         isLoading={false}
         styles={selectStyles}
-        // value={""}
+        value={{ value: selectionValue, label: selectionValue }}
+        onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
+          selectionHandler(!!newValue ? newValue.value : '');
+          return newValue;
+        }}
       />
     </div>
   );

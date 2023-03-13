@@ -10,15 +10,44 @@ const style: React.CSSProperties = {
   justifyContent: 'center',
 };
 
-export interface MexOptionsPanelProps {}
+export interface MexOptionsPanelProps {
+  selectedState: string;
+  selectedYear: string;
+  yearOptions: Array<string>;
+  stateOptions: Array<string>;
+  handleSelectYear: (year: string) => void;
+  handleSelectState: (state: string) => void;
+}
 
-const MexOptionsPanel = ({}: MexOptionsPanelProps) => {
+const MexOptionsPanel = ({
+  yearOptions,
+  stateOptions,
+  handleSelectYear,
+  handleSelectState,
+  selectedState,
+  selectedYear,
+}: MexOptionsPanelProps) => {
+  const selectOptionsPanelStyle: React.CSSProperties = {
+    width: '30%',
+    textAlign: 'center',
+  };
   return (
-    <div className="MexOptionsPanel box--gradient silver" style={style}>
-      <div style={{ ...style, justifyContent: 'space-between', width: '80%' }}>
-        <SelectOptionsPanel label={'Year:'} />
-        {/* <YearOptionsPanel /> */}
-        <SelectOptionsPanel label={'States'} />
+    <div className="MexOptionsPanel" style={style}>
+      <div style={{ ...style, justifyContent: 'space-between', width: '70%' }}>
+        <SelectOptionsPanel
+          label={'Year:'}
+          style={selectOptionsPanelStyle}
+          options={yearOptions}
+          selectionHandler={handleSelectYear}
+          selectionValue={selectedYear}
+        />
+        <SelectOptionsPanel
+          label={'State:'}
+          style={selectOptionsPanelStyle}
+          options={stateOptions}
+          selectionHandler={handleSelectState}
+          selectionValue={selectedState}
+        />
       </div>
     </div>
   );
