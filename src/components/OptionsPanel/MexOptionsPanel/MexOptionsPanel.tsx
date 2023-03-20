@@ -81,7 +81,7 @@ const YearChoice = ({ label, selectionHandler }) => {
       value={label}
       onClick={(e) => {
         e.preventDefault();
-        selectionHandler(e.target.value);
+        selectionHandler(e.currentTarget.value);
       }}
     >
       {label}
