@@ -15,15 +15,15 @@ export interface MexOptionsPanelProps {
   selectedYear: string;
   yearOptions: Array<string>;
   stateOptions: Array<string>;
-  handleSelectYear: (year: string) => void;
-  handleSelectState: (state: string) => void;
+  selectYearHandler: (year: string) => void;
+  selectStateHandler: (state: string) => void;
 }
 
 const MexOptionsPanel = ({
   yearOptions,
   stateOptions,
-  handleSelectYear,
-  handleSelectState,
+  selectYearHandler,
+  selectStateHandler,
   selectedState,
   selectedYear,
 }: MexOptionsPanelProps) => {
@@ -41,14 +41,14 @@ const MexOptionsPanel = ({
             label={'State:'}
             style={selectOptionsPanelStyle}
             options={stateOptions}
-            selectionHandler={handleSelectState}
+            selectionHandler={selectStateHandler}
             selectionValue={selectedState}
           />
           <SelectOptionsPanel
             label={'Year:'}
             style={selectOptionsPanelStyle}
             options={yearOptions}
-            selectionHandler={handleSelectYear}
+            selectionHandler={selectYearHandler}
             selectionValue={selectedYear}
           />
         </div>
@@ -66,7 +66,7 @@ const MexOptionsPanel = ({
           <YearChoice
             label={opt}
             key={key}
-            selectionHandler={handleSelectYear}
+            selectionHandler={selectYearHandler}
           />
         ))}
       </div>

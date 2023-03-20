@@ -37,19 +37,29 @@ const Inventory: React.FC = () => {
   // Data filter variables
   const [selectedYear, setSelectedYear] = useState('68-69'); //72-73
   const [selectedState, setSelectedState] = useState('');
-  const [filterStates, setFilterStates] = useState(new Array<string>());
+  const [filteredStates, setFilteredStates] = useState(new Array<string>());
 
   // Handlers
-  const handleSelectState = (state: string) => {
-    setSelectedState(state);
-    setFilterStates(Array.from(dataByYear.get(selectedYear) || []));
+  const selectStateHandler = (newStateValue: string) => {
+    const newYearValue = '';
+    setSelectedState(newStateValue);
+    setSelectedYear(newYearValue);
+    // setFilterStates(Array.from(dataByYear.get(selectedYear) || []));
     // console.log(state, ', filterStates: ', filterStates);
+
+    console.log(`Selected State: ${newStateValue}`);
+    console.log(`Selected Year: ${newYearValue}`);
   };
 
-  const handleSelectYear = (year: string) => {
-    console.log('year -> ', year);
-    setSelectedYear(year);
-    setFilterStates(Array.from(dataByYear.get(year) || []));
+  const selectYearHandler = (newYearValue: string) => {
+    const newStateValue = '';
+    setSelectedYear(newYearValue);
+    setSelectedState(newStateValue);
+
+    setFilteredStates(Array.from(dataByYear.get(newYearValue) || []));
+
+    console.log(`Selected State: ${newStateValue}`);
+    console.log(`Selected Year: ${newYearValue}`);
   };
 
   // Constructor
@@ -58,21 +68,21 @@ const Inventory: React.FC = () => {
       console.log('Get Information from Google Spreadsheet');
       const sheet = await loadGoogleSheet();
 
-      const dataByYear = getDataFromSheetByYears(sheet);
-      const dataByState = getDataFromSheetByState(sheet);
+      const rawDataByYear = getDataFromSheetByYears(sheet);
+      const rawDataByState = getDataFromSheetByState(sheet);
 
       // Set all the options
-      setStateOptions(Array.from(dataByState.keys()) || []);
-      setYearOptions(Array.from(dataByYear.keys()) || []);
+      setStateOptions(Array.from(rawDataByState.keys()) || []);
+      setYearOptions(Array.from(rawDataByYear.keys()) || []);
 
-      console.log('dataByYear: ', dataByYear);
-      console.log('dataByState: ', dataByState);
+      console.log('rawDataByYear: ', rawDataByYear);
+      console.log('rawDataByState: ', rawDataByState);
 
       // Update data variable
-      dataByYear.forEach((states, years) => {
+      rawDataByYear.forEach((states, years) => {
         updateDataByYear(years, states || []);
       });
-      setFilterStates(Array.from(dataByYear.get(selectedYear) || []));
+      setFilteredStates(Array.from(rawDataByYear.get(selectedYear) || []));
     } catch (error) {
       console.error(error);
       setError({
@@ -101,14 +111,14 @@ const Inventory: React.FC = () => {
             selectedState={selectedState}
             yearOptions={yearOptions}
             stateOptions={stateOptions}
-            handleSelectYear={handleSelectYear}
-            handleSelectState={handleSelectState}
+            selectYearHandler={selectYearHandler}
+            selectStateHandler={selectStateHandler}
           />
 
           <MexMap
-            handleSelectState={handleSelectState}
+            selectStateHandler={selectStateHandler}
             selectedState={selectedState}
-            filterStates={filterStates}
+            filteredStates={filteredStates}
           />
         </>
       )}

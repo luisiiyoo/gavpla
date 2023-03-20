@@ -25,9 +25,9 @@ const style: React.CSSProperties = {
 };
 
 export interface MexMapProps {
-  handleSelectState: (state: string) => void;
+  selectStateHandler: (state: string) => void;
   selectedState: string;
-  filterStates: string[];
+  filteredStates: string[];
 }
 
 export interface Geo {
@@ -36,9 +36,9 @@ export interface Geo {
 }
 
 export const MexMap: React.FC<MexMapProps> = ({
-  handleSelectState,
+  selectStateHandler,
   selectedState,
-  filterStates,
+  filteredStates,
 }) => {
   return (
     <div
@@ -68,10 +68,10 @@ export const MexMap: React.FC<MexMapProps> = ({
                       e.preventDefault();
                       if (e.nativeEvent.button === 0) {
                         // Left click
-                        handleSelectState(stateName);
+                        selectStateHandler(stateName);
                       } else if (e.nativeEvent.button === 2) {
                         // Right click
-                        handleSelectState('');
+                        selectStateHandler('');
                       }
                     }}
                     onContextMenu={(e) => {
@@ -82,7 +82,7 @@ export const MexMap: React.FC<MexMapProps> = ({
                         ? getComputedStyle(
                             document.documentElement,
                           ).getPropertyValue('--selected-item-color')
-                        : filterStates.includes(stateName)
+                        : filteredStates.includes(stateName)
                         ? FILTERED_STATE_COLOR
                         : DEFAULT_STATE_COLOR
                     }
@@ -122,7 +122,7 @@ export const MexMap: React.FC<MexMapProps> = ({
                     <text
                       textAnchor="middle"
                       fill={
-                        filterStates.includes(stateName)
+                        filteredStates.includes(stateName)
                           ? DEFAULT_STATE_COLOR
                           : FILTERED_STATE_COLOR
                       }
