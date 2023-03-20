@@ -25,29 +25,36 @@ const Inventory: React.FC = () => {
     message: '',
   });
 
-  // Data variables
-  const [dataByYear, setDataByYear] = useState(new Map<string, string[]>());
-  const updateDataByYear = (years: string, states: string[]) => {
-    setDataByYear(dataByYear.set(years, states));
-  };
-
   const [stateOptions, setStateOptions] = useState(new Array<string>());
   const [yearOptions, setYearOptions] = useState(new Array<string>());
+
+  // Data variables
+  const [dataByYear, setDataByYear] = useState(new Map<string, string[]>());
+  const [dataByState, setDataByState] = useState(new Map<string, string[]>());
+
+  const updateDataByYear = (year: string, states: string[]) => {
+    setDataByYear(dataByYear.set(year, states));
+  };
+  const updateDataByState = (state: string, years: string[]) => {
+    setDataByState(dataByYear.set(state, years));
+    // setDataByState(dataByState.set)
+  };
 
   // Data filter variables
   const [selectedYear, setSelectedYear] = useState('68-69');
   const [selectedState, setSelectedState] = useState('');
+
   const [filteredStates, setFilteredStates] = useState(new Array<string>());
+  const [filteredYears, setFilteredYears] = useState(new Array<string>());
 
   // Handlers
   const filteredStatesHandler = (year: string, data: Map<string, string[]>) => {
     setFilteredStates(Array.from(data.get(year) || []));
   };
 
-  const filteredYearsHandler = (
-    state: string,
-    isRawData: boolean = false,
-  ) => {};
+  const filteredYearsHandler = (state: string, data: Map<string, string[]>) => {
+    setFilteredYears(Array.from(data.get(state) || []));
+  };
 
   const selectStateHandler = (newStateValue: string) => {
     // Update selected values
@@ -57,6 +64,7 @@ const Inventory: React.FC = () => {
 
     // Update filters
     filteredStatesHandler(newYearValue, dataByYear);
+    filteredYearsHandler(newStateValue, dataByState);
 
     // Print info
     console.log(`Selected State: ${newStateValue}`);
@@ -71,6 +79,7 @@ const Inventory: React.FC = () => {
 
     // Update filters
     filteredStatesHandler(newYearValue, dataByYear);
+    filteredYearsHandler(newStateValue, dataByState);
 
     // Print info
     console.log(`Selected State: ${newStateValue}`);
@@ -84,23 +93,41 @@ const Inventory: React.FC = () => {
       const sheet = await loadGoogleSheet();
 
       const rawDataByYear = getDataFromSheetByYears(sheet);
-      const rawDataByState = getDataFromSheetByState(sheet);
+      const rawDataByStateWithCondition = getDataFromSheetByState(sheet);
+
+      const statesKeys: string[] =
+        Array.from(rawDataByStateWithCondition.keys()) || [];
+      const yearsKeys: string[] = Array.from(rawDataByYear.keys()) || [];
+
+      const rawDataByState = new Map(
+        statesKeys.map((state: string) => {
+          const stateWithCondition: Map<string, number | undefined> =
+            rawDataByStateWithCondition.get(state) || new Map();
+          const years: string[] = Array.from(stateWithCondition.keys());
+          return [state, years];
+        }),
+      );
 
       // Set all the options
-      setStateOptions(Array.from(rawDataByState.keys()) || []);
-      setYearOptions(Array.from(rawDataByYear.keys()) || []);
+      setStateOptions(statesKeys);
+      setYearOptions(yearsKeys);
 
       // Update data variable
-      rawDataByYear.forEach((states, years) => {
-        updateDataByYear(years, states || []);
+      rawDataByYear.forEach((states: string[], year: string) => {
+        updateDataByYear(year, states);
+      });
+      rawDataByState.forEach((years: string[], state: string) => {
+        updateDataByState(state, years);
       });
 
       // Update filters
       filteredStatesHandler(selectedYear, rawDataByYear);
+      filteredYearsHandler(selectedState, rawDataByState);
 
       // Print info
       console.log('rawDataByYear: ', rawDataByYear);
       console.log('rawDataByState: ', rawDataByState);
+      // console.log('rawDataByState: ', rawDataByStateWithCondition);
     } catch (error) {
       console.error(error);
       setError({
@@ -138,7 +165,14 @@ const Inventory: React.FC = () => {
             selectedState={selectedState}
             filteredStates={filteredStates}
           />
-          <p>{filteredStates.join(', ')}</p>
+          <div>
+            <h5>Filtered Years:</h5>
+            <p>{filteredYears.join(', ')}</p>
+          </div>
+          <div>
+            <h5>Filtered States:</h5>
+            <p>{filteredStates.join(', ')}</p>
+          </div>
         </>
       )}
     </div>
