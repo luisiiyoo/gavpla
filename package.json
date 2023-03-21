@@ -20,6 +20,7 @@
     "google-spreadsheet": "^3.3.0",
     "googleapis": "^111.0.0",
     "react": "^16.13.1",
+    "react-collapsible": "^2.10.0",
     "react-dom": "^16.13.1",
     "react-notifications-component": "^2.4.1",
     "react-redux": "^7.2.0",

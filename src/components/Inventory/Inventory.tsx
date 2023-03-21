@@ -10,6 +10,7 @@ import { MexMap } from '../Maps/MexMap';
 import Header from '../Header';
 import MexOptionsPanel from '../OptionsPanel/MexOptionsPanel';
 import YearsPanel from '../OptionsPanel/YearsPanel';
+import MissingDetailsPanel from '../DetailsPanel/ MissingDetailsPanel';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -167,31 +168,14 @@ const Inventory: React.FC = () => {
             selectedState={selectedState}
             filteredStates={filteredStates}
           />
-          {filteredYears.length > 0 && (
-            <div>
-              <h5>Filtered Years:</h5>
-              <p>
-                {filteredYears.map((year, key) => (
-                  <span key={key} className="YearChoice MissingItem">
-                    {year}
-                  </span>
-                ))}
-              </p>
-            </div>
-          )}
-          {filteredStates.length > 0 && (
-            <div>
-              <h5>Filtered States:</h5>
-              <p>
-                {filteredStates.map((state, key) => (
-                  <span key={key} className="YearChoice MissingItem">
-                    {state}
-                  </span>
-                ))}
-              </p>
-              {/* <p>{filteredStates.join(', ')}</p> */}
-            </div>
-          )}
+          <MissingDetailsPanel
+            selectedState={selectedState}
+            selectedYear={selectedYear}
+            filteredYears={filteredYears}
+            yearOptions={yearOptions}
+            filteredStates={filteredStates}
+            stateOptions={stateOptions}
+          />
         </>
       )}
     </div>
