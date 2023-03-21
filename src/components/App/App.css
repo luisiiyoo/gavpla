@@ -7,7 +7,16 @@
   --color-app: #3d71e0;
   --dark-color-app: #255cd4; */
   --sidenav-background-app: var(--dark-color-app);
-  --selected-item-color: #006341;
+
+  --hover-item-bg-color: #fff;
+  --default-item-bg-color: var(--background-color); /*#000;*/
+  --selected-item-bg-color: var(--dark-color-app); /*#006341;*/
+  --filtered-item-bg-color: var(--dark-color-app);
+
+  --hover-item-font-color: #000;
+  --default-item-font-color: #fff; /*var(--dark-color-app);*/
+  --selected-item-font-color: #fff;
+  --filtered-item-font-color: #fff;
 }
 
 .App {
@@ -51,7 +60,7 @@ label {
 .MexOptionsPanel {
   border-radius: 20px;
   border: 1px solid var(--background-color);
-  /* background-color: var(--selected-item-color); */
+  /* background-color: var(--selected-item-bg-color); */
   /*   
   &:hover {
     transform: translate3d(0px, 0px, -250px);
@@ -69,14 +78,37 @@ label {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .Filtered {
-  background-color: var(--dark-color-app);
-  color: white;
+  background-color: var(--filtered-item-bg-color);
+  color: var(--filtered-item-fc-color);
 }
 
 .Selected {
-  background-color: var(--selected-item-color);
-  color: white;
+  background-color: var(--selected-item-bg-color);
+  color: var(--selected-item-fc-color);
 }
+
+.MissingItem {
+  background-color: #000;
+  color: var(--selected-item-fc-color);
+  cursor: default;
+  font-size: 14px;
+  padding: 12px 30px;
+}
+
+/* .ItemSpan{
+  font-size: 16px;
+  border: 2px solid #555555;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  
+} */

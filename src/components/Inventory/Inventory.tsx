@@ -9,6 +9,7 @@ import Loader from '../Loader';
 import { MexMap } from '../Maps/MexMap';
 import Header from '../Header';
 import MexOptionsPanel from '../OptionsPanel/MexOptionsPanel';
+import YearsPanel from '../OptionsPanel/YearsPanel';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -57,6 +58,8 @@ const Inventory: React.FC = () => {
   };
 
   const selectStateHandler = (newStateValue: string) => {
+    if (newStateValue === selectedState) return;
+
     // Update selected values
     const newYearValue = '';
     setSelectedState(newStateValue);
@@ -65,13 +68,11 @@ const Inventory: React.FC = () => {
     // Update filters
     filteredStatesHandler(newYearValue, dataByYear);
     filteredYearsHandler(newStateValue, dataByState);
-
-    // Print info
-    console.log(`Selected State: ${newStateValue}`);
-    console.log(`Selected Year: ${newYearValue}`);
   };
 
   const selectYearHandler = (newYearValue: string) => {
+    if (newYearValue === selectedYear) return;
+
     // Update selected values
     const newStateValue = '';
     setSelectedYear(newYearValue);
@@ -80,10 +81,6 @@ const Inventory: React.FC = () => {
     // Update filters
     filteredStatesHandler(newYearValue, dataByYear);
     filteredYearsHandler(newStateValue, dataByState);
-
-    // Print info
-    console.log(`Selected State: ${newStateValue}`);
-    console.log(`Selected Year: ${newYearValue}`);
   };
 
   // Constructor
@@ -159,20 +156,42 @@ const Inventory: React.FC = () => {
             selectYearHandler={selectYearHandler}
             selectStateHandler={selectStateHandler}
           />
-
+          <YearsPanel
+            selectedYear={selectedYear}
+            yearOptions={yearOptions}
+            selectYearHandler={selectYearHandler}
+            filteredYears={filteredYears}
+          />
           <MexMap
             selectStateHandler={selectStateHandler}
             selectedState={selectedState}
             filteredStates={filteredStates}
           />
-          <div>
-            <h5>Filtered Years:</h5>
-            <p>{filteredYears.join(', ')}</p>
-          </div>
-          <div>
-            <h5>Filtered States:</h5>
-            <p>{filteredStates.join(', ')}</p>
-          </div>
+          {filteredYears.length > 0 && (
+            <div>
+              <h5>Filtered Years:</h5>
+              <p>
+                {filteredYears.map((year, key) => (
+                  <span key={key} className="YearChoice MissingItem">
+                    {year}
+                  </span>
+                ))}
+              </p>
+            </div>
+          )}
+          {filteredStates.length > 0 && (
+            <div>
+              <h5>Filtered States:</h5>
+              <p>
+                {filteredStates.map((state, key) => (
+                  <span key={key} className="YearChoice MissingItem">
+                    {state}
+                  </span>
+                ))}
+              </p>
+              {/* <p>{filteredStates.join(', ')}</p> */}
+            </div>
+          )}
         </>
       )}
     </div>

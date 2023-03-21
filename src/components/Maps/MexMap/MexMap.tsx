@@ -7,13 +7,17 @@ import {
 } from 'react-simple-maps';
 
 import mexStateCenterCoordinates from 'src/components/Maps/MexMap/MexStateCenterCoordinates.json';
+import { MEX_CODES } from 'src/utils/constants';
+import {
+  get_default_bg_color,
+  get_filtered_bg_color,
+  get_filtered_font_color,
+  get_hover_bg_color,
+  get_selected_bg_color,
+} from 'src/utils/helpers';
 
 const GEO_URL =
   'https://gist.githubusercontent.com/leenoah1/535b386ec5f5abdb2142258af395c388/raw/a045778d28609abc036f95702d6a44045ae7ca99/geo-data.json';
-
-const FILTERED_STATE_COLOR = '#9f131a';
-const HOVER_STATE_COLOR = '#FFF';
-const DEFAULT_STATE_COLOR = '#000';
 
 const style: React.CSSProperties = {
   // borderStyle: 'double',
@@ -79,25 +83,23 @@ export const MexMap: React.FC<MexMapProps> = ({
                     }}
                     fill={
                       isStateSelected
-                        ? getComputedStyle(
-                            document.documentElement,
-                          ).getPropertyValue('--selected-item-color')
+                        ? get_selected_bg_color()
                         : filteredStates.includes(stateName)
-                        ? FILTERED_STATE_COLOR
-                        : DEFAULT_STATE_COLOR
+                        ? get_filtered_bg_color()
+                        : get_default_bg_color()
                     }
                     style={{
                       default: {
                         strokeWidth: 1,
-                        stroke: HOVER_STATE_COLOR,
+                        stroke: get_hover_bg_color(),
                         outline: 'none',
                       },
                       hover: {
-                        fill: HOVER_STATE_COLOR,
+                        fill: get_hover_bg_color(),
                         outline: 'none',
                       },
                       pressed: {
-                        fill: HOVER_STATE_COLOR,
+                        fill: get_hover_bg_color(),
                         outline: 'none',
                       },
                     }}
@@ -106,36 +108,40 @@ export const MexMap: React.FC<MexMapProps> = ({
               })
             }
           </Geographies>
-          {
-            // useMarkers &&
-            Array.from(new Map(Object.entries(mexStateCenterCoordinates))).map(
-              ([stateName, { code, center }], key) => {
-                return (
-                  <Marker
-                    key={key}
-                    coordinates={center}
-                    fill="#777"
-                    onContextMenu={(e) => {
+          {Array.from(new Map(Object.entries(mexStateCenterCoordinates))).map(
+            ([stateName, { code, center }], key) => {
+              const isFiltered = filteredStates.includes(stateName);
+              return (
+                <Marker
+                  key={key}
+                  coordinates={center}
+                  // onMouseDown={(e)=>{console.log(e)}}
+                  onContextMenu={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <text
+                    textAnchor="middle"
+                    fill={
+                      isFiltered
+                        ? get_filtered_font_color()
+                        : get_hover_bg_color()
+                    }
+                    fontSize={4}
+                    fontWeight="bold"
+                    style={{ cursor: 'default' }}
+                    onClick={(e) => {
                       e.preventDefault();
+                      const stateName = MEX_CODES.get(code) || '';
+                      selectStateHandler(stateName);
                     }}
                   >
-                    <text
-                      textAnchor="middle"
-                      fill={
-                        filteredStates.includes(stateName)
-                          ? DEFAULT_STATE_COLOR
-                          : FILTERED_STATE_COLOR
-                      }
-                      fontSize={5}
-                      fontWeight="bold"
-                    >
-                      {code}
-                    </text>
-                  </Marker>
-                );
-              },
-            )
-          }
+                    {code}
+                  </text>
+                </Marker>
+              );
+            },
+          )}
         </ComposableMap>
       </div>
     </div>
