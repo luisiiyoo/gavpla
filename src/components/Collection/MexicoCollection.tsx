@@ -19,7 +19,7 @@ const useConstructor = (callBack: () => void) => {
   setHasBeenCalled(true);
 };
 
-const Inventory: React.FC = () => {
+const MexicoCollection: React.FC = () => {
   // Component status variables
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
@@ -143,12 +143,12 @@ const Inventory: React.FC = () => {
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
-    <div className="Inventory">
+    <div className="MexicoCollection">
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <Header title="Inventory" subTitle={subTitle} />
+          <Header title="License Plates Collection" subTitle={subTitle} />
           <MexOptionsPanel
             selectedYear={selectedYear}
             selectedState={selectedState}
@@ -182,4 +182,4 @@ const Inventory: React.FC = () => {
   );
 };
 
-export default Inventory;
+export default MexicoCollection;

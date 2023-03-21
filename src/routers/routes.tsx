@@ -2,7 +2,7 @@ import React from 'react';
 // import CreateGame from 'src/components/CreateGame';
 // import GamesBoard from 'src/components/GamesBoard';
 import HomePage from 'src/components/HomePage';
-import Inventory from 'src/components/Inventory';
+import MexicoCollection from 'src/components/Collection';
 // import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
 
@@ -14,10 +14,17 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => <HomePage />,
   },
   {
-    title: 'Inventory',
-    route: 'inventory',
-    iconClass: 'fa fa-fw fa-boxes-stacked',
-    functionalComponent: () => <Inventory />,
+    title: 'Collection',
+    route: 'collection',
+    iconClass: 'fa fw fa-earth-americas',
+    childs: [
+      {
+        title: 'México',
+        idChild: 'collection.mexico',
+        route: 'collection/mexico',
+        functionalComponent: () => <MexicoCollection />,
+      },
+    ],
   },
   // {
   //   title: 'Collection',
