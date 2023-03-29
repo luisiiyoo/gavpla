@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/license-plates-gallery/static/css/main.9fc2c36d.chunk.css",
+    "main.js": "/license-plates-gallery/static/js/main.e6d90a79.chunk.js",
+    "main.js.map": "/license-plates-gallery/static/js/main.e6d90a79.chunk.js.map",
+    "runtime-main.js": "/license-plates-gallery/static/js/runtime-main.23c93969.js",
+    "runtime-main.js.map": "/license-plates-gallery/static/js/runtime-main.23c93969.js.map",
+    "static/css/2.856795c6.chunk.css": "/license-plates-gallery/static/css/2.856795c6.chunk.css",
+    "static/js/2.00e6df90.chunk.js": "/license-plates-gallery/static/js/2.00e6df90.chunk.js",
+    "static/js/2.00e6df90.chunk.js.map": "/license-plates-gallery/static/js/2.00e6df90.chunk.js.map",
+    "index.html": "/license-plates-gallery/index.html",
+    "precache-manifest.fb82781d97e778fc79d8bd345be97c80.js": "/license-plates-gallery/precache-manifest.fb82781d97e778fc79d8bd345be97c80.js",
+    "service-worker.js": "/license-plates-gallery/service-worker.js",
+    "static/css/2.856795c6.chunk.css.map": "/license-plates-gallery/static/css/2.856795c6.chunk.css.map",
+    "static/css/main.9fc2c36d.chunk.css.map": "/license-plates-gallery/static/css/main.9fc2c36d.chunk.css.map",
+    "static/js/2.00e6df90.chunk.js.LICENSE.txt": "/license-plates-gallery/static/js/2.00e6df90.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.23c93969.js",
+    "static/css/2.856795c6.chunk.css",
+    "static/js/2.00e6df90.chunk.js",
+    "static/css/main.9fc2c36d.chunk.css",
+    "static/js/main.e6d90a79.chunk.js"
+  ]
+}
