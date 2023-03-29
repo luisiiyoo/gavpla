@@ -1,11 +1,12 @@
 {
-  "name": "cards-game",
+  "name": "license-plates-gallery",
+  "version": "0.1.0",
+  "homepage": "https://gitname.github.io/license-plates-gallery",
   "author": {
     "name": "Luis Gonzalez Guzman",
     "email": "luis.gonzalez.guzman.93@gmail.com",
     "url": "https://www.linkedin.com/in/luis-gonz%C3%A1lez-guzm%C3%A1n-2b464b139/"
   },
-  "version": "1.0.0",
   "engines": {
     "node": "12.x",
     "yarn": "1.x"
@@ -17,6 +18,7 @@
     "@types/react-notifications-component": "^2.4.0",
     "axios": "^1.3.4",
     "change-case": "^4.1.1",
+    "gh-pages": "^5.0.0",
     "google-spreadsheet": "^3.3.0",
     "googleapis": "^111.0.0",
     "react": "^16.13.1",
@@ -35,6 +37,8 @@
     "tippy.js": "^5.2.1"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "dev": "PORT=3030 HOST=0.0.0.0 react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
