@@ -14,6 +14,12 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => <HomePage />,
   },
   {
+    title: 'Home',
+    route: 'license-plates-gallery',
+    iconClass: 'fa fa-fw fa-home',
+    functionalComponent: () => <HomePage />,
+  },
+  {
     title: 'Collection',
     route: 'collection',
     iconClass: 'fa fw fa-earth-americas',
