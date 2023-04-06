@@ -6,6 +6,7 @@ import { navigationFCItems } from './routes';
 import PageNotFound from '../components/PageNotFound';
 import NavBar from '../components/NavBar';
 import './Router.css';
+import LanguagueSwithcer from 'src/components/LanguageSwitcher';
 
 const MAX_NAVBAR_MARGIN = 240;
 const MIN_NAVBAR_MARGIN = 64;
@@ -43,7 +44,8 @@ const Routes: React.FC<RouterProps> = () => {
       <Route
         render={({ history }) => <NavBar history={history} navBarTitle={''} />}
       />
-      <div className="Container">
+      <div className="Container" style={{ display: 'block' }}>
+        <LanguagueSwithcer />
         <MainComponent isExpandedNavBar={isExpandedNavBar} />
       </div>
     </BrowserRouter>

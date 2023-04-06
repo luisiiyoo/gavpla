@@ -143,7 +143,7 @@ const MexicoCollection: React.FC = () => {
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
-    <div className="MexicoCollection">
+    <div className="MexicoCollection" style={{ paddingBottom: '2%' }}>
       {isLoading ? (
         <Loader />
       ) : (

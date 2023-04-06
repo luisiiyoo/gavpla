@@ -1,6 +1,7 @@
 import {
   SetSelectedRouteType,
   SetExpandNavBarType,
+  SetLanguageType,
 } from './MainComponent.types';
 
 export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
@@ -11,4 +12,9 @@ export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
 export const setExpandNavBar: SetExpandNavBarType = (expand: boolean) => ({
   type: 'SET_EXPAND_NAVBAR',
   expand,
+});
+
+export const setLanguage: SetLanguageType = (languageCode: string) => ({
+  type: 'SET_LANGUAGE',
+  languageCode,
 });

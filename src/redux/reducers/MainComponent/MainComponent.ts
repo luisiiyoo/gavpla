@@ -17,7 +17,8 @@ const isAComputerDevice = (): boolean => {
 
 export const initialState: StateType = {
   route: 'home',
-  expand: isAComputerDevice(), //window.orientation>1,
+  expand: isAComputerDevice(),
+  languageCode: 'en',
 };
 
 const reducer = (state: StateType = initialState, action: ActionType) => {
@@ -27,6 +28,8 @@ const reducer = (state: StateType = initialState, action: ActionType) => {
       return { ...state, route: action.route };
     case 'SET_EXPAND_NAVBAR':
       return { ...state, expand: action.expand };
+    case 'SET_LANGUAGE':
+      return { ...state, code: action.languageCode };
     default:
       return state;
   }

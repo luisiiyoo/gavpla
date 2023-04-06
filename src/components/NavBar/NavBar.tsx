@@ -11,6 +11,7 @@ import { NavBarProps, OnSelectNavItem, RenderNavItem } from './NavBar.types';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './NavBar.css';
 import { navigationItems } from 'src/routers';
+import { getTranslation } from 'src/language';
 
 const styleNavItemText = { fontSize: '1.3em', verticalAlign: 'middle' };
 const styleNavSubItemText = {
@@ -50,8 +51,11 @@ const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
 };
 
 const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
-  const { route, expand } = useSelector((state: any) => state.main);
+  const { route, expand, languageCode } = useSelector(
+    (state: any) => state.main,
+  );
   const dispatch = useDispatch();
+  const translation = getTranslation(languageCode, 'NavBar');
 
   return (
     <SideNav
@@ -67,7 +71,10 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       <SideNav.Toggle data-testid="toggleNavBar" />
       <NavBarHeader expanded={expand} title={navBarTitle} />
       <SideNav.Nav selected={route}>
-        {navigationItems.map((item) => renderNavItem(item))}
+        {navigationItems.map((item) => {
+          item.title = translation[item.route];
+          return renderNavItem(item);
+        })}
       </SideNav.Nav>
     </SideNav>
   );

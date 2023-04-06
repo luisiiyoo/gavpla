@@ -5,3 +5,7 @@ export interface SetSelectedRouteType {
 export interface SetExpandNavBarType {
   (expand: boolean): { type: string; expand: boolean };
 }
+
+export interface SetLanguageType {
+  (languageCode: string): { type: string; languageCode: string };
+}
