@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/license-plates-gallery/precache-manifest.fb82781d97e778fc79d8bd345be97c80.js"
+  "/license-plates-gallery/precache-manifest.c68582f4e50bcc4d44edf3105ed14bc7.js"
 );
 
 self.addEventListener('message', (event) => {

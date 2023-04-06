@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a0372763cb073b58c3a6fe7882d7b328",
+    "revision": "7b658339157960fbb4bdffd47cfbf60e",
     "url": "/license-plates-gallery/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/license-plates-gallery/static/css/2.856795c6.chunk.css"
   },
   {
-    "revision": "8c7c873427ce5211abd4",
+    "revision": "8a0f7796e3eb5daa3b3d",
     "url": "/license-plates-gallery/static/css/main.9fc2c36d.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/license-plates-gallery/static/js/2.00e6df90.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8c7c873427ce5211abd4",
-    "url": "/license-plates-gallery/static/js/main.e6d90a79.chunk.js"
+    "revision": "8a0f7796e3eb5daa3b3d",
+    "url": "/license-plates-gallery/static/js/main.c9724c1f.chunk.js"
   },
   {
     "revision": "a51c7ce283c8abbfbe6e",
