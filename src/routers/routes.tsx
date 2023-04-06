@@ -7,12 +7,12 @@ import MexicoCollection from 'src/components/Collection';
 import { AbstractNavItem, NavItem } from './Router.types';
 
 const navigationItems: NavItem[] = [
-  {
-    title: 'Home',
-    route: '',
-    iconClass: 'fa fa-fw fa-home',
-    functionalComponent: () => <HomePage />,
-  },
+  // {
+  //   title: 'Home',
+  //   route: '',
+  //   iconClass: 'fa fa-fw fa-home',
+  //   functionalComponent: () => <HomePage />,
+  // },
   {
     title: 'Home',
     route: 'license-plates-gallery',
