@@ -1,5 +1,7 @@
 import React from 'react';
 import SelectOptionsPanel from '../SelectOptionsPanel';
+import { useSelector } from 'react-redux';
+import { getTranslation } from 'src/language';
 
 const style: React.CSSProperties = {
   // borderStyle: 'double',
@@ -27,6 +29,9 @@ const MexOptionsPanel = ({
   selectedState,
   selectedYear,
 }: MexOptionsPanelProps) => {
+  const { languageCode } = useSelector((state) => state.main);
+  const translation = getTranslation(languageCode, 'MexicoCollection');
+
   const selectOptionsPanelStyle: React.CSSProperties = {
     width: '30%',
     textAlign: 'center',
@@ -35,14 +40,14 @@ const MexOptionsPanel = ({
     <div className="MexOptionsPanel" style={style}>
       <div style={{ ...style, justifyContent: 'space-between', width: '70%' }}>
         <SelectOptionsPanel
-          label={'State:'}
+          label={translation['State'] + ':'}
           style={selectOptionsPanelStyle}
           options={stateOptions}
           selectionHandler={selectStateHandler}
           selectionValue={selectedState}
         />
         <SelectOptionsPanel
-          label={'Year:'}
+          label={translation['Year'] + ':'}
           style={selectOptionsPanelStyle}
           options={yearOptions}
           selectionHandler={selectYearHandler}

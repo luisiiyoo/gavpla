@@ -11,6 +11,8 @@ import Header from '../Header';
 import MexOptionsPanel from '../OptionsPanel/MexOptionsPanel';
 import YearsPanel from '../OptionsPanel/YearsPanel';
 import MissingDetailsPanel from '../DetailsPanel/ MissingDetailsPanel';
+import { useSelector } from 'react-redux';
+import { getTranslation } from 'src/language';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -20,6 +22,9 @@ const useConstructor = (callBack: () => void) => {
 };
 
 const MexicoCollection: React.FC = () => {
+  const { languageCode } = useSelector((state) => state.main);
+  const translation = getTranslation(languageCode, 'MexicoCollection');
+
   // Component status variables
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
@@ -148,7 +153,7 @@ const MexicoCollection: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <Header title="License Plates Collection" subTitle={subTitle} />
+          <Header title={translation['title']} subTitle={subTitle} />
           <MexOptionsPanel
             selectedYear={selectedYear}
             selectedState={selectedState}

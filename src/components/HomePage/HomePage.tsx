@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import frontConfig from 'src/config/server';
 import { getTranslation } from 'src/language';
 import './HomePage.css';
 

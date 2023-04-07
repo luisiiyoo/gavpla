@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Collapsible from 'react-collapsible';
 import { get_selected_bg_color, get_selected_font_color } from 'src/utils';
+import { useSelector } from 'react-redux';
+import { getTranslation } from 'src/language';
 
 export interface MissingDetailsPanelProps {
   filteredYears: string[];
@@ -34,7 +36,10 @@ const MissingDetailsPanel = ({
   selectedState,
   selectedYear,
 }: MissingDetailsPanelProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { languageCode } = useSelector((state) => state.main);
+  const translation = getTranslation(languageCode, 'MexicoCollection');
+
+  const [isOpen, setIsOpen] = useState(true);
   const showMissingDetailsByYears = filteredYears.length > 0;
   const showMissingDetailsByStates = filteredStates.length > 0;
 
@@ -51,7 +56,11 @@ const MissingDetailsPanel = ({
         onTriggerOpening={() => {
           setIsOpen(true);
         }}
-        trigger={`${isOpen ? 'Hide' : 'See'} missing plates details`}
+        trigger={
+          isOpen
+            ? translation['MissingDetails']['HideDetails']
+            : translation['MissingDetails']['SeeDetails']
+        }
         triggerStyle={{
           ...triggerStyle,
           backgroundColor: get_selected_bg_color(),
@@ -66,8 +75,10 @@ const MissingDetailsPanel = ({
           {showMissingDetailsByYears && (
             <>
               <p>
-                <strong>{`${selectedState} state: `}</strong>
-                {`${filteredYears.length} plates in the collection, ${missingYears.length} missing.`}
+                <strong>{`${translation['State']} : ${selectedState}`}</strong>
+                <br />
+                {/* {`${filteredYears.length} plates in the collection, ${missingYears.length} missing.`} */}
+                {`${translation['MissingDetails']['Having']} : ${filteredYears.length}   -   ${translation['MissingDetails']['Missing']} : ${missingYears.length}`}
               </p>
               <p>
                 {missingYears.map((year, key) => (
@@ -81,8 +92,9 @@ const MissingDetailsPanel = ({
           {showMissingDetailsByStates && (
             <>
               <p>
-                <strong>{`${selectedYear} year: `}</strong>
-                {`${filteredStates.length} plates in the collection, ${missingStats.length} missing.`}
+                <strong>{`${translation['Year']} : ${selectedYear}`}</strong>
+                <br />
+                {`${translation['MissingDetails']['Having']} : ${filteredStates.length}   -   ${translation['MissingDetails']['Missing']} : ${missingStats.length}`}
               </p>
               <p>
                 {missingStats.map((state, key) => (

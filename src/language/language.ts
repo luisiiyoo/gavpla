@@ -1,5 +1,5 @@
-import mexicoFlag from './flags/mexico.png';
-import usFlag from './flags/united-states.png';
+import mexicoFlag from 'src/language/flags/mexico.png';
+import usFlag from 'src/language/flags/united-states.png';
 
 interface languageType {
   languageCode: string;
@@ -30,6 +30,17 @@ export const translations = {
         author: 'Author',
       },
     },
+    MexicoCollection: {
+      title: 'License Plates Collection',
+      Year: 'Year',
+      State: 'State',
+      MissingDetails: {
+        SeeDetails: 'See details',
+        HideDetails: 'Hide details',
+        Having: 'Number of plates in the collection:',
+        Missing: 'Missing plates',
+      },
+    },
   },
   es: {
     NavBar: {
@@ -46,6 +57,17 @@ export const translations = {
         p2:
           'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas de auto. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas cosas.',
         author: 'Autor',
+      },
+    },
+    MexicoCollection: {
+      title: 'Collección de Placas',
+      Year: 'Año',
+      State: 'Estado',
+      MissingDetails: {
+        SeeDetails: 'Ver detalles',
+        HideDetails: 'Ocultar detalles',
+        Having: 'Número de placas en la colleción',
+        Missing: 'Placas faltantes',
       },
     },
   },
