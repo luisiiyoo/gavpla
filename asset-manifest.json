@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/license-plates-gallery/static/css/main.d3a466b0.chunk.css",
-    "main.js": "/license-plates-gallery/static/js/main.ad4774b2.chunk.js",
-    "main.js.map": "/license-plates-gallery/static/js/main.ad4774b2.chunk.js.map",
+    "main.js": "/license-plates-gallery/static/js/main.ed1c5ec9.chunk.js",
+    "main.js.map": "/license-plates-gallery/static/js/main.ed1c5ec9.chunk.js.map",
     "runtime-main.js": "/license-plates-gallery/static/js/runtime-main.23c93969.js",
     "runtime-main.js.map": "/license-plates-gallery/static/js/runtime-main.23c93969.js.map",
     "static/css/2.856795c6.chunk.css": "/license-plates-gallery/static/css/2.856795c6.chunk.css",
     "static/js/2.72f9f718.chunk.js": "/license-plates-gallery/static/js/2.72f9f718.chunk.js",
     "static/js/2.72f9f718.chunk.js.map": "/license-plates-gallery/static/js/2.72f9f718.chunk.js.map",
     "index.html": "/license-plates-gallery/index.html",
-    "precache-manifest.59df76155bb410b8be9f4ae9d6e0c248.js": "/license-plates-gallery/precache-manifest.59df76155bb410b8be9f4ae9d6e0c248.js",
+    "precache-manifest.6d538f1381397d915cb7f303f4acdfa2.js": "/license-plates-gallery/precache-manifest.6d538f1381397d915cb7f303f4acdfa2.js",
     "service-worker.js": "/license-plates-gallery/service-worker.js",
     "static/css/2.856795c6.chunk.css.map": "/license-plates-gallery/static/css/2.856795c6.chunk.css.map",
     "static/css/main.d3a466b0.chunk.css.map": "/license-plates-gallery/static/css/main.d3a466b0.chunk.css.map",
@@ -22,6 +22,6 @@
     "static/css/2.856795c6.chunk.css",
     "static/js/2.72f9f718.chunk.js",
     "static/css/main.d3a466b0.chunk.css",
-    "static/js/main.ad4774b2.chunk.js"
+    "static/js/main.ed1c5ec9.chunk.js"
   ]
 }
