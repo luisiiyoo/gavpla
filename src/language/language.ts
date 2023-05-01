@@ -60,13 +60,13 @@ export const translations = {
       },
     },
     MexicoCollection: {
-      title: 'Collección de Placas',
+      title: 'Colección de Placas',
       Year: 'Año',
       State: 'Estado',
       MissingDetails: {
         SeeDetails: 'Ver detalles',
         HideDetails: 'Ocultar detalles',
-        Having: 'Número de placas en la colleción',
+        Having: 'Número de placas en la coleción',
         Missing: 'Placas faltantes',
       },
     },
