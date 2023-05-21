@@ -1,12 +1,12 @@
 #!/bin/bash
-APP_DIR='cards-game-frontend'
-GIT_REVISION='release'
-FRONT_PORT=3030
+
+# Read environment variables needed
+source DockerConfig.sh
 
 docker stop ${APP_DIR}-${GIT_REVISION}
 docker rm ${APP_DIR}-${GIT_REVISION}
 
-docker run -dit \
+docker run -it \
         -p ${FRONT_PORT}:${FRONT_PORT} \
         --name ${APP_DIR}-${GIT_REVISION} \
         ${APP_DIR}:${GIT_REVISION}

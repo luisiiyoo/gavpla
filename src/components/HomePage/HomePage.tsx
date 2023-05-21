@@ -14,6 +14,7 @@ const HomePage: React.FC = () => {
       <>
         <h2>{translation['title']}</h2>
 
+        {/* <img src = "https://drive.google.com/uc?id=1FfkogwDPmTI58dVYAJ6bhiysCFJqYLcq&export=download" width="200" height="128"/> */}
         <br />
         <br />
         <p>{translation['body']['p1']}</p>
