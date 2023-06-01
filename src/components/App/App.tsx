@@ -7,6 +7,8 @@ import Loader from '../Loader';
 import ErrorDisplay from '../ErrorDisplay';
 import 'react-notifications-component/dist/theme.css';
 import './App.css';
+import connector from 'src/connector';
+import { AbstractError } from 'src/utils/error.types';
 
 const store = configureStore();
 
@@ -25,16 +27,43 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useConstructor(async () => {
-    // try {
-    // await connector.checkBackendHealth();
-    // } catch (error) {
-    //   setError({
-    //     statusCode: error.statusCode,
-    //     message: error.message,
-    //   });
-    // } finally {
-    setIsLoading(false);
-    // }
+    try {
+      const defaultAccessTokenID = await connector.getDefaultAccessTokenID();
+      const metadataModifiedDate: Date = await connector.getMetadataModifiedDate(
+        defaultAccessTokenID,
+      );
+
+      const lastUpdate: null | string = localStorage.getItem('lastUpdate');
+      const isDeprecated: boolean =
+        !lastUpdate || new Date(lastUpdate) < metadataModifiedDate;
+
+      console.log('Is deprecated the data?: ', isDeprecated);
+      if (isDeprecated) {
+        const mexicoCarPlatesInventory = await connector.getCarPlatesInventory(
+          defaultAccessTokenID,
+        );
+        console.log('mexicoCarPlatesInventory: ', mexicoCarPlatesInventory);
+        localStorage.setItem(
+          'mexicoCarPlatesInventory',
+          mexicoCarPlatesInventory,
+        );
+      }
+      localStorage.setItem('lastUpdate', metadataModifiedDate.toISOString());
+    } catch (error) {
+      let statusCode: number = 500;
+      let message: string = String(error);
+
+      if (error instanceof AbstractError) {
+        statusCode = error.statusCode;
+        message = error.message;
+      }
+      setError({
+        statusCode: statusCode,
+        message: message,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   });
 
   const isError = !!error.message;

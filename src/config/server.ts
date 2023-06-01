@@ -8,6 +8,7 @@ interface FrontendConfig {
   backendHost: string;
   googleCredentialsFile: string;
   googleSpreadSheetId: string;
+  defaultGoogleClient: string;
 }
 
 if (!process.env.REACT_APP_BACKEND_HOST) {
@@ -22,6 +23,7 @@ const frontConfig: FrontendConfig = {
   backendHost: process.env.REACT_APP_BACKEND_HOST || 'http://0.0.0.0:5050',
   googleCredentialsFile: process.env.REACT_APP_GOOGLE_CREDENTIALS_FILE || '',
   googleSpreadSheetId: process.env.REACT_APP_SPREADSHEET_ID || '',
+  defaultGoogleClient: process.env.REACT_APP_DEFAULT_GOOGLE_CLIENT || '',
   // path.join(process.cwd(), './google-credentials.json'),
 };
 

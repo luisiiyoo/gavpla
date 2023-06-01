@@ -21,7 +21,7 @@ export class NotFoundError extends AbstractError {
 }
 
 export class BackendUnavailableError extends AbstractError {
-  constructor(message = 'Back-End connection failed.') {
+  constructor(message = 'Unable to stablish connection with the backend.') {
     super(message, 503);
     this.name = 'BackendUnavailableError';
   }

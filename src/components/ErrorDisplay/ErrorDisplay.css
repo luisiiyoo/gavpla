@@ -15,7 +15,7 @@
 
 .Error-Message {
   color: var(--font-color-app);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   margin: 25px 0 20px 0;
 }
 
