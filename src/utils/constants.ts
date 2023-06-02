@@ -1,3 +1,9 @@
+export const LocalStorageVars = {
+  lastUpdate: 'lastUpdate',
+  mexicoCarPlatesInventory: 'mexicoCarPlatesInventory',
+  defaultAccessTokenID: 'defaultAccessTokenID',
+};
+
 export const MEX_CODES = new Map([
   ['AGS', 'Aguascalientes'],
   ['BC', 'Baja California'],

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import frontConfig from 'src/config/server';
+import { LocalStorageVars, MEX_CODES } from 'src/utils/constants';
 import { BackendUnavailableError, AbstractError } from 'src/utils/error.types';
 
 const {
@@ -31,7 +32,11 @@ export interface GetResourcesMetadata {
 }
 
 export class BackendConnector {
-  async handleRequest(method: string, url: string, data?: Map<any, any>) {
+  private async handleRequest(
+    method: string,
+    url: string,
+    data?: Map<any, any>,
+  ) {
     try {
       const resp = await axios({
         method: method.toUpperCase(),
@@ -74,7 +79,24 @@ export class BackendConnector {
     return result;
   }
 
-  async getMetadataModifiedDate(accessTokenID: string): Promise<Date> {
+  async getDefaultAccessTokenID(): Promise<string> {
+    const tokenID: string | null = localStorage.getItem(
+      LocalStorageVars.defaultAccessTokenID,
+    );
+
+    if (!!tokenID) return tokenID;
+
+    const url = `${BACKEND_URL}/access_token?client_id=${DEFAUL_GOOGLE_CLIENT}`;
+    const result: GetAccessTokenResponse = await this.handleRequest('GET', url);
+
+    localStorage.setItem(
+      LocalStorageVars.defaultAccessTokenID,
+      result.token_id,
+    );
+    return result.token_id;
+  }
+
+  private async getMetadataModifiedDate(accessTokenID: string): Promise<Date> {
     const inventoryMetadata = await this.getResourcesMetadata(accessTokenID);
     const spreadSheetModifiedTime: Date = new Date(
       inventoryMetadata.inventory_spreadsheet.modifiedTime,
@@ -90,23 +112,93 @@ export class BackendConnector {
     return metadataModifiedDate;
   }
 
-  async getDefaultAccessTokenID(): Promise<string> {
-    const tokenID: string | null = localStorage.getItem('defaultAccessTokenID');
-
-    if (!!tokenID) return tokenID;
-
-    const url = `${BACKEND_URL}/access_token?client_id=${DEFAUL_GOOGLE_CLIENT}`;
-    const result: GetAccessTokenResponse = await this.handleRequest('GET', url);
-
-    localStorage.setItem('defaultAccessTokenID', result.token_id);
-    return result.token_id;
-  }
-
-  async getCarPlatesInventory(accessTokenID: string) {
+  private async getCarPlatesInventory(accessTokenID: string) {
     const url = `${BACKEND_URL}/access_token/${accessTokenID}/inventory/car-plates/`;
     const result = await this.handleRequest('GET', url);
     return result;
   }
+
+  async getMexicoCarPlatesInventory(accessTokenID: string) {
+    const metadataModifiedDate: Date = await this.getMetadataModifiedDate(
+      accessTokenID,
+    );
+
+    const lastUpdate: null | string = localStorage.getItem(
+      LocalStorageVars.lastUpdate,
+    );
+    const isDeprecated: boolean =
+      !lastUpdate || new Date(lastUpdate) < metadataModifiedDate;
+
+    if (isDeprecated) {
+      console.log('Fetching Mexican Car License Plates data');
+      // pull fresh data
+      const mexicoCarPlatesInventory = await this.getCarPlatesInventory(
+        accessTokenID,
+      );
+      console.log('mexicoCarPlatesInventory: ', mexicoCarPlatesInventory);
+
+      // Set local storage variables
+      localStorage.setItem(
+        LocalStorageVars.lastUpdate,
+        metadataModifiedDate.toISOString(),
+      );
+      localStorage.setItem(
+        LocalStorageVars.mexicoCarPlatesInventory,
+        JSON.stringify(mexicoCarPlatesInventory),
+      );
+      return mexicoCarPlatesInventory;
+    } else {
+      console.log('Using Mexican Car License Plates stored data');
+      const mexicoCarPlatesInventoryJSON: string | null = localStorage.getItem(
+        LocalStorageVars.mexicoCarPlatesInventory,
+      );
+      // Return existing data
+      return JSON.parse(mexicoCarPlatesInventoryJSON || '{}');
+    }
+  }
 }
 
 export default new BackendConnector();
+
+export interface InventoryDataTransformed {
+  dataByStateNames: Map<string, string[]>;
+  dataByYearCodes: Map<string, string[]>;
+}
+
+export const extractInventoryData = (
+  inventoryData: Map<string, any>,
+): InventoryDataTransformed => {
+  const dataByStateNames = new Map<string, string[]>();
+  const dataByYearCodes = new Map<string, string[]>();
+
+  for (const [stateCode, data] of Object.entries(inventoryData)) {
+    const stateName: string | undefined = MEX_CODES.get(stateCode);
+
+    const inventoryData = (data as any).inventory as Map<string, any>;
+
+    const yearsCodes: string[] = [];
+
+    for (const [year_code, plateData] of Object.entries(inventoryData)) {
+      const condition = (plateData as any).condition as number | null;
+      // const images_link = (plateData as any).condition as string[] | null;
+
+      if (!!condition && !!stateName) {
+        yearsCodes.push(year_code);
+        if (dataByYearCodes.has(year_code)) {
+          let val = dataByYearCodes.get(year_code);
+          val?.push(stateName);
+        } else {
+          dataByYearCodes.set(year_code, [stateName]);
+        }
+      }
+    }
+    if (!!stateName) {
+      dataByStateNames.set(stateName, yearsCodes);
+    }
+  }
+
+  return {
+    dataByStateNames: dataByStateNames,
+    dataByYearCodes: dataByYearCodes,
+  };
+};

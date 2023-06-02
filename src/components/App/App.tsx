@@ -28,27 +28,7 @@ const App: React.FC = () => {
 
   useConstructor(async () => {
     try {
-      const defaultAccessTokenID = await connector.getDefaultAccessTokenID();
-      const metadataModifiedDate: Date = await connector.getMetadataModifiedDate(
-        defaultAccessTokenID,
-      );
-
-      const lastUpdate: null | string = localStorage.getItem('lastUpdate');
-      const isDeprecated: boolean =
-        !lastUpdate || new Date(lastUpdate) < metadataModifiedDate;
-
-      console.log('Is deprecated the data?: ', isDeprecated);
-      if (isDeprecated) {
-        const mexicoCarPlatesInventory = await connector.getCarPlatesInventory(
-          defaultAccessTokenID,
-        );
-        console.log('mexicoCarPlatesInventory: ', mexicoCarPlatesInventory);
-        localStorage.setItem(
-          'mexicoCarPlatesInventory',
-          mexicoCarPlatesInventory,
-        );
-      }
-      localStorage.setItem('lastUpdate', metadataModifiedDate.toISOString());
+      await connector.getDefaultAccessTokenID();
     } catch (error) {
       let statusCode: number = 500;
       let message: string = String(error);

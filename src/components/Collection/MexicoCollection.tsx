@@ -1,9 +1,4 @@
 import React, { useState } from 'react';
-import {
-  getDataFromSheetByState,
-  getDataFromSheetByYears,
-  loadGoogleSheet,
-} from 'src/connector/google';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 import { MexMap } from '../Maps/MexMap';
@@ -13,6 +8,8 @@ import YearsPanel from '../OptionsPanel/YearsPanel';
 import MissingDetailsPanel from '../DetailsPanel/ MissingDetailsPanel';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
+import connector from 'src/connector';
+import { extractInventoryData } from 'src/connector/backend';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -92,45 +89,38 @@ const MexicoCollection: React.FC = () => {
   // Constructor
   useConstructor(async () => {
     try {
-      console.log('Get Information from Google Spreadsheet');
-      const sheet = await loadGoogleSheet();
+      const tokenID: string = await connector.getDefaultAccessTokenID();
+      const mexicoCarPlatesInventory: Map<
+        string,
+        any
+      > = await connector.getMexicoCarPlatesInventory(tokenID);
 
-      const rawDataByYear = getDataFromSheetByYears(sheet);
-      const rawDataByStateWithCondition = getDataFromSheetByState(sheet);
-
-      const statesKeys: string[] =
-        Array.from(rawDataByStateWithCondition.keys()) || [];
-      const yearsKeys: string[] = Array.from(rawDataByYear.keys()) || [];
-
-      const rawDataByState = new Map(
-        statesKeys.map((state: string) => {
-          const stateWithCondition: Map<string, number | undefined> =
-            rawDataByStateWithCondition.get(state) || new Map();
-          const years: string[] = Array.from(stateWithCondition.keys());
-          return [state, years];
-        }),
+      const { dataByStateNames, dataByYearCodes } = extractInventoryData(
+        mexicoCarPlatesInventory,
       );
+
+      const statesKeys: string[] = Array.from(dataByStateNames.keys()) || [];
+      const yearsKeys: string[] = Array.from(dataByYearCodes.keys()) || [];
 
       // Set all the options
       setStateOptions(statesKeys);
       setYearOptions(yearsKeys);
 
       // Update data variable
-      rawDataByYear.forEach((states: string[], year: string) => {
+      dataByYearCodes.forEach((states: string[], year: string) => {
         updateDataByYear(year, states);
       });
-      rawDataByState.forEach((years: string[], state: string) => {
+      dataByStateNames.forEach((years: string[], state: string) => {
         updateDataByState(state, years);
       });
 
       // Update filters
-      filteredStatesHandler(selectedYear, rawDataByYear);
-      filteredYearsHandler(selectedState, rawDataByState);
+      filteredStatesHandler(selectedYear, dataByYearCodes);
+      filteredYearsHandler(selectedState, dataByStateNames);
 
       // Print info
-      console.log('rawDataByYear: ', rawDataByYear);
-      console.log('rawDataByState: ', rawDataByState);
-      // console.log('rawDataByState: ', rawDataByStateWithCondition);
+      // console.log('dataByYearCodes: ', dataByYearCodes);
+      // console.log('dataByStateNames: ', dataByStateNames);
     } catch (error) {
       console.error(error);
       setError({
