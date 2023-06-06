@@ -9,7 +9,8 @@ import MissingDetailsPanel from '../DetailsPanel/ MissingDetailsPanel';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 import connector from 'src/connector';
-import { extractInventoryData } from 'src/connector/backend';
+import { BackendStateData, extractInventoryData } from 'src/connector/backend';
+import InventoryImagesPanel from '../InventoryImagesPanel';
 
 const useConstructor = (callBack: () => void) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -33,9 +34,18 @@ const MexicoCollection: React.FC = () => {
   const [yearOptions, setYearOptions] = useState(new Array<string>());
 
   // Data variables
+  const [inventoryData, setInventoryData] = useState(
+    new Map<string, BackendStateData>(),
+  );
   const [dataByYear, setDataByYear] = useState(new Map<string, string[]>());
   const [dataByState, setDataByState] = useState(new Map<string, string[]>());
 
+  const updateInventoryData = (
+    stateCode: string,
+    stateData: BackendStateData,
+  ) => {
+    setInventoryData(inventoryData.set(stateCode, stateData));
+  };
   const updateDataByYear = (year: string, states: string[]) => {
     setDataByYear(dataByYear.set(year, states));
   };
@@ -92,7 +102,7 @@ const MexicoCollection: React.FC = () => {
       const tokenID: string = await connector.getDefaultAccessTokenID();
       const mexicoCarPlatesInventory: Map<
         string,
-        any
+        BackendStateData
       > = await connector.getMexicoCarPlatesInventory(tokenID);
 
       const { dataByStateNames, dataByYearCodes } = extractInventoryData(
@@ -101,12 +111,24 @@ const MexicoCollection: React.FC = () => {
 
       const statesKeys: string[] = Array.from(dataByStateNames.keys()) || [];
       const yearsKeys: string[] = Array.from(dataByYearCodes.keys()) || [];
+      statesKeys.sort();
+      yearsKeys.sort();
 
       // Set all the options
       setStateOptions(statesKeys);
       setYearOptions(yearsKeys);
 
-      // Update data variable
+      // Update state variable
+      for (let [stateCode, stateData] of Object.entries(
+        mexicoCarPlatesInventory,
+      )) {
+        updateInventoryData(stateCode, stateData);
+      }
+      // mexicoCarPlatesInventory.forEach(
+      //   (stateData: Map<string, any>, stateCode:string) => {
+      //     updateInventoryData(stateCode, stateData)
+      //   }
+      // )
       dataByYearCodes.forEach((states: string[], year: string) => {
         updateDataByYear(year, states);
       });
@@ -119,13 +141,13 @@ const MexicoCollection: React.FC = () => {
       filteredYearsHandler(selectedState, dataByStateNames);
 
       // Print info
-      // console.log('dataByYearCodes: ', dataByYearCodes);
-      // console.log('dataByStateNames: ', dataByStateNames);
+      console.log('dataByYearCodes: ', dataByYearCodes);
+      console.log('dataByStateNames: ', dataByStateNames);
     } catch (error) {
       console.error(error);
       setError({
         statusCode: 500,
-        message: `Unable to load Google credentials: ${error}`,
+        message: `Unable get inventory data: ${error}`,
       });
     } finally {
       setIsLoading(false);
@@ -170,6 +192,15 @@ const MexicoCollection: React.FC = () => {
             yearOptions={yearOptions}
             filteredStates={filteredStates}
             stateOptions={stateOptions}
+          />
+          <InventoryImagesPanel
+            backendData={inventoryData}
+            dataByYear={dataByYear}
+            dataByState={dataByState}
+            selectedYear={selectedYear}
+            selectedState={selectedState}
+            filteredStates={filteredStates}
+            filteredYears={filteredYears}
           />
         </>
       )}

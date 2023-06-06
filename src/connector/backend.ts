@@ -1,6 +1,9 @@
 import axios from 'axios';
 import frontConfig from 'src/config/server';
-import { LocalStorageVars, MEX_CODES } from 'src/utils/constants';
+import {
+  LocalStorageVars,
+  MEXICO_STATE_CODE_TO_STATE_NAME,
+} from 'src/utils/constants';
 import { BackendUnavailableError, AbstractError } from 'src/utils/error.types';
 
 const {
@@ -30,6 +33,24 @@ export interface GetResourcesMetadata {
   images_folder: GoogleResource;
   inventory_spreadsheet: GoogleResource;
 }
+
+export interface BackendStateInventoryData {
+  condition: number | null;
+  image: string | null;
+}
+
+export interface BackendStateData {
+  code: string;
+  name: string;
+  inventory: Map<string, BackendStateInventoryData>;
+  // inventory: Map<string, Map<"condition"|"images", string | number|null> >;
+}
+
+// const a= new Map<string, Map<"condition"|"images", string | number|null> >()
+// // a.set("68-69", )
+// const b =new Map<"condition"|"images", string | number|null>()
+// b.set("condition",1)
+// b.set("images",1)
 
 export class BackendConnector {
   private async handleRequest(
@@ -80,20 +101,28 @@ export class BackendConnector {
   }
 
   async getDefaultAccessTokenID(): Promise<string> {
-    const tokenID: string | null = localStorage.getItem(
-      LocalStorageVars.defaultAccessTokenID,
-    );
+    try {
+      const tokenID: string | null = localStorage.getItem(
+        LocalStorageVars.defaultAccessTokenID,
+      );
 
-    if (!!tokenID) return tokenID;
+      if (!!tokenID) return tokenID;
 
-    const url = `${BACKEND_URL}/access_token?client_id=${DEFAUL_GOOGLE_CLIENT}`;
-    const result: GetAccessTokenResponse = await this.handleRequest('GET', url);
+      const url = `${BACKEND_URL}/access_token?client_id=${DEFAUL_GOOGLE_CLIENT}`;
+      const result: GetAccessTokenResponse = await this.handleRequest(
+        'GET',
+        url,
+      );
 
-    localStorage.setItem(
-      LocalStorageVars.defaultAccessTokenID,
-      result.token_id,
-    );
-    return result.token_id;
+      localStorage.setItem(
+        LocalStorageVars.defaultAccessTokenID,
+        result.token_id,
+      );
+      return result.token_id;
+    } catch (error) {
+      localStorage.removeItem(LocalStorageVars.defaultAccessTokenID);
+      throw error;
+    }
   }
 
   private async getMetadataModifiedDate(accessTokenID: string): Promise<Date> {
@@ -118,7 +147,9 @@ export class BackendConnector {
     return result;
   }
 
-  async getMexicoCarPlatesInventory(accessTokenID: string) {
+  async getMexicoCarPlatesInventory(
+    accessTokenID: string,
+  ): Promise<Map<string, BackendStateData>> {
     const metadataModifiedDate: Date = await this.getMetadataModifiedDate(
       accessTokenID,
     );
@@ -148,12 +179,19 @@ export class BackendConnector {
       );
       return mexicoCarPlatesInventory;
     } else {
-      console.log('Using Mexican Car License Plates stored data');
-      const mexicoCarPlatesInventoryJSON: string | null = localStorage.getItem(
-        LocalStorageVars.mexicoCarPlatesInventory,
-      );
-      // Return existing data
-      return JSON.parse(mexicoCarPlatesInventoryJSON || '{}');
+      try {
+        console.log('Using Mexican Car License Plates stored data');
+        const mexicoCarPlatesInventoryJSON:
+          | string
+          | null = localStorage.getItem(
+          LocalStorageVars.mexicoCarPlatesInventory,
+        );
+        // Return existing data
+        return JSON.parse(mexicoCarPlatesInventoryJSON || '{}');
+      } catch (error) {
+        localStorage.removeItem(LocalStorageVars.mexicoCarPlatesInventory);
+        throw error;
+      }
     }
   }
 }
@@ -172,23 +210,25 @@ export const extractInventoryData = (
   const dataByYearCodes = new Map<string, string[]>();
 
   for (const [stateCode, data] of Object.entries(inventoryData)) {
-    const stateName: string | undefined = MEX_CODES.get(stateCode);
+    const stateName: string | undefined = MEXICO_STATE_CODE_TO_STATE_NAME.get(
+      stateCode,
+    );
 
     const inventoryData = (data as any).inventory as Map<string, any>;
 
     const yearsCodes: string[] = [];
 
-    for (const [year_code, plateData] of Object.entries(inventoryData)) {
+    for (const [yearCode, plateData] of Object.entries(inventoryData)) {
       const condition = (plateData as any).condition as number | null;
       // const images_link = (plateData as any).condition as string[] | null;
 
       if (!!condition && !!stateName) {
-        yearsCodes.push(year_code);
-        if (dataByYearCodes.has(year_code)) {
-          let val = dataByYearCodes.get(year_code);
+        yearsCodes.push(yearCode);
+        if (dataByYearCodes.has(yearCode)) {
+          let val = dataByYearCodes.get(yearCode);
           val?.push(stateName);
         } else {
-          dataByYearCodes.set(year_code, [stateName]);
+          dataByYearCodes.set(yearCode, [stateName]);
         }
       }
     }

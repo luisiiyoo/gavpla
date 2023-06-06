@@ -7,7 +7,7 @@ import {
 } from 'react-simple-maps';
 
 import mexStateCenterCoordinates from 'src/components/Maps/MexMap/MexStateCenterCoordinates.json';
-import { MEX_CODES } from 'src/utils/constants';
+import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import {
   get_default_bg_color,
   get_filtered_bg_color,
@@ -132,7 +132,8 @@ export const MexMap: React.FC<MexMapProps> = ({
                     style={{ cursor: 'default' }}
                     onClick={(e) => {
                       e.preventDefault();
-                      const stateName = MEX_CODES.get(code) || '';
+                      const stateName =
+                        MEXICO_STATE_CODE_TO_STATE_NAME.get(code) || '';
                       selectStateHandler(stateName);
                     }}
                   >
