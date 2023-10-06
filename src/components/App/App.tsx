@@ -28,7 +28,7 @@ const App: React.FC = () => {
 
   useConstructor(async () => {
     try {
-      await connector.getDefaultAccessTokenID();
+      await connector.getUserID(true);
     } catch (error) {
       let statusCode: number = 500;
       let message: string = String(error);

@@ -1,5 +1,11 @@
 import mexicoFlag from 'src/language/flags/mexico.png';
 import usFlag from 'src/language/flags/united-states.png';
+import {
+  COLLECTION_ROUTE,
+  DONATIONS_ROUTE,
+  HOME_ROUTE,
+  VEHICLES_ROUTE,
+} from 'src/routers/constants';
 
 interface languageType {
   languageCode: string;
@@ -13,15 +19,30 @@ export const languages: languageType[] = [
 ];
 
 export const translations = {
-  en: {
-    NavBar: {
-      'license-plates-gallery': 'Home',
-      collection: 'Collection',
+  NavBar: {
+    en: {
+      [HOME_ROUTE.route]: 'Home',
+      [VEHICLES_ROUTE.route]: VEHICLES_ROUTE.title,
+      [COLLECTION_ROUTE.route]: COLLECTION_ROUTE.title,
+      [DONATIONS_ROUTE.route]: DONATIONS_ROUTE.title,
     },
-    LanguageSwitcher: {
+    es: {
+      [HOME_ROUTE.route]: 'Inicio',
+      [VEHICLES_ROUTE.route]: 'Vehículos',
+      [COLLECTION_ROUTE.route]: 'Colección',
+      [DONATIONS_ROUTE.route]: 'Donaciones',
+    },
+  },
+  LanguageSwitcher: {
+    en: {
       label: 'Language',
     },
-    HomePage: {
+    es: {
+      label: 'Idioma',
+    },
+  },
+  HomePage: {
+    en: {
       title: 'Virtual License Plates Gallery',
       body: {
         p1: 'Welcome to my personal License Plates Gallery.',
@@ -30,7 +51,18 @@ export const translations = {
         author: 'Author',
       },
     },
-    MexicoCollection: {
+    es: {
+      title: 'Galería Virtual de Placas',
+      body: {
+        p1: 'Bienvenidos a mi Galería de Placas.',
+        p2:
+          'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas de auto. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas cosas.',
+        author: 'Autor',
+      },
+    },
+  },
+  MexicoCollection: {
+    en: {
       title: 'License Plates Collection',
       Year: 'Year',
       State: 'State',
@@ -41,25 +73,7 @@ export const translations = {
         Missing: 'Missing plates',
       },
     },
-  },
-  es: {
-    NavBar: {
-      'license-plates-gallery': 'Inicio',
-      collection: 'Colección',
-    },
-    LanguageSwitcher: {
-      label: 'Idioma',
-    },
-    HomePage: {
-      title: 'Galería Virtual de Placas',
-      body: {
-        p1: 'Bienvenidos a mi Galería de Placas.',
-        p2:
-          'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas de auto. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas cosas.',
-        author: 'Autor',
-      },
-    },
-    MexicoCollection: {
+    es: {
       title: 'Colección de Placas',
       Year: 'Año',
       State: 'Estado',
@@ -77,5 +91,7 @@ export const getTranslation = (
   languageCode: string,
   elementName: string,
 ): string | Map<string, any> => {
-  return translations[languageCode][elementName];
+  console.log('languageCode: ' + languageCode);
+  console.log('elementName: ' + elementName);
+  return translations[elementName][languageCode];
 };

@@ -5,6 +5,13 @@ import HomePage from 'src/components/HomePage';
 import MexicoCollection from 'src/components/Collection';
 // import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
+import {
+  COLLECTION_1968_1999_ROUTE,
+  COLLECTION_ROUTE,
+  DONATIONS_ROUTE,
+  HOME_ROUTE,
+  VEHICLES_ROUTE,
+} from './constants';
 
 const navigationItems: NavItem[] = [
   // {
@@ -14,49 +21,36 @@ const navigationItems: NavItem[] = [
   //   functionalComponent: () => <HomePage />,
   // },
   {
-    title: 'Home',
-    route: 'license-plates-gallery',
+    title: HOME_ROUTE.title,
+    route: HOME_ROUTE.route,
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
   },
   {
-    title: 'Collection',
-    route: 'collection',
-    iconClass: 'fa fw fa-earth-americas',
+    title: VEHICLES_ROUTE.title,
+    route: VEHICLES_ROUTE.route,
+    iconClass: 'fa-solid fa-car',
+    functionalComponent: () => <></>,
+  },
+  {
+    title: COLLECTION_ROUTE.title,
+    route: COLLECTION_ROUTE.route,
+    iconClass: 'fa fw fa-magnifying-glass',
     childs: [
       {
-        title: 'México',
-        idChild: 'collection.mexico',
-        route: 'collection/mexico',
+        title: COLLECTION_1968_1999_ROUTE.title,
+        idChild: COLLECTION_1968_1999_ROUTE.route,
+        route: COLLECTION_1968_1999_ROUTE.route,
         functionalComponent: () => <MexicoCollection />,
       },
     ],
   },
-  // {
-  //   title: 'Collection',
-  //   route: 'collection',
-  //   iconClass: 'fa fw fa-earth-americas',
-  //   childs: [
-  //     {
-  //       title: 'Personal',
-  //       idChild: 'collection.personal',
-  //       route: 'collection/personal',
-  //       functionalComponent: () => <GamesBoard finished={true} />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'Shop',
-  //   route: 'shop',
-  //   iconClass: 'fa fa-fw fa-cart-shopping',
-  //   functionalComponent: () => <CreateGame />,
-  // },
-  // {
-  //   title: 'Contributors',
-  //   route: 'contributors',
-  //   iconClass: 'fa fa-fw fa-users',
-  //   functionalComponent: () => <PlayGame />,
-  // },
+  {
+    title: DONATIONS_ROUTE.title,
+    route: DONATIONS_ROUTE.route,
+    iconClass: 'fa-solid fa-hand-holding-heart',
+    functionalComponent: () => <></>,
+  },
 ];
 
 const getFunctionalComponent = (

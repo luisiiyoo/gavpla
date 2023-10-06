@@ -81,7 +81,7 @@ export const getDataFromSheetByYears = (sheet) => {
 };
 
 export const loadGoogleSheet = async () => {
-  const doc = new GoogleSpreadsheet(frontConfig.googleSpreadSheetId);
+  const doc = new GoogleSpreadsheet('frontConfig.googleSpreadSheetId');
   // SpreadsheetApp.getActive().getRange("Sheet1!A1:C6")
 
   // Initialize Auth - see https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication

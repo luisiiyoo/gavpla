@@ -24,12 +24,27 @@ const HomePage: React.FC = () => {
         <br />
 
         <h3>{translation['body']['author']}</h3>
-        <ul style={{ listStyleType: 'none' }}>
-          <li>Luis González Guzmán</li>
+        <ul>
           <li>
-            <span className="AuthorEmail">
-              luis.gonzalez.guzman.93@gmail.com
-            </span>
+            Luis González Guzmán &nbsp;
+            <a
+              className="AuthorLink"
+              href="https://www.linkedin.com/in/luis-gonz%C3%A1lez-guzm%C3%A1n-2b464b139/"
+              target="_blank"
+            >
+              <i className="fa-brands fa-linkedin" />
+            </a>
+            &nbsp;
+            <a
+              className="AuthorLink"
+              href="mailto:luis.gonzalez.guzman.93@gmail.com"
+            >
+              <i className="fa-solid fa-envelope" />
+            </a>
+            &nbsp;
+            <a className="AuthorLink">
+              <i className="fa-brands fa-square-facebook" />
+            </a>
           </li>
         </ul>
       </>

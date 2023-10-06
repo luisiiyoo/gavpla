@@ -1,14 +1,14 @@
 import axios from 'axios';
 import frontConfig from 'src/config/server';
 import {
-  LocalStorageVars,
+  storageVarNames,
   MEXICO_STATE_CODE_TO_STATE_NAME,
 } from 'src/utils/constants';
 import { BackendUnavailableError, AbstractError } from 'src/utils/error.types';
 
 const {
   backendHost: BACKEND_URL,
-  defaultGoogleClient: DEFAUL_GOOGLE_CLIENT,
+  defaultUsername: DEFAULT_USERNAME,
 } = frontConfig;
 
 export interface HealthResponse {
@@ -46,11 +46,17 @@ export interface BackendStateData {
   // inventory: Map<string, Map<"condition"|"images", string | number|null> >;
 }
 
-// const a= new Map<string, Map<"condition"|"images", string | number|null> >()
-// // a.set("68-69", )
-// const b =new Map<"condition"|"images", string | number|null>()
-// b.set("condition",1)
-// b.set("images",1)
+export interface BELicensePlateRegionCodes {
+  [key: string]: string;
+}
+
+export interface BEVehicleTypes {
+  [key: string]: string;
+}
+
+export interface BEUserInfo {
+  user_id: string;
+}
 
 export class BackendConnector {
   private async handleRequest(
@@ -85,6 +91,39 @@ export class BackendConnector {
     }
   }
 
+  async getUserID(
+    fresh: boolean = true,
+    username: string = DEFAULT_USERNAME,
+  ): Promise<string> {
+    let userID: string | null = sessionStorage.getItem(storageVarNames.USER_ID);
+    if (!userID || fresh) {
+      const url = `${BACKEND_URL}/users/?username=${username}`;
+      const result: BEUserInfo = await this.handleRequest('GET', url);
+
+      userID = result.user_id;
+      sessionStorage.setItem(storageVarNames.USER_ID, userID);
+    }
+    return userID;
+  }
+
+  async getLicensePlatesRegionCodes(
+    onlyStates: boolean,
+    countryCode: string = 'MX',
+  ): Promise<BELicensePlateRegionCodes> {
+    const url = `${BACKEND_URL}/license-plates/region-codes?country_code=${countryCode}&only_states=${onlyStates}`;
+    const result: BELicensePlateRegionCodes = await this.handleRequest(
+      'GET',
+      url,
+    );
+    return result;
+  }
+
+  async getVehicleTypes(countryCode: string = 'MX'): Promise<BEVehicleTypes> {
+    const url = `${BACKEND_URL}/license-plates/vehicle-types?country_code=${countryCode}`;
+    const result: BEVehicleTypes = await this.handleRequest('GET', url);
+    return result;
+  }
+
   async checkBackendHealth(): Promise<boolean> {
     const url = `${BACKEND_URL}/`;
     const result = await this.handleRequest('GET', url);
@@ -103,24 +142,24 @@ export class BackendConnector {
   async getDefaultAccessTokenID(): Promise<string> {
     try {
       const tokenID: string | null = localStorage.getItem(
-        LocalStorageVars.defaultAccessTokenID,
+        storageVarNames.defaultAccessTokenID,
       );
 
       if (!!tokenID) return tokenID;
 
-      const url = `${BACKEND_URL}/access_token?client_id=${DEFAUL_GOOGLE_CLIENT}`;
+      const url = `${BACKEND_URL}/access_token?client_id=${''}`;
       const result: GetAccessTokenResponse = await this.handleRequest(
         'GET',
         url,
       );
 
       localStorage.setItem(
-        LocalStorageVars.defaultAccessTokenID,
+        storageVarNames.defaultAccessTokenID,
         result.token_id,
       );
       return result.token_id;
     } catch (error) {
-      localStorage.removeItem(LocalStorageVars.defaultAccessTokenID);
+      localStorage.removeItem(storageVarNames.defaultAccessTokenID);
       throw error;
     }
   }
@@ -155,7 +194,7 @@ export class BackendConnector {
     );
 
     const lastUpdate: null | string = localStorage.getItem(
-      LocalStorageVars.lastUpdate,
+      storageVarNames.lastUpdate,
     );
     const isDeprecated: boolean =
       !lastUpdate || new Date(lastUpdate) < metadataModifiedDate;
@@ -170,11 +209,11 @@ export class BackendConnector {
 
       // Set local storage variables
       localStorage.setItem(
-        LocalStorageVars.lastUpdate,
+        storageVarNames.lastUpdate,
         metadataModifiedDate.toISOString(),
       );
       localStorage.setItem(
-        LocalStorageVars.mexicoCarPlatesInventory,
+        storageVarNames.mexicoCarPlatesInventory,
         JSON.stringify(mexicoCarPlatesInventory),
       );
       return mexicoCarPlatesInventory;
@@ -184,12 +223,12 @@ export class BackendConnector {
         const mexicoCarPlatesInventoryJSON:
           | string
           | null = localStorage.getItem(
-          LocalStorageVars.mexicoCarPlatesInventory,
+          storageVarNames.mexicoCarPlatesInventory,
         );
         // Return existing data
         return JSON.parse(mexicoCarPlatesInventoryJSON || '{}');
       } catch (error) {
-        localStorage.removeItem(LocalStorageVars.mexicoCarPlatesInventory);
+        localStorage.removeItem(storageVarNames.mexicoCarPlatesInventory);
         throw error;
       }
     }

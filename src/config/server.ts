@@ -6,9 +6,7 @@
 interface FrontendConfig {
   serverName: string;
   backendHost: string;
-  googleCredentialsFile: string;
-  googleSpreadSheetId: string;
-  defaultGoogleClient: string;
+  defaultUsername: string;
 }
 
 if (!process.env.REACT_APP_BACKEND_HOST) {
@@ -20,11 +18,8 @@ if (!process.env.REACT_APP_BACKEND_HOST) {
 // default settings are for development environment
 const frontConfig: FrontendConfig = {
   serverName: process.env.REACT_APP_SERVER_NAME || 'Front-End app',
-  backendHost: process.env.REACT_APP_BACKEND_HOST || 'http://0.0.0.0:5050',
-  googleCredentialsFile: process.env.REACT_APP_GOOGLE_CREDENTIALS_FILE || '',
-  googleSpreadSheetId: process.env.REACT_APP_SPREADSHEET_ID || '',
-  defaultGoogleClient: process.env.REACT_APP_DEFAULT_GOOGLE_CLIENT || '',
-  // path.join(process.cwd(), './google-credentials.json'),
+  backendHost: process.env.REACT_APP_BACKEND_HOST || 'http://0.0.0.0:3000',
+  defaultUsername: process.env.REACT_APP_DEFAULT_USERNAME || '',
 };
 
 export default frontConfig;

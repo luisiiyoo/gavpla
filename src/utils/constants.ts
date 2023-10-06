@@ -1,7 +1,10 @@
-export const LocalStorageVars = {
+export const storageVarNames = {
   lastUpdate: 'lastUpdate',
   mexicoCarPlatesInventory: 'mexicoCarPlatesInventory',
   defaultAccessTokenID: 'defaultAccessTokenID',
+  USER_ID: 'userID',
+  VECHICLE_TYPES: 'vechicleTypes',
+  REGION_CODES: 'regionCodes',
 };
 
 export const MEXICO_STATE_CODE_TO_STATE_NAME: Map<string, string> = new Map([

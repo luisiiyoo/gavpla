@@ -8,6 +8,12 @@
   font-style: italic;
 }
 
-.AuthorEmail {
+.AuthorLink {
   color: var(--color-app);
+}
+
+.AuthorLink a {
+  color: var(--color-app);
+  text-decoration: none;
+  color: inherit;
 }
