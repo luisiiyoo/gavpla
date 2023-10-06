@@ -7,10 +7,10 @@ import MexicoCollection from 'src/components/Collection';
 import { AbstractNavItem, NavItem } from './Router.types';
 import {
   COLLECTION_1968_1999_ROUTE,
-  COLLECTION_ROUTE,
+  SEARCH_ROUTE,
   DONATIONS_ROUTE,
   HOME_ROUTE,
-  VEHICLES_ROUTE,
+  LICENSE_PLATES_ROUTE,
 } from './constants';
 
 const navigationItems: NavItem[] = [
@@ -21,14 +21,14 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => <HomePage />,
   },
   {
-    title: VEHICLES_ROUTE.title,
-    route: VEHICLES_ROUTE.route,
+    title: LICENSE_PLATES_ROUTE.title,
+    route: LICENSE_PLATES_ROUTE.route,
     iconClass: 'fa-solid fa-car',
     functionalComponent: () => <></>,
   },
   {
-    title: COLLECTION_ROUTE.title,
-    route: COLLECTION_ROUTE.route,
+    title: SEARCH_ROUTE.title,
+    route: SEARCH_ROUTE.route,
     iconClass: 'fa fw fa-magnifying-glass',
     childs: [
       {

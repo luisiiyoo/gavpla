@@ -1,10 +1,10 @@
 import mexicoFlag from 'src/language/flags/mexico.png';
 import usFlag from 'src/language/flags/united-states.png';
 import {
-  COLLECTION_ROUTE,
+  SEARCH_ROUTE,
   DONATIONS_ROUTE,
   HOME_ROUTE,
-  VEHICLES_ROUTE,
+  LICENSE_PLATES_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -22,14 +22,14 @@ export const translations = {
   NavBar: {
     en: {
       [HOME_ROUTE.route]: 'Home',
-      [VEHICLES_ROUTE.route]: VEHICLES_ROUTE.title,
-      [COLLECTION_ROUTE.route]: COLLECTION_ROUTE.title,
+      [LICENSE_PLATES_ROUTE.route]: LICENSE_PLATES_ROUTE.title,
+      [SEARCH_ROUTE.route]: SEARCH_ROUTE.title,
       [DONATIONS_ROUTE.route]: DONATIONS_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
-      [VEHICLES_ROUTE.route]: 'Vehículos',
-      [COLLECTION_ROUTE.route]: 'Colección',
+      [LICENSE_PLATES_ROUTE.route]: 'Placas',
+      [SEARCH_ROUTE.route]: 'Buscar',
       [DONATIONS_ROUTE.route]: 'Donaciones',
     },
   },
@@ -43,20 +43,21 @@ export const translations = {
   },
   HomePage: {
     en: {
-      title: 'Virtual License Plates Gallery',
+      title: 'GAVPLA - Galeria Virtual de Placas',
       body: {
-        p1: 'Welcome to my personal License Plates Gallery.',
+        p1:
+          'Welcome to my personal virtual license plates gallery (Galería Virtual de Placas).',
         p2:
-          "In this website I mix two of my hobbies, developing apps and collecting license plates. This website is still in progress, keep visiting this page I'm constantly adding new things.",
+          "In this website I mix two of my hobbies, developing apps and collecting license plates. This website is still in progress, keep visiting this page I'm constantly adding new items to the collection.",
         author: 'Author',
       },
     },
     es: {
-      title: 'Galería Virtual de Placas',
+      title: 'GAVPLA - Galería Virtual de Placas',
       body: {
-        p1: 'Bienvenidos a mi Galería de Placas.',
+        p1: 'Bienvenidos a mi Galería Virtual de Placas.',
         p2:
-          'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas de auto. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas cosas.',
+          'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas de auto. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas placas a la coleción.',
         author: 'Autor',
       },
     },
