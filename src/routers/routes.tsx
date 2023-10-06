@@ -14,12 +14,6 @@ import {
 } from './constants';
 
 const navigationItems: NavItem[] = [
-  // {
-  //   title: 'Home',
-  //   route: '',
-  //   iconClass: 'fa fa-fw fa-home',
-  //   functionalComponent: () => <HomePage />,
-  // },
   {
     title: HOME_ROUTE.title,
     route: HOME_ROUTE.route,

@@ -91,7 +91,5 @@ export const getTranslation = (
   languageCode: string,
   elementName: string,
 ): string | Map<string, any> => {
-  console.log('languageCode: ' + languageCode);
-  console.log('elementName: ' + elementName);
   return translations[elementName][languageCode];
 };
