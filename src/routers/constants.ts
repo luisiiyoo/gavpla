@@ -20,3 +20,11 @@ export const DONATIONS_ROUTE = {
   title: 'Donations',
   route: 'donations',
 };
+
+// export const MX_STATES_ROUTES = Array.from(
+//     MEXICO_STATE_NAME_TO_STATE_CODE,
+//     ([stateCode, stateName]) => ({
+//         title: stateName,
+//         route: stateCode,
+//       })
+// )

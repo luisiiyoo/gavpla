@@ -9,15 +9,10 @@ import MissingDetailsPanel from '../DetailsPanel/ MissingDetailsPanel';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 import connector from 'src/connector';
-import { BackendStateData, extractInventoryData } from 'src/connector/backend';
+import { extractInventoryData } from 'src/connector/backend';
 import InventoryImagesPanel from '../InventoryImagesPanel';
-
-const useConstructor = (callBack: () => void) => {
-  const [hasBeenCalled, setHasBeenCalled] = useState(false);
-  if (hasBeenCalled) return;
-  callBack();
-  setHasBeenCalled(true);
-};
+import { useConstructor } from 'src/utils';
+import { BEStateData } from 'src/connector/backend.types';
 
 const MexicoCollection: React.FC = () => {
   const { languageCode } = useSelector((state) => state.main);
@@ -35,15 +30,12 @@ const MexicoCollection: React.FC = () => {
 
   // Data variables
   const [inventoryData, setInventoryData] = useState(
-    new Map<string, BackendStateData>(),
+    new Map<string, BEStateData>(),
   );
   const [dataByYear, setDataByYear] = useState(new Map<string, string[]>());
   const [dataByState, setDataByState] = useState(new Map<string, string[]>());
 
-  const updateInventoryData = (
-    stateCode: string,
-    stateData: BackendStateData,
-  ) => {
+  const updateInventoryData = (stateCode: string, stateData: BEStateData) => {
     setInventoryData(inventoryData.set(stateCode, stateData));
   };
   const updateDataByYear = (year: string, states: string[]) => {
@@ -102,7 +94,7 @@ const MexicoCollection: React.FC = () => {
       const tokenID: string = await connector.getDefaultAccessTokenID();
       const mexicoCarPlatesInventory: Map<
         string,
-        BackendStateData
+        BEStateData
       > = await connector.getMexicoCarPlatesInventory(tokenID);
 
       const { dataByStateNames, dataByYearCodes } = extractInventoryData(

@@ -9,15 +9,9 @@ import 'react-notifications-component/dist/theme.css';
 import './App.css';
 import connector from 'src/connector';
 import { AbstractError } from 'src/utils/error.types';
+import { useConstructor } from 'src/utils';
 
 const store = configureStore();
-
-const useConstructor = (callBack: () => void) => {
-  const [hasBeenCalled, setHasBeenCalled] = useState(false);
-  if (hasBeenCalled) return;
-  callBack();
-  setHasBeenCalled(true);
-};
 
 const App: React.FC = () => {
   const [error, setError] = useState({

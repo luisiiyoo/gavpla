@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ReactNotificationOptions } from 'react-notifications-component';
 
 export const timestampToDateStr = (timestamp: number): string => {
@@ -67,3 +68,18 @@ export const get_filtered_font_color = () =>
   getComputedStyle(document.documentElement).getPropertyValue(
     '--filtered-item-font-color',
   );
+
+export const useConstructor = (callBack: () => void) => {
+  const [hasBeenCalled, setHasBeenCalled] = useState(false);
+  if (hasBeenCalled) return;
+  callBack();
+  setHasBeenCalled(true);
+};
+
+export const getVariableName = (v: any): string => {
+  return Object.keys({ v })[0];
+};
+
+export const removeEmpty = (obj) => {
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
+};

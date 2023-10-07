@@ -5,7 +5,7 @@ import {
   setSelectedRoute,
   setExpandNavBar,
 } from 'src/redux/actions/MainComponent';
-import { NavItem } from 'src/routers/Router.types';
+import { AbstractNavItem, NavItem } from 'src/routers/Router.types';
 import NavBarHeader from 'src/components/NavBarHeader';
 import { NavBarProps, OnSelectNavItem, RenderNavItem } from './NavBar.types';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
@@ -71,8 +71,8 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       <SideNav.Toggle data-testid="toggleNavBar" />
       <NavBarHeader expanded={expand} title={navBarTitle} />
       <SideNav.Nav selected={route}>
-        {navigationItems.map((item) => {
-          item.title = translation[item.route];
+        {navigationItems.map((item: AbstractNavItem) => {
+          item.title = translation[item.route] || item.title;
           return renderNavItem(item);
         })}
       </SideNav.Nav>

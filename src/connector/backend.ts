@@ -5,65 +5,26 @@ import {
   MEXICO_STATE_CODE_TO_STATE_NAME,
 } from 'src/utils/constants';
 import { BackendUnavailableError, AbstractError } from 'src/utils/error.types';
+import {
+  BEStateData,
+  BELicensePlateRegionCodes,
+  BEQueryLicensePlatesData,
+  BEUserInfo,
+  BEVehicleTypes,
+  GetAccessTokenResponse,
+  GetResourcesMetadata,
+  HealthResponse,
+  InventoryDataTransformed,
+  RequestDetails,
+} from './backend.types';
 
 const {
   backendHost: BACKEND_URL,
   defaultUsername: DEFAULT_USERNAME,
 } = frontConfig;
 
-export interface HealthResponse {
-  status: string;
-  service: string;
-  env: string;
-}
-
-export interface GetAccessTokenResponse {
-  token_id: string;
-}
-
-export interface GoogleResource {
-  modifiedTime: Date;
-  createdTime: Date;
-  id: string;
-  kind: string;
-  name: string;
-}
-
-export interface GetResourcesMetadata {
-  images_folder: GoogleResource;
-  inventory_spreadsheet: GoogleResource;
-}
-
-export interface BackendStateInventoryData {
-  condition: number | null;
-  image: string | null;
-}
-
-export interface BackendStateData {
-  code: string;
-  name: string;
-  inventory: Map<string, BackendStateInventoryData>;
-  // inventory: Map<string, Map<"condition"|"images", string | number|null> >;
-}
-
-export interface BELicensePlateRegionCodes {
-  [key: string]: string;
-}
-
-export interface BEVehicleTypes {
-  [key: string]: string;
-}
-
-export interface BEUserInfo {
-  user_id: string;
-}
-
 export class BackendConnector {
-  private async handleRequest(
-    method: string,
-    url: string,
-    data?: Map<any, any>,
-  ) {
+  private async handleRequest({ method, url, data, params }: RequestDetails) {
     try {
       const resp = await axios({
         method: method.toUpperCase(),
@@ -98,7 +59,10 @@ export class BackendConnector {
     let userID: string | null = sessionStorage.getItem(storageVarNames.USER_ID);
     if (!userID || fresh) {
       const url = `${BACKEND_URL}/users/?username=${username}`;
-      const result: BEUserInfo = await this.handleRequest('GET', url);
+      const result: BEUserInfo = await this.handleRequest({
+        method: 'GET',
+        url,
+      });
 
       userID = result.user_id;
       sessionStorage.setItem(storageVarNames.USER_ID, userID);
@@ -111,22 +75,52 @@ export class BackendConnector {
     countryCode: string = 'MX',
   ): Promise<BELicensePlateRegionCodes> {
     const url = `${BACKEND_URL}/license-plates/region-codes?country_code=${countryCode}&only_states=${onlyStates}`;
-    const result: BELicensePlateRegionCodes = await this.handleRequest(
-      'GET',
+    const result: BELicensePlateRegionCodes = await this.handleRequest({
+      method: 'GET',
       url,
-    );
+    });
     return result;
   }
 
   async getVehicleTypes(countryCode: string = 'MX'): Promise<BEVehicleTypes> {
     const url = `${BACKEND_URL}/license-plates/vehicle-types?country_code=${countryCode}`;
-    const result: BEVehicleTypes = await this.handleRequest('GET', url);
+    const result: BEVehicleTypes = await this.handleRequest({
+      method: 'GET',
+      url,
+    });
     return result;
   }
 
+  async getLicensePlatesData(
+    userId: string,
+    queryParams: BEQueryLicensePlatesData,
+  ): Promise<BELicensePlateRegionCodes[]> {
+    const url = `${BACKEND_URL}/users/${userId}/license-plates/`;
+    const result: BELicensePlateRegionCodes[] = await this.handleRequest({
+      method: 'GET',
+      url,
+      params: queryParams,
+    });
+    return result;
+  }
+
+  async getUserLicensePlatesImage(
+    userId: string,
+    userPlateId: string,
+  ): Promise<HTMLImageElement> {
+    const url = `${BACKEND_URL}/users/${userId}/license-plates/${userPlateId}/image`;
+    const result: HTMLImageElement = await this.handleRequest({
+      method: 'GET',
+      url,
+    });
+    return result;
+  }
+
+  // --------------------------
+
   async checkBackendHealth(): Promise<boolean> {
     const url = `${BACKEND_URL}/`;
-    const result = await this.handleRequest('GET', url);
+    const result = await this.handleRequest({ method: 'GET', url });
     const healthResponse: HealthResponse = result as HealthResponse;
     return !!healthResponse;
   }
@@ -135,7 +129,10 @@ export class BackendConnector {
     accessTokenID: string,
   ): Promise<GetResourcesMetadata> {
     const url = `${BACKEND_URL}/access_token/${accessTokenID}/inventory/`;
-    const result: GetResourcesMetadata = await this.handleRequest('GET', url);
+    const result: GetResourcesMetadata = await this.handleRequest({
+      method: 'GET',
+      url,
+    });
     return result;
   }
 
@@ -148,10 +145,10 @@ export class BackendConnector {
       if (!!tokenID) return tokenID;
 
       const url = `${BACKEND_URL}/access_token?client_id=${''}`;
-      const result: GetAccessTokenResponse = await this.handleRequest(
-        'GET',
+      const result: GetAccessTokenResponse = await this.handleRequest({
+        method: 'GET',
         url,
-      );
+      });
 
       localStorage.setItem(
         storageVarNames.defaultAccessTokenID,
@@ -182,13 +179,13 @@ export class BackendConnector {
 
   private async getCarPlatesInventory(accessTokenID: string) {
     const url = `${BACKEND_URL}/access_token/${accessTokenID}/inventory/car-plates/`;
-    const result = await this.handleRequest('GET', url);
+    const result = await this.handleRequest({ method: 'GET', url });
     return result;
   }
 
   async getMexicoCarPlatesInventory(
     accessTokenID: string,
-  ): Promise<Map<string, BackendStateData>> {
+  ): Promise<Map<string, BEStateData>> {
     const metadataModifiedDate: Date = await this.getMetadataModifiedDate(
       accessTokenID,
     );
@@ -236,11 +233,6 @@ export class BackendConnector {
 }
 
 export default new BackendConnector();
-
-export interface InventoryDataTransformed {
-  dataByStateNames: Map<string, string[]>;
-  dataByYearCodes: Map<string, string[]>;
-}
 
 export const extractInventoryData = (
   inventoryData: Map<string, any>,
