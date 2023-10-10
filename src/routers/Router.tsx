@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { RouterProps, MainComponentProps } from './Router.types';
+import {
+  RouterProps,
+  MainComponentProps as BodyComponentProps,
+} from './Router.types';
 import { navigationFCItems } from './routes';
 import PageNotFound from '../components/PageNotFound';
 import NavBar from '../components/NavBar';
@@ -11,14 +14,15 @@ import LanguagueSwithcer from 'src/components/LanguageSwitcher';
 const MAX_NAVBAR_MARGIN = 240;
 const MIN_NAVBAR_MARGIN = 64;
 
-const MainComponent: React.FC<MainComponentProps> = ({ isExpandedNavBar }) => {
+const BodyComponent: React.FC<BodyComponentProps> = ({ isExpandedNavBar }) => {
   return (
     <div
-      className="MainComponent"
+      className="BodyComponent"
       style={{
         marginLeft: isExpandedNavBar ? MAX_NAVBAR_MARGIN : MIN_NAVBAR_MARGIN,
       }}
     >
+      <LanguagueSwithcer />
       <Switch>
         {navigationFCItems.map((item, key) => (
           <Route
@@ -39,19 +43,16 @@ const Routes: React.FC<RouterProps> = () => {
   const { expand: isExpandedNavBar } = main;
 
   return (
-    // <div className="Container" >
-    <BrowserRouter>
-      <Route
-        render={({ history }) => (
-          <NavBar history={history} navBarTitle={'GAVPLA'} />
-        )}
-      />
-      <div className="Container">
-        <LanguagueSwithcer />
-        <MainComponent isExpandedNavBar={isExpandedNavBar} />
-      </div>
-    </BrowserRouter>
-    // </div>
+    <div className="Routes">
+      <BrowserRouter>
+        <Route
+          render={({ history }) => (
+            <NavBar history={history} navBarTitle={'GAVPLA'} />
+          )}
+        />
+        <BodyComponent isExpandedNavBar={isExpandedNavBar} />
+      </BrowserRouter>
+    </div>
   );
 };
 

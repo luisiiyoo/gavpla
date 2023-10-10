@@ -1,16 +1,17 @@
-.MainComponent {
+.BodyComponent {
   color: white;
   /* flex-grow: 2; */
-  height: 100vh;
+  height: var(--container-app-height);
   /* height: super; */
   /* overflow: scroll !important; */
   /* padding: 10px 15px 10px 15px; */
   /* margin-top: 0; */
+  overflow: overlay;
 }
 
-.Container {
+.Routes {
   /* display: flex; */
-  height: 100vh;
+  height: var(--container-app-height);
   /* height: super; */
   overflow: hidden;
   width: 100%;
