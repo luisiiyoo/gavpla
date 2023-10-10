@@ -2,6 +2,9 @@ import {
   SetSelectedRouteType,
   SetExpandNavBarType,
   SetLanguageType,
+  SetIsLoadingType,
+  SetErrorType,
+  FEError,
 } from './MainComponent.types';
 
 export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
@@ -17,4 +20,14 @@ export const setExpandNavBar: SetExpandNavBarType = (expand: boolean) => ({
 export const setLanguage: SetLanguageType = (languageCode: string) => ({
   type: 'SET_LANGUAGE',
   languageCode,
+});
+
+export const setIsLoading: SetIsLoadingType = (isLoading: boolean) => ({
+  type: 'SET_IS_LOADING',
+  isLoading,
+});
+
+export const setError: SetErrorType = (error: FEError) => ({
+  type: 'SET_ERROR',
+  error,
 });

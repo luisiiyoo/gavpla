@@ -19,6 +19,8 @@ export const initialState: StateType = {
   route: 'home',
   expand: isAComputerDevice(),
   languageCode: 'es',
+  isLoading: false,
+  error: { message: '' },
 };
 
 const reducer = (state: StateType = initialState, action: ActionType) => {
@@ -30,6 +32,10 @@ const reducer = (state: StateType = initialState, action: ActionType) => {
       return { ...state, expand: action.expand };
     case 'SET_LANGUAGE':
       return { ...state, languageCode: action.languageCode };
+    case 'SET_IS_LOADING':
+      return { ...state, expand: action.isLoading };
+    case 'SET_ERROR':
+      return { ...state, expand: action.error };
     default:
       return state;
   }

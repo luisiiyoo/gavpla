@@ -16,6 +16,7 @@ import {
   HealthResponse,
   InventoryDataTransformed,
   RequestDetails,
+  BELicensePlatesData,
 } from './backend.types';
 
 const {
@@ -30,6 +31,7 @@ export class BackendConnector {
         method: method.toUpperCase(),
         url: url,
         data: data,
+        params,
       });
       return resp.data;
     } catch (error) {
@@ -94,14 +96,19 @@ export class BackendConnector {
   async getLicensePlatesData(
     userId: string,
     queryParams: BEQueryLicensePlatesData,
-  ): Promise<BELicensePlateRegionCodes[]> {
+  ): Promise<BELicensePlatesData[]> {
     const url = `${BACKEND_URL}/users/${userId}/license-plates/`;
-    const result: BELicensePlateRegionCodes[] = await this.handleRequest({
+    const result: BELicensePlatesData[] = await this.handleRequest({
       method: 'GET',
       url,
       params: queryParams,
     });
     return result;
+  }
+
+  getUserLicensePlatesImageURL(userId: string, userPlateId: string): string {
+    const url = `${BACKEND_URL}/users/${userId}/license-plates/${userPlateId}/image`;
+    return url;
   }
 
   async getUserLicensePlatesImage(

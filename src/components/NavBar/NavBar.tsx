@@ -31,11 +31,16 @@ const onSelectNavItem: OnSelectNavItem = (selected, history) => {
 const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
   const completeRoute = item.route;
   const childs = item.childs || [];
+  const isOverPopulated: boolean = childs.length >= 10;
   return (
     <SideNav.NavItem
       eventKey={completeRoute}
       key={completeRoute}
-      data-testid={completeRoute}
+      subnavClassName="SubNavLuis"
+      subnavStyle={{
+        height: isOverPopulated ? '50vh' : 'inherit',
+        overflow: 'overlay',
+      }}
     >
       {item.iconClass && (
         <SideNav.NavIcon>
@@ -67,8 +72,15 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       onToggle={(expanded) => {
         dispatch(setExpandNavBar(expanded));
       }}
+      style={
+        {
+          // position:"fixed",
+          // overflowY:"auto",
+          // overflowX:"hidden"
+        }
+      }
     >
-      <SideNav.Toggle data-testid="toggleNavBar" />
+      <SideNav.Toggle />
       <NavBarHeader expanded={expand} title={navBarTitle} />
       <SideNav.Nav selected={route}>
         {navigationItems.map((item: AbstractNavItem) => {

@@ -5,4 +5,5 @@
 
 .sidenav---sidenav---_2tBP {
   background: var(--sidenav-background-app);
+  height: var(--container-app-height);
 }

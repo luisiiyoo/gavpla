@@ -12,6 +12,8 @@ import {
   HOME_ROUTE,
   LICENSE_PLATES_ROUTE,
 } from './constants';
+import { StateLicensePlatesPanel } from 'src/components/StateLicensePlatesPanel/StateLicensePlatesPanel';
+import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 
 const mxStateNavigationItems: NavItemChild[] = [];
 
@@ -26,7 +28,36 @@ const navigationItems: NavItem[] = [
     title: LICENSE_PLATES_ROUTE.title,
     route: LICENSE_PLATES_ROUTE.route,
     iconClass: 'fa-solid fa-car',
-    functionalComponent: () => <></>,
+    childs: [
+      ...Array.from(
+        MEXICO_STATE_CODE_TO_STATE_NAME,
+        ([stateCode, stateName]) => ({
+          title: stateName,
+          idChild: stateCode,
+          route: `${LICENSE_PLATES_ROUTE.route}/${stateCode}`,
+          functionalComponent: () => (
+            <StateLicensePlatesPanel
+              userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
+              languageCode="es"
+              regionCode={stateCode}
+            />
+          ),
+        }),
+      ),
+
+      // {
+      //   title: "Nacional",
+      //   idChild: "national",
+      //   route: `${LICENSE_PLATES_ROUTE.route}/national`,
+      //   functionalComponent: () => (
+      //   <StateLicensePlatesPanel
+      //     userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
+      //     languageCode="es"
+      //     regionCode="NATIONAL"
+      //   />
+      //   ),
+      // },
+    ],
   },
   {
     title: SEARCH_ROUTE.title,

@@ -15,7 +15,6 @@ const MainComponent: React.FC<MainComponentProps> = ({ isExpandedNavBar }) => {
   return (
     <div
       className="MainComponent"
-      data-testid="mainComponent"
       style={{
         marginLeft: isExpandedNavBar ? MAX_NAVBAR_MARGIN : MIN_NAVBAR_MARGIN,
       }}
@@ -40,15 +39,19 @@ const Routes: React.FC<RouterProps> = () => {
   const { expand: isExpandedNavBar } = main;
 
   return (
+    // <div className="Container" >
     <BrowserRouter>
       <Route
-        render={({ history }) => <NavBar history={history} navBarTitle={''} />}
+        render={({ history }) => (
+          <NavBar history={history} navBarTitle={'GAVPLA'} />
+        )}
       />
-      <div className="Container" style={{ display: 'block' }}>
+      <div className="Container">
         <LanguagueSwithcer />
         <MainComponent isExpandedNavBar={isExpandedNavBar} />
       </div>
     </BrowserRouter>
+    // </div>
   );
 };
 

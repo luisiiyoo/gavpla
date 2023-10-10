@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './Loader.css';
 
 const Loader: React.FC = () => {
+  // const { languageCode } = useSelector((state) => state.main);
   useEffect(() => {
     const loading = document.querySelector('.Loader') as Element;
     if (loading !== null) {

@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 import { MEXICO_STATE_NAME_TO_STATE_CODE } from 'src/utils/constants';
-import { BackendStateData } from 'src/connector/backend';
 import './style.css';
 import NotFoundImage from 'src/images/image-not-found.png';
+import { BEStateData } from 'src/connector/backend.types';
 
 export interface InventoryImagesPanelProps {
-  backendData: Map<string, BackendStateData>;
+  backendData: Map<string, BEStateData>;
   dataByYear: Map<string, string[]>;
   dataByState: Map<string, string[]>;
   selectedYear: string;
@@ -59,9 +59,7 @@ const InventoryImagesPanel = ({
     );
 
     for (const stateCode of stateCodes) {
-      const stateData: BackendStateData | undefined = backendData.get(
-        stateCode,
-      );
+      const stateData: BEStateData | undefined = backendData.get(stateCode);
       const stateName = stateData?.name;
       const stateInventoryData = stateData?.inventory;
 
@@ -83,7 +81,7 @@ const InventoryImagesPanel = ({
   } else {
     const stateCode: string =
       MEXICO_STATE_NAME_TO_STATE_CODE.get(selectedState) || '';
-    const stateData: BackendStateData | undefined = backendData.get(stateCode);
+    const stateData: BEStateData | undefined = backendData.get(stateCode);
 
     const stateName = stateData?.name;
     const stateInventoryData = stateData?.inventory;
@@ -109,7 +107,7 @@ const InventoryImagesPanel = ({
 
   return (
     <div className="InventoryImagesPanel" style={style}>
-      <div className="grid-container ">
+      <div className="grid-container">
         {inventoryItems.map((inventoryItem, key) => (
           <div className="grid-item" key={key}>
             <img

@@ -1,0 +1,19 @@
+.StateLicensePlatesPanel {
+  display: grid;
+  height: inherit;
+  align-content: center;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  /* background-color: red; */
+  padding: 10px;
+  border-style: solid;
+  border-color: green;
+}
+
+.StateLicensePlatesItem {
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  color: white;
+}
