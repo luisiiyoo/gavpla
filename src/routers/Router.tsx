@@ -9,7 +9,7 @@ import { navigationFCItems } from './routes';
 import PageNotFound from '../components/PageNotFound';
 import NavBar from '../components/NavBar';
 import './Router.css';
-import LanguagueSwithcer from 'src/components/LanguageSwitcher';
+import LanguagueSwithcer from 'src/components/LanguageSelector';
 
 const MAX_NAVBAR_MARGIN = 240;
 const MIN_NAVBAR_MARGIN = 64;

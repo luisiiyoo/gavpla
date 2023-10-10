@@ -1,5 +1,5 @@
-import mxFlag from 'src/language/flags/mexico.png';
-import usFlag from 'src/language/flags/united-states.png';
+import mxFlag from 'src/images/flags/mx.png';
+import usFlag from 'src/images/flags/us.png';
 import {
   SEARCH_ROUTE,
   DONATIONS_ROUTE,
@@ -33,7 +33,7 @@ export const translations = {
       [DONATIONS_ROUTE.route]: 'Donaciones',
     },
   },
-  LanguageSwitcher: {
+  LanguageSelector: {
     en: {
       label: 'Language',
     },

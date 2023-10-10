@@ -74,9 +74,9 @@ const SelectOption = (props) => (
   </components.Option>
 );
 
-const LanguageSwitcher = () => {
+const LanguageSelector = () => {
   const { languageCode } = useSelector((state) => state.main);
-  const translation = getTranslation(languageCode, 'LanguageSwitcher');
+  const translation = getTranslation(languageCode, 'LanguageSelector');
 
   const dispatch = useDispatch();
   const selectedLanguage = languages.filter(
@@ -84,7 +84,7 @@ const LanguageSwitcher = () => {
   )[0];
 
   return (
-    <div className="LanguageSwitcher">
+    <div className="LanguageSelector">
       {translation['label']}:{' '}
       <Select
         options={languages.map((lang) => ({
@@ -123,4 +123,4 @@ const LanguageSwitcher = () => {
   );
 };
 
-export default LanguageSwitcher;
+export default LanguageSelector;
