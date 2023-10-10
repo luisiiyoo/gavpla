@@ -10,12 +10,10 @@ import {
   SEARCH_ROUTE,
   DONATIONS_ROUTE,
   HOME_ROUTE,
-  LICENSE_PLATES_ROUTE,
+  STATES_ROUTE,
 } from './constants';
 import { StateLicensePlatesPanel } from 'src/components/StateLicensePlatesPanel/StateLicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
-
-const mxStateNavigationItems: NavItemChild[] = [];
 
 const navigationItems: NavItem[] = [
   {
@@ -25,8 +23,8 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => <HomePage />,
   },
   {
-    title: LICENSE_PLATES_ROUTE.title,
-    route: LICENSE_PLATES_ROUTE.route,
+    title: STATES_ROUTE.title,
+    route: STATES_ROUTE.route,
     iconClass: 'fa-solid fa-car',
     childs: [
       ...Array.from(
@@ -34,7 +32,7 @@ const navigationItems: NavItem[] = [
         ([stateCode, stateName]) => ({
           title: stateName,
           idChild: stateCode,
-          route: `${LICENSE_PLATES_ROUTE.route}/${stateCode}`,
+          route: `${STATES_ROUTE.route}/${stateCode}`,
           functionalComponent: () => (
             <StateLicensePlatesPanel
               userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"

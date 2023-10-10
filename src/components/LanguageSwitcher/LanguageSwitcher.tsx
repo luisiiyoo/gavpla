@@ -3,35 +3,39 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTranslation, languages } from 'src/language';
 import Select, { ActionMeta, StylesConfig, components } from 'react-select';
 import { setLanguage } from 'src/redux/actions/MainComponent/MainComponent';
+import './style.css';
+import { redis } from 'googleapis/build/src/apis/redis';
 
-const style = {
-  marginRight: '4%',
-  fontSize: '18px',
-  alignItems: 'center',
-  verticalAlign: 'middle',
-};
-
-const fontSize = '10';
-const height = 30;
+const selectFontSize = '1.8vh';
+const selectHeight = '3vh';
 const selectStyles: StylesConfig = {
+  container: (styles) => ({
+    ...styles,
+    display: 'inline-block',
+    position: 'relative',
+    width: '12.2vh',
+    textAlign: 'left',
+  }),
   control: (styles) => ({
     ...styles,
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(255, 255, 255, 0.9)',
     color: 'black',
-    fontSize,
-    height: height,
-    minHeight: height,
+    fontSize: selectFontSize,
+    height: selectHeight,
+    minHeight: selectHeight,
   }),
   option: (styles) => ({
     ...styles,
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(255, 255, 255, 0.9)',
     color: 'black',
-    fontSize,
+    fontSize: selectFontSize,
+    display: 'inline-block',
+    verticalAlign: 'middle',
   }),
-  input: (styles) => ({ ...styles, fontSize, margin: '0px' }),
+  input: (styles) => ({ ...styles, fontSize: selectFontSize, margin: '0px' }),
   valueContainer: (provided, state) => ({
     ...provided,
-    height: height,
+    height: selectHeight,
     padding: '0 6px',
   }),
 
@@ -40,16 +44,34 @@ const selectStyles: StylesConfig = {
   }),
   indicatorsContainer: (provided, state) => ({
     ...provided,
-    height: height,
+    height: selectHeight,
   }),
 };
 
-const { Option } = components;
-const IconOption = (props) => (
-  <Option {...props}>
-    <img src={props.data.icon} style={{ width: 36 }} alt={props.data.label} />
-    {props.data.label}
-  </Option>
+interface SelectLabelComponentProps {
+  icon: string;
+  text: string;
+}
+
+const SelectLabelComponent = ({ icon, text }: SelectLabelComponentProps) => {
+  const flagIconStyle = {
+    width: '2.3vh',
+    height: '2.3vh',
+    verticalAlign: 'sub',
+  };
+  return (
+    <div className="SelectLabelComponent">
+      <img src={icon} style={flagIconStyle} alt={text} />
+      &nbsp;
+      {text}
+    </div>
+  );
+};
+
+const SelectOption = (props) => (
+  <components.Option {...props}>
+    <SelectLabelComponent icon={props.data.icon} text={props.data.label} />
+  </components.Option>
 );
 
 const LanguageSwitcher = () => {
@@ -63,35 +85,40 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="LanguageSwitcher">
-      <div style={style}>
-        {translation['label']}:{' '}
-        <img
-          style={{ marginTop: '110', height: '22px' }}
-          src={selectedLanguage.flag}
-          alt={selectedLanguage.languageCode}
-        ></img>
-        {/* <div > */}
-        <Select
-          options={languages.map((lang) => ({
-            value: lang.languageCode,
-            label: lang.name,
-            icon: lang.flag,
-          }))}
-          isLoading={false}
-          styles={selectStyles}
-          value={{
-            value: selectedLanguage.languageCode,
-            label: selectedLanguage.name,
-            icon: selectedLanguage.flag,
-          }}
-          onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
-            dispatch(setLanguage(newValue.value));
-            return newValue;
-          }}
-          components={{ Option: IconOption }}
-        />
-        {/* </div> */}
-      </div>
+      {translation['label']}:{' '}
+      <Select
+        options={languages.map((lang) => ({
+          value: lang.languageCode,
+          label: lang.languageCode,
+          icon: lang.flag,
+        }))}
+        isLoading={false}
+        styles={selectStyles}
+        value={{
+          value: selectedLanguage.languageCode,
+          label: (
+            <SelectLabelComponent
+              icon={selectedLanguage.flag}
+              text={selectedLanguage.languageCode}
+            />
+          ),
+          icon: selectedLanguage.flag,
+        }}
+        onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
+          dispatch(setLanguage(newValue.value));
+          return newValue;
+        }}
+        components={{
+          Option: SelectOption,
+          // ValueContainer:InputValueContainer
+        }}
+      />
+      {/* 
+      <img
+        style={{ marginTop: '110', height: '22px' }}
+        src={selectedLanguage.flag}
+        alt={selectedLanguage.languageCode}
+      /> */}
     </div>
   );
 };
