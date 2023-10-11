@@ -14,9 +14,11 @@ import {
   THANKS_ROUTE,
   FEDERAL_ROUTE,
   NEW_ROUTE,
+  SHOP_PLATES_ROUTE,
 } from './constants';
 import { StateLicensePlatesPanel } from 'src/components/StateLicensePlatesPanel/StateLicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
+import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 
 const navigationItems: NavItem[] = [
   {
@@ -28,8 +30,8 @@ const navigationItems: NavItem[] = [
   {
     title: NEW_ROUTE.title,
     route: NEW_ROUTE.route,
-    iconClass: 'fa fa-fw fa-home',
-    functionalComponent: () => <></>,
+    iconClass: 'fa-solid fa-newspaper',
+    functionalComponent: () => <UnderConstruction />,
   },
   {
     title: STATES_ROUTE.title,
@@ -56,7 +58,7 @@ const navigationItems: NavItem[] = [
   {
     title: FEDERAL_ROUTE.title,
     route: FEDERAL_ROUTE.route,
-    iconClass: 'fa-solid fa-car',
+    iconClass: 'fa-solid fa-flag',
     functionalComponent: () => (
       <StateLicensePlatesPanel
         userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
@@ -82,13 +84,19 @@ const navigationItems: NavItem[] = [
     title: DONATIONS_ROUTE.title,
     route: DONATIONS_ROUTE.route,
     iconClass: 'fa-solid fa-hand-holding-heart',
-    functionalComponent: () => <></>,
+    functionalComponent: () => <UnderConstruction />,
   },
   {
     title: THANKS_ROUTE.title,
     route: THANKS_ROUTE.route,
     iconClass: 'fa-solid fa-heart',
-    functionalComponent: () => <></>,
+    functionalComponent: () => <UnderConstruction />,
+  },
+  {
+    title: SHOP_PLATES_ROUTE.title,
+    route: SHOP_PLATES_ROUTE.route,
+    iconClass: 'fa-solid fa-cart-shopping',
+    functionalComponent: () => <UnderConstruction />,
   },
 ];
 

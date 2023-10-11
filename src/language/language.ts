@@ -8,6 +8,7 @@ import {
   THANKS_ROUTE,
   FEDERAL_ROUTE,
   NEW_ROUTE,
+  SHOP_PLATES_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -31,6 +32,7 @@ export const translations = {
       [SEARCH_ROUTE.route]: SEARCH_ROUTE.title,
       [DONATIONS_ROUTE.route]: DONATIONS_ROUTE.title,
       [THANKS_ROUTE.route]: THANKS_ROUTE.title,
+      [SHOP_PLATES_ROUTE.route]: SHOP_PLATES_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
@@ -40,6 +42,7 @@ export const translations = {
       [SEARCH_ROUTE.route]: 'Buscar',
       [DONATIONS_ROUTE.route]: 'Donaciones',
       [THANKS_ROUTE.route]: 'Agradecimientos',
+      [SHOP_PLATES_ROUTE.route]: 'Comprar Placas',
     },
   },
   LanguageSelector: {
@@ -48,6 +51,14 @@ export const translations = {
     },
     es: {
       label: 'Idioma',
+    },
+  },
+  UnderConstruction: {
+    en: {
+      message: 'Sorry, this page is under construction.',
+    },
+    es: {
+      message: 'Esta página está en desarrollo aún.',
     },
   },
   HomePage: {

@@ -39,3 +39,8 @@ export const THANKS_ROUTE = {
   title: 'Thanks',
   route: 'thanks',
 };
+
+export const SHOP_PLATES_ROUTE = {
+  title: 'Shop Plates',
+  route: `${LICENSE_PLATES}/shop-plates`,
+};
