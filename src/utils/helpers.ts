@@ -83,3 +83,22 @@ export const getVariableName = (v: any): string => {
 export const removeEmpty = (obj) => {
   return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
 };
+
+export const isAComputerDevice = (): boolean => {
+  if (
+    navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/webOS/i) ||
+    navigator.userAgent.match(/iPhone/i) ||
+    navigator.userAgent.match(/iPad/i) ||
+    navigator.userAgent.match(/iPod/i) ||
+    navigator.userAgent.match(/BlackBerry/i) ||
+    navigator.userAgent.match(/Windows Phone/i)
+  ) {
+    return false;
+  }
+  return true;
+};
+
+export const isASmallDevice = (width: number): boolean => {
+  return window.screen.width < width;
+};

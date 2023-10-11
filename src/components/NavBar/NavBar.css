@@ -1,5 +1,5 @@
 .NavBar-Icon {
-  font-size: 2em;
+  font-size: 1.8em;
   vertical-align: middle;
 }
 
@@ -7,3 +7,39 @@
   background: var(--sidenav-background-app);
   height: var(--container-app-height);
 }
+
+.sidenav---expanded---1KdUL {
+  overflow: overlay;
+}
+
+.NavItemText {
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+.NavSubItemText {
+  padding-left: 10;
+  font-size: 1em;
+  vertical-align: middle;
+}
+
+@media only screen and (max-device-height: 500px) {
+  .sidenav---sidenav---_2tBP {
+    /* overflow-Y: overlay; */
+    /* overflow: visible; */
+    overflow-y: overlay;
+    overflow-x: hidden;
+  }
+}
+/* @media only screen and (min-device-width: 600px) {
+  .NavItemText {
+    font-size: 0.6em;
+    
+  }
+  
+  .NavSubItemText {
+    padding-left: 10;
+    font-size: 0.4em;
+  }
+
+} */

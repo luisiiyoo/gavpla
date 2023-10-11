@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SideNav from '@trendmicro/react-sidenav';
 import {
@@ -6,19 +6,13 @@ import {
   setExpandNavBar,
 } from 'src/redux/actions/MainComponent';
 import { AbstractNavItem, NavItem } from 'src/routers/Router.types';
-import NavBarHeader from 'src/components/NavBarHeader';
+import NavBarHeader from 'src/components/NavBar/NavBarHeader';
 import { NavBarProps, OnSelectNavItem, RenderNavItem } from './NavBar.types';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './NavBar.css';
 import { navigationItems } from 'src/routers';
 import { getTranslation } from 'src/language';
-
-const styleNavItemText = { fontSize: '1.3em', verticalAlign: 'middle' };
-const styleNavSubItemText = {
-  paddingLeft: 10,
-  fontSize: '1.0em',
-  verticalAlign: 'middle',
-};
+import { isASmallDevice } from 'src/utils';
 
 const onSelectNavItem: OnSelectNavItem = (selected, history) => {
   const {
@@ -47,7 +41,7 @@ const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
           <i className={`${item.iconClass} NavBar-Icon`} />
         </SideNav.NavIcon>
       )}
-      <SideNav.NavText style={isChild ? styleNavSubItemText : styleNavItemText}>
+      <SideNav.NavText className={isChild ? 'NavSubItemText' : 'NavItemText'}>
         {item.title}
       </SideNav.NavText>
       {childs.map((child) => renderNavItem(child, true))}
@@ -68,6 +62,9 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       onSelect={(selected) => {
         onSelectNavItem(selected, history);
         dispatch(setSelectedRoute(selected));
+        if (isASmallDevice(600)) {
+          dispatch(setExpandNavBar(false));
+        }
       }}
       onToggle={(expanded) => {
         dispatch(setExpandNavBar(expanded));

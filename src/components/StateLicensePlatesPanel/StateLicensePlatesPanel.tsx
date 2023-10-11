@@ -103,6 +103,10 @@ export const StateLicensePlatesPanel: React.FC<StateLicensePlatesPanelProps> = (
                     e.currentTarget.onerror = null; // prevents looping
                     e.currentTarget.src = NotFoundImage;
                   }}
+                  style={{
+                    height: 'auto',
+                    width: '22vh',
+                  }}
                 />
               </div>
             </div>
