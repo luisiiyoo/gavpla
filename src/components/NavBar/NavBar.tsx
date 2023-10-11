@@ -58,6 +58,7 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
 
   return (
     <SideNav
+      className={`SideNavBar ${expand ? 'SideNavBarExpanded' : ''}`}
       expanded={expand}
       onSelect={(selected) => {
         onSelectNavItem(selected, history);

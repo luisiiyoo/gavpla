@@ -3,12 +3,12 @@
   vertical-align: middle;
 }
 
-.sidenav---sidenav---_2tBP {
+.SideNavBar {
   background: var(--sidenav-background-app);
   height: var(--container-app-height);
 }
 
-.sidenav---expanded---1KdUL {
+.SideNavBarExpanded {
   overflow: overlay;
 }
 
@@ -24,7 +24,7 @@
 }
 
 @media only screen and (max-device-height: 500px) {
-  .sidenav---sidenav---_2tBP {
+  .SideNavBar {
     /* overflow-Y: overlay; */
     /* overflow: visible; */
     overflow-y: overlay;
