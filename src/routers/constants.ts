@@ -1,14 +1,28 @@
+const LICENSE_PLATES = 'license-plates';
+
 export const HOME_ROUTE = {
   title: 'Home',
   route: '',
 };
+
+export const NEW_ROUTE = {
+  title: 'New',
+  route: 'new',
+};
+
 export const STATES_ROUTE = {
   title: 'States',
-  route: 'states',
+  route: `${LICENSE_PLATES}/states`,
 };
+
+export const FEDERAL_ROUTE = {
+  title: 'Federal',
+  route: `${LICENSE_PLATES}/federal`,
+};
+
 export const SEARCH_ROUTE = {
   title: 'Search',
-  route: 'search',
+  route: `${LICENSE_PLATES}/search`,
 };
 
 export const COLLECTION_1968_1999_ROUTE = {
@@ -21,10 +35,7 @@ export const DONATIONS_ROUTE = {
   route: 'donations',
 };
 
-// export const MX_STATES_ROUTES = Array.from(
-//     MEXICO_STATE_NAME_TO_STATE_CODE,
-//     ([stateCode, stateName]) => ({
-//         title: stateName,
-//         route: stateCode,
-//       })
-// )
+export const THANKS_ROUTE = {
+  title: 'Thanks',
+  route: 'thanks',
+};

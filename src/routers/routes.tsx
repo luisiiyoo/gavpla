@@ -11,6 +11,9 @@ import {
   DONATIONS_ROUTE,
   HOME_ROUTE,
   STATES_ROUTE,
+  THANKS_ROUTE,
+  FEDERAL_ROUTE,
+  NEW_ROUTE,
 } from './constants';
 import { StateLicensePlatesPanel } from 'src/components/StateLicensePlatesPanel/StateLicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
@@ -21,6 +24,12 @@ const navigationItems: NavItem[] = [
     route: HOME_ROUTE.route,
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
+  },
+  {
+    title: NEW_ROUTE.title,
+    route: NEW_ROUTE.route,
+    iconClass: 'fa fa-fw fa-home',
+    functionalComponent: () => <></>,
   },
   {
     title: STATES_ROUTE.title,
@@ -42,20 +51,19 @@ const navigationItems: NavItem[] = [
           ),
         }),
       ),
-
-      // {
-      //   title: "Nacional",
-      //   idChild: "national",
-      //   route: `${LICENSE_PLATES_ROUTE.route}/national`,
-      //   functionalComponent: () => (
-      //   <StateLicensePlatesPanel
-      //     userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
-      //     languageCode="es"
-      //     regionCode="NATIONAL"
-      //   />
-      //   ),
-      // },
     ],
+  },
+  {
+    title: FEDERAL_ROUTE.title,
+    route: FEDERAL_ROUTE.route,
+    iconClass: 'fa-solid fa-car',
+    functionalComponent: () => (
+      <StateLicensePlatesPanel
+        userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
+        languageCode="es"
+        regionCode="NATIONAL"
+      />
+    ),
   },
   {
     title: SEARCH_ROUTE.title,
@@ -74,6 +82,12 @@ const navigationItems: NavItem[] = [
     title: DONATIONS_ROUTE.title,
     route: DONATIONS_ROUTE.route,
     iconClass: 'fa-solid fa-hand-holding-heart',
+    functionalComponent: () => <></>,
+  },
+  {
+    title: THANKS_ROUTE.title,
+    route: THANKS_ROUTE.route,
+    iconClass: 'fa-solid fa-heart',
     functionalComponent: () => <></>,
   },
 ];

@@ -5,6 +5,9 @@ import {
   DONATIONS_ROUTE,
   HOME_ROUTE,
   STATES_ROUTE,
+  THANKS_ROUTE,
+  FEDERAL_ROUTE,
+  NEW_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -22,15 +25,21 @@ export const translations = {
   NavBar: {
     en: {
       [HOME_ROUTE.route]: 'Home',
+      [NEW_ROUTE.route]: NEW_ROUTE.title,
       [STATES_ROUTE.route]: STATES_ROUTE.title,
+      [FEDERAL_ROUTE.route]: FEDERAL_ROUTE.title,
       [SEARCH_ROUTE.route]: SEARCH_ROUTE.title,
       [DONATIONS_ROUTE.route]: DONATIONS_ROUTE.title,
+      [THANKS_ROUTE.route]: THANKS_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
+      [NEW_ROUTE.route]: 'Nuevo',
       [STATES_ROUTE.route]: 'Estados',
+      [FEDERAL_ROUTE.route]: 'Federal',
       [SEARCH_ROUTE.route]: 'Buscar',
       [DONATIONS_ROUTE.route]: 'Donaciones',
+      [THANKS_ROUTE.route]: 'Agradecimientos',
     },
   },
   LanguageSelector: {
