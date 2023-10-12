@@ -6,7 +6,7 @@ import {
   HOME_ROUTE,
   STATES_ROUTE,
   THANKS_ROUTE,
-  FEDERAL_ROUTE,
+  NATIONAL_ROUTE,
   NEW_ROUTE,
   SHOP_PLATES_ROUTE,
 } from 'src/routers/constants';
@@ -16,10 +16,12 @@ interface languageType {
   name: string;
   flag: string;
 }
+export const ES_LANGUAGE = 'es';
+export const EN_LANGUAGE = 'en';
 
 export const languages: languageType[] = [
-  { languageCode: 'es', name: 'Español', flag: mxFlag },
-  { languageCode: 'en', name: 'English', flag: usFlag },
+  { languageCode: ES_LANGUAGE, name: 'Español', flag: mxFlag },
+  { languageCode: EN_LANGUAGE, name: 'English', flag: usFlag },
 ];
 
 export const translations = {
@@ -28,7 +30,7 @@ export const translations = {
       [HOME_ROUTE.route]: 'Home',
       [NEW_ROUTE.route]: NEW_ROUTE.title,
       [STATES_ROUTE.route]: STATES_ROUTE.title,
-      [FEDERAL_ROUTE.route]: FEDERAL_ROUTE.title,
+      [NATIONAL_ROUTE.route]: NATIONAL_ROUTE.title,
       [SEARCH_ROUTE.route]: SEARCH_ROUTE.title,
       [DONATIONS_ROUTE.route]: DONATIONS_ROUTE.title,
       [THANKS_ROUTE.route]: THANKS_ROUTE.title,
@@ -38,7 +40,7 @@ export const translations = {
       [HOME_ROUTE.route]: 'Inicio',
       [NEW_ROUTE.route]: 'Nuevo',
       [STATES_ROUTE.route]: 'Estados',
-      [FEDERAL_ROUTE.route]: 'Federal',
+      [NATIONAL_ROUTE.route]: 'Nacional',
       [SEARCH_ROUTE.route]: 'Buscar',
       [DONATIONS_ROUTE.route]: 'Donaciones',
       [THANKS_ROUTE.route]: 'Agradecimientos',

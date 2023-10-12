@@ -1,10 +1,11 @@
+import { ES_LANGUAGE } from 'src/language/language';
 import { isAComputerDevice } from 'src/utils';
 import { StateType, ActionType } from './MainComponent.types';
 
 export const initialState: StateType = {
   route: 'home',
   expand: isAComputerDevice(),
-  languageCode: 'es', // TODO: Use window.navigator.language.slice(0,2)
+  languageCode: ES_LANGUAGE, // TODO: Use window.navigator.language.slice(0,2)
   isLoading: false,
   error: { message: '' },
 };

@@ -18,7 +18,7 @@ const Header = ({ title, subTitle }: TitleProps) => {
     <div className="Header" style={style}>
       <h2>{title}</h2>
       {/* <br/> */}
-      <h4>{subTitle}</h4>
+      {subTitle ? <h4>{subTitle}</h4> : undefined}
     </div>
   );
 };

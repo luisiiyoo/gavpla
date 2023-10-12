@@ -1,0 +1,22 @@
+.LicensePlateItem {
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 30px;
+  color: white;
+}
+
+/* .LicensePlateItem-Image img {
+    width: 40vw;
+    height: auto;
+  } */
+
+.LicensePlateItem-Years,
+.LicensePlateItem-Name {
+  font-size: large;
+}
+
+.LicensePlateItem-VehicleType {
+  font-size: small;
+  padding: 2px;
+}

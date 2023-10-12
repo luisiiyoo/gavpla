@@ -15,9 +15,9 @@ export const STATES_ROUTE = {
   route: `${LICENSE_PLATES}/states`,
 };
 
-export const FEDERAL_ROUTE = {
-  title: 'Federal',
-  route: `${LICENSE_PLATES}/federal`,
+export const NATIONAL_ROUTE = {
+  title: 'National',
+  route: `${LICENSE_PLATES}/national`,
 };
 
 export const SEARCH_ROUTE = {

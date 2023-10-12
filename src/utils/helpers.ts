@@ -106,3 +106,9 @@ export const isASmallDeviceByWidth = (width: number): boolean => {
 export const isASmallDeviceByHeight = (height: number): boolean => {
   return window.screen.height < height;
 };
+
+export const toTitleCase = (str: string): string =>
+  str
+    .split(' ')
+    .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
+    .join(' ');

@@ -1,0 +1,42 @@
+.LicensePlatesPanel-LicensePlateItems {
+  display: grid;
+  /* height: inherit; */
+  align-content: center;
+  grid-template-columns: auto;
+  gap: 10px;
+  /* background-color: red; */
+  padding: 10px;
+  /* border-style: solid;
+  border-color: green; */
+}
+img {
+  width: var(--single-img-license-plate-width);
+  height: auto;
+}
+
+@media only screen and (min-device-width: 400px) {
+  .LicensePlatesPanel-LicensePlateItems {
+    grid-template-columns: auto auto;
+  }
+  img {
+    width: calc(var(--single-img-license-plate-width) / 2);
+  }
+}
+
+@media only screen and (min-device-width: 600px) {
+  .LicensePlatesPanel-LicensePlateItems {
+    grid-template-columns: auto auto auto;
+  }
+  img {
+    width: calc(var(--single-img-license-plate-width) / 3);
+  }
+}
+
+@media only screen and (min-device-width: 1000px) {
+  .LicensePlatesPanel-LicensePlateItems {
+    grid-template-columns: auto auto auto auto;
+  }
+  img {
+    width: calc(var(--single-img-license-plate-width) / 4);
+  }
+}

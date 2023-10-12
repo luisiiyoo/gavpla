@@ -18,6 +18,7 @@
   --selected-item-font-color: #fff;
   --filtered-item-font-color: #fff;
   --container-app-height: 100vh;
+  --single-img-license-plate-width: 70vw;
 }
 
 .App {
@@ -35,6 +36,13 @@ h2 {
   color: var(--font-color-app);
   text-shadow: 1px 2px 2px var(--color-app);
   margin: 15px 15px 15px 15px;
+}
+
+h3 {
+  text-align: center;
+  color: var(--font-color-app);
+  text-shadow: 1px 2px 2px var(--color-app);
+  margin: 0px 0px 10px 0px;
 }
 
 h4,
