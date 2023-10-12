@@ -11,3 +11,21 @@
   /* margin: 0 0 0 0;
     padding: 0 0 0 0; */
 }
+
+.LanguageSelector-Dropdown {
+  display: inline-block;
+  position: relative;
+  width: 12.2vh;
+  text-align: left;
+}
+
+@media only screen and (max-device-width: 550px) {
+  .LanguageSelector-Dropdown {
+    width: 15.2vh;
+  }
+}
+@media only screen and (max-device-height: 700px) {
+  .LanguageSelector-Dropdown {
+    width: 16.2vh;
+  }
+}

@@ -12,7 +12,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './NavBar.css';
 import { navigationItems } from 'src/routers';
 import { getTranslation } from 'src/language';
-import { isASmallDevice } from 'src/utils';
+import { isASmallDeviceByWidth } from 'src/utils';
 
 const onSelectNavItem: OnSelectNavItem = (selected, history) => {
   const {
@@ -63,7 +63,7 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       onSelect={(selected) => {
         onSelectNavItem(selected, history);
         dispatch(setSelectedRoute(selected));
-        if (isASmallDevice(600)) {
+        if (isASmallDeviceByWidth(600)) {
           dispatch(setExpandNavBar(false));
         }
       }}

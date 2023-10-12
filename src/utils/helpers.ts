@@ -99,6 +99,10 @@ export const isAComputerDevice = (): boolean => {
   return true;
 };
 
-export const isASmallDevice = (width: number): boolean => {
+export const isASmallDeviceByWidth = (width: number): boolean => {
   return window.screen.width < width;
+};
+
+export const isASmallDeviceByHeight = (height: number): boolean => {
+  return window.screen.height < height;
 };

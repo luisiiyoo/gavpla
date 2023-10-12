@@ -4,18 +4,18 @@ import { getTranslation, languages } from 'src/language';
 import Select, { ActionMeta, StylesConfig, components } from 'react-select';
 import { setLanguage } from 'src/redux/actions/MainComponent/MainComponent';
 import './style.css';
-import { redis } from 'googleapis/build/src/apis/redis';
+import { isASmallDeviceByHeight } from 'src/utils';
 
 const selectFontSize = '1.8vh';
 const selectHeight = '3vh';
 const selectStyles: StylesConfig = {
-  container: (styles) => ({
-    ...styles,
-    display: 'inline-block',
-    position: 'relative',
-    width: '12.2vh',
-    textAlign: 'left',
-  }),
+  // container: (styles) => ({
+  //   ...styles,
+  //   display: 'inline-block',
+  //   position: 'relative',
+  //   width: '12.2vh',
+  //   textAlign: 'left',
+  // }), Handle by LanguageSelector-Dropdown className
   control: (styles) => ({
     ...styles,
     backgroundColor: 'rgb(255, 255, 255, 0.9)',
@@ -87,6 +87,7 @@ const LanguageSelector = () => {
     <div className="LanguageSelector">
       {translation['label']}:{' '}
       <Select
+        className="LanguageSelector-Dropdown"
         options={languages.map((lang) => ({
           value: lang.languageCode,
           label: lang.languageCode,
