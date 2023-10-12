@@ -47,7 +47,6 @@ const navigationItems: NavItem[] = [
           functionalComponent: () => (
             <StateLicensePlatesPanel
               userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
-              languageCode="es"
               regionCode={stateCode}
             />
           ),
@@ -62,7 +61,6 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => (
       <StateLicensePlatesPanel
         userID="user_fc3d81d8-f76a-4bb3-8645-c7baa1608b4c"
-        languageCode="es"
         regionCode="NATIONAL"
       />
     ),

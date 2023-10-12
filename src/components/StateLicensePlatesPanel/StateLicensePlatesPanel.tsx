@@ -14,7 +14,6 @@ import './style.css';
 // import { setIsLoading } from 'src/redux/actions/MainComponent/MainComponent';
 
 export interface StateLicensePlatesPanelProps {
-  languageCode: string;
   userID: string;
   regionCode: string;
   fromYear?: number;
@@ -25,7 +24,6 @@ export interface StateLicensePlatesPanelProps {
 }
 
 export const StateLicensePlatesPanel: React.FC<StateLicensePlatesPanelProps> = ({
-  languageCode,
   userID,
   regionCode,
   fromYear = 1968,

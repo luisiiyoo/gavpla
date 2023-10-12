@@ -4,7 +4,7 @@ import { StateType, ActionType } from './MainComponent.types';
 export const initialState: StateType = {
   route: 'home',
   expand: isAComputerDevice(),
-  languageCode: 'es',
+  languageCode: 'es', // TODO: Use window.navigator.language.slice(0,2)
   isLoading: false,
   error: { message: '' },
 };
