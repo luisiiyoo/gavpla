@@ -39,7 +39,14 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   hideYears = false,
   hideVehicleType = false,
 }) => {
-  const { vehicleTypes }: StateType = useSelector((state) => state.main);
+  const {
+    vehicleTypes,
+    stateCodes,
+    additionalRegionCodes,
+  }: StateType = useSelector((state) => state.main);
+  const regionName: string =
+    stateCodes[regionCode] || additionalRegionCodes[regionCode] || regionCode;
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
     statusCode: -1,
@@ -81,7 +88,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
         <Loader />
       ) : (
         <div className="LicensePlatesPanel">
-          <Header title={toTitleCase(regionCode)} />
+          <Header title={toTitleCase(regionName)} />
           <div className="LicensePlatesPanel-LicensePlateItems">
             {platesArray.map((plateData) => (
               <LicensePlateItem
