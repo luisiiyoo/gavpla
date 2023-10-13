@@ -1,0 +1,29 @@
+.MxMap {
+  display: grid;
+  /* align-content: left; */
+  grid-template-columns: auto;
+  justify-content: center;
+  /* border-style: double; */
+  /* width: 50%; */
+
+  /* width: 99%; */
+  margin: 0px 10px 0px 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.MxMap-Geo {
+  display: flex;
+  width: 33vw;
+  height: auto;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  /* border-style: double;
+  border-color: red; */
+}
+
+@media only screen and (max-device-width: 400px) {
+  .MxMap-Geo {
+    width: 65vw;
+  }
+}

@@ -47,10 +47,6 @@ export const get_selected_bg_color = () =>
   getComputedStyle(document.documentElement).getPropertyValue(
     '--selected-item-bg-color',
   );
-export const get_filtered_bg_color = () =>
-  getComputedStyle(document.documentElement).getPropertyValue(
-    '--filtered-item-bg-color',
-  );
 
 export const get_hover_font_color = () =>
   getComputedStyle(document.documentElement).getPropertyValue(

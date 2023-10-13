@@ -16,22 +16,27 @@ import { MxMap } from '../Maps/MxMap';
 import './style.css';
 
 export interface LicensePlatesPanelProps {
+  headerTitle?: string;
+  displayHeaderTitle: boolean;
   userID: string;
-  regionCode: string;
+  regionCode: string; // TODO: USE region codes
   isAStateLicensePlate?: boolean;
   fromYear?: number;
   toYear?: number;
   hideStateName?: boolean;
   hideYears?: boolean;
   hideVehicleType?: boolean;
+  staticMap: boolean;
   // selectStateHandler: (state: string) => void;
-  // selectedState: string;
   // filteredStates: string[];
 }
 
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
+  headerTitle,
+  displayHeaderTitle,
   userID,
   regionCode,
+  staticMap,
   // isAStateLicensePlate = true,
   fromYear = 1968,
   toYear = 1999,
@@ -44,8 +49,18 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     stateCodes,
     additionalRegionCodes,
   }: StateType = useSelector((state) => state.main);
-  const regionName: string =
-    stateCodes[regionCode] || additionalRegionCodes[regionCode] || regionCode;
+  const title: string =
+    headerTitle ||
+    stateCodes[regionCode] ||
+    additionalRegionCodes[regionCode] ||
+    regionCode;
+
+  let statesToFilter: string[] = [];
+  if (regionCode === 'NATIONAL') {
+    statesToFilter = Object.keys(stateCodes);
+  } else {
+    statesToFilter = [regionCode];
+  }
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
@@ -88,11 +103,13 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
         <Loader />
       ) : (
         <div className="LicensePlatesPanel">
-          <Header title={toTitleCase(regionName)} />
+          {displayHeaderTitle ? (
+            <Header title={toTitleCase(title)} />
+          ) : undefined}
           <MxMap
-            selectStateHandler={(val) => {}}
-            selectedState={regionCode}
-            filteredStates={[]}
+            selectStateHandler={(val) => {}} // TODO: use handler
+            filteredStates={statesToFilter}
+            staticMap={staticMap}
           />
           <div className="LicensePlatesPanel-LicensePlateItems">
             {platesArray.map((plateData) => (

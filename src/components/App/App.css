@@ -11,7 +11,6 @@
   --hover-item-bg-color: #fff;
   --default-item-bg-color: var(--background-color); /*#000;*/
   --selected-item-bg-color: var(--dark-color-app); /*#006341;*/
-  --filtered-item-bg-color: var(--dark-color-app);
 
   --hover-item-font-color: #000;
   --default-item-font-color: #fff; /*var(--dark-color-app);*/
@@ -88,11 +87,6 @@ label {
   cursor: pointer;
   border-radius: 5px;
   padding: 12px 30px;
-}
-
-.Filtered {
-  background-color: var(--filtered-item-bg-color);
-  color: var(--filtered-item-fc-color);
 }
 
 .Selected {

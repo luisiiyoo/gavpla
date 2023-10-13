@@ -11,38 +11,26 @@ import mxGeoCoordinates from 'src/data/mx-geo-data.json';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import {
   get_default_bg_color,
-  get_filtered_bg_color,
   get_filtered_font_color,
   get_hover_bg_color,
   get_selected_bg_color,
 } from 'src/utils/helpers';
-
-const style: React.CSSProperties = {
-  // borderStyle: 'double',
-  width: '70%',
-  alignContent: 'center',
-  textAlign: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-};
+import './style.css';
 
 export interface MxMapProps {
   selectStateHandler: (state: string) => void;
-  selectedState: string;
   filteredStates: string[];
+  staticMap: boolean;
 }
 
 export const MxMap: React.FC<MxMapProps> = ({
   selectStateHandler,
-  selectedState,
   filteredStates,
+  staticMap,
 }) => {
   return (
-    <div
-      className="MxMap"
-      style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-    >
-      <div style={style}>
+    <div className="MxMap">
+      <div className="MxMap-Geo">
         <ComposableMap
           width={550}
           height={400}
@@ -54,15 +42,16 @@ export const MxMap: React.FC<MxMapProps> = ({
         >
           <Geographies geography={mxGeoCoordinates}>
             {({ geographies }) =>
-              geographies.map((geo) => {
-                const stateCode = geo.properties.NAME_1;
-                const isStateSelected = selectedState === stateCode;
+              geographies.map((geo, key) => {
+                const stateCode = geo.properties.STATE_CODE;
                 return (
                   <Geography
-                    key={geo.rsmKey}
+                    key={key}
                     geography={geo}
                     onMouseDown={(e) => {
                       e.preventDefault();
+                      if (staticMap) return;
+
                       if (e.nativeEvent.button === 0) {
                         // Left click
                         selectStateHandler(stateCode);
@@ -75,11 +64,11 @@ export const MxMap: React.FC<MxMapProps> = ({
                       e.preventDefault();
                     }}
                     fill={
-                      isStateSelected
+                      filteredStates.includes(stateCode)
                         ? get_selected_bg_color()
-                        : filteredStates.includes(stateCode)
-                        ? get_filtered_bg_color()
-                        : get_default_bg_color()
+                        : // :
+                          // ? get_filtered_bg_color()
+                          get_default_bg_color()
                     }
                     style={{
                       default: {
@@ -88,11 +77,13 @@ export const MxMap: React.FC<MxMapProps> = ({
                         outline: 'none',
                       },
                       hover: {
-                        fill: get_hover_bg_color(),
+                        fill: staticMap ? undefined : get_hover_bg_color(),
+                        stroke: get_hover_bg_color(),
                         outline: 'none',
                       },
                       pressed: {
-                        fill: get_hover_bg_color(),
+                        // fill: get_hover_bg_color(),
+                        stroke: get_hover_bg_color(),
                         outline: 'none',
                       },
                     }}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
-import { MexMap } from '../Maps/MexMap';
+// import { MxMap } from '../Maps/MxMap';
 import Header from '../Header';
 import MexOptionsPanel from '../OptionsPanel/MexOptionsPanel';
 import YearsPanel from '../OptionsPanel/YearsPanel';
@@ -172,11 +172,11 @@ const MexicoCollection: React.FC = () => {
             selectYearHandler={selectYearHandler}
             filteredYears={filteredYears}
           />
-          <MexMap
+          {/* <MxMap
             selectStateHandler={selectStateHandler}
             selectedState={selectedState}
             filteredStates={filteredStates}
-          />
+          /> */}
           <MissingDetailsPanel
             selectedState={selectedState}
             selectedYear={selectedYear}

@@ -7,8 +7,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "AGS",
-              "ID_1": 1804
+              "STATE_CODE": "AGS",
+              "GEO_ID": 1804
             },
             "arcs": [
               [
@@ -20,8 +20,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "BC",
-              "ID_1": 1805
+              "STATE_CODE": "BC",
+              "GEO_ID": 1805
             },
             "arcs": [
               [
@@ -162,8 +162,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "BCS",
-              "ID_1": 1806
+              "STATE_CODE": "BCS",
+              "GEO_ID": 1806
             },
             "arcs": [
               [
@@ -910,8 +910,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "CAMP",
-              "ID_1": 1807
+              "STATE_CODE": "CAMP",
+              "GEO_ID": 1807
             },
             "arcs": [
               [
@@ -999,8 +999,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "CHIS",
-              "ID_1": 1808
+              "STATE_CODE": "CHIS",
+              "GEO_ID": 1808
             },
             "arcs": [
               [
@@ -1107,8 +1107,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "CHIH",
-              "ID_1": 1809
+              "STATE_CODE": "CHIH",
+              "GEO_ID": 1809
             },
             "arcs": [
               [
@@ -1123,8 +1123,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "COAH",
-              "ID_1": 1810
+              "STATE_CODE": "COAH",
+              "GEO_ID": 1810
             },
             "arcs": [
               [
@@ -1139,8 +1139,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "COL",
-              "ID_1": 1811
+              "STATE_CODE": "COL",
+              "GEO_ID": 1811
             },
             "arcs": [
               [
@@ -1155,8 +1155,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "DF",
-              "ID_1": 1812
+              "STATE_CODE": "DF",
+              "GEO_ID": 1812
             },
             "arcs": [
               [
@@ -1168,8 +1168,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "DGO",
-              "ID_1": 1813
+              "STATE_CODE": "DGO",
+              "GEO_ID": 1813
             },
             "arcs": [
               [
@@ -1184,8 +1184,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "GTO",
-              "ID_1": 1814
+              "STATE_CODE": "GTO",
+              "GEO_ID": 1814
             },
             "arcs": [
               [
@@ -1200,8 +1200,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "GRO",
-              "ID_1": 1815
+              "STATE_CODE": "GRO",
+              "GEO_ID": 1815
             },
             "arcs": [
               [
@@ -1237,8 +1237,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "HGO",
-              "ID_1": 1816
+              "STATE_CODE": "HGO",
+              "GEO_ID": 1816
             },
             "arcs": [
               [
@@ -1254,8 +1254,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "JAL",
-              "ID_1": 1817
+              "STATE_CODE": "JAL",
+              "GEO_ID": 1817
             },
             "arcs": [
               [
@@ -1291,8 +1291,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "MEX",
-              "ID_1": 1818
+              "STATE_CODE": "MEX",
+              "GEO_ID": 1818
             },
             "arcs": [
               [
@@ -1318,8 +1318,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "MICH",
-              "ID_1": 1819
+              "STATE_CODE": "MICH",
+              "GEO_ID": 1819
             },
             "arcs": [
               [
@@ -1338,8 +1338,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "MOR",
-              "ID_1": 1820
+              "STATE_CODE": "MOR",
+              "GEO_ID": 1820
             },
             "arcs": [
               [
@@ -1354,8 +1354,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "NAY",
-              "ID_1": 1821
+              "STATE_CODE": "NAY",
+              "GEO_ID": 1821
             },
             "arcs": [
               [
@@ -1453,8 +1453,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "NL",
-              "ID_1": 1822
+              "STATE_CODE": "NL",
+              "GEO_ID": 1822
             },
             "arcs": [
               [
@@ -1469,8 +1469,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "OAX",
-              "ID_1": 1823
+              "STATE_CODE": "OAX",
+              "GEO_ID": 1823
             },
             "arcs": [
               [
@@ -1529,8 +1529,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "PUE",
-              "ID_1": 1824
+              "STATE_CODE": "PUE",
+              "GEO_ID": 1824
             },
             "arcs": [
               [
@@ -1547,8 +1547,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "QRO",
-              "ID_1": 1825
+              "STATE_CODE": "QRO",
+              "GEO_ID": 1825
             },
             "arcs": [
               [
@@ -1563,8 +1563,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "QR",
-              "ID_1": 1826
+              "STATE_CODE": "QR",
+              "GEO_ID": 1826
             },
             "arcs": [
               [
@@ -1680,8 +1680,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "SLP",
-              "ID_1": 1827
+              "STATE_CODE": "SLP",
+              "GEO_ID": 1827
             },
             "arcs": [
               [
@@ -1698,8 +1698,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "SIN",
-              "ID_1": 1828
+              "STATE_CODE": "SIN",
+              "GEO_ID": 1828
             },
             "arcs": [
               [
@@ -1933,8 +1933,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "SON",
-              "ID_1": 1829
+              "STATE_CODE": "SON",
+              "GEO_ID": 1829
             },
             "arcs": [
               [
@@ -2250,8 +2250,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "TAB",
-              "ID_1": 1830
+              "STATE_CODE": "TAB",
+              "GEO_ID": 1830
             },
             "arcs": [
               [
@@ -2319,8 +2319,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "TAMPS",
-              "ID_1": 1831
+              "STATE_CODE": "TAMPS",
+              "GEO_ID": 1831
             },
             "arcs": [
               [
@@ -3022,8 +3022,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "TLAX",
-              "ID_1": 1832
+              "STATE_CODE": "TLAX",
+              "GEO_ID": 1832
             },
             "arcs": [
               [
@@ -3036,8 +3036,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "VER",
-              "ID_1": 1833
+              "STATE_CODE": "VER",
+              "GEO_ID": 1833
             },
             "arcs": [
               [
@@ -3102,8 +3102,8 @@
           {
             "type": "MultiPolygon",
             "properties": {
-              "NAME_1": "YUC",
-              "ID_1": 1834
+              "STATE_CODE": "YUC",
+              "GEO_ID": 1834
             },
             "arcs": [
               [
@@ -3176,8 +3176,8 @@
           {
             "type": "Polygon",
             "properties": {
-              "NAME_1": "ZAC",
-              "ID_1": 1835
+              "STATE_CODE": "ZAC",
+              "GEO_ID": 1835
             },
             "arcs": [
               [
