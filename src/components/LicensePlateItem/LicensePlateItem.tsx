@@ -31,11 +31,11 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
 
   let vehicle_type = data.vehicle_type;
   let years =
-    data.from_year == data.to_year
+    data.from_year === data.to_year
       ? data.from_year
       : `${data.from_year}-${data.to_year}`;
 
-  if (languageCode == ES_LANGUAGE) {
+  if (languageCode === ES_LANGUAGE) {
     vehicle_type = vechicleTypes[vehicle_type].toUpperCase();
   } else {
     vehicle_type = vehicle_type.replace('-', ' ');
@@ -60,6 +60,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
             ) || NotFoundImage
           }
           // alt={`${inventoryItem.stateCode}-${inventoryItem.yearCode}`}
+          alt={data.plate_id_code}
           // width="100%"
           onError={(e) => {
             e.currentTarget.onerror = null; // prevents looping

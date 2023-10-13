@@ -5,7 +5,7 @@ import {
   SetIsLoadingType,
   SetErrorType,
   FEError,
-} from './MainComponent.types';
+} from './Main.types';
 
 export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
   type: 'SET_SELECTED_ROUTE',

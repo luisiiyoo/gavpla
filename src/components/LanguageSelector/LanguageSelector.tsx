@@ -2,9 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTranslation, languages } from 'src/language';
 import Select, { ActionMeta, StylesConfig, components } from 'react-select';
-import { setLanguage } from 'src/redux/actions/MainComponent/MainComponent';
+import { setLanguage } from 'src/redux/actions/Main/Main';
 import './style.css';
-import { isASmallDeviceByHeight } from 'src/utils';
 
 const selectFontSize = '1.8vh';
 const selectHeight = '3vh';

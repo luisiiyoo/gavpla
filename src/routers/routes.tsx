@@ -4,7 +4,7 @@ import React from 'react';
 import HomePage from 'src/components/HomePage';
 import MexicoCollection from 'src/components/Collection';
 // import PlayGame from 'src/components/PlayGame';
-import { AbstractNavItem, NavItem, NavItemChild } from './Router.types';
+import { AbstractNavItem, NavItem } from './Router.types';
 import {
   COLLECTION_1968_1999_ROUTE,
   SEARCH_ROUTE,

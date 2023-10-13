@@ -1,4 +1,4 @@
-import { FEError } from 'src/redux/actions/MainComponent/MainComponent.types';
+import { FEError } from 'src/redux/actions/Main/Main.types';
 
 export interface StateType {
   route: string;

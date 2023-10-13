@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import connector from 'src/connector';
-import { setIsLoading } from 'src/redux/actions/MainComponent/MainComponent';
+import { setIsLoading } from 'src/redux/actions/Main/Main';
 import Routes from 'src/routers';
 import { useConstructor } from 'src/utils';
 import { AbstractError } from 'src/utils/error.types';
@@ -11,17 +11,18 @@ import Loader from '../Loader';
 export const MainComponent: React.FC = () => {
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector((state) => state.main);
-
+  console.log(isLoading);
   const isError = !!error.message;
 
   useConstructor(async () => {
     try {
       dispatch(setIsLoading(true));
-      // debugger;
-      setTimeout(() => {
-        console.log('World!');
-      }, 12000);
-      console.log('Luis');
+      console.log(isLoading);
+      // // debugger;
+      // setTimeout(() => {
+      //   console.log('World!');
+      // }, 12000);
+      // console.log('Luis');
 
       await connector.getUserID(true);
       //   debugger;
@@ -33,6 +34,7 @@ export const MainComponent: React.FC = () => {
         statusCode = error.statusCode;
         message = error.message;
       }
+      console.log(`${statusCode} - ${message}`);
 
       //   debugger;
       //   dispatch(setError({ message, statusCode }));

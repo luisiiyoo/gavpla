@@ -10,7 +10,6 @@ import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 import './style.css';
 // import { MexMap } from '../Maps/MexMap';
-import { useSelector } from 'react-redux';
 import { LicensePlateItem } from '../LicensePlateItem/LicensePlateItem';
 import Header from '../Header';
 // import { setIsLoading } from 'src/redux/actions/MainComponent/MainComponent';
@@ -32,7 +31,7 @@ export interface LicensePlatesPanelProps {
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   userID,
   regionCode,
-  isAStateLicensePlate = true,
+  // isAStateLicensePlate = true,
   fromYear = 1968,
   toYear = 1999,
   hideStateName = false,

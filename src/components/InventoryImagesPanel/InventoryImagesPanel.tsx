@@ -1,6 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { getTranslation } from 'src/language';
 import { MEXICO_STATE_NAME_TO_STATE_CODE } from 'src/utils/constants';
 import './style.css';
 import NotFoundImage from 'src/images/image-not-found.png';
@@ -33,12 +31,7 @@ const style: React.CSSProperties = {
   padding: '10px 0px 50px 0px',
   fontSize: '16px',
 };
-const triggerStyle = {
-  fontSize: '16px',
-  padding: '10px 30px',
-  width: '100%',
-  borderRadius: '25px',
-};
+
 const InventoryImagesPanel = ({
   backendData,
   dataByYear,
@@ -48,8 +41,8 @@ const InventoryImagesPanel = ({
   filteredStates,
   filteredYears,
 }: InventoryImagesPanelProps) => {
-  const { languageCode } = useSelector((state) => state.main);
-  const translation = getTranslation(languageCode, 'MexicoCollection');
+  // const { languageCode } = useSelector((state) => state.main);
+  // const translation = getTranslation(languageCode, 'MexicoCollection');
 
   const inventoryItems: InventoryItem[] = [];
 
@@ -112,7 +105,7 @@ const InventoryImagesPanel = ({
           <div className="grid-item" key={key}>
             <img
               src={inventoryItem.image || NotFoundImage}
-              // alt={`${inventoryItem.stateCode}-${inventoryItem.yearCode}`}
+              alt={`${inventoryItem.stateCode}-${inventoryItem.yearCode}`}
               width="100%"
               onError={(e) => {
                 e.currentTarget.onerror = null; // prevents looping

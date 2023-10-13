@@ -31,6 +31,7 @@ const HomePage: React.FC = () => {
               className="AuthorLink"
               href="https://www.linkedin.com/in/luis-gonz%C3%A1lez-guzm%C3%A1n-2b464b139/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="fa-brands fa-linkedin" />
             </a>
@@ -42,7 +43,12 @@ const HomePage: React.FC = () => {
               <i className="fa-solid fa-envelope" />
             </a>
             &nbsp;
-            <a className="AuthorLink">
+            <a
+              className="AuthorLink"
+              href="https://www.facebook.com/LuiSiiYoo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fa-brands fa-square-facebook" />
             </a>
           </li>

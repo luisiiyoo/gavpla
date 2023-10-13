@@ -1,6 +1,6 @@
 import { ES_LANGUAGE } from 'src/language/language';
 import { isAComputerDevice } from 'src/utils';
-import { StateType, ActionType } from './MainComponent.types';
+import { StateType, ActionType } from './Main.types';
 
 export const initialState: StateType = {
   route: 'home',

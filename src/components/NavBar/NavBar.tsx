@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SideNav from '@trendmicro/react-sidenav';
-import {
-  setSelectedRoute,
-  setExpandNavBar,
-} from 'src/redux/actions/MainComponent';
+import { setSelectedRoute, setExpandNavBar } from 'src/redux/actions/Main';
 import { AbstractNavItem, NavItem } from 'src/routers/Router.types';
 import NavBarHeader from 'src/components/NavBar/NavBarHeader';
 import { NavBarProps, OnSelectNavItem, RenderNavItem } from './NavBar.types';
