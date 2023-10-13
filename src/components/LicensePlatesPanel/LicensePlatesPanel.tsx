@@ -10,9 +10,9 @@ import Loader from '../Loader';
 
 import { LicensePlateItem } from '../LicensePlateItem/LicensePlateItem';
 import Header from '../Header';
-// import { MexMap } from '../Maps/MexMap';
 import { useSelector } from 'react-redux';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
+import { MxMap } from '../Maps/MxMap';
 import './style.css';
 
 export interface LicensePlatesPanelProps {
@@ -89,6 +89,11 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
       ) : (
         <div className="LicensePlatesPanel">
           <Header title={toTitleCase(regionName)} />
+          <MxMap
+            selectStateHandler={(val) => {}}
+            selectedState={regionCode}
+            filteredStates={[]}
+          />
           <div className="LicensePlatesPanel-LicensePlateItems">
             {platesArray.map((plateData) => (
               <LicensePlateItem
