@@ -8,6 +8,9 @@ export const initialState: StateType = {
   languageCode: ES_LANGUAGE, // TODO: Use window.navigator.language.slice(0,2)
   isLoading: false,
   error: { message: '' },
+  additionalRegionCodes: {},
+  stateCodes: {},
+  vehicleTypes: {},
 };
 
 const reducer = (state: StateType = initialState, action: ActionType) => {
@@ -23,6 +26,12 @@ const reducer = (state: StateType = initialState, action: ActionType) => {
       return { ...state, isLoading: action.isLoading };
     case 'SET_ERROR':
       return { ...state, error: action.error };
+    case 'SET_ADDITIONAL_REGION_CODES':
+      return { ...state, additionalRegionCodes: action.additionalRegionCodes };
+    case 'SET_STATE_CODES':
+      return { ...state, stateCodes: action.stateCodes };
+    case 'SET_VEHICLE_TYPES':
+      return { ...state, vehicleTypes: action.vehicleTypes };
     default:
       return state;
   }

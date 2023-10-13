@@ -1,3 +1,8 @@
+import {
+  BELicensePlateRegionCodes,
+  BEVehicleTypes,
+} from 'src/connector/backend.types';
+
 export interface SetSelectedRouteType {
   (route: string): { type: string; route: string };
 }
@@ -20,4 +25,24 @@ export interface FEError {
 }
 export interface SetErrorType {
   (error: FEError): { type: string; error: FEError };
+}
+
+export interface SetAdditionalRegionCodesType {
+  (additionalRegionCodes: BELicensePlateRegionCodes): {
+    type: string;
+    additionalRegionCodes: BELicensePlateRegionCodes;
+  };
+}
+export interface SetStateCodesType {
+  (stateCodes: BELicensePlateRegionCodes): {
+    type: string;
+    stateCodes: BELicensePlateRegionCodes;
+  };
+}
+
+export interface SetVehicleTypesType {
+  (vehicleTypes: BEVehicleTypes): {
+    type: string;
+    vehicleTypes: BEVehicleTypes;
+  };
 }

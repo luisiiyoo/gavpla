@@ -3,16 +3,17 @@ import connector from 'src/connector';
 import {
   BELicensePlatesData,
   BEQueryLicensePlatesData,
-  BEVehicleTypes,
 } from 'src/connector/backend.types';
 import { toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
-import './style.css';
-// import { MexMap } from '../Maps/MexMap';
+
 import { LicensePlateItem } from '../LicensePlateItem/LicensePlateItem';
 import Header from '../Header';
-// import { setIsLoading } from 'src/redux/actions/MainComponent/MainComponent';
+// import { MexMap } from '../Maps/MexMap';
+import { useSelector } from 'react-redux';
+import { StateType } from 'src/redux/reducers/Main/Main.types';
+import './style.css';
 
 export interface LicensePlatesPanelProps {
   userID: string;
@@ -38,11 +39,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   hideYears = false,
   hideVehicleType = false,
 }) => {
-  // const dispatch = useDispatch();
-  // const { isLoading } = useSelector((state) => state.main);
-  // dispatch(setIsLoading(true));
-
-  const [vechicleTypes, setVechicleTypes] = useState({});
+  const { vehicleTypes }: StateType = useSelector((state) => state.main);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
     statusCode: -1,
@@ -60,9 +57,6 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
         from_year: fromYear,
         to_year: toYear,
       };
-      const _vechicleTypes: BEVehicleTypes = await connector.getVehicleTypes();
-      setVechicleTypes(_vechicleTypes);
-
       const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
         userID,
         params,
@@ -93,7 +87,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
               <LicensePlateItem
                 data={plateData}
                 userID={userID}
-                vechicleTypes={vechicleTypes}
+                vechicleTypes={vehicleTypes}
                 key={plateData.plate_id_code}
                 hideStateName={hideStateName}
                 hideYears={hideYears}

@@ -1,10 +1,17 @@
 import {
+  BELicensePlateRegionCodes,
+  BEVehicleTypes,
+} from 'src/connector/backend.types';
+import {
   SetSelectedRouteType,
   SetExpandNavBarType,
   SetLanguageType,
   SetIsLoadingType,
   SetErrorType,
   FEError,
+  SetVehicleTypesType,
+  SetStateCodesType,
+  SetAdditionalRegionCodesType,
 } from './Main.types';
 
 export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
@@ -30,4 +37,25 @@ export const setIsLoading: SetIsLoadingType = (isLoading: boolean) => ({
 export const setError: SetErrorType = (error: FEError) => ({
   type: 'SET_ERROR',
   error,
+});
+
+export const setAdditionalRegionCodes: SetAdditionalRegionCodesType = (
+  additionalRegionCodes: BELicensePlateRegionCodes,
+) => ({
+  type: 'SET_ADDITIONAL_REGION_CODES',
+  additionalRegionCodes,
+});
+
+export const setStateCodes: SetStateCodesType = (
+  stateCodes: BELicensePlateRegionCodes,
+) => ({
+  type: 'SET_STATE_CODES',
+  stateCodes,
+});
+
+export const setVehicleTypes: SetVehicleTypesType = (
+  vehicleTypes: BEVehicleTypes,
+) => ({
+  type: 'SET_VEHICLE_TYPES',
+  vehicleTypes,
 });

@@ -72,11 +72,21 @@ export class BackendConnector {
     return userID;
   }
 
-  async getLicensePlatesRegionCodes(
-    onlyStates: boolean,
+  async getLicensePlatesStateCodes(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateRegionCodes> {
-    const url = `${BACKEND_URL}/license-plates/region-codes?country_code=${countryCode}&only_states=${onlyStates}`;
+    const url = `${BACKEND_URL}/license-plates/state-codes?country_code=${countryCode}`;
+    const result: BELicensePlateRegionCodes = await this.handleRequest({
+      method: 'GET',
+      url,
+    });
+    return result;
+  }
+
+  async getLicensePlatesAdditionalRegionCodes(
+    countryCode: string = 'MX',
+  ): Promise<BELicensePlateRegionCodes> {
+    const url = `${BACKEND_URL}/license-plates/additional-region-codes?country_code=${countryCode}`;
     const result: BELicensePlateRegionCodes = await this.handleRequest({
       method: 'GET',
       url,
