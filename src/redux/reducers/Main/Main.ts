@@ -20,9 +20,9 @@ const reducer = (state: StateType = initialState, action: ActionType) => {
     case 'SET_LANGUAGE':
       return { ...state, languageCode: action.languageCode };
     case 'SET_IS_LOADING':
-      return { ...state, expand: action.isLoading };
+      return { ...state, isLoading: action.isLoading };
     case 'SET_ERROR':
-      return { ...state, expand: action.error };
+      return { ...state, error: action.error };
     default:
       return state;
   }

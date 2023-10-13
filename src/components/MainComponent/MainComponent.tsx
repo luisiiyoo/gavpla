@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import connector from 'src/connector';
-import { setIsLoading } from 'src/redux/actions/Main/Main';
+import { setError, setIsLoading } from 'src/redux/actions/Main/Main';
 import Routes from 'src/routers';
 import { useConstructor } from 'src/utils';
 import { AbstractError } from 'src/utils/error.types';
@@ -11,21 +11,13 @@ import Loader from '../Loader';
 export const MainComponent: React.FC = () => {
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector((state) => state.main);
-  console.log(isLoading);
-  const isError = !!error.message;
 
   useConstructor(async () => {
     try {
+      dispatch(setError({}));
       dispatch(setIsLoading(true));
-      console.log(isLoading);
-      // // debugger;
-      // setTimeout(() => {
-      //   console.log('World!');
-      // }, 12000);
-      // console.log('Luis');
 
       await connector.getUserID(true);
-      //   debugger;
     } catch (error) {
       let statusCode: number = 500;
       let message: string = String(error);
@@ -34,13 +26,10 @@ export const MainComponent: React.FC = () => {
         statusCode = error.statusCode;
         message = error.message;
       }
-      console.log(`${statusCode} - ${message}`);
-
-      //   debugger;
-      //   dispatch(setError({ message, statusCode }));
+      console.error(`${statusCode} - ${message}`);
+      dispatch(setError({ message, statusCode }));
     } finally {
-      console.log('Hey');
-      //   dispatch(setIsLoading(false));
+      dispatch(setIsLoading(false));
     }
   });
 
@@ -48,7 +37,7 @@ export const MainComponent: React.FC = () => {
     <>
       {isLoading ? (
         <Loader />
-      ) : isError ? (
+      ) : !!error.message ? (
         <ErrorDisplay message={error.message} statusCode={error.statusCode} />
       ) : (
         <Routes />

@@ -15,7 +15,7 @@ export interface SetIsLoadingType {
 }
 
 export interface FEError {
-  message: string;
+  message?: string;
   statusCode?: number;
 }
 export interface SetErrorType {
