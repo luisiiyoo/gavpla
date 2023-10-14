@@ -20,8 +20,8 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   });
 
   const [selectedStates, setSelectedStates] = useState(new Array<string>());
-  const [fromYear, setFromYear] = useState('1968');
-  const [toYear, setToYear] = useState('1969');
+  const [fromYear, setFromYear] = useState(1968);
+  const [toYear, setToYear] = useState(1969);
 
   useConstructor(async () => {
     // let allPlatesData: BELicensePlatesData[] = [];

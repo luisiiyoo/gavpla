@@ -121,7 +121,6 @@ export class BackendConnector {
     queryParams: BEQueryLicensePlatesData,
   ): Promise<BELicensePlatesData[]> {
     const url = `${BACKEND_URL}/users/${userId}/license-plates/`;
-    debugger;
     const result: BELicensePlatesData[] = await this.handleRequest({
       method: 'GET',
       url,

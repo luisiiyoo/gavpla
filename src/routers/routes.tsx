@@ -14,6 +14,7 @@ import {
   NATIONAL_ROUTE,
   NEW_ROUTE,
   SHOP_PLATES_ROUTE,
+  METROPOLITAN_ROUTE,
 } from './constants';
 import { LicensePlatesPanel } from 'src/components/LicensePlatesPanel/LicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
@@ -71,6 +72,28 @@ const navigationItems: NavItem[] = [
         selectStateHandler={(val) => {}}
       />
     ),
+  },
+  {
+    title: METROPOLITAN_ROUTE.title,
+    route: METROPOLITAN_ROUTE.route,
+    iconClass: 'fa-solid fa-bus',
+    childs: [
+      {
+        title: 'DF - MX',
+        idChild: 'df-mx',
+        route: `${METROPOLITAN_ROUTE.route}/df-mx`,
+        functionalComponent: () => (
+          <LicensePlatesPanel
+            displayHeaderTitle={true}
+            regionCodes={['METROPOLITAN']}
+            isAStateLicensePlate={false}
+            hideStateName={true}
+            staticMap={true}
+            selectStateHandler={(val) => {}}
+          />
+        ),
+      },
+    ],
   },
   {
     title: SEARCH_ROUTE.title,

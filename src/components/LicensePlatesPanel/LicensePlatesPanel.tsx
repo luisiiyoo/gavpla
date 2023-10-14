@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { MxMap } from '../Maps/MxMap';
 import './style.css';
+import { translations } from 'src/language';
 
 export interface LicensePlatesPanelProps {
   headerTitle?: string;
@@ -47,6 +48,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     additionalRegionCodes,
     userID,
     availableYears,
+    languageCode,
   }: StateType = useSelector((state) => state.main);
 
   let regionCodesToFilter: Set<string> = new Set(regionCodes);
@@ -59,8 +61,18 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
       stateCodes[regionCode] ||
       additionalRegionCodes[regionCode] ||
       regionCode;
-    if (regionCode === 'NATIONAL')
+    if (regionCode === 'NATIONAL') {
+      // debugger
+      title = translations.RegionNames[languageCode].NATIONAL;
       regionCodesToFilter = new Set(Object.keys(stateCodes));
+    } else if (regionCode === 'METROPOLITAN') {
+      title =
+        headerTitle || translations.RegionNames[languageCode].METROPOLITAN;
+      regionCodesToFilter = new Set(['DF', 'MEX']);
+    } else {
+      title = headerTitle || stateCodes[regionCode];
+    }
+    title = title || regionCode;
   } else {
     title = headerTitle || regionCodes.join(' - ');
   }

@@ -20,6 +20,11 @@ export const NATIONAL_ROUTE = {
   route: `${LICENSE_PLATES}/national`,
 };
 
+export const METROPOLITAN_ROUTE = {
+  title: 'Metropolitan',
+  route: `${LICENSE_PLATES}/metropolitan`,
+};
+
 export const SEARCH_ROUTE = {
   title: 'Search',
   route: `${LICENSE_PLATES}/search`,
