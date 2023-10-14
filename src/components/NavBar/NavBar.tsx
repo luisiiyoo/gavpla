@@ -9,7 +9,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './NavBar.css';
 import { navigationItems } from 'src/routers';
 import { getTranslation } from 'src/language';
-import { isASmallDeviceByWidth } from 'src/utils';
+import { isASmallDeviceByHeight, isASmallDeviceByWidth } from 'src/utils';
 
 const onSelectNavItem: OnSelectNavItem = (selected, history) => {
   const {
@@ -19,7 +19,11 @@ const onSelectNavItem: OnSelectNavItem = (selected, history) => {
   if (pathname !== to) history.push(to);
 };
 
-const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
+const renderNavItem: RenderNavItem = (
+  dispatch,
+  item: NavItem,
+  isChild = false,
+) => {
   const completeRoute = item.route;
   const childs = item.childs || [];
   const isOverPopulated: boolean = childs.length >= 10;
@@ -27,10 +31,16 @@ const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
     <SideNav.NavItem
       eventKey={completeRoute}
       key={completeRoute}
-      subnavClassName="SubNavLuis"
+      subnavClassName="ChildNavItem"
       subnavStyle={{
         height: isOverPopulated ? '50vh' : 'inherit',
         overflow: 'overlay',
+      }}
+      onClick={(e) => {
+        const selectedHasChilds: boolean = !!item.childs;
+        if (selectedHasChilds && isASmallDeviceByHeight(501)) {
+          dispatch(setExpandNavBar(true));
+        }
       }}
     >
       {item.iconClass && (
@@ -41,7 +51,7 @@ const renderNavItem: RenderNavItem = (item: NavItem, isChild = false) => {
       <SideNav.NavText className={isChild ? 'NavSubItemText' : 'NavItemText'}>
         {item.title}
       </SideNav.NavText>
-      {childs.map((child) => renderNavItem(child, true))}
+      {childs.map((child) => renderNavItem(dispatch, child, true))}
     </SideNav.NavItem>
   );
 };
@@ -60,27 +70,19 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       onSelect={(selected) => {
         onSelectNavItem(selected, history);
         dispatch(setSelectedRoute(selected));
-        if (isASmallDeviceByWidth(600)) {
-          dispatch(setExpandNavBar(false));
-        }
+
+        if (isASmallDeviceByWidth(1000)) dispatch(setExpandNavBar(false));
       }}
       onToggle={(expanded) => {
         dispatch(setExpandNavBar(expanded));
       }}
-      style={
-        {
-          // position:"fixed",
-          // overflowY:"auto",
-          // overflowX:"hidden"
-        }
-      }
     >
       <SideNav.Toggle />
       <NavBarHeader expanded={expand} title={navBarTitle} />
       <SideNav.Nav selected={route}>
         {navigationItems.map((item: AbstractNavItem) => {
           item.title = translation[item.route] || item.title;
-          return renderNavItem(item);
+          return renderNavItem(dispatch, item);
         })}
       </SideNav.Nav>
     </SideNav>

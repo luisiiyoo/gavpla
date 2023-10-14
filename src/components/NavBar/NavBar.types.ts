@@ -20,5 +20,5 @@ export interface NavBarProps {
 }
 
 export interface RenderNavItem {
-  (item: NavItem, isChild?: boolean): void;
+  (dispatch: any, item: NavItem, isChild?: boolean): void;
 }
