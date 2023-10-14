@@ -12,6 +12,7 @@ import {
   SetVehicleTypesType,
   SetStateCodesType,
   SetAdditionalRegionCodesType,
+  SetUserIDType,
 } from './Main.types';
 
 export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
@@ -58,4 +59,9 @@ export const setVehicleTypes: SetVehicleTypesType = (
 ) => ({
   type: 'SET_VEHICLE_TYPES',
   vehicleTypes,
+});
+
+export const setUserID: SetUserIDType = (userID: string) => ({
+  type: 'SET_USER_ID',
+  userID,
 });

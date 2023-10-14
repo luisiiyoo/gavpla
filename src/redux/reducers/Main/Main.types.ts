@@ -13,6 +13,7 @@ export interface StateType {
   additionalRegionCodes: BELicensePlateRegionCodes;
   stateCodes: BELicensePlateRegionCodes;
   vehicleTypes: BEVehicleTypes;
+  userID: string;
 }
 
 export interface ActionType extends Partial<StateType> {

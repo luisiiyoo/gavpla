@@ -17,13 +17,9 @@ import {
   SHOP_PLATES_ROUTE,
 } from './constants';
 import { LicensePlatesPanel } from 'src/components/LicensePlatesPanel/LicensePlatesPanel';
-import {
-  MEXICO_STATE_CODE_TO_STATE_NAME,
-  storageVarNames,
-} from 'src/utils/constants';
+import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 
-const USER_ID = sessionStorage.getItem(storageVarNames.USER_ID) || '';
 const navigationItems: NavItem[] = [
   {
     title: HOME_ROUTE.title,
@@ -51,7 +47,6 @@ const navigationItems: NavItem[] = [
           functionalComponent: () => (
             <LicensePlatesPanel
               displayHeaderTitle={true}
-              userID={USER_ID}
               regionCodes={[stateCode]}
               hideStateName={true}
               staticMap={true}
@@ -69,7 +64,6 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => (
       <LicensePlatesPanel
         displayHeaderTitle={true}
-        userID={USER_ID}
         regionCodes={['NATIONAL']}
         isAStateLicensePlate={false}
         hideStateName={true}

@@ -6,6 +6,7 @@ import {
   setError,
   setIsLoading,
   setStateCodes,
+  setUserID,
   setVehicleTypes,
 } from 'src/redux/actions/Main/Main';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
@@ -25,7 +26,8 @@ export const MainComponent: React.FC = () => {
       dispatch(setIsLoading(true));
 
       // Get user ID from BE
-      await connector.getUserID(true);
+      const userID = await connector.getUserID(true);
+      dispatch(setUserID(userID));
 
       // Get vehicle types from BE
       const vehicleTypes = await connector.getVehicleTypes();

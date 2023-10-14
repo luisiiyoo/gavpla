@@ -11,6 +11,7 @@ export const initialState: StateType = {
   additionalRegionCodes: {},
   stateCodes: {},
   vehicleTypes: {},
+  userID: 'undefined',
 };
 
 const reducer = (state: StateType = initialState, action: ActionType) => {
@@ -32,6 +33,8 @@ const reducer = (state: StateType = initialState, action: ActionType) => {
       return { ...state, stateCodes: action.stateCodes };
     case 'SET_VEHICLE_TYPES':
       return { ...state, vehicleTypes: action.vehicleTypes };
+    case 'SET_USER_ID':
+      return { ...state, userID: action.userID };
     default:
       return state;
   }

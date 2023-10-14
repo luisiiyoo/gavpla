@@ -46,3 +46,10 @@ export interface SetVehicleTypesType {
     vehicleTypes: BEVehicleTypes;
   };
 }
+
+export interface SetUserIDType {
+  (userID: string): {
+    type: string;
+    userID: string;
+  };
+}

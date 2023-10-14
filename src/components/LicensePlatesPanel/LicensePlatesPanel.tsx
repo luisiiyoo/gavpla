@@ -18,7 +18,6 @@ import './style.css';
 export interface LicensePlatesPanelProps {
   headerTitle?: string;
   displayHeaderTitle: boolean;
-  userID: string;
   regionCodes: string[];
   isAStateLicensePlate?: boolean;
   fromYear?: number;
@@ -33,7 +32,6 @@ export interface LicensePlatesPanelProps {
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   headerTitle,
   displayHeaderTitle,
-  userID,
   regionCodes,
   staticMap,
   selectStateHandler,
@@ -47,6 +45,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     vehicleTypes,
     stateCodes,
     additionalRegionCodes,
+    userID,
   }: StateType = useSelector((state) => state.main);
 
   let regionCodesToFilter: Set<string> = new Set(regionCodes);
