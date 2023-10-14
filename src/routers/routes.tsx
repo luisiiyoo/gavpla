@@ -52,9 +52,10 @@ const navigationItems: NavItem[] = [
             <LicensePlatesPanel
               displayHeaderTitle={true}
               userID={USER_ID}
-              regionCode={stateCode}
+              regionCodes={[stateCode]}
               hideStateName={true}
               staticMap={true}
+              selectStateHandler={(val) => {}}
             />
           ),
         }),
@@ -69,10 +70,11 @@ const navigationItems: NavItem[] = [
       <LicensePlatesPanel
         displayHeaderTitle={true}
         userID={USER_ID}
-        regionCode="NATIONAL"
+        regionCodes={['NATIONAL']}
         isAStateLicensePlate={false}
         hideStateName={true}
         staticMap={true}
+        selectStateHandler={(val) => {}}
       />
     ),
   },

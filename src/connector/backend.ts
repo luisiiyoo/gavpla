@@ -43,11 +43,12 @@ export class BackendConnector {
         )
           throw new BackendUnavailableError();
         if (response) {
-          const {
-            data: { error },
-            status,
-          } = response;
-          throw new AbstractError(error || message, status);
+          const { data, status } = response;
+          let errorBE: string = '';
+          if (data.error) errorBE = data.error;
+          else if (data.errors) errorBE = JSON.stringify(data.errors);
+          else errorBE = message;
+          throw new AbstractError(errorBE, status);
         }
       }
       throw error;

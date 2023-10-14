@@ -19,7 +19,7 @@ export interface LicensePlatesPanelProps {
   headerTitle?: string;
   displayHeaderTitle: boolean;
   userID: string;
-  regionCode: string; // TODO: USE region codes
+  regionCodes: string[];
   isAStateLicensePlate?: boolean;
   fromYear?: number;
   toYear?: number;
@@ -27,19 +27,18 @@ export interface LicensePlatesPanelProps {
   hideYears?: boolean;
   hideVehicleType?: boolean;
   staticMap: boolean;
-  // selectStateHandler: (state: string) => void;
-  // filteredStates: string[];
+  selectStateHandler: (state: string) => void;
 }
 
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   headerTitle,
   displayHeaderTitle,
   userID,
-  regionCode,
+  regionCodes,
   staticMap,
-  // isAStateLicensePlate = true,
-  fromYear = 1968,
-  toYear = 1999,
+  selectStateHandler,
+  fromYear = 1900,
+  toYear = 2100,
   hideStateName = false,
   hideYears = false,
   hideVehicleType = false,
@@ -49,17 +48,21 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     stateCodes,
     additionalRegionCodes,
   }: StateType = useSelector((state) => state.main);
-  const title: string =
-    headerTitle ||
-    stateCodes[regionCode] ||
-    additionalRegionCodes[regionCode] ||
-    regionCode;
 
-  let statesToFilter: string[] = [];
-  if (regionCode === 'NATIONAL') {
-    statesToFilter = Object.keys(stateCodes);
+  let regionCodesToFilter: Set<string> = new Set(regionCodes);
+  let title: string = '';
+
+  if (regionCodes.length === 1) {
+    const regionCode = regionCodes[0];
+    title =
+      headerTitle ||
+      stateCodes[regionCode] ||
+      additionalRegionCodes[regionCode] ||
+      regionCode;
+    if (regionCode === 'NATIONAL')
+      regionCodesToFilter = new Set(Object.keys(stateCodes));
   } else {
-    statesToFilter = [regionCode];
+    title = headerTitle || regionCodes.join(' - ');
   }
 
   const [isLoading, setIsLoading] = useState(true);
@@ -73,17 +76,21 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   );
 
   useConstructor(async () => {
+    let allPlatesData: BELicensePlatesData[] = [];
     try {
-      const params: BEQueryLicensePlatesData = {
-        region_code: regionCode,
-        from_year: fromYear,
-        to_year: toYear,
-      };
-      const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
-        userID,
-        params,
-      );
-      setPlatesArray(platesData);
+      for (const regionCode of regionCodes) {
+        const params: BEQueryLicensePlatesData = {
+          region_code: regionCode,
+          from_year: fromYear,
+          to_year: toYear,
+        };
+        const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
+          userID,
+          params,
+        );
+        allPlatesData.push(...platesData);
+      }
+      setPlatesArray(allPlatesData);
     } catch (error) {
       console.error(error);
       setError({
@@ -107,8 +114,8 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
             <Header title={toTitleCase(title)} />
           ) : undefined}
           <MxMap
-            selectStateHandler={(val) => {}} // TODO: use handler
-            filteredStates={statesToFilter}
+            selectStateHandler={selectStateHandler}
+            filteredStates={Array.from(regionCodesToFilter)}
             staticMap={staticMap}
           />
           <div className="LicensePlatesPanel-LicensePlateItems">
