@@ -35,8 +35,8 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   regionCodes,
   staticMap,
   selectStateHandler,
-  fromYear = 1900,
-  toYear = 2100,
+  fromYear,
+  toYear,
   hideStateName = false,
   hideYears = false,
   hideVehicleType = false,
@@ -46,6 +46,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     stateCodes,
     additionalRegionCodes,
     userID,
+    availableYears,
   }: StateType = useSelector((state) => state.main);
 
   let regionCodesToFilter: Set<string> = new Set(regionCodes);
@@ -64,6 +65,11 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     title = headerTitle || regionCodes.join(' - ');
   }
 
+  let filterFromYear = fromYear;
+  if (!fromYear) filterFromYear = availableYears.from_year;
+  let filterToYear = toYear;
+  if (!toYear) filterToYear = availableYears.to_year;
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
     statusCode: -1,
@@ -80,8 +86,8 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
       for (const regionCode of regionCodes) {
         const params: BEQueryLicensePlatesData = {
           region_code: regionCode,
-          from_year: fromYear,
-          to_year: toYear,
+          from_year: filterFromYear,
+          to_year: filterToYear,
         };
         const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
           userID,

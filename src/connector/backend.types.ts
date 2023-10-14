@@ -58,8 +58,8 @@ export interface BELicensePlateRegionCodes {
 }
 
 export interface BELicensePlateAvailableYears {
-  from_year: string;
-  to_year: string;
+  from_year: number;
+  to_year: number;
 }
 
 export interface BEVehicleTypes {

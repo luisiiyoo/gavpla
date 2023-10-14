@@ -12,6 +12,7 @@ export const initialState: StateType = {
   stateCodes: {},
   vehicleTypes: {},
   userID: 'undefined',
+  availableYears: { from_year: 1990, to_year: 2000 },
 };
 
 const reducer = (state: StateType = initialState, action: ActionType) => {
@@ -35,6 +36,8 @@ const reducer = (state: StateType = initialState, action: ActionType) => {
       return { ...state, vehicleTypes: action.vehicleTypes };
     case 'SET_USER_ID':
       return { ...state, userID: action.userID };
+    case 'SET_AVAILABLE_YEARS':
+      return { ...state, availableYears: action.availableYears };
     default:
       return state;
   }

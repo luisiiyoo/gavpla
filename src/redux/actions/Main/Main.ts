@@ -1,4 +1,5 @@
 import {
+  BELicensePlateAvailableYears,
   BELicensePlateRegionCodes,
   BEVehicleTypes,
 } from 'src/connector/backend.types';
@@ -13,6 +14,7 @@ import {
   SetStateCodesType,
   SetAdditionalRegionCodesType,
   SetUserIDType,
+  SetAvailableYearsType,
 } from './Main.types';
 
 export const setSelectedRoute: SetSelectedRouteType = (route: string) => ({
@@ -64,4 +66,11 @@ export const setVehicleTypes: SetVehicleTypesType = (
 export const setUserID: SetUserIDType = (userID: string) => ({
   type: 'SET_USER_ID',
   userID,
+});
+
+export const setAvailableYears: SetAvailableYearsType = (
+  availableYears: BELicensePlateAvailableYears,
+) => ({
+  type: 'SET_AVAILABLE_YEARS',
+  availableYears,
 });

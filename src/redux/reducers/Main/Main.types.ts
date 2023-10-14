@@ -1,4 +1,5 @@
 import {
+  BELicensePlateAvailableYears,
   BELicensePlateRegionCodes,
   BEVehicleTypes,
 } from 'src/connector/backend.types';
@@ -14,6 +15,7 @@ export interface StateType {
   stateCodes: BELicensePlateRegionCodes;
   vehicleTypes: BEVehicleTypes;
   userID: string;
+  availableYears: BELicensePlateAvailableYears;
 }
 
 export interface ActionType extends Partial<StateType> {

@@ -1,4 +1,5 @@
 import {
+  BELicensePlateAvailableYears,
   BELicensePlateRegionCodes,
   BEVehicleTypes,
 } from 'src/connector/backend.types';
@@ -51,5 +52,12 @@ export interface SetUserIDType {
   (userID: string): {
     type: string;
     userID: string;
+  };
+}
+
+export interface SetAvailableYearsType {
+  (availableYears: BELicensePlateAvailableYears): {
+    type: string;
+    availableYears: BELicensePlateAvailableYears;
   };
 }

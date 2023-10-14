@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import connector from 'src/connector';
 import {
   setAdditionalRegionCodes,
+  setAvailableYears,
   setError,
   setIsLoading,
   setStateCodes,
@@ -39,6 +40,10 @@ export const MainComponent: React.FC = () => {
 
       const addtionalRegionCodes = await connector.getLicensePlatesAdditionalRegionCodes();
       dispatch(setAdditionalRegionCodes(addtionalRegionCodes));
+
+      // Get available years from BE
+      const availableYears = await connector.getLicensePlatesAvailableYears();
+      dispatch(setAvailableYears(availableYears));
     } catch (error) {
       let statusCode: number = 500;
       let message: string = String(error);
