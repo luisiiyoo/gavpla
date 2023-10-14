@@ -84,6 +84,14 @@ export const translations = {
       },
     },
   },
+  Search: {
+    en: {
+      title: 'Search License Plates',
+    },
+    es: {
+      title: 'Buscar Placas',
+    },
+  },
   MexicoCollection: {
     en: {
       title: 'License Plates Collection',

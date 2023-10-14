@@ -25,11 +25,6 @@ export const SEARCH_ROUTE = {
   route: `${LICENSE_PLATES}/search`,
 };
 
-export const COLLECTION_1968_1999_ROUTE = {
-  title: '1968 - 1999',
-  route: `${SEARCH_ROUTE.route}/1968_1999`,
-};
-
 export const DONATIONS_ROUTE = {
   title: 'Donations',
   route: 'donations',

@@ -6,7 +6,6 @@ import MexicoCollection from 'src/components/Collection';
 // import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
 import {
-  COLLECTION_1968_1999_ROUTE,
   SEARCH_ROUTE,
   DONATIONS_ROUTE,
   HOME_ROUTE,
@@ -19,6 +18,7 @@ import {
 import { LicensePlatesPanel } from 'src/components/LicensePlatesPanel/LicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
+import { SearchLicensePlatesPanel } from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -76,14 +76,7 @@ const navigationItems: NavItem[] = [
     title: SEARCH_ROUTE.title,
     route: SEARCH_ROUTE.route,
     iconClass: 'fa fw fa-magnifying-glass',
-    childs: [
-      {
-        title: COLLECTION_1968_1999_ROUTE.title,
-        idChild: COLLECTION_1968_1999_ROUTE.route,
-        route: COLLECTION_1968_1999_ROUTE.route,
-        functionalComponent: () => <MexicoCollection />,
-      },
-    ],
+    functionalComponent: () => <SearchLicensePlatesPanel />,
   },
   {
     title: DONATIONS_ROUTE.title,

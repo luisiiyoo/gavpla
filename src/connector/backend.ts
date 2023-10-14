@@ -17,6 +17,7 @@ import {
   InventoryDataTransformed,
   RequestDetails,
   BELicensePlatesData,
+  BELicensePlateAvailableYears,
 } from './backend.types';
 
 const {
@@ -78,6 +79,17 @@ export class BackendConnector {
   ): Promise<BELicensePlateRegionCodes> {
     const url = `${BACKEND_URL}/license-plates/state-codes?country_code=${countryCode}`;
     const result: BELicensePlateRegionCodes = await this.handleRequest({
+      method: 'GET',
+      url,
+    });
+    return result;
+  }
+
+  async getLicensePlatesAvailableYears(
+    countryCode: string = 'MX',
+  ): Promise<BELicensePlateAvailableYears> {
+    const url = `${BACKEND_URL}/license-plates/available-years?country_code=${countryCode}`;
+    const result: BELicensePlateAvailableYears = await this.handleRequest({
       method: 'GET',
       url,
     });
