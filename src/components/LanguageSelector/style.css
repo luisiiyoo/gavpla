@@ -3,7 +3,7 @@
   background-color: var(--dark-color-app);
   text-align: right;
   font-size: 2vh;
-  width: 100%;
+  height: var(--language-selector-height);
   /* height: 3%; */
   /* justify-content: left; */
   /* display: inline-block; */
@@ -15,12 +15,6 @@
 .LanguageSelector-Dropdown {
   display: inline-block;
   position: relative;
-  width: 12.2vh;
+  height: inherit;
   text-align: left;
-}
-
-@media only screen and (max-device-width: 550px) {
-  .LanguageSelector-Dropdown {
-    width: 12.8vh;
-  }
 }

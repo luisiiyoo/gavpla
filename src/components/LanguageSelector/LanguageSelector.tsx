@@ -20,7 +20,7 @@ const selectStyles: StylesConfig = {
     backgroundColor: 'rgb(255, 255, 255, 0.9)',
     color: 'black',
     fontSize: selectFontSize,
-    height: selectHeight,
+    // height: selectHeight,
     minHeight: selectHeight,
   }),
   option: (styles) => ({
@@ -34,7 +34,7 @@ const selectStyles: StylesConfig = {
   input: (styles) => ({ ...styles, fontSize: selectFontSize, margin: '0px' }),
   valueContainer: (provided, state) => ({
     ...provided,
-    height: selectHeight,
+    // height: selectHeight,
     padding: '0 6px',
   }),
 

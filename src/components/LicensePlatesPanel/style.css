@@ -16,7 +16,7 @@ img {
 
 @media only screen and (min-device-width: 400px) {
   .LicensePlatesPanel-LicensePlateItems {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, minmax(1rem, 1fr));
   }
   img {
     width: calc(var(--single-img-license-plate-width) / 2);
@@ -25,7 +25,7 @@ img {
 
 @media only screen and (min-device-width: 600px) {
   .LicensePlatesPanel-LicensePlateItems {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, minmax(1rem, 1fr));
   }
   img {
     width: calc(var(--single-img-license-plate-width) / 3);
@@ -34,7 +34,7 @@ img {
 
 @media only screen and (min-device-width: 1000px) {
   .LicensePlatesPanel-LicensePlateItems {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, minmax(1rem, 1fr));
   }
   img {
     width: calc(var(--single-img-license-plate-width) / 4);
