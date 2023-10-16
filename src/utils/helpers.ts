@@ -108,3 +108,11 @@ export const toTitleCase = (str: string): string =>
     .split(' ')
     .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
     .join(' ');
+
+export const sortInplaceAlphabetically = (items: any[], key) => {
+  items.sort((a, b) => {
+    const textA = a[key].toUpperCase();
+    const textB = b[key].toUpperCase();
+    return textA < textB ? -1 : textA > textB ? 1 : 0;
+  });
+};

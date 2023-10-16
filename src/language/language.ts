@@ -25,7 +25,7 @@ export const languages: languageType[] = [
   { languageCode: EN_LANGUAGE, name: 'English', flag: usFlag },
 ];
 
-export const translations = {
+export const TRANSLATIONS = {
   RegionNames: {
     en: {
       NATIONAL: 'National',
@@ -100,9 +100,19 @@ export const translations = {
   Search: {
     en: {
       title: 'Search License Plates',
+      OptionsPanel: {
+        areaGroupName: 'Area',
+        stateGroupName: 'State',
+        regionSelection: 'Select an area or state.',
+      },
     },
     es: {
       title: 'Buscar Placas',
+      OptionsPanel: {
+        areaGroupName: 'Área',
+        stateGroupName: 'Estado',
+        regionSelection: 'Selecciona un área o estado.',
+      },
     },
   },
   MexicoCollection: {
@@ -135,5 +145,5 @@ export const getTranslation = (
   languageCode: string,
   elementName: string,
 ): string | Map<string, any> => {
-  return translations[elementName][languageCode];
+  return TRANSLATIONS[elementName][languageCode];
 };

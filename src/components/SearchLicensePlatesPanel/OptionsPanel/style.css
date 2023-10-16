@@ -1,0 +1,9 @@
+.OptionsPanel {
+  font-size: medium;
+}
+
+@media only screen and (max-device-height: 500px) {
+  .OptionsPanel {
+    font-size: xx-small;
+  }
+}

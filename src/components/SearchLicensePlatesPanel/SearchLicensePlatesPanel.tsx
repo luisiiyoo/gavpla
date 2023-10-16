@@ -8,6 +8,7 @@ import { getTranslation } from 'src/language';
 import { useConstructor } from 'src/utils';
 import { BELicensePlatesData } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
+import OptionsPanel from './OptionsPanel/OptionsPanel';
 
 export const SearchLicensePlatesPanel: React.FC = () => {
   const { languageCode }: StateType = useSelector((state) => state.main);
@@ -20,6 +21,9 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   });
 
   const [selectedStates, setSelectedStates] = useState(new Array<string>());
+  const [selectedAdditionalRegions, setSelectedAdditionalRegions] = useState(
+    new Array<string>(),
+  );
   const [fromYear, setFromYear] = useState(1968);
   const [toYear, setToYear] = useState(1969);
 
@@ -60,8 +64,15 @@ export const SearchLicensePlatesPanel: React.FC = () => {
       ) : (
         <div className="SearchLicensePlatesPanel">
           <Header title={title} />
+          <OptionsPanel
+            selectRegionCodesHandler={(val) => {
+              console.log(val);
+            }}
+          />
         </div>
       )}
     </>
   );
 };
+
+export default SearchLicensePlatesPanel;

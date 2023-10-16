@@ -2,7 +2,6 @@ import React from 'react';
 // import CreateGame from 'src/components/CreateGame';
 // import GamesBoard from 'src/components/GamesBoard';
 import HomePage from 'src/components/HomePage';
-import MexicoCollection from 'src/components/Collection';
 // import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
 import {
@@ -19,7 +18,7 @@ import {
 import { LicensePlatesPanel } from 'src/components/LicensePlatesPanel/LicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
-import { SearchLicensePlatesPanel } from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
+import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
