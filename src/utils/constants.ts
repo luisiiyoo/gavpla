@@ -45,3 +45,6 @@ export const MEXICO_STATE_CODE_TO_STATE_NAME: Map<string, string> = new Map([
 export const MEXICO_STATE_NAME_TO_STATE_CODE: Map<string, string> = new Map(
   Array.from(MEXICO_STATE_CODE_TO_STATE_NAME, (a) => (a as any).reverse()),
 );
+
+export const DEFAULT_FONT_COLOR = '#000';
+export const SELECTED_FONT_COLOR = '#9f131a';

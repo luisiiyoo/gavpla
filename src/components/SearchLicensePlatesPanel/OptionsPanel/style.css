@@ -1,9 +1,51 @@
 .OptionsPanel {
-  font-size: medium;
+  font-size: small;
+  text-align: center;
 }
 
-@media only screen and (max-device-height: 500px) {
+.OptionsPanel-SelectRegion {
+  width: inherit;
+  display: block;
+  align-items: center;
+}
+.react-select-container {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.OptionsPanel-SelectYear {
+  width: inherit;
+  text-align: center;
+}
+
+.OptionsPanel-SelectYear-Range {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-content: space-evenly;
+  justify-items: center;
+  gap: 15px;
+  margin: 0px;
+  align-items: center;
+  text-align: center;
+}
+.InputYear {
+  height: 30px;
+  width: 30vw;
+  text-align: center;
+  font-size: small;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+h4 {
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+@media only screen and (max-device-width: 500px) {
   .OptionsPanel {
+    font-size: xx-small;
+  }
+  .InputYear {
     font-size: xx-small;
   }
 }

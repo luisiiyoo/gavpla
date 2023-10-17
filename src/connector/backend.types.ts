@@ -34,6 +34,14 @@ export interface BEQueryLicensePlatesData {
   to_year?: number;
 }
 
+export interface SerchRequestArgs {
+  region_codes: string[];
+  vehicle_type?: string;
+  country_code?: string;
+  from_year: number;
+  to_year: number;
+}
+
 export interface BELicensePlatesData {
   country_code: string;
   external_image_id: string;

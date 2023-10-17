@@ -103,7 +103,11 @@ export const TRANSLATIONS = {
       OptionsPanel: {
         areaGroupName: 'Area',
         stateGroupName: 'State',
-        regionSelection: 'Select an area or state.',
+        placeholderRegionSelection: 'Select',
+        titleRegionSelection: 'Filter by area / state',
+        titleYearsSelection: 'Filter by Years',
+        placeholderFromYearsSelection: 'From',
+        placeholderToYearsSelection: 'To',
       },
     },
     es: {
@@ -111,7 +115,11 @@ export const TRANSLATIONS = {
       OptionsPanel: {
         areaGroupName: 'Área',
         stateGroupName: 'Estado',
-        regionSelection: 'Selecciona un área o estado.',
+        placeholderRegionSelection: 'Selecciona',
+        titleRegionSelection: 'Filtrar por área / estado',
+        titleYearsSelection: 'Filtrar por año',
+        placeholderFromYearsSelection: 'De',
+        placeholderToYearsSelection: 'Hasta',
       },
     },
   },

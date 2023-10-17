@@ -3,12 +3,23 @@ import { useSelector } from 'react-redux';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import Select, { ActionMeta, StylesConfig } from 'react-select';
 import './style.css';
-import { BELicensePlateRegionCodes } from 'src/connector/backend.types';
+import {
+  BELicensePlateRegionCodes,
+  SerchRequestArgs,
+} from 'src/connector/backend.types';
 import { sortInplaceAlphabetically } from 'src/utils';
 import { TRANSLATIONS } from 'src/language';
+import { Input } from 'reactstrap';
+import { DEFAULT_FONT_COLOR, SELECTED_FONT_COLOR } from 'src/utils/constants';
 
 export interface OptionsPanelProps {
+  fromYear: number;
+  toYear: number;
+  selectedCodes: string[];
+  setFromYear: (year: number) => void;
+  setToYear: (year: number) => void;
   selectRegionCodesHandler: (codes: string[]) => void;
+  requestArgs: SerchRequestArgs;
 }
 
 export interface SelectOption {
@@ -20,6 +31,21 @@ export interface SelectGroupedOption {
   options: SelectOption[];
   label: string;
 }
+
+export const InputYear = (props) => {
+  return (
+    <Input
+      className="InputYear"
+      type="text"
+      onKeyPress={(event) => {
+        if (!/[0-9]/.test(event.key)) {
+          event.preventDefault();
+        }
+      }}
+      {...props}
+    />
+  );
+};
 
 const convertCodesToSelectOptions = (
   languageCode: string,
@@ -65,24 +91,14 @@ const convertCodesToSelectGroupedOptions = (
   return selectGroupedOptions;
 };
 
-const selectStyles: StylesConfig = {
-  control: (styles) => ({
-    ...styles,
-    backgroundColor: 'white',
-    color: 'black',
-    // fontSize,
-  }),
-  option: (styles) => ({
-    ...styles,
-    backgroundColor: 'white',
-    color: 'black',
-    // fontSize,
-  }),
-  input: (styles) => ({ ...styles }),
-};
-
 export const OptionsPanel = ({
+  fromYear,
+  toYear,
+  selectedCodes,
   selectRegionCodesHandler,
+  setFromYear,
+  setToYear,
+  requestArgs,
 }: OptionsPanelProps) => {
   const {
     availableYears,
@@ -91,27 +107,124 @@ export const OptionsPanel = ({
     languageCode,
   }: StateType = useSelector((state) => state.main);
   const translation = TRANSLATIONS.Search[languageCode];
+
+  const handleFromYearChanged = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const newVal = event.target.value;
+    setFromYear(Number(newVal));
+    event.preventDefault();
+  };
+  const handleToYearChanged = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const newVal = event.target.value;
+    setToYear(Number(newVal));
+    event.preventDefault();
+  };
+
+  const hasDifferencesOnSelect =
+    JSON.stringify(selectedCodes) === JSON.stringify(requestArgs.region_codes);
+  const selectStyles: StylesConfig = {
+    menu: (styles) => ({
+      ...styles,
+      // width:selectRegionWidth,
+      // minWidth:selectRegionWidth,
+    }),
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: 'white',
+      color: 'black',
+    }),
+    container: (styles) => ({
+      ...styles,
+    }),
+    option: (styles) => ({
+      ...styles,
+      backgroundColor: 'white',
+      color: 'black',
+    }),
+    multiValueLabel: (styles) => ({
+      ...styles,
+      color: hasDifferencesOnSelect ? DEFAULT_FONT_COLOR : SELECTED_FONT_COLOR,
+    }),
+  };
+
   return (
     <div className="OptionsPanel">
-      <Select
-        name="AreaSelectOptions"
-        options={convertCodesToSelectGroupedOptions(
-          languageCode,
-          stateCodes,
-          additionalRegionCodes,
-        )}
-        isClearable
-        isMulti
-        isLoading={false}
-        styles={selectStyles}
-        // value={{ value: selectionValue, label: selectionValue }}
-        onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
-          const codes = newValue.map((selected) => selected.value);
-          selectRegionCodesHandler(codes);
-          return newValue;
-        }}
-        placeholder={translation.OptionsPanel.regionSelection}
-      />
+      <div className="OptionsPanel-SelectRegion">
+        <h4>{translation.OptionsPanel.titleRegionSelection}</h4>
+        <Select
+          className="react-select-container"
+          name="AreaSelectOptions"
+          options={convertCodesToSelectGroupedOptions(
+            languageCode,
+            stateCodes,
+            additionalRegionCodes,
+          )}
+          isClearable
+          isMulti
+          isLoading={false}
+          styles={selectStyles}
+          defaultValue={selectedCodes.map((code) => ({
+            value: code,
+            label: stateCodes[code],
+          }))}
+          onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
+            const codes = newValue.map((selected) => selected.value);
+            selectRegionCodesHandler(codes.sort());
+            return newValue;
+          }}
+          placeholder={translation.OptionsPanel.placeholderRegionSelection}
+        />
+      </div>
+      <div className="OptionsPanel-SelectYear">
+        <h4>{translation.OptionsPanel.titleYearsSelection}</h4>
+        <div className="OptionsPanel-SelectYear-Range">
+          <InputYear
+            name="FromYear"
+            placeholder={translation.OptionsPanel.placeholderFromYearsSelection}
+            maxLength={4}
+            value={fromYear}
+            onChange={handleFromYearChanged}
+            onBlur={(e) => {
+              const year = Number(e.target.value);
+              if (year < availableYears.from_year) {
+                setFromYear(availableYears.from_year);
+              } else if (year > availableYears.to_year || year > toYear) {
+                setFromYear(toYear);
+              }
+            }}
+            style={{
+              color:
+                fromYear === requestArgs.from_year
+                  ? DEFAULT_FONT_COLOR
+                  : SELECTED_FONT_COLOR,
+            }}
+          />
+          <InputYear
+            name="ToYear"
+            placeholder={translation.OptionsPanel.placeholderToYearsSelection}
+            maxLength={4}
+            value={toYear}
+            onChange={handleToYearChanged}
+            onBlur={(e) => {
+              const year = Number(e.target.value);
+              if (year > availableYears.to_year) {
+                setToYear(availableYears.to_year);
+              } else if (year < availableYears.from_year || year < fromYear) {
+                setToYear(fromYear);
+              }
+            }}
+            style={{
+              color:
+                toYear === requestArgs.to_year
+                  ? DEFAULT_FONT_COLOR
+                  : SELECTED_FONT_COLOR,
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

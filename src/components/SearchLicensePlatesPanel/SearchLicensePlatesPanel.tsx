@@ -5,13 +5,20 @@ import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import './style.css';
 import { getTranslation } from 'src/language';
-import { useConstructor } from 'src/utils';
-import { BELicensePlatesData } from 'src/connector/backend.types';
+import { createNotification, useConstructor } from 'src/utils';
+import {
+  BELicensePlatesData,
+  SerchRequestArgs,
+} from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import OptionsPanel from './OptionsPanel/OptionsPanel';
+import { Button } from 'reactstrap';
+import { store } from 'react-notifications-component';
 
 export const SearchLicensePlatesPanel: React.FC = () => {
-  const { languageCode }: StateType = useSelector((state) => state.main);
+  const { languageCode, availableYears }: StateType = useSelector(
+    (state) => state.main,
+  );
   const translation = getTranslation(languageCode, 'Search');
 
   const [isLoading, setIsLoading] = useState(true);
@@ -20,12 +27,16 @@ export const SearchLicensePlatesPanel: React.FC = () => {
     message: '',
   });
 
-  const [selectedStates, setSelectedStates] = useState(new Array<string>());
-  const [selectedAdditionalRegions, setSelectedAdditionalRegions] = useState(
-    new Array<string>(),
+  const [requestArgs, setRequestArgs] = useState<SerchRequestArgs>({
+    region_codes: [],
+    from_year: availableYears.from_year,
+    to_year: availableYears.to_year,
+  });
+  const [selectedCodes, setSelectedCodes] = useState<string[]>(
+    requestArgs.region_codes,
   );
-  const [fromYear, setFromYear] = useState(1968);
-  const [toYear, setToYear] = useState(1969);
+  const [fromYear, setFromYear] = useState<number>(1992);
+  const [toYear, setToYear] = useState<number>(1997);
 
   useConstructor(async () => {
     // let allPlatesData: BELicensePlatesData[] = [];
@@ -54,6 +65,25 @@ export const SearchLicensePlatesPanel: React.FC = () => {
     }
   });
 
+  const areThereDifferences: boolean = [
+    JSON.stringify(selectedCodes) !== JSON.stringify(requestArgs.region_codes),
+    fromYear !== requestArgs.from_year,
+    toYear !== requestArgs.to_year,
+  ].some((item) => item);
+
+  const handleSearch = () => {
+    if (!areThereDifferences) {
+      store.addNotification(
+        createNotification('warning', `There are not differences.`),
+      );
+    }
+    setRequestArgs({
+      region_codes: selectedCodes,
+      from_year: fromYear,
+      to_year: toYear,
+    });
+  };
+
   const title = translation['title'];
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
@@ -65,10 +95,26 @@ export const SearchLicensePlatesPanel: React.FC = () => {
         <div className="SearchLicensePlatesPanel">
           <Header title={title} />
           <OptionsPanel
-            selectRegionCodesHandler={(val) => {
-              console.log(val);
-            }}
+            fromYear={fromYear}
+            toYear={toYear}
+            setFromYear={setFromYear}
+            setToYear={setToYear}
+            selectedCodes={selectedCodes}
+            selectRegionCodesHandler={setSelectedCodes}
+            requestArgs={requestArgs}
           />
+          <div className="SearchLicensePlatesPanel-Submit">
+            <Button
+              className={`SearchButton `.concat(
+                areThereDifferences ? 'ActiveButton' : '',
+              )}
+              onClick={handleSearch}
+              // active={areDifferences}
+            >
+              Search
+            </Button>
+          </div>
+          <div className="SearchResults"></div>
         </div>
       )}
     </>
