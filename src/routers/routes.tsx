@@ -15,10 +15,10 @@ import {
   SHOP_PLATES_ROUTE,
   METROPOLITAN_ROUTE,
 } from './constants';
-import { LicensePlatesPanel } from 'src/components/LicensePlatesPanel/LicensePlatesPanel';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
+import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -45,13 +45,7 @@ const navigationItems: NavItem[] = [
           idChild: stateCode,
           route: `${STATES_ROUTE.route}/${stateCode}`,
           functionalComponent: () => (
-            <LicensePlatesPanel
-              displayHeaderTitle={true}
-              regionCodes={[stateCode]}
-              hideStateName={true}
-              staticMap={true}
-              selectStateHandler={(val) => {}}
-            />
+            <SingleRegionLicensePlatesPanel regionCode={stateCode} />
           ),
         }),
       ),
@@ -62,14 +56,7 @@ const navigationItems: NavItem[] = [
     route: NATIONAL_ROUTE.route,
     iconClass: 'fa-solid fa-flag',
     functionalComponent: () => (
-      <LicensePlatesPanel
-        displayHeaderTitle={true}
-        regionCodes={['NATIONAL']}
-        isAStateLicensePlate={false}
-        hideStateName={true}
-        staticMap={true}
-        selectStateHandler={(val) => {}}
-      />
+      <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
     ),
   },
   {
@@ -82,14 +69,7 @@ const navigationItems: NavItem[] = [
         idChild: 'df-mx',
         route: `${METROPOLITAN_ROUTE.route}/df-mx`,
         functionalComponent: () => (
-          <LicensePlatesPanel
-            displayHeaderTitle={true}
-            regionCodes={['METROPOLITAN']}
-            isAStateLicensePlate={false}
-            hideStateName={true}
-            staticMap={true}
-            selectStateHandler={(val) => {}}
-          />
+          <SingleRegionLicensePlatesPanel regionCode={'METROPOLITAN'} />
         ),
       },
     ],

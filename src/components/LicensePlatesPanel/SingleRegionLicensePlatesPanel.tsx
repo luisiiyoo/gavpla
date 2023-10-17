@@ -11,52 +11,42 @@ import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
+import { LicensePlatesPanel } from './LicensePlatesPanel';
 
 export interface SingleRegionLicensePlatesPanelProps {
   regionCode: string;
-  headerTitle?: string;
-  displayHeaderTitle: boolean;
-
-  isAStateLicensePlate?: boolean;
-  hideStateName?: boolean;
-  hideYears?: boolean;
-  hideVehicleType?: boolean;
-  selectStateHandler: (state: string) => void;
 }
 
 const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelProps> = ({
   regionCode,
-  hideStateName = false,
-  hideYears = false,
-  hideVehicleType = false,
 }) => {
   const {
-    vehicleTypes,
     stateCodes,
-    additionalRegionCodes,
     userID,
     availableYears,
     languageCode,
   }: StateType = useSelector((state) => state.main);
 
+  const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
+    [],
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
     statusCode: -1,
     message: '',
   });
 
-  let regionCodesToFilter: Set<string>;
+  let regionCodesToFilter: Array<string>;
   let title: string;
   if (regionCode === 'NATIONAL') {
-    // debugger
     title = TRANSLATIONS.RegionNames[languageCode].NATIONAL;
-    regionCodesToFilter = new Set(Object.keys(stateCodes));
+    regionCodesToFilter = Object.keys(stateCodes);
   } else if (regionCode === 'METROPOLITAN') {
     title = TRANSLATIONS.RegionNames[languageCode].METROPOLITAN;
-    regionCodesToFilter = new Set(['DF', 'MEX']);
+    regionCodesToFilter = ['DF', 'MEX'];
   } else {
     title = stateCodes[regionCode];
-    regionCodesToFilter = new Set([regionCode]);
+    regionCodesToFilter = [regionCode];
   }
 
   useConstructor(async () => {
@@ -67,10 +57,11 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
         from_year: availableYears.from_year,
         to_year: availableYears.to_year,
       };
-      const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
+      const data: BELicensePlatesData[] = await connector.getLicensePlatesData(
         userID,
         params,
       );
+      setPlatesDataArray(data);
     } catch (error) {
       console.error(error);
       setError({
@@ -91,6 +82,13 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
       ) : (
         <div className="SingleRegionLicensePlatesPanel">
           <Header title={toTitleCase(title)} />
+          <LicensePlatesPanel
+            platesDataArray={platesDataArray}
+            hideStateName={true}
+            staticMap={true}
+            selectStateHandler={(val) => {}}
+            regionCodesToFilter={regionCodesToFilter}
+          />
         </div>
       )}
     </>

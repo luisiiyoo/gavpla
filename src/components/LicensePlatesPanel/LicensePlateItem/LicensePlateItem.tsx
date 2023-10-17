@@ -8,7 +8,8 @@ import NotFoundImage from 'src/images/image-not-found.png';
 import './style.css';
 // import { MexMap } from '../Maps/MexMap';
 import { useSelector } from 'react-redux';
-import { ES_LANGUAGE } from 'src/language/language';
+import { ES_LANGUAGE, TRANSLATIONS } from 'src/language/language';
+import { StateType } from 'src/redux/reducers/Main/Main.types';
 
 export interface LicensePlateItemProps {
   userID: string;
@@ -27,7 +28,13 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
   hideYears,
   hideVehicleType,
 }) => {
-  const { languageCode } = useSelector((state) => state.main);
+  const { languageCode, stateCodes }: StateType = useSelector(
+    (state) => state.main,
+  );
+  const transalation = TRANSLATIONS.RegionNames[languageCode];
+  const regionName = transalation.hasOwnProperty(data.region_code)
+    ? transalation[data.region_code]
+    : stateCodes[data.region_code];
 
   let vehicle_type = data.vehicle_type;
   let years =
@@ -43,7 +50,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
   return (
     <div className="LicensePlateItem">
       {hideStateName ? undefined : (
-        <div className="LicensePlateItem-Name">{data.region_code}</div>
+        <div className="LicensePlateItem-Name">{regionName}</div>
       )}
       {hideYears ? undefined : (
         <div className="LicensePlateItem-Years">{years}</div>

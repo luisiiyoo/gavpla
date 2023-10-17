@@ -5,9 +5,10 @@ import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import './style.css';
 import { getTranslation } from 'src/language';
-import { createNotification, useConstructor } from 'src/utils';
+import { createNotification } from 'src/utils';
 import {
   BELicensePlatesData,
+  BEQueryLicensePlatesData,
   SerchRequestArgs,
 } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
@@ -15,56 +16,36 @@ import OptionsPanel from './OptionsPanel/OptionsPanel';
 import { Button } from 'reactstrap';
 import { store } from 'react-notifications-component';
 import { LicensePlatesPanel } from '../LicensePlatesPanel/LicensePlatesPanel';
+import connector from 'src/connector';
 
 export const SearchLicensePlatesPanel: React.FC = () => {
-  const { languageCode, availableYears }: StateType = useSelector(
-    (state) => state.main,
-  );
+  const {
+    languageCode,
+    availableYears,
+    userID,
+    stateCodes,
+  }: StateType = useSelector((state) => state.main);
   const translation = getTranslation(languageCode, 'Search');
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     statusCode: -1,
     message: '',
   });
 
+  const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
+    [],
+  );
   const [requestArgs, setRequestArgs] = useState<SerchRequestArgs>({
-    region_codes: ['MICH'],
+    region_codes: [],
     from_year: availableYears.from_year,
     to_year: availableYears.to_year,
   });
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     requestArgs.region_codes,
   );
-  const [fromYear, setFromYear] = useState<number>(1992);
-  const [toYear, setToYear] = useState<number>(1997);
-
-  useConstructor(async () => {
-    // let allPlatesData: BELicensePlatesData[] = [];
-    try {
-      //   for (const regionCode of regionCodes) {
-      //     const params: BEQueryLicensePlatesData = {
-      //       region_code: regionCode,
-      //       from_year: fromYear,
-      //       to_year: toYear,
-      //     };
-      //     const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
-      //       userID,
-      //       params,
-      //     );
-      //     allPlatesData.push(...platesData);
-      //   }
-      //   setPlatesArray(allPlatesData);
-    } catch (error) {
-      console.error(error);
-      setError({
-        statusCode: 500,
-        message: `Unable get inventory data: ${error}`,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  });
+  const [fromYear, setFromYear] = useState<number>(1968);
+  const [toYear, setToYear] = useState<number>(1969);
 
   const areThereDifferences: boolean = [
     JSON.stringify(selectedCodes) !== JSON.stringify(requestArgs.region_codes),
@@ -72,7 +53,44 @@ export const SearchLicensePlatesPanel: React.FC = () => {
     toYear !== requestArgs.to_year,
   ].some((item) => item);
 
-  const handleSearch = () => {
+  const requestDataToBE = async (): Promise<number> => {
+    let allPlatesData: BELicensePlatesData[] = [];
+    try {
+      setIsLoading(true);
+      const codes =
+        selectedCodes.length === 0 ? Object.keys(stateCodes) : selectedCodes;
+      for (const regionCode of codes) {
+        const params: BEQueryLicensePlatesData = {
+          region_code: regionCode,
+          from_year: fromYear,
+          to_year: toYear,
+        };
+        const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
+          userID,
+          params,
+        );
+        allPlatesData.push(...platesData);
+      }
+      setPlatesDataArray(allPlatesData);
+      setRequestArgs({
+        region_codes: selectedCodes,
+        from_year: fromYear,
+        to_year: toYear,
+      });
+      return allPlatesData.length;
+    } catch (error) {
+      console.error(error);
+      setError({
+        statusCode: 500,
+        message: `Unable get inventory data: ${error}`,
+      });
+      return 0;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSearch = async () => {
     if (!areThereDifferences) {
       store.addNotification(
         createNotification(
@@ -80,15 +98,16 @@ export const SearchLicensePlatesPanel: React.FC = () => {
           translation['SameSearchParametersWarning'],
         ),
       );
+    } else {
+      // requesting data
+      const numResults = await requestDataToBE();
+      store.addNotification(
+        createNotification(
+          'success',
+          `${numResults} ${translation['SucceedSearchInfo']}`,
+        ),
+      );
     }
-
-    setRequestArgs({
-      region_codes: selectedCodes,
-      from_year: fromYear,
-      to_year: toYear,
-    });
-
-    console.log(requestArgs);
   };
 
   const title = translation['title'];
@@ -123,9 +142,7 @@ export const SearchLicensePlatesPanel: React.FC = () => {
           <div className="SearchResults">
             {
               <LicensePlatesPanel
-                displayHeaderTitle={false}
-                regionCodes={selectedCodes}
-                isAStateLicensePlate={false}
+                platesDataArray={platesDataArray}
                 hideStateName={selectedCodes.length === 1}
                 staticMap={true}
                 selectStateHandler={(val) => {}}
