@@ -8,7 +8,7 @@ import { toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 
-import { LicensePlateItem } from '../LicensePlateItem/LicensePlateItem';
+import { LicensePlateItem } from './LicensePlateItem/LicensePlateItem';
 import Header from '../Header';
 import { useSelector } from 'react-redux';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
