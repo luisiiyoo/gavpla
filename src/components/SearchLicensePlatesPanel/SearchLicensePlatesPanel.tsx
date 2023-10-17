@@ -75,7 +75,7 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   const handleSearch = () => {
     if (!areThereDifferences) {
       store.addNotification(
-        createNotification('warning', translation.SameSearchParametersWarning),
+        createNotification('warning', translation["SameSearchParametersWarning"]),
       );
     }
 
@@ -114,7 +114,7 @@ export const SearchLicensePlatesPanel: React.FC = () => {
               )}
               onClick={handleSearch}
             >
-              {translation.SearchButtonLabel}
+              {translation["SearchButtonLabel"]}
             </Button>
           </div>
           <div className="SearchResults">

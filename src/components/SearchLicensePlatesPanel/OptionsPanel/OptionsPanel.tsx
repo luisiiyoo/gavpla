@@ -73,16 +73,16 @@ const convertCodesToSelectGroupedOptions = (
     languageCode,
     stateCodes,
   );
-  const additionalRegionCodeSelectOptions: SelectOption[] = convertCodesToSelectOptions(
-    languageCode,
-    additionalRegionCodes,
-  );
+  // const additionalRegionCodeSelectOptions: SelectOption[] = convertCodesToSelectOptions(
+  //   languageCode,
+  //   additionalRegionCodes,
+  // );
 
   const selectGroupedOptions: SelectGroupedOption[] = [
-    {
-      label: transalation.areaGroupName,
-      options: additionalRegionCodeSelectOptions,
-    },
+    // {
+    //   label: transalation.areaGroupName,
+    //   options: additionalRegionCodeSelectOptions,
+    // },
     {
       label: transalation.stateGroupName,
       options: stateCodeSelectOptions,
