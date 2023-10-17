@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import MissingDetailsPanel from 'src/components/SearchLicensePlatesPanel/ MissingDetailsPanel';
+import MissingDetailsPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/ MissingDetailsPanel';
 import Header from 'src/components/Header';
 import Loader from 'src/components/Loader';
 import { MxMap } from 'src/components/Maps/MxMap';
-import YearsPanel from 'src/components/SearchLicensePlatesPanel/YearsPanel';
+import YearsPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/YearsPanel';
 import connector from 'src/connector';
 import {
   BELicensePlatesData,
@@ -12,6 +12,7 @@ import {
 } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { useConstructor } from 'src/utils';
+import ErrorDisplay from 'src/components/ErrorDisplay';
 
 const YEAR_OPTIONS = [
   '1968-1969',
@@ -29,7 +30,7 @@ const YEAR_OPTIONS = [
 const EXCLUDE_VEHICLES = ['FRONTIER'];
 export interface MissingPlatesPanelProps {}
 
-const MissingPlatesPanel = ({}: MissingPlatesPanelProps) => {
+const MissingPlatesPanel = () => {
   const { userID, availableYears, stateCodes }: StateType = useSelector(
     (state) => state.main,
   );
@@ -124,7 +125,9 @@ const MissingPlatesPanel = ({}: MissingPlatesPanelProps) => {
     setFilteredYears(filterYearsByState(stateCode));
   };
 
-  return (
+  return !!error.message ? (
+    <ErrorDisplay message={error.message} statusCode={error.statusCode} />
+  ) : (
     <>
       {isLoading ? <Loader /> : undefined}
       <div

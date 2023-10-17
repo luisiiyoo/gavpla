@@ -8,7 +8,6 @@ import {
 
 import mxStateCenterCoordinates from 'src/data/mx-states-center-geo-data.json';
 import mxGeoCoordinates from 'src/data/mx-geo-data.json';
-import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import {
   get_default_bg_color,
   get_filtered_font_color,
