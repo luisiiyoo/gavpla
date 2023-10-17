@@ -5,6 +5,7 @@ export interface AbstractNavItem {
   route: string;
   functionalComponent?: React.FC;
   childs?: NavItemChild[];
+  hidden?: boolean;
 }
 
 export interface NavItemChild extends AbstractNavItem {

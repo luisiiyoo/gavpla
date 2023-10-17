@@ -99,7 +99,7 @@ export const TRANSLATIONS = {
   },
   Search: {
     en: {
-      title: 'Search License Plates',
+      title: 'Search License Plates in the Collection',
       OptionsPanel: {
         areaGroupName: 'Area',
         stateGroupName: 'State',
@@ -114,7 +114,7 @@ export const TRANSLATIONS = {
       SucceedSearchInfo: 'Plates found.',
     },
     es: {
-      title: 'Buscar Placas',
+      title: 'Buscar Placas en la Colección',
       OptionsPanel: {
         areaGroupName: 'Área',
         stateGroupName: 'Estado',

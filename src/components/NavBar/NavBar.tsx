@@ -80,10 +80,12 @@ const NavBar: React.FC<NavBarProps> = ({ history, navBarTitle }) => {
       <SideNav.Toggle />
       <NavBarHeader expanded={expand} title={navBarTitle} />
       <SideNav.Nav selected={route}>
-        {navigationItems.map((item: AbstractNavItem) => {
-          item.title = translation[item.route] || item.title;
-          return renderNavItem(dispatch, item);
-        })}
+        {navigationItems
+          .filter((item: AbstractNavItem) => !item.hidden)
+          .map((item: AbstractNavItem) => {
+            item.title = translation[item.route] || item.title;
+            return renderNavItem(dispatch, item);
+          })}
       </SideNav.Nav>
     </SideNav>
   );

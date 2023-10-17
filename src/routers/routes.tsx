@@ -98,6 +98,14 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa-solid fa-cart-shopping',
     functionalComponent: () => <UnderConstruction />,
   },
+  // Hidden Routes
+  {
+    title: 'Missing',
+    route: 'admin/missing',
+    iconClass: 'fa-solid fa-rectangle-xmark',
+    hidden: true,
+    functionalComponent: () => <>Oculto</>,
+  },
 ];
 
 const getFunctionalComponent = (

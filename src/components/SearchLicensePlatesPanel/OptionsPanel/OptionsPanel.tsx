@@ -172,7 +172,7 @@ export const OptionsPanel = ({
           }))}
           onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
             const codes = newValue.map((selected) => selected.value);
-            codes.sort() 
+            codes.sort();
             selectRegionCodesHandler(codes);
             return newValue;
           }}
