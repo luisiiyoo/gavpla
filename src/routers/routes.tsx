@@ -19,6 +19,7 @@ import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
+import MissingPlatesPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/MissingPlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -104,7 +105,7 @@ const navigationItems: NavItem[] = [
     route: 'admin/missing',
     iconClass: 'fa-solid fa-rectangle-xmark',
     hidden: true,
-    functionalComponent: () => <>Oculto</>,
+    functionalComponent: () => <MissingPlatesPanel />,
   },
 ];
 

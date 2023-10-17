@@ -14,19 +14,20 @@ export interface MissingDetailsPanelProps {
 }
 
 const style: React.CSSProperties = {
+  paddingTop: '20px',
+  paddingBottom: '10px',
   width: '100%',
   alignContent: 'center',
   textAlign: 'center',
   display: 'block',
   justifyContent: 'center',
-  padding: '10px 0px 50px 0px',
-  fontSize: '16px',
+  fontSize: 'small',
 };
 const triggerStyle = {
-  fontSize: '16px',
-  padding: '10px 30px',
+  padding: '5px 10px',
   width: '100%',
   borderRadius: '25px',
+  fontSize: 'small',
 };
 const MissingDetailsPanel = ({
   filteredStates,
@@ -36,12 +37,12 @@ const MissingDetailsPanel = ({
   selectedState,
   selectedYear,
 }: MissingDetailsPanelProps) => {
-  const { languageCode } = useSelector((state) => state.main);
+  const { languageCode, stateCodes } = useSelector((state) => state.main);
   const translation = getTranslation(languageCode, 'MexicoCollection');
 
   const [isOpen, setIsOpen] = useState(true);
-  const showMissingDetailsByYears = filteredYears.length > 0;
-  const showMissingDetailsByStates = filteredStates.length > 0;
+  const showMissingDetailsByYears = selectedState !== '';
+  const showMissingDetailsByStates = selectedYear !== '';
 
   let missingYears = yearOptions.filter((x) => !filteredYears.includes(x));
   let missingStats = stateOptions.filter((x) => !filteredStates.includes(x));
@@ -75,7 +76,7 @@ const MissingDetailsPanel = ({
           {showMissingDetailsByYears && (
             <>
               <p>
-                <strong>{`${translation['State']} : ${selectedState}`}</strong>
+                <strong>{`${translation['State']} : ${stateCodes[selectedState]}`}</strong>
                 <br />
                 {/* {`${filteredYears.length} plates in the collection, ${missingYears.length} missing.`} */}
                 {`${translation['MissingDetails']['Having']} : ${filteredYears.length}   -   ${translation['MissingDetails']['Missing']} : ${missingYears.length}`}

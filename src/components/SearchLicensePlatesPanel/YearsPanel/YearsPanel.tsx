@@ -1,23 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { getTranslation } from 'src/language';
 
 export interface YearsPanelProps {
-  selectedYear: string;
   yearOptions: Array<string>;
   filteredYears: Array<string>;
   selectYearHandler: (year: string) => void;
 }
 
 const YearsPanel = ({
-  selectedYear,
   yearOptions,
   filteredYears,
   selectYearHandler,
 }: YearsPanelProps) => {
-  const { languageCode } = useSelector((state) => state.main);
-  const translation = getTranslation(languageCode, 'MexicoCollection');
-
   return (
     <div
       className="YearsPanel"
@@ -28,14 +21,13 @@ const YearsPanel = ({
         width: '100%',
       }}
     >
-      <label>{translation['Year'] + ': '}</label>
       {yearOptions.map((opt, key) => (
         <YearChoice
           label={opt}
           key={key}
           selectionHandler={selectYearHandler}
           isFiltered={filteredYears.includes(opt)}
-          isSelected={selectedYear === opt}
+          isSelected={filteredYears.includes(opt)}
         />
       ))}
     </div>

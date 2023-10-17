@@ -54,6 +54,7 @@ label {
   margin: 15px 15px 15px 15px;
 } */
 h4 {
+  text-align: center;
   text-shadow: 1px 2px 2px black;
 }
 
@@ -86,11 +87,10 @@ h4 {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
-  padding: 12px 30px;
+  padding: 10px 20px;
 }
 
 .Selected {
@@ -102,8 +102,14 @@ h4 {
   background-color: #000;
   color: var(--selected-item-fc-color);
   cursor: default;
-  font-size: 14px;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
+  font-size: x-small;
+}
+
+@media only screen and (max-device-width: 500px) {
+  .YearChoice {
+    padding: 5px 10px;
+  }
 }
 
 *::-webkit-scrollbar {

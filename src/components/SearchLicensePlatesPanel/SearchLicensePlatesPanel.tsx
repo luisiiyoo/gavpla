@@ -144,7 +144,11 @@ export const SearchLicensePlatesPanel: React.FC = () => {
               platesDataArray={platesDataArray}
               hideStateName={requestArgs.region_codes.length === 1}
               staticMap={false}
-              regionCodesToFilter={selectedCodes}
+              regionCodesToFilter={
+                selectedCodes.length > 0
+                  ? selectedCodes
+                  : Object.keys(stateCodes)
+              }
               selectStateHandler={(code: string) => {
                 if (code === '') {
                   setSelectedCodes([]);
