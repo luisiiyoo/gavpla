@@ -14,6 +14,7 @@ import { StateType } from 'src/redux/reducers/Main/Main.types';
 import OptionsPanel from './OptionsPanel/OptionsPanel';
 import { Button } from 'reactstrap';
 import { store } from 'react-notifications-component';
+import { LicensePlatesPanel } from '../LicensePlatesPanel/LicensePlatesPanel';
 
 export const SearchLicensePlatesPanel: React.FC = () => {
   const { languageCode, availableYears }: StateType = useSelector(
@@ -28,7 +29,7 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   });
 
   const [requestArgs, setRequestArgs] = useState<SerchRequestArgs>({
-    region_codes: [],
+    region_codes: ['MICH'],
     from_year: availableYears.from_year,
     to_year: availableYears.to_year,
   });
@@ -74,14 +75,17 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   const handleSearch = () => {
     if (!areThereDifferences) {
       store.addNotification(
-        createNotification('warning', `There are not differences.`),
+        createNotification('warning', translation.SameSearchParametersWarning),
       );
     }
+
     setRequestArgs({
       region_codes: selectedCodes,
       from_year: fromYear,
       to_year: toYear,
     });
+
+    console.log(requestArgs);
   };
 
   const title = translation['title'];
@@ -109,12 +113,22 @@ export const SearchLicensePlatesPanel: React.FC = () => {
                 areThereDifferences ? 'ActiveButton' : '',
               )}
               onClick={handleSearch}
-              // active={areDifferences}
             >
-              Search
+              {translation.SearchButtonLabel}
             </Button>
           </div>
-          <div className="SearchResults"></div>
+          <div className="SearchResults">
+            {
+              <LicensePlatesPanel
+                displayHeaderTitle={false}
+                regionCodes={selectedCodes}
+                isAStateLicensePlate={false}
+                hideStateName={selectedCodes.length === 1}
+                staticMap={true}
+                selectStateHandler={(val) => {}}
+              />
+            }
+          </div>
         </div>
       )}
     </>

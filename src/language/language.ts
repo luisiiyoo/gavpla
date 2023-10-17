@@ -109,6 +109,8 @@ export const TRANSLATIONS = {
         placeholderFromYearsSelection: 'From',
         placeholderToYearsSelection: 'To',
       },
+      SearchButtonLabel: 'Search',
+      SameSearchParametersWarning: 'There are not new values to search.',
     },
     es: {
       title: 'Buscar Placas',
@@ -121,6 +123,8 @@ export const TRANSLATIONS = {
         placeholderFromYearsSelection: 'De',
         placeholderToYearsSelection: 'Hasta',
       },
+      SearchButtonLabel: 'Buscar',
+      SameSearchParametersWarning: 'No hay nuevos parámetros para buscar.',
     },
   },
   MexicoCollection: {

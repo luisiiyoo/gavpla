@@ -95,6 +95,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   useConstructor(async () => {
     let allPlatesData: BELicensePlatesData[] = [];
     try {
+      setIsLoading(true);
       for (const regionCode of regionCodes) {
         const params: BEQueryLicensePlatesData = {
           region_code: regionCode,

@@ -1,3 +1,13 @@
+.SearchResults {
+  /* width: max-content; */
+  text-align: center;
+  display: block;
+  align-items: center;
+  border: solid;
+  width: auto;
+  overflow: auto;
+  padding-top: 10px;
+}
 .SearchLicensePlatesPanel-Submit {
   /* display: flex; */
   text-align: center;
@@ -7,6 +17,7 @@
 
 .SearchButton {
   margin-top: 20px;
+  margin-bottom: 20px;
   height: 35px;
   width: 20vw;
   text-align: center;
