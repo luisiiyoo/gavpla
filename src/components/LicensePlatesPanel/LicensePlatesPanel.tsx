@@ -31,13 +31,13 @@ export interface LicensePlatesPanelProps {
 }
 
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
-  headerTitle,
-  displayHeaderTitle,
+  headerTitle, //
+  displayHeaderTitle, //
   regionCodes,
   staticMap,
   selectStateHandler,
-  fromYear,
-  toYear,
+  fromYear, //
+  toYear, //
   hideStateName = false,
   hideYears = false,
   hideVehicleType = false,
@@ -137,17 +137,19 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
             staticMap={staticMap}
           />
           <div className="LicensePlatesPanel-LicensePlateItems">
-            {platesArray.map((plateData) => (
-              <LicensePlateItem
-                data={plateData}
-                userID={userID}
-                vechicleTypes={vehicleTypes}
-                key={plateData.plate_id_code}
-                hideStateName={hideStateName}
-                hideYears={hideYears}
-                hideVehicleType={hideVehicleType}
-              />
-            ))}
+            {platesArray
+              .sort((a, b) => a.from_year - b.from_year)
+              .map((plateData) => (
+                <LicensePlateItem
+                  data={plateData}
+                  userID={userID}
+                  vechicleTypes={vehicleTypes}
+                  key={plateData.plate_id_code}
+                  hideStateName={hideStateName}
+                  hideYears={hideYears}
+                  hideVehicleType={hideVehicleType}
+                />
+              ))}
           </div>
         </div>
       )}
