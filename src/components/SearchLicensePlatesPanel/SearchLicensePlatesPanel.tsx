@@ -115,10 +115,8 @@ export const SearchLicensePlatesPanel: React.FC = () => {
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className="SearchLicensePlatesPanel">
+      {isLoading ? <Loader />: undefined}
+      <div className="SearchLicensePlatesPanel" style={{display:isLoading?"none":"block"}}>
           <Header title={title} />
           <OptionsPanel
             fromYear={fromYear}
@@ -129,11 +127,9 @@ export const SearchLicensePlatesPanel: React.FC = () => {
             selectRegionCodesHandler={setSelectedCodes}
             requestArgs={requestArgs}
           />
-          <div className="SearchLicensePlatesPanel-Submit">
+          <div className="SearchLicensePlatesPanel-Submit" style={{display:areThereDifferences ? "block": "none"}}>
             <Button
-              className={`SearchButton `.concat(
-                areThereDifferences ? 'ActiveButton' : '',
-              )}
+              className={`SearchButton`}
               onClick={handleSearch}
             >
               {translation['SearchButtonLabel']}
@@ -143,14 +139,28 @@ export const SearchLicensePlatesPanel: React.FC = () => {
             {
               <LicensePlatesPanel
                 platesDataArray={platesDataArray}
-                hideStateName={selectedCodes.length === 1}
-                staticMap={true}
-                selectStateHandler={(val) => {}}
+                hideStateName={requestArgs.region_codes.length === 1}
+                staticMap={false}
+                regionCodesToFilter={selectedCodes}
+                selectStateHandler={(code: string) => {
+                  if (code===''){
+                    setSelectedCodes([])
+                  }else{
+                    const index = selectedCodes.indexOf(code);
+                    const newSelectedCodes = [...selectedCodes]
+                    if (index > -1) { 
+                      newSelectedCodes.splice(index, 1);
+                    }else{
+                      newSelectedCodes.push(code)
+                      newSelectedCodes.sort()
+                    } 
+                    setSelectedCodes(newSelectedCodes)
+                  }
+                }}
               />
             }
           </div>
         </div>
-      )}
     </>
   );
 };

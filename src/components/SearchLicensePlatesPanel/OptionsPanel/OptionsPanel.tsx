@@ -166,13 +166,14 @@ export const OptionsPanel = ({
           isMulti
           isLoading={false}
           styles={selectStyles}
-          defaultValue={selectedCodes.map((code) => ({
+          value={selectedCodes.map((code) => ({
             value: code,
             label: stateCodes[code],
           }))}
           onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
             const codes = newValue.map((selected) => selected.value);
-            selectRegionCodesHandler(codes.sort());
+            codes.sort() 
+            selectRegionCodesHandler(codes);
             return newValue;
           }}
           placeholder={translation.OptionsPanel.placeholderRegionSelection}

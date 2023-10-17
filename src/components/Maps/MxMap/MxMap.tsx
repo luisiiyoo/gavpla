@@ -116,9 +116,7 @@ export const MxMap: React.FC<MxMapProps> = ({
                     style={{ cursor: 'default' }}
                     onClick={(e) => {
                       e.preventDefault();
-                      const stateName =
-                        MEXICO_STATE_CODE_TO_STATE_NAME.get(code) || '';
-                      selectStateHandler(stateName);
+                      selectStateHandler(code);
                     }}
                   >
                     {code}
