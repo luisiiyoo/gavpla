@@ -1,26 +1,21 @@
 import React from 'react';
-// import CreateGame from 'src/components/CreateGame';
-// import GamesBoard from 'src/components/GamesBoard';
 import HomePage from 'src/components/HomePage';
-// import PlayGame from 'src/components/PlayGame';
 import { AbstractNavItem, NavItem } from './Router.types';
 import {
   SEARCH_ROUTE,
-  DONATIONS_ROUTE,
   HOME_ROUTE,
   STATES_ROUTE,
-  THANKS_ROUTE,
   NATIONAL_ROUTE,
   NEW_ROUTE,
-  SHOP_PLATES_ROUTE,
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
+  MISSING_PLATES_ROUTE,
 } from './constants';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
-import MissingPlatesPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/MissingPlatesPanel';
+import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
@@ -98,6 +93,13 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa fw fa-magnifying-glass',
     functionalComponent: () => <SearchLicensePlatesPanel />,
   },
+  {
+    title: MISSING_PLATES_ROUTE.title,
+    route: MISSING_PLATES_ROUTE.route,
+    iconClass: 'fa-solid fa-star-half',
+    hidden: false,
+    functionalComponent: () => <MissingPlatesPanel />,
+  }, // fa-beat-fade
   // {
   //   title: DONATIONS_ROUTE.title,
   //   route: DONATIONS_ROUTE.route,
@@ -117,15 +119,7 @@ const navigationItems: NavItem[] = [
   //   functionalComponent: () => <UnderConstruction />,
   // },
   // Hidden Routes
-  {
-    title: 'Missing',
-    route: 'missing/1968-1997',
-    iconClass: 'fa-solid fa-star-half',
-    hidden: false,
-    functionalComponent: () => <MissingPlatesPanel />,
-  },
 ];
-// fa-beat-fade
 
 const getFunctionalComponent = (
   items: AbstractNavItem[],

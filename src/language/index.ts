@@ -1,1 +1,5 @@
-export { languages, TRANSLATIONS, getTranslation } from './language';
+export {
+  LANGUAGES as languages,
+  TRANSLATIONS,
+  getTranslation,
+} from './language';

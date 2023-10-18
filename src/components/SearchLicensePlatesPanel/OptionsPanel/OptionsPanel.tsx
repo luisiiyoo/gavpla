@@ -101,7 +101,6 @@ export const OptionsPanel = ({
   requestArgs,
 }: OptionsPanelProps) => {
   const {
-    availableYears,
     stateCodes,
     additionalRegionCodes,
     languageCode,
@@ -152,33 +151,6 @@ export const OptionsPanel = ({
 
   return (
     <div className="OptionsPanel">
-      <div className="OptionsPanel-SelectRegion">
-        <h4>{translation.OptionsPanel.titleRegionSelection}</h4>
-        <Select
-          className="react-select-container"
-          name="AreaSelectOptions"
-          options={convertCodesToSelectGroupedOptions(
-            languageCode,
-            stateCodes,
-            additionalRegionCodes,
-          )}
-          isClearable
-          isMulti
-          isLoading={false}
-          styles={selectStyles}
-          value={selectedCodes.map((code) => ({
-            value: code,
-            label: stateCodes[code],
-          }))}
-          onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
-            const codes = newValue.map((selected) => selected.value);
-            codes.sort();
-            selectRegionCodesHandler(codes);
-            return newValue;
-          }}
-          placeholder={translation.OptionsPanel.placeholderRegionSelection}
-        />
-      </div>
       <div className="OptionsPanel-SelectYear">
         <h4>{translation.OptionsPanel.titleYearsSelection}</h4>
         <div className="OptionsPanel-SelectYear-Range">
@@ -227,6 +199,33 @@ export const OptionsPanel = ({
             }}
           />
         </div>
+      </div>
+      <div className="OptionsPanel-SelectRegion">
+        <h4>{translation.OptionsPanel.titleRegionSelection}</h4>
+        <Select
+          className="react-select-container"
+          name="AreaSelectOptions"
+          options={convertCodesToSelectGroupedOptions(
+            languageCode,
+            stateCodes,
+            additionalRegionCodes,
+          )}
+          isClearable
+          isMulti
+          isLoading={false}
+          styles={selectStyles}
+          value={selectedCodes.map((code) => ({
+            value: code,
+            label: stateCodes[code],
+          }))}
+          onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
+            const codes = newValue.map((selected) => selected.value);
+            codes.sort();
+            selectRegionCodesHandler(codes);
+            return newValue;
+          }}
+          placeholder={translation.OptionsPanel.placeholderRegionSelection}
+        />
       </div>
     </div>
   );

@@ -49,3 +49,8 @@ export const SHOP_PLATES_ROUTE = {
   title: 'Shop Plates',
   route: `${LICENSE_PLATES}/shop-plates`,
 };
+
+export const MISSING_PLATES_ROUTE = {
+  title: 'Missing Plates',
+  route: `${LICENSE_PLATES}/missing/1968-1969`,
+};

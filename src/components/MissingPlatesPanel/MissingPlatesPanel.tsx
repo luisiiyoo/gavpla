@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import MissingDetailsPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/ MissingDetailsPanel';
+import MissingDetailsPanel from 'src/components/MissingPlatesPanel/ MissingDetailsPanel';
 import Header from 'src/components/Header';
 import Loader from 'src/components/Loader';
 import { MxMap } from 'src/components/Maps/MxMap';
-import YearsPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/YearsPanel';
+import YearsPanel from 'src/components/MissingPlatesPanel/YearsPanel';
 import connector from 'src/connector';
 import {
   BELicensePlatesData,
@@ -13,6 +13,7 @@ import {
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { useConstructor } from 'src/utils';
 import ErrorDisplay from 'src/components/ErrorDisplay';
+import { getTranslation } from 'src/language';
 
 const YEAR_OPTIONS = [
   '1968-1969',
@@ -31,9 +32,13 @@ const EXCLUDE_VEHICLES = ['FRONTIER'];
 export interface MissingPlatesPanelProps {}
 
 const MissingPlatesPanel = () => {
-  const { userID, availableYears, stateCodes }: StateType = useSelector(
-    (state) => state.main,
-  );
+  const {
+    userID,
+    availableYears,
+    stateCodes,
+    languageCode,
+  }: StateType = useSelector((state) => state.main);
+  const translation = getTranslation(languageCode, 'Missing');
 
   const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
     [],
@@ -149,14 +154,14 @@ const MissingPlatesPanel = () => {
         className="MissingPlatesPanel"
         style={{ display: isLoading ? 'none' : 'block' }}
       >
-        <Header title="Placas Faltantes" />
-        <h4>Años</h4>
+        <Header title={translation['title']} />
+        <h4>{translation['Years']}</h4>
         <YearsPanel
           yearOptions={YEAR_OPTIONS}
           selectYearHandler={selectYearHandler}
           filteredYears={filteredYears}
         />
-        <h4>Estados</h4>
+        <h4>{translation['States']}</h4>
         <MxMap
           selectStateHandler={selectStateHandler}
           filteredStates={filteredStates}

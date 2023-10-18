@@ -11,6 +11,7 @@ import {
   SHOP_PLATES_ROUTE,
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
+  MISSING_PLATES_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -21,12 +22,12 @@ interface languageType {
 export const ES_LANGUAGE = 'es';
 export const EN_LANGUAGE = 'en';
 
-export const languages: languageType[] = [
+export const LANGUAGES: languageType[] = [
   { languageCode: ES_LANGUAGE, name: 'Español', flag: mxFlag },
   { languageCode: EN_LANGUAGE, name: 'English', flag: usFlag },
 ];
 
-export const AVAILABLE_LANGUAGUES_CODES = languages.map(
+export const AVAILABLE_LANGUAGUES_CODES = LANGUAGES.map(
   (language) => language.languageCode,
 );
 
@@ -61,6 +62,7 @@ export const TRANSLATIONS = {
       [THANKS_ROUTE.route]: THANKS_ROUTE.title,
       [SHOP_PLATES_ROUTE.route]: SHOP_PLATES_ROUTE.title,
       [FRONTIER_ROUTE.route]: FRONTIER_ROUTE.title,
+      [MISSING_PLATES_ROUTE.route]: MISSING_PLATES_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
@@ -72,7 +74,8 @@ export const TRANSLATIONS = {
       [DONATIONS_ROUTE.route]: 'Donaciones',
       [THANKS_ROUTE.route]: 'Agradecimientos',
       [SHOP_PLATES_ROUTE.route]: 'Comprar Placas',
-      [FRONTIER_ROUTE.route]: 'Fronterizo',
+      [FRONTIER_ROUTE.route]: 'Fronteriza',
+      [MISSING_PLATES_ROUTE.route]: 'Placas Faltantes',
     },
   },
   LanguageSelector: {
@@ -146,11 +149,11 @@ export const TRANSLATIONS = {
       SucceedSearchInfo: 'Placas encontradas.',
     },
   },
-  MexicoCollection: {
+  Missing: {
     en: {
-      title: 'License Plates Collection',
-      Year: 'Year',
-      State: 'State',
+      title: 'Missing License Plates',
+      Years: 'Years',
+      States: 'States',
       MissingDetails: {
         SeeDetails: 'See details',
         HideDetails: 'Hide details',
@@ -159,9 +162,9 @@ export const TRANSLATIONS = {
       },
     },
     es: {
-      title: 'Colección de Placas',
-      Year: 'Año',
-      State: 'Estado',
+      title: 'Placas Faltantes',
+      Years: 'Años',
+      States: 'Estados',
       MissingDetails: {
         SeeDetails: 'Ver detalles',
         HideDetails: 'Ocultar detalles',

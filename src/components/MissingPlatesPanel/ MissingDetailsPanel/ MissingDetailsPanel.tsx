@@ -38,7 +38,7 @@ const MissingDetailsPanel = ({
   selectedYear,
 }: MissingDetailsPanelProps) => {
   const { languageCode, stateCodes } = useSelector((state) => state.main);
-  const translation = getTranslation(languageCode, 'MexicoCollection');
+  const translation = getTranslation(languageCode, 'Missing');
 
   const [isOpen, setIsOpen] = useState(true);
   const showMissingDetailsByYears = selectedState !== '';
