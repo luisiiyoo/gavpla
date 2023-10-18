@@ -81,24 +81,24 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa fw fa-magnifying-glass',
     functionalComponent: () => <SearchLicensePlatesPanel />,
   },
-  {
-    title: DONATIONS_ROUTE.title,
-    route: DONATIONS_ROUTE.route,
-    iconClass: 'fa-solid fa-hand-holding-heart',
-    functionalComponent: () => <UnderConstruction />,
-  },
-  {
-    title: THANKS_ROUTE.title,
-    route: THANKS_ROUTE.route,
-    iconClass: 'fa-solid fa-heart',
-    functionalComponent: () => <UnderConstruction />,
-  },
-  {
-    title: SHOP_PLATES_ROUTE.title,
-    route: SHOP_PLATES_ROUTE.route,
-    iconClass: 'fa-solid fa-cart-shopping',
-    functionalComponent: () => <UnderConstruction />,
-  },
+  // {
+  //   title: DONATIONS_ROUTE.title,
+  //   route: DONATIONS_ROUTE.route,
+  //   iconClass: 'fa-solid fa-hand-holding-heart',
+  //   functionalComponent: () => <UnderConstruction />,
+  // },
+  // {
+  //   title: THANKS_ROUTE.title,
+  //   route: THANKS_ROUTE.route,
+  //   iconClass: 'fa-solid fa-heart',
+  //   functionalComponent: () => <UnderConstruction />,
+  // },
+  // {
+  //   title: SHOP_PLATES_ROUTE.title,
+  //   route: SHOP_PLATES_ROUTE.route,
+  //   iconClass: 'fa-solid fa-cart-shopping',
+  //   functionalComponent: () => <UnderConstruction />,
+  // },
   // Hidden Routes
   {
     title: 'Missing',

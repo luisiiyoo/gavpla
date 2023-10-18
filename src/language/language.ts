@@ -111,6 +111,7 @@ export const TRANSLATIONS = {
       },
       SearchButtonLabel: 'Search',
       SameSearchParametersWarning: 'There are not new values to search.',
+      InvalidYearRangeWarning: 'Invalid years range.',
       SucceedSearchInfo: 'Plates found.',
     },
     es: {
@@ -126,6 +127,7 @@ export const TRANSLATIONS = {
       },
       SearchButtonLabel: 'Buscar',
       SameSearchParametersWarning: 'No hay nuevos parámetros para buscar.',
+      InvalidYearRangeWarning: 'Rango de años inválido.',
       SucceedSearchInfo: 'Placas encontradas.',
     },
   },

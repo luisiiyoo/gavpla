@@ -190,11 +190,12 @@ export const OptionsPanel = ({
             onChange={handleFromYearChanged}
             onBlur={(e) => {
               const year = Number(e.target.value);
-              if (year < availableYears.from_year) {
-                setFromYear(availableYears.from_year);
-              } else if (year > availableYears.to_year || year > toYear) {
-                setFromYear(toYear);
-              }
+              setFromYear(year);
+              // if (year < availableYears.from_year) {
+              //   setFromYear(availableYears.from_year);
+              // } else if (year > availableYears.to_year || year > toYear) {
+              //   setFromYear(toYear);
+              // }
             }}
             style={{
               color:
@@ -211,11 +212,12 @@ export const OptionsPanel = ({
             onChange={handleToYearChanged}
             onBlur={(e) => {
               const year = Number(e.target.value);
-              if (year > availableYears.to_year) {
-                setToYear(availableYears.to_year);
-              } else if (year < availableYears.from_year || year < fromYear) {
-                setToYear(fromYear);
-              }
+              setToYear(year);
+              // if (year > availableYears.to_year) {
+              //   setToYear(availableYears.to_year);
+              // } else if (year < availableYears.from_year || year < fromYear) {
+              //   setToYear(fromYear);
+              // }
             }}
             style={{
               color:

@@ -87,7 +87,16 @@ export const SearchLicensePlatesPanel: React.FC = () => {
       return 0;
     } finally {
       setIsLoading(false);
+
+      const element = document.querySelector('.MxMap');
+      element?.scrollIntoView({
+        behavior: 'smooth',
+      });
     }
+  };
+
+  const isAValidYearRange = () => {
+    return fromYear < toYear && fromYear >= 1900 && toYear <= 2100;
   };
 
   const handleSearch = async () => {
@@ -99,14 +108,26 @@ export const SearchLicensePlatesPanel: React.FC = () => {
         ),
       );
     } else {
-      // requesting data
-      const numResults = await requestDataToBE();
-      store.addNotification(
-        createNotification(
-          'success',
-          `${numResults} ${translation['SucceedSearchInfo']}`,
-        ),
-      );
+      if (!isAValidYearRange()) {
+        store.addNotification(
+          createNotification('warning', translation['InvalidYearRangeWarning']),
+        );
+        setPlatesDataArray([]);
+        setRequestArgs({
+          region_codes: selectedCodes,
+          from_year: fromYear,
+          to_year: toYear,
+        });
+      } else {
+        // requesting data
+        const numResults = await requestDataToBE();
+        store.addNotification(
+          createNotification(
+            'success',
+            `${numResults} ${translation['SucceedSearchInfo']}`,
+          ),
+        );
+      }
     }
   };
 

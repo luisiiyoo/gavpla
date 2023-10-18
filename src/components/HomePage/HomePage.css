@@ -17,3 +17,9 @@
   text-decoration: none;
   color: inherit;
 }
+
+@media only screen and (max-device-width: 500px) {
+  .HomePage {
+    font-size: 4.5vw;
+  }
+}
