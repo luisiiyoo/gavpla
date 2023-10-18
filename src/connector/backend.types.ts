@@ -32,6 +32,10 @@ export interface BEQueryLicensePlatesData {
   country_code?: string;
   from_year?: number;
   to_year?: number;
+  only_states?: boolean;
+  region_codes?: string[];
+  vehicle_types?: string[];
+  exclude_vehicle_types?: string[];
 }
 
 export interface SerchRequestArgs {

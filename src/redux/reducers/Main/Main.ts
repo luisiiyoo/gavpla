@@ -1,11 +1,19 @@
-import { ES_LANGUAGE } from 'src/language/language';
+import { AVAILABLE_LANGUAGUES_CODES, ES_LANGUAGE } from 'src/language/language';
 import { isAComputerDevice } from 'src/utils';
 import { StateType, ActionType } from './Main.types';
 
+const NAVIGATOR_LANG: string = window.navigator.language
+  .slice(0, 2)
+  .toLocaleLowerCase();
+const DEFAULT_LANG_CODE: string = AVAILABLE_LANGUAGUES_CODES.includes(
+  NAVIGATOR_LANG,
+)
+  ? NAVIGATOR_LANG
+  : ES_LANGUAGE;
 export const initialState: StateType = {
   route: 'home',
   expand: isAComputerDevice(),
-  languageCode: ES_LANGUAGE, // TODO: Use window.navigator.language.slice(0,2)
+  languageCode: DEFAULT_LANG_CODE,
   isLoading: false,
   error: { message: '' },
   additionalRegionCodes: {},

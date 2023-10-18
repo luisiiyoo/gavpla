@@ -10,6 +10,7 @@ import {
   NEW_ROUTE,
   SHOP_PLATES_ROUTE,
   METROPOLITAN_ROUTE,
+  FRONTIER_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -25,7 +26,19 @@ export const languages: languageType[] = [
   { languageCode: EN_LANGUAGE, name: 'English', flag: usFlag },
 ];
 
+export const AVAILABLE_LANGUAGUES_CODES = languages.map(
+  (language) => language.languageCode,
+);
+
 export const TRANSLATIONS = {
+  VehicleTypes: {
+    en: {
+      FRONTIER: 'Frontier',
+    },
+    es: {
+      FRONTIER: 'Fronteriza',
+    },
+  },
   RegionNames: {
     en: {
       NATIONAL: 'National',
@@ -47,6 +60,7 @@ export const TRANSLATIONS = {
       [DONATIONS_ROUTE.route]: DONATIONS_ROUTE.title,
       [THANKS_ROUTE.route]: THANKS_ROUTE.title,
       [SHOP_PLATES_ROUTE.route]: SHOP_PLATES_ROUTE.title,
+      [FRONTIER_ROUTE.route]: FRONTIER_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
@@ -58,6 +72,7 @@ export const TRANSLATIONS = {
       [DONATIONS_ROUTE.route]: 'Donaciones',
       [THANKS_ROUTE.route]: 'Agradecimientos',
       [SHOP_PLATES_ROUTE.route]: 'Comprar Placas',
+      [FRONTIER_ROUTE.route]: 'Fronterizo',
     },
   },
   LanguageSelector: {

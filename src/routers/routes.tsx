@@ -14,12 +14,14 @@ import {
   NEW_ROUTE,
   SHOP_PLATES_ROUTE,
   METROPOLITAN_ROUTE,
+  FRONTIER_ROUTE,
 } from './constants';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/SearchLicensePlatesPanel/MissingPlatesPanel/MissingPlatesPanel';
+import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -53,14 +55,6 @@ const navigationItems: NavItem[] = [
     ],
   },
   {
-    title: NATIONAL_ROUTE.title,
-    route: NATIONAL_ROUTE.route,
-    iconClass: 'fa-solid fa-flag',
-    functionalComponent: () => (
-      <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
-    ),
-  },
-  {
     title: METROPOLITAN_ROUTE.title,
     route: METROPOLITAN_ROUTE.route,
     iconClass: 'fa-solid fa-bus',
@@ -74,6 +68,29 @@ const navigationItems: NavItem[] = [
         ),
       },
     ],
+  },
+  {
+    title: NATIONAL_ROUTE.title,
+    route: NATIONAL_ROUTE.route,
+    iconClass: 'fa-solid fa-flag',
+    functionalComponent: () => (
+      <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
+    ),
+  },
+  {
+    title: FRONTIER_ROUTE.title,
+    route: FRONTIER_ROUTE.route,
+    iconClass: 'fa-solid fa-arrow-down-up-across-line',
+    functionalComponent: () => (
+      <MultipleRegionLicensePlatesPanel
+        title={'Fronteriza'}
+        regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
+        vehicle_types={['FRONTIER']}
+        hideStateName={false}
+        hideYears={false}
+        hideVehicleType={true}
+      />
+    ),
   },
   {
     title: SEARCH_ROUTE.title,
@@ -102,12 +119,13 @@ const navigationItems: NavItem[] = [
   // Hidden Routes
   {
     title: 'Missing',
-    route: 'admin/missing',
-    iconClass: 'fa-solid fa-rectangle-xmark',
-    hidden: true,
+    route: 'missing/1968-1997',
+    iconClass: 'fa-solid fa-star-half',
+    hidden: false,
     functionalComponent: () => <MissingPlatesPanel />,
   },
 ];
+// fa-beat-fade
 
 const getFunctionalComponent = (
   items: AbstractNavItem[],

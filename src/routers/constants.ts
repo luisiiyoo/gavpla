@@ -15,6 +15,11 @@ export const STATES_ROUTE = {
   route: `${LICENSE_PLATES}/states`,
 };
 
+export const FRONTIER_ROUTE = {
+  title: 'Frontier',
+  route: `${LICENSE_PLATES}/frontier`,
+};
+
 export const NATIONAL_ROUTE = {
   title: 'National',
   route: `${LICENSE_PLATES}/national`,

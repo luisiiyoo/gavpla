@@ -33,6 +33,7 @@ export class BackendConnector {
         url: url,
         data: data,
         params,
+        paramsSerializer: { indexes: null },
       });
       return resp.data;
     } catch (error) {

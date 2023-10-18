@@ -56,6 +56,8 @@ const MissingPlatesPanel = () => {
       const params: BEQueryLicensePlatesData = {
         from_year: availableYears.from_year,
         to_year: availableYears.to_year,
+        only_states: true,
+        exclude_vehicle_types: EXCLUDE_VEHICLES,
       };
       const data: BELicensePlatesData[] = await connector.getLicensePlatesData(
         userID,
@@ -83,9 +85,7 @@ const MissingPlatesPanel = () => {
       (plate) =>
         (plate.from_year === fromYear && plate.to_year === toYear) ||
         (plate.from_year === fromYear && plate.to_year === fromYear) ||
-        (plate.from_year === toYear &&
-          plate.to_year === toYear &&
-          !EXCLUDE_VEHICLES.includes(plate.vehicle_type)),
+        (plate.from_year === toYear && plate.to_year === toYear),
     );
     const uniques = new Set<string>(
       filteredData.map((plate) => plate.region_code),
@@ -101,7 +101,22 @@ const MissingPlatesPanel = () => {
     );
 
     const uniques = new Set<string>(
-      filteredData.map((plate) => `${plate.from_year}-${plate.to_year}`),
+      filteredData.map((plate) => {
+        if (plate.from_year === plate.to_year) {
+          let fromYear: number;
+          let toYear: number;
+          if (plate.from_year % 2 === 0) {
+            fromYear = plate.from_year;
+            toYear = plate.to_year + 1;
+          } else {
+            fromYear = plate.from_year - 1;
+            toYear = plate.to_year;
+          }
+          return `${fromYear}-${toYear}`;
+        } else {
+          return `${plate.from_year}-${plate.to_year}`;
+        }
+      }),
     );
     return Array.from(uniques);
   };

@@ -4,7 +4,6 @@ import {
   BELicensePlatesData,
   BEQueryLicensePlatesData,
 } from 'src/connector/backend.types';
-import { TRANSLATIONS } from 'src/language';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
@@ -13,22 +12,28 @@ import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import { LicensePlatesPanel } from './LicensePlatesPanel';
 
-export interface SingleRegionLicensePlatesPanelProps {
-  regionCode: string;
+export interface MultipleRegionLicensePlatesPanelProps {
+  title: string;
+  regionCodes?: string[];
   vehicle_types?: string[];
   exclude_vehicle_types?: string[];
+  hideStateName?: boolean;
+  hideYears?: boolean;
+  hideVehicleType?: boolean;
 }
 
-const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelProps> = ({
-  regionCode,
+const MultipleRegionLicensePlatesPanel: React.FC<MultipleRegionLicensePlatesPanelProps> = ({
+  title,
+  regionCodes,
+  vehicle_types,
   exclude_vehicle_types,
+  hideStateName,
+  hideYears,
+  hideVehicleType,
 }) => {
-  const {
-    stateCodes,
-    userID,
-    availableYears,
-    languageCode,
-  }: StateType = useSelector((state) => state.main);
+  const { userID, availableYears }: StateType = useSelector(
+    (state) => state.main,
+  );
 
   const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
     [],
@@ -39,29 +44,18 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
     message: '',
   });
 
-  let regionCodesToFilter: Array<string>;
-  let title: string;
-  if (regionCode === 'NATIONAL') {
-    title = TRANSLATIONS.RegionNames[languageCode].NATIONAL;
-    regionCodesToFilter = Object.keys(stateCodes);
-  } else if (regionCode === 'METROPOLITAN') {
-    title = TRANSLATIONS.RegionNames[languageCode].METROPOLITAN;
-    regionCodesToFilter = ['DF', 'MEX'];
-  } else {
-    title = stateCodes[regionCode];
-    regionCodesToFilter = [regionCode];
-  }
-
   useConstructor(async () => {
     try {
       setIsLoading(true);
       const params: BEQueryLicensePlatesData = {
-        region_code: regionCode,
         from_year: availableYears.from_year,
         to_year: availableYears.to_year,
       };
+      regionCodes && (params.region_codes = regionCodes);
+      vehicle_types && (params.vehicle_types = vehicle_types);
       exclude_vehicle_types &&
         (params.exclude_vehicle_types = exclude_vehicle_types);
+
       const data: BELicensePlatesData[] = await connector.getLicensePlatesData(
         userID,
         params,
@@ -85,14 +79,16 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="SingleRegionLicensePlatesPanel">
+        <div className="MultipleRegionLicensePlatesPanel">
           <Header title={toTitleCase(title)} />
           <LicensePlatesPanel
             platesDataArray={platesDataArray}
-            hideStateName={true}
             staticMap={true}
             selectStateHandler={(val) => {}}
-            regionCodesToFilter={regionCodesToFilter}
+            regionCodesToFilter={regionCodes}
+            hideStateName={hideStateName}
+            hideYears={hideYears}
+            hideVehicleType={hideVehicleType}
           />
         </div>
       )}
@@ -100,4 +96,4 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
   );
 };
 
-export default SingleRegionLicensePlatesPanel;
+export default MultipleRegionLicensePlatesPanel;
