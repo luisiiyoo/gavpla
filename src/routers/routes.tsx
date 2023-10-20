@@ -10,6 +10,7 @@ import {
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
+  MOTORCYCLE_ROUTE,
 } from './constants';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
@@ -86,6 +87,12 @@ const navigationItems: NavItem[] = [
         hideVehicleType={true}
       />
     ),
+  },
+  {
+    title: MOTORCYCLE_ROUTE.title,
+    route: MOTORCYCLE_ROUTE.route,
+    iconClass: 'fa-solid fa-motorcycle',
+    functionalComponent: () => <UnderConstruction />,
   },
   {
     title: SEARCH_ROUTE.title,

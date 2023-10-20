@@ -10,6 +10,11 @@ export const NEW_ROUTE = {
   route: 'new',
 };
 
+export const MOTORCYCLE_ROUTE = {
+  title: 'Motorcycle',
+  route: `${LICENSE_PLATES}/motorcycle`,
+};
+
 export const STATES_ROUTE = {
   title: 'States',
   route: `${LICENSE_PLATES}/states`,

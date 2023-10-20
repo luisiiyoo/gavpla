@@ -12,6 +12,7 @@ import {
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
+  MOTORCYCLE_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -63,6 +64,7 @@ export const TRANSLATIONS = {
       [SHOP_PLATES_ROUTE.route]: SHOP_PLATES_ROUTE.title,
       [FRONTIER_ROUTE.route]: FRONTIER_ROUTE.title,
       [MISSING_PLATES_ROUTE.route]: MISSING_PLATES_ROUTE.title,
+      [MOTORCYCLE_ROUTE.route]: MOTORCYCLE_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
@@ -76,6 +78,7 @@ export const TRANSLATIONS = {
       [SHOP_PLATES_ROUTE.route]: 'Comprar Placas',
       [FRONTIER_ROUTE.route]: 'Fronteriza',
       [MISSING_PLATES_ROUTE.route]: 'Placas Faltantes',
+      [MOTORCYCLE_ROUTE.route]: "Motocicleta",
     },
   },
   LanguageSelector: {
