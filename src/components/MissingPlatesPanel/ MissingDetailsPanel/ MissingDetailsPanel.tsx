@@ -14,14 +14,15 @@ export interface MissingDetailsPanelProps {
 }
 
 const style: React.CSSProperties = {
-  paddingTop: '20px',
+  paddingTop: '10px',
+  margin: '10px',
   paddingBottom: '10px',
-  width: '100%',
   alignContent: 'center',
   textAlign: 'center',
   display: 'block',
   justifyContent: 'center',
   fontSize: 'small',
+  // backgroundColor: "rgba(0, 0, 0, 0.3)",
 };
 const triggerStyle = {
   padding: '5px 10px',

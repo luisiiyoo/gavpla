@@ -57,7 +57,7 @@ const navigationItems: NavItem[] = [
       {
         title: 'DF - MX',
         idChild: 'df-mx',
-        route: `${METROPOLITAN_ROUTE.route}/df-mx`,
+        route: `${METROPOLITAN_ROUTE.route}/df-mex`,
         functionalComponent: () => (
           <SingleRegionLicensePlatesPanel regionCode={'METROPOLITAN'} />
         ),

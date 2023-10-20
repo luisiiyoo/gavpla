@@ -1,22 +1,29 @@
 .LicensePlateItem {
-  background-color: rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: auto;
   text-align: center;
-  padding: 10px 0;
-  font-size: 30px;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 5px 0;
   color: white;
+  /* border: solid white; */
 }
 
-/* .LicensePlateItem-Image img {
-    width: 40vw;
-    height: auto;
-  } */
+.LicensePlateItem-Header {
+  /* border: solid green; */
+  width: inherit;
+}
+.LicensePlateItem-Image {
+  /* border: solid red; */
+  width: inherit;
+}
 
 .LicensePlateItem-Years,
 .LicensePlateItem-Name {
-  font-size: large;
+  font-size: small;
 }
 
 .LicensePlateItem-VehicleType {
-  font-size: small;
+  font-size: x-small;
   padding: 2px;
 }

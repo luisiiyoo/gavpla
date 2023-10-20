@@ -49,15 +49,17 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
   }
   return (
     <div className="LicensePlateItem">
-      {hideStateName ? undefined : (
-        <div className="LicensePlateItem-Name">{regionName}</div>
-      )}
-      {hideYears ? undefined : (
-        <div className="LicensePlateItem-Years">{years}</div>
-      )}
-      {hideVehicleType ? undefined : (
-        <div className="LicensePlateItem-VehicleType">{vehicle_type}</div>
-      )}
+      <div className="LicensePlateItem-Header">
+        {hideStateName ? undefined : (
+          <div className="LicensePlateItem-Name">{regionName}</div>
+        )}
+        {hideYears ? undefined : (
+          <div className="LicensePlateItem-Years">{years}</div>
+        )}
+        {hideVehicleType ? undefined : (
+          <div className="LicensePlateItem-VehicleType">{vehicle_type}</div>
+        )}
+      </div>
       <div className="LicensePlateItem-Image">
         <img
           src={
