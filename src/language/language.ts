@@ -99,7 +99,7 @@ export const TRANSLATIONS = {
   },
   HomePage: {
     en: {
-      title: 'GAVPLA - Galeria Virtual de Placas',
+      title: 'GAVPLA - Galería Virtual de Placas',
       body: {
         p1:
           'Welcome to my personal virtual license plates gallery (Galería Virtual de Placas).',

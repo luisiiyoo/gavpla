@@ -23,9 +23,11 @@ const HomePage: React.FC = () => {
         <br />
         <br />
 
+        <div className='Author'>
         <h3>{translation['body']['author']}</h3>
-        <ul>
-          <li>
+        
+        {/* <ul>
+          <li> */}
             Luis González Guzmán &nbsp;
             <a
               className="AuthorLink"
@@ -51,8 +53,9 @@ const HomePage: React.FC = () => {
             >
               <i className="fa-brands fa-square-facebook" />
             </a>
-          </li>
-        </ul>
+          {/* </li>
+        </ul> */}
+        </div>
       </>
     </div>
   );
