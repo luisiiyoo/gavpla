@@ -6,7 +6,7 @@ import {
   HOME_ROUTE,
   STATES_ROUTE,
   NATIONAL_ROUTE,
-  NEW_ROUTE,
+  NEWS_ROUTE,
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
@@ -18,6 +18,7 @@ import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/Se
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
+import NewsPanel from 'src/components/NewsPanel/NewsPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -26,12 +27,14 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
   },
-  {
-    title: NEW_ROUTE.title,
-    route: NEW_ROUTE.route,
-    iconClass: 'fa-solid fa-newspaper',
-    functionalComponent: () => <UnderConstruction />,
-  },
+  // {
+  //   title: NEWS_ROUTE.title,
+  //   route: NEWS_ROUTE.route,
+  //   iconClass: 'fa-solid fa-newspaper',
+  //   functionalComponent: () => (
+  //     <NewsPanel numLatestSamples={0} numRandomSamples={5} />
+  //   ),
+  // },
   {
     title: STATES_ROUTE.title,
     route: STATES_ROUTE.route,

@@ -5,9 +5,9 @@ export const HOME_ROUTE = {
   route: '',
 };
 
-export const NEW_ROUTE = {
-  title: 'New',
-  route: 'new',
+export const NEWS_ROUTE = {
+  title: 'News',
+  route: 'news',
 };
 
 export const MOTORCYCLE_ROUTE = {

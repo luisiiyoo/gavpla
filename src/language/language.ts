@@ -7,7 +7,7 @@ import {
   STATES_ROUTE,
   THANKS_ROUTE,
   NATIONAL_ROUTE,
-  NEW_ROUTE,
+  NEWS_ROUTE,
   SHOP_PLATES_ROUTE,
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
@@ -54,7 +54,7 @@ export const TRANSLATIONS = {
   NavBar: {
     en: {
       [HOME_ROUTE.route]: 'Home',
-      [NEW_ROUTE.route]: NEW_ROUTE.title,
+      [NEWS_ROUTE.route]: NEWS_ROUTE.title,
       [STATES_ROUTE.route]: STATES_ROUTE.title,
       [NATIONAL_ROUTE.route]: NATIONAL_ROUTE.title,
       [METROPOLITAN_ROUTE.route]: METROPOLITAN_ROUTE.title,
@@ -68,7 +68,7 @@ export const TRANSLATIONS = {
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
-      [NEW_ROUTE.route]: 'Nuevo',
+      [NEWS_ROUTE.route]: 'Novedades',
       [STATES_ROUTE.route]: 'Estados',
       [NATIONAL_ROUTE.route]: 'Nacional',
       [METROPOLITAN_ROUTE.route]: 'Metropolitano',
@@ -78,7 +78,7 @@ export const TRANSLATIONS = {
       [SHOP_PLATES_ROUTE.route]: 'Comprar Placas',
       [FRONTIER_ROUTE.route]: 'Fronteriza',
       [MISSING_PLATES_ROUTE.route]: 'Placas Faltantes',
-      [MOTORCYCLE_ROUTE.route]: "Motocicleta",
+      [MOTORCYCLE_ROUTE.route]: 'Motocicleta',
     },
   },
   LanguageSelector: {

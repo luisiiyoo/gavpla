@@ -36,6 +36,8 @@ export interface BEQueryLicensePlatesData {
   region_codes?: string[];
   vehicle_types?: string[];
   exclude_vehicle_types?: string[];
+  latest_samples?: number;
+  random_samples?: number;
 }
 
 export interface SerchRequestArgs {

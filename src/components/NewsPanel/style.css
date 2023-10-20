@@ -1,0 +1,22 @@
+.NewsPanel {
+  display: grid;
+  /* height: inherit; */
+  align-content: center;
+  text-align: center;
+  grid-template-columns: auto;
+}
+.NewsPanel-Carousel {
+  display: flex;
+  justify-content: center;
+  width: inherit;
+}
+.PlatesCarousel {
+  width: 60%;
+  height: auto;
+}
+
+@media only screen and (max-device-width: 500px) {
+  .PlatesCarousel {
+    width: 80%;
+  }
+}
