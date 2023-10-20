@@ -1,5 +1,5 @@
 .UnderConstruction {
-  height: 100%;
+  height: inherit;
   width: inherit;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,10 @@
   body {
     padding: 3em;
   } */
+
+h3{
+padding-bottom: 10px;
+}
 
 .construction:after {
   background-color: #fdd400 !important; /* colour of the sign */
@@ -28,12 +32,12 @@
 .construction {
   background-color: #fdd400 !important;
   animation: work 0.375s steps(1, start) infinite;
-  font-size: 7px;
-  height: 1em;
+  font-size: 0.8vw;
+  height: 1vh;
   margin-bottom: 37em;
   /* margin-left: 17em; */
   /* position: relative; */
-  width: 1em;
+  width: 1vw;
 
   /* Remove this is you don't care about a fallback image */
 
@@ -95,6 +99,12 @@
     /* row 36 */ -2em 35em, -1em 35em, 4em 35em, 5em 35em,
     /* row 37 */ -1em 36em, 0 36em, 1em 36em, 2em 36em, 3em 36em, 4em 36em,
     /* row 38 */ 0 37em, 1em 37em, 2em 37em, 3em 37em;
+}
+
+@media only screen and (max-device-width: 500px) {
+  .construction {
+    font-size: 1.4vw;
+  }
 }
 
 /* Animation */
