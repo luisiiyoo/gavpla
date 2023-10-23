@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
+import GAVPLA from 'src/images/GAVPLA.png';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
@@ -14,13 +15,14 @@ const HomePage: React.FC = () => {
       <>
         <h2>{translation['title']}</h2>
 
-        {/* <img src = "https://drive.google.com/uc?id=1FfkogwDPmTI58dVYAJ6bhiysCFJqYLcq&export=download" width="200" height="128"/> */}
-        <br />
+        <div className="HomePage-Logo">
+          <img src={GAVPLA} />
+        </div>
+
         <br />
         <p>{translation['body']['p1']}</p>
         <br />
         <p>{translation['body']['p2']}</p>
-        <br />
         <br />
 
         <div className="Author">

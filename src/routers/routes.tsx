@@ -82,7 +82,7 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa-solid fa-arrow-down-up-across-line',
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
-        title={getTranslation(DEFAULT_LANG_CODE, 'VehicleTypes')['FRONTIER']}
+        title={'Fronteriza'}
         regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
         vehicle_types={['FRONTIER']}
         hideStateName={false}

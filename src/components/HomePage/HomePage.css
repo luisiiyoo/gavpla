@@ -2,6 +2,17 @@
   margin: 10px 50px 10px 50px;
 }
 
+.HomePage-Logo {
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.HomePage-Logo img {
+  width: 40vw;
+  height: auto;
+}
+
 .HomePage p {
   text-indent: 50px;
   text-align: justify;
@@ -21,6 +32,9 @@
 @media only screen and (max-device-width: 500px) {
   .HomePage {
     font-size: 4.5vw;
+  }
+  .HomePage-Logo img {
+    width: 55vw;
   }
 }
 
