@@ -54,30 +54,26 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   ].some((item) => item);
 
   const requestDataToBE = async (): Promise<number> => {
-    let allPlatesData: BELicensePlatesData[] = [];
     try {
       setIsLoading(true);
       const codes =
         selectedCodes.length === 0 ? Object.keys(stateCodes) : selectedCodes;
-      for (const regionCode of codes) {
-        const params: BEQueryLicensePlatesData = {
-          region_code: regionCode,
-          from_year: fromYear,
-          to_year: toYear,
-        };
-        const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
-          userID,
-          params,
-        );
-        allPlatesData.push(...platesData);
-      }
-      setPlatesDataArray(allPlatesData);
+      const params: BEQueryLicensePlatesData = {
+        region_codes: codes,
+        from_year: fromYear,
+        to_year: toYear,
+      };
+      const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
+        userID,
+        params,
+      );
+      setPlatesDataArray(platesData);
       setRequestArgs({
         region_codes: selectedCodes,
         from_year: fromYear,
         to_year: toYear,
       });
-      return allPlatesData.length;
+      return platesData.length;
     } catch (error) {
       console.error(error);
       setError({
@@ -96,7 +92,11 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   };
 
   const isAValidYearRange = () => {
-    return fromYear < toYear && fromYear >= 1900 && toYear <= 2100;
+    return (
+      fromYear <= toYear &&
+      fromYear >= availableYears.from_year &&
+      toYear <= availableYears.to_year
+    );
   };
 
   const handleSearch = async () => {
@@ -153,7 +153,10 @@ export const SearchLicensePlatesPanel: React.FC = () => {
         />
         <div
           className="SearchLicensePlatesPanel-Submit"
-          style={{ display: areThereDifferences ? 'block' : 'none' }}
+          style={{
+            display:
+              areThereDifferences && isAValidYearRange() ? 'block' : 'none',
+          }}
         >
           <Button className={`SearchButton`} onClick={handleSearch}>
             {translation['SearchButtonLabel']}

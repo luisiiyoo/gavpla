@@ -36,7 +36,7 @@ export const InputYear = (props) => {
   return (
     <Input
       className="InputYear"
-      type="text"
+      type="number"
       onKeyPress={(event) => {
         if (!/[0-9]/.test(event.key)) {
           event.preventDefault();
@@ -104,6 +104,7 @@ export const OptionsPanel = ({
     stateCodes,
     additionalRegionCodes,
     languageCode,
+    availableYears,
   }: StateType = useSelector((state) => state.main);
   const translation = TRANSLATIONS.Search[languageCode];
 
@@ -149,6 +150,19 @@ export const OptionsPanel = ({
     }),
   };
 
+  let isValidFromYear = true;
+  if (fromYear < availableYears.from_year) {
+    isValidFromYear = false;
+  } else if (fromYear > availableYears.to_year || fromYear > toYear) {
+    isValidFromYear = false;
+  }
+
+  let isValidToYear = true;
+  if (toYear > availableYears.to_year) {
+    isValidToYear = false;
+  } else if (toYear < availableYears.from_year || toYear < fromYear) {
+    isValidToYear = false;
+  }
   return (
     <div className="OptionsPanel">
       <div className="OptionsPanel-SelectYear">
@@ -156,9 +170,13 @@ export const OptionsPanel = ({
         <div className="OptionsPanel-SelectYear-Range">
           <InputYear
             name="FromYear"
+            valid={isValidFromYear}
+            invalid={!isValidFromYear}
             placeholder={translation.OptionsPanel.placeholderFromYearsSelection}
             maxLength={4}
-            value={fromYear}
+            value={Number(fromYear).toString().replace(/^[0]+/g, '')}
+            min={availableYears.from_year}
+            max={availableYears.to_year}
             onChange={handleFromYearChanged}
             onBlur={(e) => {
               const year = Number(e.target.value);
@@ -178,9 +196,13 @@ export const OptionsPanel = ({
           />
           <InputYear
             name="ToYear"
+            valid={isValidToYear}
+            invalid={!isValidToYear}
             placeholder={translation.OptionsPanel.placeholderToYearsSelection}
             maxLength={4}
-            value={toYear}
+            value={Number(toYear).toString().replace(/^[0]+/g, '')}
+            min={availableYears.from_year}
+            max={availableYears.to_year}
             onChange={handleToYearChanged}
             onBlur={(e) => {
               const year = Number(e.target.value);

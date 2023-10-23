@@ -32,6 +32,16 @@ export const AVAILABLE_LANGUAGUES_CODES = LANGUAGES.map(
   (language) => language.languageCode,
 );
 
+export const NAVIGATOR_LANG: string = window.navigator.language
+  .slice(0, 2)
+  .toLocaleLowerCase();
+
+export const DEFAULT_LANG_CODE: string = AVAILABLE_LANGUAGUES_CODES.includes(
+  NAVIGATOR_LANG,
+)
+  ? NAVIGATOR_LANG
+  : ES_LANGUAGE;
+
 export const TRANSLATIONS = {
   VehicleTypes: {
     en: {
@@ -99,19 +109,18 @@ export const TRANSLATIONS = {
   },
   HomePage: {
     en: {
-      title: 'GAVPLA - Galería Virtual de Placas',
+      title: 'GAVPLA - Galería Virtual de Placas Antiguas',
       body: {
-        p1:
-          'Welcome to my personal virtual license plates gallery (Galería Virtual de Placas).',
+        p1: 'Welcome to my personal virtual gallery of antique license plates.',
         p2:
           "In this website I mix two of my hobbies, developing apps and collecting Mexican license plates. This website is still in progress, keep visiting this page I'm constantly adding new items to the collection.",
         author: 'Author',
       },
     },
     es: {
-      title: 'GAVPLA - Galería Virtual de Placas',
+      title: 'GAVPLA - Galería Virtual de Placas Antiguas',
       body: {
-        p1: 'Bienvenidos a mi Galería Virtual de Placas.',
+        p1: 'Bienvenidos a mi Galería Virtual de Placas Antiguas.',
         p2:
           'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas Mexicanas. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas placas a la coleción.',
         author: 'Autor',
@@ -152,11 +161,13 @@ export const TRANSLATIONS = {
       SucceedSearchInfo: 'Placas encontradas.',
     },
   },
-  Missing: {
+  General: {
     en: {
       title: 'Missing License Plates',
       Years: 'Years',
+      Year: 'Years',
       States: 'States',
+      State: 'State',
       MissingDetails: {
         SeeDetails: 'See details',
         HideDetails: 'Hide details',
@@ -167,7 +178,9 @@ export const TRANSLATIONS = {
     es: {
       title: 'Placas Faltantes',
       Years: 'Años',
+      Year: 'Año',
       States: 'Estados',
+      State: 'Estado',
       MissingDetails: {
         SeeDetails: 'Ver detalles',
         HideDetails: 'Ocultar detalles',

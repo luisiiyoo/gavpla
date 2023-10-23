@@ -38,7 +38,7 @@ const MissingPlatesPanel = () => {
     stateCodes,
     languageCode,
   }: StateType = useSelector((state) => state.main);
-  const translation = getTranslation(languageCode, 'Missing');
+  const translation = getTranslation(languageCode, 'General');
 
   const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
     [],

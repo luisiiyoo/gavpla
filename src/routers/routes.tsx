@@ -6,7 +6,6 @@ import {
   HOME_ROUTE,
   STATES_ROUTE,
   NATIONAL_ROUTE,
-  NEWS_ROUTE,
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
@@ -18,7 +17,8 @@ import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/Se
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
-import NewsPanel from 'src/components/NewsPanel/NewsPanel';
+import { getTranslation } from 'src/language';
+import { DEFAULT_LANG_CODE } from 'src/language/language';
 
 const navigationItems: NavItem[] = [
   {
@@ -82,7 +82,7 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa-solid fa-arrow-down-up-across-line',
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
-        title={'Fronteriza'}
+        title={getTranslation(DEFAULT_LANG_CODE, 'VehicleTypes')['FRONTIER']}
         regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
         vehicle_types={['FRONTIER']}
         hideStateName={false}

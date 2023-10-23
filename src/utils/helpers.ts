@@ -103,11 +103,13 @@ export const isASmallDeviceByHeight = (height: number): boolean => {
   return window.screen.height < height;
 };
 
-export const toTitleCase = (str: string): string =>
-  str
+export const toTitleCase = (str: string): string => {
+  if (str === '') return str;
+  return str
     .split(' ')
     .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
     .join(' ');
+};
 
 export const sortInplaceAlphabetically = (items: any[], key) => {
   items.sort((a, b) => {
