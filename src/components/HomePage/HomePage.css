@@ -7,9 +7,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation-name: example;
+  filter: drop-shadow(0 0 1rem white);
+  animation: example 1.5s alternate infinite;
 }
+@keyframes example {
+  /* 33% {filter: drop-shadow(0 0 1.75rem green);}
+  66% {filter: drop-shadow(0 0 1.75rem white);}
+  99% {filter: drop-shadow(0 0 1.75rem red);} */
+  100% {
+    filter: drop-shadow(0 0 1rem crimson);
+  }
+}
+
 .HomePage-Logo img {
-  width: 40vw;
+  width: 45%;
   height: auto;
 }
 
@@ -34,7 +46,7 @@
     font-size: 4.5vw;
   }
   .HomePage-Logo img {
-    width: 55vw;
+    width: 100%;
   }
 }
 

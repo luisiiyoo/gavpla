@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Collapsible from 'react-collapsible';
-import { get_selected_bg_color, get_selected_font_color } from 'src/utils';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
+import './style.css';
 
 export interface MissingDetailsPanelProps {
   filteredYears: string[];
@@ -13,23 +13,6 @@ export interface MissingDetailsPanelProps {
   selectedYear: string;
 }
 
-const style: React.CSSProperties = {
-  paddingTop: '10px',
-  margin: '10px',
-  paddingBottom: '10px',
-  alignContent: 'center',
-  textAlign: 'center',
-  display: 'block',
-  justifyContent: 'center',
-  fontSize: 'small',
-  // backgroundColor: "rgba(0, 0, 0, 0.3)",
-};
-const triggerStyle = {
-  padding: '5px 10px',
-  width: '100%',
-  borderRadius: '25px',
-  fontSize: 'small',
-};
 const MissingDetailsPanel = ({
   filteredStates,
   filteredYears,
@@ -49,8 +32,9 @@ const MissingDetailsPanel = ({
   let missingStats = stateOptions.filter((x) => !filteredStates.includes(x));
 
   return (
-    <div className="MissingDetailsPanel" style={style}>
+    <div className="MissingDetailsPanel">
       <Collapsible
+        // className='MissingDetailsPanel-Collapsible'
         open={isOpen}
         onTriggerClosing={() => {
           setIsOpen(false);
@@ -63,17 +47,9 @@ const MissingDetailsPanel = ({
             ? translation['MissingDetails']['HideDetails']
             : translation['MissingDetails']['SeeDetails']
         }
-        triggerStyle={{
-          ...triggerStyle,
-          backgroundColor: get_selected_bg_color(),
-        }}
+        // triggerClassName="MissingDetailsPanel-Collapsible-Trigger"
       >
-        <div
-          style={{
-            borderStyle: 'double',
-            borderColor: get_selected_font_color(),
-          }}
-        >
+        <div className="MissingDetailsPanel-Body">
           {showMissingDetailsByYears && (
             <>
               <p>
@@ -101,7 +77,7 @@ const MissingDetailsPanel = ({
               <p>
                 {missingStats.map((state, key) => (
                   <span key={key} className="YearChoice MissingItem">
-                    {state}
+                    {stateCodes[state]}
                   </span>
                 ))}
               </p>

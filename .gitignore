@@ -35,3 +35,7 @@ cypress.env.json
 # Credentials
 google-credentials.json
 google-token.json
+
+# certificates
+*.crt
+*.key

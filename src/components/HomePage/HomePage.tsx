@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
         <h2>{translation['title']}</h2>
 
         <div className="HomePage-Logo">
-          <img src={GAVPLA} />
+          <img src={GAVPLA} alt="GAVPLA" />
         </div>
 
         <br />

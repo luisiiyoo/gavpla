@@ -17,8 +17,6 @@ import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/Se
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
-import { getTranslation } from 'src/language';
-import { DEFAULT_LANG_CODE } from 'src/language/language';
 
 const navigationItems: NavItem[] = [
   {

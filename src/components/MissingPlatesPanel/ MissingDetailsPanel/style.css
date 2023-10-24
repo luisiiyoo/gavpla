@@ -1,0 +1,24 @@
+.MissingDetailsPanel-Body {
+  border-style: double;
+  border-color: var(--selected-item-font-color);
+  padding-top: 15px;
+}
+
+.Collapsible {
+  padding-top: 10px;
+  margin: 10px;
+  padding-bottom: 10px;
+  align-content: center;
+  text-align: center;
+  display: block;
+  justify-content: center;
+  font-size: small;
+}
+
+.Collapsible__trigger {
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 25px;
+  font-size: small;
+  background-color: var(--dark-color-app);
+}
