@@ -27,7 +27,7 @@
 
 .HomePage p {
   text-indent: 50px;
-  text-align: justify;
+  text-align: start;
   font-style: italic;
 }
 
@@ -47,6 +47,10 @@
   }
   .HomePage-Logo img {
     width: 100%;
+  }
+  .HomePage p {
+    text-indent: 0px;
+    text-align: center;
   }
 }
 

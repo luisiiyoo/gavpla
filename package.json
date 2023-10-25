@@ -40,7 +40,7 @@
   "scripts": {
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
-    "dev": "PORT=3030 HOST=0.0.0.0 react-scripts start",
+    "development": " HTTPS=false NODE_ENV=development HOST=$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}') PORT=20000 react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "heroku-postbuild": "yarn run build",
