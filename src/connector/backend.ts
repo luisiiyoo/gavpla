@@ -21,8 +21,8 @@ import {
 } from './backend.types';
 
 const {
-  backendHost: BACKEND_URL,
-  defaultUsername: DEFAULT_USERNAME,
+  BACKEND_HOST,
+  DEFAULT_USERNAME,
 } = frontConfig;
 
 export class BackendConnector {
@@ -63,7 +63,7 @@ export class BackendConnector {
   ): Promise<string> {
     let userID: string | null = sessionStorage.getItem(storageVarNames.USER_ID);
     if (!userID || fresh) {
-      const url = `${BACKEND_URL}/users/?username=${username}`;
+      const url = `${BACKEND_HOST}/users/?username=${username}`;
       const result: BEUserInfo = await this.handleRequest({
         method: 'GET',
         url,
@@ -78,7 +78,7 @@ export class BackendConnector {
   async getLicensePlatesStateCodes(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateRegionCodes> {
-    const url = `${BACKEND_URL}/license-plates/state-codes?country_code=${countryCode}`;
+    const url = `${BACKEND_HOST}/license-plates/state-codes?country_code=${countryCode}`;
     const result: BELicensePlateRegionCodes = await this.handleRequest({
       method: 'GET',
       url,
@@ -89,7 +89,7 @@ export class BackendConnector {
   async getLicensePlatesAvailableYears(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateAvailableYears> {
-    const url = `${BACKEND_URL}/license-plates/available-years?country_code=${countryCode}`;
+    const url = `${BACKEND_HOST}/license-plates/available-years?country_code=${countryCode}`;
     const result: BELicensePlateAvailableYears = await this.handleRequest({
       method: 'GET',
       url,
@@ -100,7 +100,7 @@ export class BackendConnector {
   async getLicensePlatesAdditionalRegionCodes(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateRegionCodes> {
-    const url = `${BACKEND_URL}/license-plates/additional-region-codes?country_code=${countryCode}`;
+    const url = `${BACKEND_HOST}/license-plates/additional-region-codes?country_code=${countryCode}`;
     const result: BELicensePlateRegionCodes = await this.handleRequest({
       method: 'GET',
       url,
@@ -109,7 +109,7 @@ export class BackendConnector {
   }
 
   async getVehicleTypes(countryCode: string = 'MX'): Promise<BEVehicleTypes> {
-    const url = `${BACKEND_URL}/license-plates/vehicle-types?country_code=${countryCode}`;
+    const url = `${BACKEND_HOST}/license-plates/vehicle-types?country_code=${countryCode}`;
     const result: BEVehicleTypes = await this.handleRequest({
       method: 'GET',
       url,
@@ -121,7 +121,7 @@ export class BackendConnector {
     userId: string,
     queryParams: BEQueryLicensePlatesData,
   ): Promise<BELicensePlatesData[]> {
-    const url = `${BACKEND_URL}/users/${userId}/license-plates/`;
+    const url = `${BACKEND_HOST}/users/${userId}/license-plates/`;
     const result: BELicensePlatesData[] = await this.handleRequest({
       method: 'GET',
       url,
@@ -131,7 +131,7 @@ export class BackendConnector {
   }
 
   getUserLicensePlatesImageURL(userId: string, userPlateId: string): string {
-    const url = `${BACKEND_URL}/users/${userId}/license-plates/${userPlateId}/image`;
+    const url = `${BACKEND_HOST}/users/${userId}/license-plates/${userPlateId}/image`;
     return url;
   }
 
@@ -139,7 +139,7 @@ export class BackendConnector {
     userId: string,
     userPlateId: string,
   ): Promise<HTMLImageElement> {
-    const url = `${BACKEND_URL}/users/${userId}/license-plates/${userPlateId}/image`;
+    const url = `${BACKEND_HOST}/users/${userId}/license-plates/${userPlateId}/image`;
     const result: HTMLImageElement = await this.handleRequest({
       method: 'GET',
       url,
@@ -150,7 +150,7 @@ export class BackendConnector {
   // --------------------------
 
   async checkBackendHealth(): Promise<boolean> {
-    const url = `${BACKEND_URL}/`;
+    const url = `${BACKEND_HOST}/`;
     const result = await this.handleRequest({ method: 'GET', url });
     const healthResponse: HealthResponse = result as HealthResponse;
     return !!healthResponse;
@@ -159,7 +159,7 @@ export class BackendConnector {
   async getResourcesMetadata(
     accessTokenID: string,
   ): Promise<GetResourcesMetadata> {
-    const url = `${BACKEND_URL}/access_token/${accessTokenID}/inventory/`;
+    const url = `${BACKEND_HOST}/access_token/${accessTokenID}/inventory/`;
     const result: GetResourcesMetadata = await this.handleRequest({
       method: 'GET',
       url,
@@ -175,7 +175,7 @@ export class BackendConnector {
 
       if (!!tokenID) return tokenID;
 
-      const url = `${BACKEND_URL}/access_token?client_id=${''}`;
+      const url = `${BACKEND_HOST}/access_token?client_id=${''}`;
       const result: GetAccessTokenResponse = await this.handleRequest({
         method: 'GET',
         url,
@@ -209,7 +209,7 @@ export class BackendConnector {
   }
 
   private async getCarPlatesInventory(accessTokenID: string) {
-    const url = `${BACKEND_URL}/access_token/${accessTokenID}/inventory/car-plates/`;
+    const url = `${BACKEND_HOST}/access_token/${accessTokenID}/inventory/car-plates/`;
     const result = await this.handleRequest({ method: 'GET', url });
     return result;
   }

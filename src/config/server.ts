@@ -4,22 +4,27 @@
  * @interface FrontendConfig
  */
 interface FrontendConfig {
-  serverName: string;
-  backendHost: string;
-  defaultUsername: string;
+  SERVER_NAME: string;
+  BACKEND_HOST: string;
+  DEFAULT_USERNAME: string;
 }
 
-if (!process.env.REACT_APP_BACKEND_HOST) {
-  console.warn(
-    '.env file was not created, default values will used.'.toUpperCase(),
-  );
+const getEnvironmentValue = (varName: string): string => {
+  // const ENV = process.env.NODE_ENV.toUpperCase()
+  const value = (
+    // process.env[`REACT_APP_${ENV}_${varName}`] || 
+    process.env[`REACT_APP_${varName}`]
+    );
+  if (value === undefined) throw Error(`"${varName}" environment variable not found.`)
+  console.log(`${varName}: ${value}`)
+  return value
 }
 
 // default settings are for development environment
 const frontConfig: FrontendConfig = {
-  serverName: process.env.REACT_APP_SERVER_NAME || 'Front-End app',
-  backendHost: process.env.REACT_APP_BACKEND_HOST || 'http://0.0.0.0:3000',
-  defaultUsername: process.env.REACT_APP_DEFAULT_USERNAME || '',
+  SERVER_NAME: getEnvironmentValue("SERVER_NAME"),
+  BACKEND_HOST: getEnvironmentValue("BACKEND_HOST"),
+  DEFAULT_USERNAME: getEnvironmentValue("DEFAULT_USERNAME"),
 };
 
 export default frontConfig;

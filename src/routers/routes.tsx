@@ -25,6 +25,12 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
   },
+  {
+    title: HOME_ROUTE.title,
+    route: "gavpla",
+    iconClass: 'fa fa-fw fa-home',
+    functionalComponent: () => <HomePage />,
+  },
   // {
   //   title: NEWS_ROUTE.title,
   //   route: NEWS_ROUTE.route,

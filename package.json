@@ -1,7 +1,7 @@
 {
-  "name": "license-plates-gallery",
-  "version": "0.1.0",
-  "homepage": "https://luisiiyoo.github.io/",
+  "name": "gavpla",
+  "version": "1.0.0",
+  "homepage": "https://luisiiyoo.github.io/gavpla",
   "author": {
     "name": "Luis Gonzalez Guzman",
     "email": "luis.gonzalez.guzman.93@gmail.com",
@@ -40,7 +40,9 @@
   "scripts": {
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
-    "development": " HTTPS=false NODE_ENV=development HOST=$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}') PORT=20000 react-scripts start",
+    "start:development": "HTTPS=false  HOST=0.0.0.0 PORT=20000 react-scripts start",
+    "start:local": "HTTPS=false HOST=localhost PORT=10000 react-scripts start",
+    "start:production": "HTTPS=false HOST=0.0.0.0 PORT=40000 react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "heroku-postbuild": "yarn run build",
