@@ -27,7 +27,7 @@ const navigationItems: NavItem[] = [
   },
   {
     title: HOME_ROUTE.title,
-    route: "gavpla",
+    route: 'gavpla',
     iconClass: 'fa fa-fw fa-home',
     functionalComponent: () => <HomePage />,
   },

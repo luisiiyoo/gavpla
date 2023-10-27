@@ -20,10 +20,7 @@ import {
   BELicensePlateAvailableYears,
 } from './backend.types';
 
-const {
-  BACKEND_HOST,
-  DEFAULT_USERNAME,
-} = frontConfig;
+const { BACKEND_HOST, DEFAULT_USERNAME } = frontConfig;
 
 export class BackendConnector {
   private async handleRequest({ method, url, data, params }: RequestDetails) {
