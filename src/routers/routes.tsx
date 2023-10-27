@@ -29,6 +29,7 @@ const navigationItems: NavItem[] = [
     title: HOME_ROUTE.title,
     route: 'gavpla',
     iconClass: 'fa fa-fw fa-home',
+    hidden: true,
     functionalComponent: () => <HomePage />,
   },
   // {
