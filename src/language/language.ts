@@ -122,7 +122,7 @@ export const TRANSLATIONS = {
       body: {
         p1: 'Bienvenidos a mi Galería Virtual de Placas Antiguas.',
         p2:
-          'En esta pagina web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas Mexicanas. Éste sitio aun esta en proceso de desarrollo, te invito a seguir visitandolo, sigo agregando nuevas placas a la coleción.',
+          'En esta página web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas Mexicanas. Éste sitio aún está en proceso de desarrollo, te invito a seguir visitándolo, sigo agregando nuevas placas a la coleción.',
         author: 'Autor',
       },
     },
