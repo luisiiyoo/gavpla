@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import {
   RouterProps,
   MainComponentProps as BodyComponentProps,
@@ -44,14 +44,14 @@ const Routes: React.FC<RouterProps> = () => {
 
   return (
     <div className="Routes">
-      <BrowserRouter>
+      <HashRouter>
         <Route
           render={({ history }) => (
             <NavBar history={history} navBarTitle={'GAVPLA'} />
           )}
         />
         <BodyComponent isExpandedNavBar={isExpandedNavBar} />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
