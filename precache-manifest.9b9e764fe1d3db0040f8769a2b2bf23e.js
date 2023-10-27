@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fd6e6a719d20780bd967ba82983a6243",
+    "revision": "e08f99fd9d2158951d8fb1e15ff56e75",
     "url": "/gavpla/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gavpla/static/css/2.e5487064.chunk.css"
   },
   {
-    "revision": "84ed447d23fdb91aa6be",
+    "revision": "30ba066fa25e7300bd4c",
     "url": "/gavpla/static/css/main.c0353057.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gavpla/static/js/2.f1d86fc2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "84ed447d23fdb91aa6be",
-    "url": "/gavpla/static/js/main.09ac4893.chunk.js"
+    "revision": "30ba066fa25e7300bd4c",
+    "url": "/gavpla/static/js/main.bf287047.chunk.js"
   },
   {
     "revision": "34f3cf253f1823335484",
