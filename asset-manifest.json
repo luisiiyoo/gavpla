@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.60298b54.chunk.css",
-    "main.js": "/static/js/main.39c48584.chunk.js",
-    "main.js.map": "/static/js/main.39c48584.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.ee8a6cf4.js",
-    "runtime-main.js.map": "/static/js/runtime-main.ee8a6cf4.js.map",
-    "static/css/2.e5487064.chunk.css": "/static/css/2.e5487064.chunk.css",
-    "static/js/2.747a074b.chunk.js": "/static/js/2.747a074b.chunk.js",
-    "static/js/2.747a074b.chunk.js.map": "/static/js/2.747a074b.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.aa432abfd74fc0bbc00b59000977828b.js": "/precache-manifest.aa432abfd74fc0bbc00b59000977828b.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.e5487064.chunk.css.map": "/static/css/2.e5487064.chunk.css.map",
-    "static/css/main.60298b54.chunk.css.map": "/static/css/main.60298b54.chunk.css.map",
-    "static/js/2.747a074b.chunk.js.LICENSE.txt": "/static/js/2.747a074b.chunk.js.LICENSE.txt",
-    "static/media/GAVPLA.png": "/static/media/GAVPLA.6ecfe4e6.png",
-    "static/media/mx.png": "/static/media/mx.df568fd5.png",
-    "static/media/us.png": "/static/media/us.218f936f.png"
+    "main.css": "/home/static/css/main.60298b54.chunk.css",
+    "main.js": "/home/static/js/main.2edde824.chunk.js",
+    "main.js.map": "/home/static/js/main.2edde824.chunk.js.map",
+    "runtime-main.js": "/home/static/js/runtime-main.ee7d2c02.js",
+    "runtime-main.js.map": "/home/static/js/runtime-main.ee7d2c02.js.map",
+    "static/css/2.e5487064.chunk.css": "/home/static/css/2.e5487064.chunk.css",
+    "static/js/2.747a074b.chunk.js": "/home/static/js/2.747a074b.chunk.js",
+    "static/js/2.747a074b.chunk.js.map": "/home/static/js/2.747a074b.chunk.js.map",
+    "index.html": "/home/index.html",
+    "precache-manifest.b26bfabe1f00afa4f76cb1bf6481c659.js": "/home/precache-manifest.b26bfabe1f00afa4f76cb1bf6481c659.js",
+    "service-worker.js": "/home/service-worker.js",
+    "static/css/2.e5487064.chunk.css.map": "/home/static/css/2.e5487064.chunk.css.map",
+    "static/css/main.60298b54.chunk.css.map": "/home/static/css/main.60298b54.chunk.css.map",
+    "static/js/2.747a074b.chunk.js.LICENSE.txt": "/home/static/js/2.747a074b.chunk.js.LICENSE.txt",
+    "static/media/GAVPLA.png": "/home/static/media/GAVPLA.6ecfe4e6.png",
+    "static/media/mx.png": "/home/static/media/mx.df568fd5.png",
+    "static/media/us.png": "/home/static/media/us.218f936f.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.ee8a6cf4.js",
+    "static/js/runtime-main.ee7d2c02.js",
     "static/css/2.e5487064.chunk.css",
     "static/js/2.747a074b.chunk.js",
     "static/css/main.60298b54.chunk.css",
-    "static/js/main.39c48584.chunk.js"
+    "static/js/main.2edde824.chunk.js"
   ]
 }
