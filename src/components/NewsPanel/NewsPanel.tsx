@@ -20,6 +20,10 @@ import {
 } from 'reactstrap';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getTranslation } from 'src/language';
+import imgAntiquePlates from 'src/images/news/antiquePlates.jpg';
+import imgDFPlates from 'src/images/news/DFPlates.jpg';
+import imgMotorcycle from 'src/images/news/motorcycle.jpg';
 
 export interface NewsPanelProps {
   numLatestSamples: number;
@@ -30,7 +34,10 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
   numLatestSamples,
   numRandomSamples,
 }) => {
-  const { userID }: StateType = useSelector((state) => state.main);
+  const { userID, languageCode }: StateType = useSelector(
+    (state) => state.main,
+  );
+  const translation = getTranslation(languageCode, 'News');
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({
@@ -93,7 +100,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
     }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ item }) => item);
-  const title = 'Novedades';
+
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
@@ -103,14 +110,15 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
         className="NewsPanel"
         style={{ display: isLoading ? 'none' : 'block' }}
       >
-        <Header title={toTitleCase(title)} />
+        <Header title={toTitleCase(translation['Title'])} />
         <UncontrolledAccordion defaultOpen={['1']} stayOpen>
+          {/*  */}
           <AccordionItem>
             <AccordionHeader targetId="1">
-              <span>New Plates</span>
+              <span>{translation['NewPlates']['Header']}</span>
             </AccordionHeader>
             <AccordionBody accordionId="1">
-              <p>Some new license plates added recently to the collection.</p>
+              <p>{translation['NewPlates']['Body']}</p>
 
               <div className="NewsPanel-Carousel">
                 <UncontrolledCarousel
@@ -122,6 +130,46 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
               </div>
             </AccordionBody>
           </AccordionItem>
+          {/*  */}
+          <AccordionItem>
+            <AccordionHeader targetId="2">
+              <span>{translation['AntiquePlates']['Header']}</span>
+            </AccordionHeader>
+            <AccordionBody accordionId="2">
+              <p>{translation['AntiquePlates']['Body']}</p>
+
+              {/* <div className="NewsPanel-Carousel"> */}
+              <img className="NewsImage" src={imgAntiquePlates} alt="img" />
+              {/* </div> */}
+            </AccordionBody>
+          </AccordionItem>
+          {/*  */}
+          <AccordionItem>
+            <AccordionHeader targetId="3">
+              <span>{translation['DFSeries']['Header']}</span>
+            </AccordionHeader>
+            <AccordionBody accordionId="3">
+              <p>{translation['DFSeries']['Body']}</p>
+
+              {/* <div className="NewsPanel-Carousel"> */}
+              <img className="NewsImage" src={imgDFPlates} alt="img" />
+              {/* </div> */}
+            </AccordionBody>
+          </AccordionItem>
+          {/*  */}
+          <AccordionItem>
+            <AccordionHeader targetId="4">
+              <span>{translation['Motorcycle']['Header']}</span>
+            </AccordionHeader>
+            <AccordionBody accordionId="4">
+              <p>{translation['Motorcycle']['Body']}</p>
+
+              {/* <div className="NewsPanel-Carousel"> */}
+              <img className="NewsImage" src={imgMotorcycle} alt="img" />
+              {/* </div> */}
+            </AccordionBody>
+          </AccordionItem>
+          {/*  */}
         </UncontrolledAccordion>
       </div>
     </>

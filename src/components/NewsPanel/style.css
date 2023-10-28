@@ -11,7 +11,7 @@
   /* width: inherit; */
 }
 .PlatesCarousel {
-  width: 70%;
+  width: 40%;
   height: auto;
   box-shadow: 10px 10px 5px #000;
   -moz-box-shadow: 10px 10px 5px #000;
@@ -23,12 +23,6 @@
   border-radius: 5px;
 }
 
-.accordion {
-  /* width: 20%; */
-  /* height: 10px; */
-
-  /* color: white; */
-}
 .accordion-item {
   background-color: var(--background-color) !important;
   /* background-color: rgba(255, 255, 255, 0.9)  !important; */
@@ -36,6 +30,7 @@
   color: white !important;
   /* width: 80%; */
   font-size: medium !important;
+  padding-bottom: 20px !important;
 }
 
 .accordion-button:not(.show) {
@@ -50,6 +45,10 @@
   font-weight: bolder;
   font-size: large !important;
 }
+.NewsImage {
+  width: 40%;
+  height: auto;
+}
 
 .accordion-button:active {
   background-color: white !important;
@@ -59,8 +58,17 @@
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
-@media only screen and (min-device-width: 500px) {
+@media only screen and (max-device-width: 500px) {
   .PlatesCarousel {
-    width: 50%;
+    width: 80%;
+  }
+  .accordion-item {
+    font-size: smaller !important;
+  }
+  .accordion-button:not(.show) {
+    font-size: small !important;
+  }
+  .NewsImage {
+    width: 80%;
   }
 }

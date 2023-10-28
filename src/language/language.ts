@@ -189,6 +189,50 @@ export const TRANSLATIONS = {
       },
     },
   },
+  News: {
+    en: {
+      Title: 'News and Curiosities',
+      NewPlates: {
+        Header: 'New Plates',
+        Body: 'Some new license plates added recently to the collection.',
+      },
+      AntiquePlates: {
+        Header: 'Antique Plates - Colombia 🇨🇴 and México 🇲🇽',
+        Body:
+          'In order to obtain these plates in both countries, the vehicle must be in perfect physical and mechanical condition, in addition, the vehicle must be at least 35 (🇨🇴) or 30 (🇲🇽) years old, which makes them difficult to obtain plates.',
+      },
+      DFSeries: {
+        Header: 'DF - Car, Motorcycle and Bike License Plate',
+        Body:
+          'The following 3 plates belong to the year 1994 and 1995, the largest belonged to a car, the medium one to a motorcycle and the smallest to a bicycle.',
+      },
+      Motorcycle: {
+        Header: 'Motorcycle license plate collection',
+        Body: 'Coming soon to GAVPLA',
+      },
+    },
+    es: {
+      Title: 'Novedades y Curiosidades',
+      NewPlates: {
+        Header: 'Placas Nuevas',
+        Body: 'Algunas placas nuevas agregadas recientemente.',
+      },
+      AntiquePlates: {
+        Header: 'Placas de auto antiguo de Colombia 🇨🇴 y México 🇲🇽',
+        Body:
+          'Para poder obtener estas placas en ambos países el vehículo debe estar en perfectas condiciones físicas y mecánicas, además el vehículo debe tener como mínimo 35 (🇨🇴) o 30 (🇲🇽) años de antigüedad, lo que las convierte en placas difíciles de conseguir.',
+      },
+      DFSeries: {
+        Header: 'DF - Car, Motorcycle and Bike License Plate',
+        Body:
+          'Las siguientes 3 placas pertenecen al año 1994 y 1995, la más grande perteneció a un carro, la mediana a una motocicleta y la más chica a una bicicleta.',
+      },
+      Motorcycle: {
+        Header: 'Colección de placas de motocicleta',
+        Body: 'Próximamente en GAVPLA',
+      },
+    },
+  },
 };
 
 export const getTranslation = (
