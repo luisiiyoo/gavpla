@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/gavpla/precache-manifest.171344fc0f0cd0dae4c9b34f86fcbbf9.js"
+  "/gavpla/precache-manifest.35c6e31312c0bec5fe5e36040a6d1791.js"
 );
 
 self.addEventListener('message', (event) => {
