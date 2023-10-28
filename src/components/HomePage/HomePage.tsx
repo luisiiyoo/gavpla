@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 import GAVPLA from 'src/images/GAVPLA.png';
@@ -10,6 +10,25 @@ const HomePage: React.FC = () => {
   } = useSelector((state) => state);
   const translation = getTranslation(languageCode, 'HomePage');
 
+  useEffect(() => {
+    // Add your script here
+    const script = document.createElement('script');
+    script.src =
+      '//rf.revolvermaps.com/0/0/8.js?i=5wm*****1mh&m=0&c=ff0000&cr1=ffffff&f=arial&l=33';
+    script.async = true;
+    // Load the script inside the specific div with the id "mapContainer"
+    const mapContainer = document.getElementById('mapContainer');
+    console.log('ey');
+    if (mapContainer) {
+      mapContainer.appendChild(script);
+    }
+    return () => {
+      // Remove the script when the component unmounts
+      if (mapContainer && mapContainer.contains(script)) {
+        mapContainer.removeChild(script);
+      }
+    };
+  }, []);
   return (
     <div className="HomePage" style={{}}>
       <>
@@ -21,6 +40,10 @@ const HomePage: React.FC = () => {
 
         <br />
         <p>{translation['body']['p1']}</p>
+
+        <div id="mapContainer">
+          {/* The globe script will be loaded inside this div */}
+        </div>
         <br />
         <p>{translation['body']['p2']}</p>
         <br />
@@ -29,7 +52,9 @@ const HomePage: React.FC = () => {
           <h3>{translation['body']['author']}</h3>
           {/* <ul>
           <li> */}
-          Luis González Guzmán &nbsp;
+          Luis González Guzmán
+          <br />
+          &nbsp; &nbsp;
           <a
             className="AuthorLink"
             href="https://www.linkedin.com/in/luis-gonz%C3%A1lez-guzm%C3%A1n-2b464b139/"
@@ -38,14 +63,14 @@ const HomePage: React.FC = () => {
           >
             <i className="fa-brands fa-linkedin" />
           </a>
-          &nbsp;
+          &nbsp; &nbsp;
           <a
             className="AuthorLink"
             href="mailto:luis.gonzalez.guzman.93@gmail.com"
           >
             <i className="fa-solid fa-envelope" />
           </a>
-          &nbsp;
+          &nbsp; &nbsp;
           <a
             className="AuthorLink"
             href="https://www.facebook.com/LuiSiiYoo"

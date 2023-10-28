@@ -11,8 +11,15 @@ import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
-import { UncontrolledCarousel } from 'reactstrap';
+import {
+  UncontrolledCarousel,
+  UncontrolledAccordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionBody,
+} from 'reactstrap';
 import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export interface NewsPanelProps {
   numLatestSamples: number;
@@ -91,20 +98,32 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className="NewsPanel">
-          <Header title={toTitleCase(title)} />
-          <p>H</p>
-          <div className="NewsPanel-Carousel">
-            <UncontrolledCarousel
-              className="PlatesCarousel"
-              items={carouselItems}
-            />
-          </div>
-        </div>
-      )}
+      {isLoading ? <Loader /> : undefined}
+      <div
+        className="NewsPanel"
+        style={{ display: isLoading ? 'none' : 'block' }}
+      >
+        <Header title={toTitleCase(title)} />
+        <UncontrolledAccordion defaultOpen={['1']} stayOpen>
+          <AccordionItem>
+            <AccordionHeader targetId="1">
+              <span>New Plates</span>
+            </AccordionHeader>
+            <AccordionBody accordionId="1">
+              <p>Some new license plates added recently to the collection.</p>
+
+              <div className="NewsPanel-Carousel">
+                <UncontrolledCarousel
+                  // controls={false}
+                  indicators={false}
+                  className="PlatesCarousel"
+                  items={carouselItems}
+                />
+              </div>
+            </AccordionBody>
+          </AccordionItem>
+        </UncontrolledAccordion>
+      </div>
     </>
   );
 };

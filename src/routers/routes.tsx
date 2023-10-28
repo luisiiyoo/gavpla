@@ -10,6 +10,7 @@ import {
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
   MOTORCYCLE_ROUTE,
+  NEWS_ROUTE,
 } from './constants';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
@@ -17,6 +18,7 @@ import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/Se
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
+import NewsPanel from 'src/components/NewsPanel/NewsPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -32,14 +34,14 @@ const navigationItems: NavItem[] = [
     hidden: true,
     functionalComponent: () => <HomePage />,
   },
-  // {
-  //   title: NEWS_ROUTE.title,
-  //   route: NEWS_ROUTE.route,
-  //   iconClass: 'fa-solid fa-newspaper',
-  //   functionalComponent: () => (
-  //     <NewsPanel numLatestSamples={0} numRandomSamples={5} />
-  //   ),
-  // },
+  {
+    title: NEWS_ROUTE.title,
+    route: NEWS_ROUTE.route,
+    iconClass: 'fa-solid fa-newspaper',
+    functionalComponent: () => (
+      <NewsPanel numLatestSamples={10} numRandomSamples={0} />
+    ),
+  },
   {
     title: STATES_ROUTE.title,
     route: STATES_ROUTE.route,

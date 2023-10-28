@@ -16,7 +16,6 @@ const getEnvironmentValue = (varName: string): string => {
     process.env[`REACT_APP_${varName}`];
   if (value === undefined)
     throw Error(`"${varName}" environment variable not found.`);
-  console.log(`${varName}: ${value}`);
   return value;
 };
 

@@ -1,12 +1,5 @@
 import React from 'react';
-
-const style: React.CSSProperties = {
-  // borderStyle: 'double',
-  width: '100%',
-  justifyContent: 'center',
-  marginTop: '1%',
-  marginBottom: '1.5%',
-};
+import './style.css';
 
 export interface TitleProps {
   title: string;
@@ -15,7 +8,7 @@ export interface TitleProps {
 
 const Header = ({ title, subTitle }: TitleProps) => {
   return (
-    <div className="Header" style={style}>
+    <div className="Header">
       <h2>{title}</h2>
       {/* <br/> */}
       {subTitle ? <h3>{subTitle}</h3> : undefined}

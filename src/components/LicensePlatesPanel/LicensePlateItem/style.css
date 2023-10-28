@@ -8,6 +8,9 @@
   color: white;
   /* border: solid white; */
 }
+.LicensePlateItem img {
+  border-radius: 5px;
+}
 
 .LicensePlateItem-Header {
   /* border: solid green; */
