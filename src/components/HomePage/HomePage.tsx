@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
     // Add your script here
     const script = document.createElement('script');
     script.src =
-      '//rf.revolvermaps.com/0/0/8.js?i=5wm*****1mh&m=0&c=ff0000&cr1=ffffff&f=arial&l=33';
+      '//rf.revolvermaps.com/0/0/6.js?i=5ebatgszveu&amp;m=7&amp;c=e63100&amp;cr1=ffffff&amp;f=arial&amp;l=0&amp;bv=90&amp;lx=-420&amp;ly=420&amp;hi=20&amp;he=7&amp;hc=a8ddff&amp;rs=80'; //'//rf.revolvermaps.com/0/0/8.js?i=5wm*****1mh&m=0&c=ff0000&cr1=ffffff&f=arial&l=33';
     script.async = true;
     // Load the script inside the specific div with the id "mapContainer"
     const mapContainer = document.getElementById('mapContainer');
@@ -73,7 +73,7 @@ const HomePage: React.FC = () => {
           &nbsp; &nbsp;
           <a
             className="AuthorLink"
-            href="https://www.facebook.com/LuiSiiYoo"
+            href="https://www.facebook.com/profile.php?id=61552860777968"
             target="_blank"
             rel="noopener noreferrer"
           >

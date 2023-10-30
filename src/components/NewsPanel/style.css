@@ -48,6 +48,11 @@
 .NewsImage {
   width: 40%;
   height: auto;
+  box-shadow: 10px 10px 5px #000;
+  -moz-box-shadow: 10px 10px 5px #000;
+  -webkit-box-shadow: 10px 10px 5px #000;
+  -khtml-box-shadow: 10px 10px 5px #000;
+  border-radius: 5px;
 }
 
 .accordion-button:active {
