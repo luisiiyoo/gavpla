@@ -6,7 +6,7 @@ import {
 } from 'src/connector/backend.types';
 import { TRANSLATIONS } from 'src/language';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
-import { toTitleCase, useConstructor } from 'src/utils';
+import { handleErrorMessage, toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
@@ -68,11 +68,7 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
       );
       setPlatesDataArray(data);
     } catch (error) {
-      console.error(error);
-      setError({
-        statusCode: 500,
-        message: `Unable get inventory data: ${error}`,
-      });
+      setError(handleErrorMessage(error, languageCode));
     } finally {
       setIsLoading(false);
     }

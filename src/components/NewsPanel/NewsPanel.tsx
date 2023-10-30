@@ -5,7 +5,7 @@ import {
   BEQueryLicensePlatesData,
 } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
-import { toTitleCase, useConstructor } from 'src/utils';
+import { handleErrorMessage, toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 
 import Header from '../Header';
@@ -75,10 +75,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
       setPlatesDataArray(allResults);
     } catch (error) {
       console.error(error);
-      setError({
-        statusCode: 500,
-        message: `Unable get inventory data: ${error}`,
-      });
+      setError(handleErrorMessage(error, languageCode));
     } finally {
       setIsLoading(false);
     }

@@ -5,7 +5,7 @@ import {
   BEQueryLicensePlatesData,
 } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
-import { toTitleCase, useConstructor } from 'src/utils';
+import { handleErrorMessage, toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
@@ -31,7 +31,7 @@ const MultipleRegionLicensePlatesPanel: React.FC<MultipleRegionLicensePlatesPane
   hideYears,
   hideVehicleType,
 }) => {
-  const { userID, availableYears }: StateType = useSelector(
+  const { userID, availableYears, languageCode }: StateType = useSelector(
     (state) => state.main,
   );
 
@@ -62,11 +62,7 @@ const MultipleRegionLicensePlatesPanel: React.FC<MultipleRegionLicensePlatesPane
       );
       setPlatesDataArray(data);
     } catch (error) {
-      console.error(error);
-      setError({
-        statusCode: 500,
-        message: `Unable get inventory data: ${error}`,
-      });
+      setError(handleErrorMessage(error, languageCode));
     } finally {
       setIsLoading(false);
     }

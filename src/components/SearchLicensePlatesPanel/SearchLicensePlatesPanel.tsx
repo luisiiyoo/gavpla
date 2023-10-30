@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import './style.css';
 import { getTranslation } from 'src/language';
-import { createNotification } from 'src/utils';
+import { createNotification, handleErrorMessage } from 'src/utils';
 import {
   BELicensePlatesData,
   BEQueryLicensePlatesData,
@@ -76,10 +76,7 @@ export const SearchLicensePlatesPanel: React.FC = () => {
       return platesData.length;
     } catch (error) {
       console.error(error);
-      setError({
-        statusCode: 500,
-        message: `Unable get inventory data: ${error}`,
-      });
+      setError(handleErrorMessage(error, languageCode));
       return 0;
     } finally {
       setIsLoading(false);

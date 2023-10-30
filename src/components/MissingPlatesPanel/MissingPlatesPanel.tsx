@@ -11,7 +11,7 @@ import {
   BEQueryLicensePlatesData,
 } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
-import { useConstructor } from 'src/utils';
+import { handleErrorMessage, useConstructor } from 'src/utils';
 import ErrorDisplay from 'src/components/ErrorDisplay';
 import { getTranslation } from 'src/language';
 
@@ -70,11 +70,7 @@ const MissingPlatesPanel = () => {
       );
       setPlatesDataArray(data);
     } catch (error) {
-      console.error(error);
-      setError({
-        statusCode: 500,
-        message: `Unable get inventory data: ${error}`,
-      });
+      setError(handleErrorMessage(error, languageCode));
     } finally {
       setIsLoading(false);
     }

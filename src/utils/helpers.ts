@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { ReactNotificationOptions } from 'react-notifications-component';
+import { getTranslation } from 'src/language';
+import { AbstractError } from './error.types';
 
 export const timestampToDateStr = (timestamp: number): string => {
   return new Date(timestamp * 1000).toDateString();
@@ -117,4 +119,26 @@ export const sortInplaceAlphabetically = (items: any[], key) => {
     const textB = b[key].toUpperCase();
     return textA < textB ? -1 : textA > textB ? 1 : 0;
   });
+};
+
+export const handleErrorMessage = (error: any, languageCode: string) => {
+  console.error(error);
+  const translation = getTranslation(languageCode, 'Error');
+  let statusCode: number = 500;
+  let message: string = String(error);
+
+  if (error instanceof AbstractError) {
+    statusCode = error.statusCode;
+    message = error.message;
+  }
+  console.error(`Raw Error: ${statusCode} - ${message}`);
+
+  let transalatedErrorMessage: string;
+  if (statusCode >= 400 && statusCode < 500) {
+    transalatedErrorMessage = translation['BadRequestError'];
+  } else {
+    transalatedErrorMessage = translation['InternalError'];
+  }
+
+  return { message: transalatedErrorMessage, statusCode };
 };

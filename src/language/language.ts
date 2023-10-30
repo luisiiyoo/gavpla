@@ -43,6 +43,20 @@ export const DEFAULT_LANG_CODE: string = AVAILABLE_LANGUAGUES_CODES.includes(
   : ES_LANGUAGE;
 
 export const TRANSLATIONS = {
+  Error: {
+    en: {
+      InternalError:
+        'An unexpected error occurred, please try refreshing the page. If the error persists, contact the page administrator.',
+      BadRequestError:
+        'An error occurred with the information provided, please try again.',
+    },
+    es: {
+      InternalError:
+        'Ocurrió un error inesperado, por favor intente refrescar la página. Si el error persiste, contacte al administrador de la página.',
+      BadRequestError:
+        'Ocurrió un error con la información proporcionada, por favor intente de nuevo.',
+    },
+  },
   VehicleTypes: {
     en: {
       FRONTIER: 'Frontier',

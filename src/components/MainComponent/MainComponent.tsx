@@ -12,14 +12,15 @@ import {
 } from 'src/redux/actions/Main/Main';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import Routes from 'src/routers';
-import { useConstructor } from 'src/utils';
-import { AbstractError } from 'src/utils/error.types';
+import { handleErrorMessage, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 
 export const MainComponent: React.FC = () => {
   const dispatch = useDispatch();
-  const { isLoading, error }: StateType = useSelector((state) => state.main);
+  const { isLoading, error, languageCode }: StateType = useSelector(
+    (state) => state.main,
+  );
 
   useConstructor(async () => {
     try {
@@ -45,15 +46,7 @@ export const MainComponent: React.FC = () => {
       const availableYears = await connector.getLicensePlatesAvailableYears();
       dispatch(setAvailableYears(availableYears));
     } catch (error) {
-      let statusCode: number = 500;
-      let message: string = String(error);
-
-      if (error instanceof AbstractError) {
-        statusCode = error.statusCode;
-        message = error.message;
-      }
-      console.error(`${statusCode} - ${message}`);
-      dispatch(setError({ message, statusCode }));
+      dispatch(setError(handleErrorMessage(error, languageCode)));
     } finally {
       dispatch(setIsLoading(false));
     }
