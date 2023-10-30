@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/gavpla/static/css/main.2c9a50c1.chunk.css",
-    "main.js": "/gavpla/static/js/main.9c7e6dc9.chunk.js",
-    "main.js.map": "/gavpla/static/js/main.9c7e6dc9.chunk.js.map",
+    "main.css": "/gavpla/static/css/main.58cf74f2.chunk.css",
+    "main.js": "/gavpla/static/js/main.2f3c33a4.chunk.js",
+    "main.js.map": "/gavpla/static/js/main.2f3c33a4.chunk.js.map",
     "runtime-main.js": "/gavpla/static/js/runtime-main.263db1db.js",
     "runtime-main.js.map": "/gavpla/static/js/runtime-main.263db1db.js.map",
     "static/css/2.f41c74a6.chunk.css": "/gavpla/static/css/2.f41c74a6.chunk.css",
     "static/js/2.46000c36.chunk.js": "/gavpla/static/js/2.46000c36.chunk.js",
     "static/js/2.46000c36.chunk.js.map": "/gavpla/static/js/2.46000c36.chunk.js.map",
     "index.html": "/gavpla/index.html",
-    "precache-manifest.35c6e31312c0bec5fe5e36040a6d1791.js": "/gavpla/precache-manifest.35c6e31312c0bec5fe5e36040a6d1791.js",
+    "precache-manifest.1fb6ec90229d116159aaaddbdbf81a26.js": "/gavpla/precache-manifest.1fb6ec90229d116159aaaddbdbf81a26.js",
     "service-worker.js": "/gavpla/service-worker.js",
     "static/css/2.f41c74a6.chunk.css.map": "/gavpla/static/css/2.f41c74a6.chunk.css.map",
-    "static/css/main.2c9a50c1.chunk.css.map": "/gavpla/static/css/main.2c9a50c1.chunk.css.map",
+    "static/css/main.58cf74f2.chunk.css.map": "/gavpla/static/css/main.58cf74f2.chunk.css.map",
     "static/js/2.46000c36.chunk.js.LICENSE.txt": "/gavpla/static/js/2.46000c36.chunk.js.LICENSE.txt",
     "static/media/DFPlates.jpg": "/gavpla/static/media/DFPlates.d4c27feb.jpg",
     "static/media/GAVPLA.png": "/gavpla/static/media/GAVPLA.6ecfe4e6.png",
@@ -25,7 +25,7 @@
     "static/js/runtime-main.263db1db.js",
     "static/css/2.f41c74a6.chunk.css",
     "static/js/2.46000c36.chunk.js",
-    "static/css/main.2c9a50c1.chunk.css",
-    "static/js/main.9c7e6dc9.chunk.js"
+    "static/css/main.58cf74f2.chunk.css",
+    "static/js/main.2f3c33a4.chunk.js"
   ]
 }
