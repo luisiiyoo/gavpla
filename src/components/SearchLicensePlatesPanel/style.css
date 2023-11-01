@@ -23,19 +23,19 @@
   text-align: center;
   font-size: small;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid black !important;
 
-  color: var(--font-color-app);
-  background-color: var(--dark-color-app);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: var(--font-color-app) !important;
+  background-color: var(--dark-color-app) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 .ActiveButton {
-  color: var(--font-color-app);
-  background-color: var(--dark-color-app);
+  color: var(--font-color-app) !important;
+  background-color: var(--dark-color-app) !important;
 }
 
 .SearchButton:hover {
-  background-color: var(--color-app);
+  background-color: var(--color-app) !important;
   /* color: white; */
 }

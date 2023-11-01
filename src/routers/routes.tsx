@@ -39,7 +39,7 @@ const navigationItems: NavItem[] = [
     route: NEWS_ROUTE.route,
     iconClass: 'fa-solid fa-newspaper',
     functionalComponent: () => (
-      <NewsPanel numLatestSamples={10} numRandomSamples={0} />
+      <NewsPanel numLatestSamples={15} numRandomSamples={0} />
     ),
   },
   {
@@ -54,7 +54,7 @@ const navigationItems: NavItem[] = [
           idChild: stateCode,
           route: `${STATES_ROUTE.route}/${stateCode}`,
           functionalComponent: () => (
-            <SingleRegionLicensePlatesPanel regionCode={stateCode} />
+            <SingleRegionLicensePlatesPanel regionCode={stateCode} exclude_vehicle_types={["MOTORCYCLE", "BICYCLE"]}/>
           ),
         }),
       ),

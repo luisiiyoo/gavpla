@@ -47,6 +47,9 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
   } else if (regionCode === 'METROPOLITAN') {
     title = TRANSLATIONS.RegionNames[languageCode].METROPOLITAN;
     regionCodesToFilter = ['DF', 'MEX'];
+  }else if (regionCode === 'DF') {
+    title = `${stateCodes[regionCode]} / Ciudad de México`;
+    regionCodesToFilter = [regionCode];
   } else {
     title = stateCodes[regionCode];
     regionCodesToFilter = [regionCode];
