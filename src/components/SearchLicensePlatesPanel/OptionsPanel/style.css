@@ -37,10 +37,6 @@
   border: 1px solid black;
 }
 
-h4 {
-  margin-bottom: 10px;
-  margin-top: 15px;
-}
 @media only screen and (max-device-width: 500px) {
   .OptionsPanel {
     font-size: xx-small;

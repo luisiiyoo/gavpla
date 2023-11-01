@@ -11,9 +11,10 @@ import Header from '../Header';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import { LicensePlatesPanel } from './LicensePlatesPanel';
+import { TRANSLATIONS } from 'src/language';
 
 export interface MultipleRegionLicensePlatesPanelProps {
-  title: string;
+  titleName: string;
   regionCodes?: string[];
   vehicle_types?: string[];
   exclude_vehicle_types?: string[];
@@ -23,7 +24,7 @@ export interface MultipleRegionLicensePlatesPanelProps {
 }
 
 const MultipleRegionLicensePlatesPanel: React.FC<MultipleRegionLicensePlatesPanelProps> = ({
-  title,
+  titleName,
   regionCodes,
   vehicle_types,
   exclude_vehicle_types,
@@ -33,6 +34,9 @@ const MultipleRegionLicensePlatesPanel: React.FC<MultipleRegionLicensePlatesPane
 }) => {
   const { userID, availableYears, languageCode }: StateType = useSelector(
     (state) => state.main,
+  );
+  const title = toTitleCase(
+    TRANSLATIONS['Titles'][languageCode][titleName] || '',
   );
 
   const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
@@ -76,7 +80,7 @@ const MultipleRegionLicensePlatesPanel: React.FC<MultipleRegionLicensePlatesPane
         <Loader />
       ) : (
         <div className="MultipleRegionLicensePlatesPanel">
-          <Header title={toTitleCase(title)} />
+          <Header title={title} />
           <LicensePlatesPanel
             platesDataArray={platesDataArray}
             staticMap={true}

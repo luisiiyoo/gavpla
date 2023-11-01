@@ -13,6 +13,7 @@ import {
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
   MOTORCYCLE_ROUTE,
+  BICYCLE_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -43,6 +44,18 @@ export const DEFAULT_LANG_CODE: string = AVAILABLE_LANGUAGUES_CODES.includes(
   : ES_LANGUAGE;
 
 export const TRANSLATIONS = {
+  Titles: {
+    en: {
+      FRONTIER: 'Frontier License Plates',
+      MOTORCYCLE: 'Motorcycle License Plates',
+      BICYCLE: 'Bicycle License Plates',
+    },
+    es: {
+      FRONTIER: 'Placas Fronterizas',
+      MOTORCYCLE: 'Placas de Motocicleta',
+      BICYCLE: 'Plascas de Bicicleta',
+    },
+  },
   Error: {
     en: {
       InternalError:
@@ -89,6 +102,7 @@ export const TRANSLATIONS = {
       [FRONTIER_ROUTE.route]: FRONTIER_ROUTE.title,
       [MISSING_PLATES_ROUTE.route]: MISSING_PLATES_ROUTE.title,
       [MOTORCYCLE_ROUTE.route]: MOTORCYCLE_ROUTE.title,
+      [BICYCLE_ROUTE.route]: BICYCLE_ROUTE.title,
     },
     es: {
       [HOME_ROUTE.route]: 'Inicio',
@@ -103,6 +117,7 @@ export const TRANSLATIONS = {
       [FRONTIER_ROUTE.route]: 'Fronteriza',
       [MISSING_PLATES_ROUTE.route]: 'Placas Faltantes',
       [MOTORCYCLE_ROUTE.route]: 'Motocicleta',
+      [BICYCLE_ROUTE.route]: 'Bicicleta',
     },
   },
   LanguageSelector: {
@@ -185,7 +200,7 @@ export const TRANSLATIONS = {
       MissingDetails: {
         SeeDetails: 'See details',
         HideDetails: 'Hide details',
-        Having: 'Number of plates in the collection:',
+        Having: 'Number of plates in the collection',
         Missing: 'Missing plates',
       },
     },

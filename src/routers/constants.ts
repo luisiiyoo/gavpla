@@ -15,6 +15,11 @@ export const MOTORCYCLE_ROUTE = {
   route: `${LICENSE_PLATES}/motorcycle`,
 };
 
+export const BICYCLE_ROUTE = {
+  title: 'Bicycle',
+  route: `${LICENSE_PLATES}/bicycle`,
+};
+
 export const STATES_ROUTE = {
   title: 'States',
   route: `${LICENSE_PLATES}/states`,

@@ -11,6 +11,7 @@ import {
   MISSING_PLATES_ROUTE,
   MOTORCYCLE_ROUTE,
   NEWS_ROUTE,
+  BICYCLE_ROUTE,
 } from './constants';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
@@ -92,7 +93,7 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa-solid fa-arrow-down-up-across-line',
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
-        title={'Fronteriza'}
+        titleName="FRONTIER"
         regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
         vehicle_types={['FRONTIER']}
         hideStateName={false}
@@ -105,6 +106,20 @@ const navigationItems: NavItem[] = [
     title: MOTORCYCLE_ROUTE.title,
     route: MOTORCYCLE_ROUTE.route,
     iconClass: 'fa-solid fa-motorcycle',
+    functionalComponent: () => (
+      <MultipleRegionLicensePlatesPanel
+        titleName="MOTORCYCLE"
+        vehicle_types={['MOTORCYCLE']}
+        hideStateName={false}
+        hideYears={false}
+        hideVehicleType={true}
+      />
+    ),
+  },
+  {
+    title: BICYCLE_ROUTE.title,
+    route: BICYCLE_ROUTE.route,
+    iconClass: 'fa-solid fa-bicycle',
     functionalComponent: () => <UnderConstruction />,
   },
   {
