@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import connector from 'src/connector';
-import {
-  BELicensePlatesData,
-  BEQueryLicensePlatesData,
-} from 'src/connector/backend.types';
+import { BELicensePlatesData } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { handleErrorMessage, toTitleCase, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
@@ -23,17 +20,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { getTranslation } from 'src/language';
 import imgAntiquePlates from 'src/images/news/antiquePlates.jpg';
 import imgDFPlates from 'src/images/news/DFPlates.jpg';
-import imgMotorcycle from 'src/images/news/motorcycle.jpg';
 
 export interface NewsPanelProps {
-  numLatestSamples: number;
-  numRandomSamples: number;
+  numLatestSamples?: number;
 }
 
-const NewsPanel: React.FC<NewsPanelProps> = ({
-  numLatestSamples,
-  numRandomSamples,
-}) => {
+const NewsPanel: React.FC<NewsPanelProps> = ({ numLatestSamples = 20 }) => {
   const { userID, languageCode }: StateType = useSelector(
     (state) => state.main,
   );
@@ -44,36 +36,37 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
     statusCode: -1,
     message: '',
   });
-  const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
-    [],
-  );
+  const [carPlatesDataArray, setCarPlatesDataArray] = useState<
+    BELicensePlatesData[]
+  >([]);
+  const [motorcyclePlatesDataArray, setMotorcyclePlatesDataArray] = useState<
+    BELicensePlatesData[]
+  >([]);
+  const [bicyclePlatesDataArray, setBicyclePlatesDataArray] = useState<
+    BELicensePlatesData[]
+  >([]);
 
   useConstructor(async () => {
     try {
       setIsLoading(true);
-      const allResults: BELicensePlatesData[] = [];
-      if (numLatestSamples > 0) {
-        const params: BEQueryLicensePlatesData = {
+      setCarPlatesDataArray(
+        await connector.getLicensePlatesData(userID, {
           latest_samples: numLatestSamples,
           exclude_vehicle_types: ['MOTORCYCLE', 'BICYCLE'],
-        };
-        const data: BELicensePlatesData[] = await connector.getLicensePlatesData(
-          userID,
-          params,
-        );
-        allResults.push(...data);
-      }
-      if (numRandomSamples > 0) {
-        const params: BEQueryLicensePlatesData = {
-          random_samples: numRandomSamples,
-        };
-        const data: BELicensePlatesData[] = await connector.getLicensePlatesData(
-          userID,
-          params,
-        );
-        allResults.push(...data);
-      }
-      setPlatesDataArray(allResults);
+        }),
+      );
+      setMotorcyclePlatesDataArray(
+        await connector.getLicensePlatesData(userID, {
+          latest_samples: numLatestSamples,
+          vehicle_types: ['MOTORCYCLE'],
+        }),
+      );
+      setBicyclePlatesDataArray(
+        await connector.getLicensePlatesData(userID, {
+          latest_samples: numLatestSamples,
+          vehicle_types: ['BICYCLE'],
+        }),
+      );
     } catch (error) {
       console.error(error);
       setError(handleErrorMessage(error, languageCode));
@@ -82,22 +75,32 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
     }
   });
 
-  const carouselItems = platesDataArray
-    .map((plate: BELicensePlatesData, key: number) => ({
-      item: {
-        altText: 'License plate image',
-        header: ' ',
-        caption: ' ',
-        key: `${plate.plate_id_code}_{${key}}`,
-        src: connector.getUserLicensePlatesImageURL(
-          userID,
-          plate.user_plate_id,
-        ),
-      },
-      sort: Math.random(),
-    }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ item }) => item);
+  const transformDataToCarouselItems = (dataArray: BELicensePlatesData[]) => {
+    return dataArray
+      .map((plate: BELicensePlatesData, key: number) => ({
+        item: {
+          altText: 'License plate image',
+          header: ' ',
+          caption: ' ',
+          key: `${plate.plate_id_code}_{${key}}`,
+          src: connector.getUserLicensePlatesImageURL(
+            userID,
+            plate.user_plate_id,
+          ),
+        },
+        sort: Math.random(),
+      }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ item }) => item);
+  };
+
+  const carCarouselItems = transformDataToCarouselItems(carPlatesDataArray);
+  const motorcycleCarouselItems = transformDataToCarouselItems(
+    motorcyclePlatesDataArray,
+  );
+  const bicycleCarouselItems = transformDataToCarouselItems(
+    bicyclePlatesDataArray,
+  );
 
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
@@ -109,7 +112,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
         style={{ display: isLoading ? 'none' : 'block' }}
       >
         <Header title={toTitleCase(translation['Title'])} />
-        <UncontrolledAccordion defaultOpen={['1']} stayOpen>
+        <UncontrolledAccordion defaultOpen={['1', '2', '3']} stayOpen>
           {/*  */}
           <AccordionItem>
             <AccordionHeader targetId="1">
@@ -118,12 +121,50 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
             <AccordionBody accordionId="1">
               <p>{translation['NewPlates']['Body']}</p>
 
+              <h3 className="Vechicle-Icons">
+                <i className="fa-solid fa-car-side" /> &nbsp;
+                <i className="fa-solid fa-bus" />
+                &nbsp;
+                <i className="fa-solid fa-van-shuttle" /> &nbsp;
+                <i className="fa-solid fa-truck-pickup" />
+                &nbsp;
+                <i className="fa-solid fa-taxi" />
+                &nbsp;
+                <i className="fa-solid fa-truck-moving" />
+                &nbsp;
+              </h3>
               <div className="NewsPanel-Carousel">
                 <UncontrolledCarousel
                   // controls={false}
                   indicators={false}
-                  className="PlatesCarousel"
-                  items={carouselItems}
+                  className="PlatesCarousel CAR"
+                  items={carCarouselItems}
+                />
+              </div>
+
+              {/* <hr/> */}
+              <h3 className="Vechicle-Icons">
+                <i className="fa-solid fa-motorcycle" /> &nbsp;
+              </h3>
+              <div className="NewsPanel-Carousel">
+                <UncontrolledCarousel
+                  // controls={false}
+                  indicators={false}
+                  className="PlatesCarousel MOTORCYCLE"
+                  items={motorcycleCarouselItems}
+                />
+              </div>
+
+              {/* <hr/> */}
+              <h3 className="Vechicle-Icons">
+                <i className="fa-solid fa-bicycle" /> &nbsp;
+              </h3>
+              <div className="NewsPanel-Carousel">
+                <UncontrolledCarousel
+                  // controls={false}
+                  indicators={false}
+                  className="PlatesCarousel BICYCLE"
+                  items={bicycleCarouselItems}
                 />
               </div>
             </AccordionBody>
@@ -131,22 +172,9 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
           {/*  */}
           <AccordionItem>
             <AccordionHeader targetId="2">
-              <span>{translation['AntiquePlates']['Header']}</span>
-            </AccordionHeader>
-            <AccordionBody accordionId="2">
-              <p>{translation['AntiquePlates']['Body']}</p>
-
-              {/* <div className="NewsPanel-Carousel"> */}
-              <img className="NewsImage" src={imgAntiquePlates} alt="img" />
-              {/* </div> */}
-            </AccordionBody>
-          </AccordionItem>
-          {/*  */}
-          <AccordionItem>
-            <AccordionHeader targetId="3">
               <span>{translation['DFSeries']['Header']}</span>
             </AccordionHeader>
-            <AccordionBody accordionId="3">
+            <AccordionBody accordionId="2">
               <p>{translation['DFSeries']['Body']}</p>
 
               {/* <div className="NewsPanel-Carousel"> */}
@@ -156,14 +184,14 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
           </AccordionItem>
           {/*  */}
           <AccordionItem>
-            <AccordionHeader targetId="4">
-              <span>{translation['Motorcycle']['Header']}</span>
+            <AccordionHeader targetId="3">
+              <span>{translation['AntiquePlates']['Header']}</span>
             </AccordionHeader>
-            <AccordionBody accordionId="4">
-              <p>{translation['Motorcycle']['Body']}</p>
+            <AccordionBody accordionId="3">
+              <p>{translation['AntiquePlates']['Body']}</p>
 
               {/* <div className="NewsPanel-Carousel"> */}
-              <img className="NewsImage" src={imgMotorcycle} alt="img" />
+              <img className="NewsImage" src={imgAntiquePlates} alt="img" />
               {/* </div> */}
             </AccordionBody>
           </AccordionItem>

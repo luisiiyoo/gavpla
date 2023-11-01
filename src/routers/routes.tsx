@@ -40,9 +40,7 @@ const navigationItems: NavItem[] = [
     title: NEWS_ROUTE.title,
     route: NEWS_ROUTE.route,
     iconClass: 'fa-solid fa-newspaper',
-    functionalComponent: () => (
-      <NewsPanel numLatestSamples={15} numRandomSamples={0} />
-    ),
+    functionalComponent: () => <NewsPanel />,
   },
   {
     title: STATES_ROUTE.title,

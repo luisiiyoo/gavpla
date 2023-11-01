@@ -16,11 +16,11 @@ img {
 }
 
 .MOTORCYCLE-IMG {
-  width: 60%;
+  width: 57%;
 }
 
 .BICYCLE-IMG {
-  width: 50%;
+  width: 43%;
 }
 
 @media only screen and (min-device-width: 400px) {

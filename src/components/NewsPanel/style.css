@@ -8,10 +8,15 @@
 .NewsPanel-Carousel {
   display: flex;
   justify-content: center;
-  /* width: inherit; */
+  /* padding-top: 0PX; */
+  padding-bottom: 10px;
+}
+
+.Vechicle-Icons {
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 .PlatesCarousel {
-  width: 40%;
   height: auto;
   box-shadow: 10px 10px 5px #000;
   -moz-box-shadow: 10px 10px 5px #000;
@@ -21,6 +26,17 @@
 }
 .PlatesCarousel img {
   border-radius: 5px;
+}
+
+.CAR {
+  width: 40%;
+}
+.MOTORCYCLE {
+  width: 25%;
+}
+
+.BICYCLE {
+  width: 15%;
 }
 
 .accordion-item {
@@ -64,8 +80,15 @@
 }
 
 @media only screen and (max-device-width: 500px) {
-  .PlatesCarousel {
-    width: 80%;
+  .CAR {
+    width: 70%;
+  }
+  .MOTORCYCLE {
+    width: 55%;
+  }
+
+  .BICYCLE {
+    width: 40%;
   }
   .accordion-item {
     font-size: smaller !important;

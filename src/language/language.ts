@@ -235,10 +235,6 @@ export const TRANSLATIONS = {
         Body:
           'The following 3 plates belong to the year 1994 and 1995, the largest belonged to a car, the medium one to a motorcycle and the smallest to a bicycle.',
       },
-      Motorcycle: {
-        Header: 'Motorcycle license plate collection',
-        Body: 'Coming soon to GAVPLA',
-      },
     },
     es: {
       Title: 'Novedades y Curiosidades',
@@ -255,10 +251,6 @@ export const TRANSLATIONS = {
         Header: 'DF - Car, Motorcycle and Bike License Plate',
         Body:
           'Las siguientes 3 placas pertenecen al año 1994 y 1995, la más grande perteneció a un carro, la mediana a una motocicleta y la más chica a una bicicleta.',
-      },
-      Motorcycle: {
-        Header: 'Colección de placas de motocicleta',
-        Body: 'Próximamente en GAVPLA',
       },
     },
   },
