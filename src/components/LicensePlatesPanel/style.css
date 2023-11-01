@@ -12,6 +12,15 @@
 img {
   width: 90%;
   height: auto;
+  border-radius: 5px;
+}
+
+.MOTORCYCLE-IMG {
+  width: 60%;
+}
+
+.BICYCLE-IMG {
+  width: 50%;
 }
 
 @media only screen and (min-device-width: 400px) {

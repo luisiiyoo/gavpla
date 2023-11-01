@@ -62,6 +62,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
       </div>
       <div className="LicensePlateItem-Image">
         <img
+          className={`${data.vehicle_type}-IMG`}
           src={
             connector.getUserLicensePlatesImageURL(
               userID,
