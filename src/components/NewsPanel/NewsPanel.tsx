@@ -55,7 +55,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({
       if (numLatestSamples > 0) {
         const params: BEQueryLicensePlatesData = {
           latest_samples: numLatestSamples,
-          exclude_vehicle_types: ["MOTORCYCLE", "BICYCLE"],
+          exclude_vehicle_types: ['MOTORCYCLE', 'BICYCLE'],
         };
         const data: BELicensePlatesData[] = await connector.getLicensePlatesData(
           userID,

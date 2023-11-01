@@ -54,7 +54,10 @@ const navigationItems: NavItem[] = [
           idChild: stateCode,
           route: `${STATES_ROUTE.route}/${stateCode}`,
           functionalComponent: () => (
-            <SingleRegionLicensePlatesPanel regionCode={stateCode} exclude_vehicle_types={["MOTORCYCLE", "BICYCLE"]}/>
+            <SingleRegionLicensePlatesPanel
+              regionCode={stateCode}
+              exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE']}
+            />
           ),
         }),
       ),
