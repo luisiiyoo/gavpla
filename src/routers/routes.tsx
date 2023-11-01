@@ -12,6 +12,7 @@ import {
   MOTORCYCLE_ROUTE,
   NEWS_ROUTE,
   BICYCLE_ROUTE,
+  SHOP_PLATES_ROUTE,
 } from './constants';
 import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
@@ -120,7 +121,15 @@ const navigationItems: NavItem[] = [
     title: BICYCLE_ROUTE.title,
     route: BICYCLE_ROUTE.route,
     iconClass: 'fa-solid fa-bicycle',
-    functionalComponent: () => <UnderConstruction />,
+    functionalComponent: () => (
+      <MultipleRegionLicensePlatesPanel
+        titleName="BICYCLE"
+        vehicle_types={['BICYCLE']}
+        hideStateName={false}
+        hideYears={false}
+        hideVehicleType={true}
+      />
+    ),
   },
   {
     title: SEARCH_ROUTE.title,
@@ -147,13 +156,13 @@ const navigationItems: NavItem[] = [
   //   iconClass: 'fa-solid fa-heart',
   //   functionalComponent: () => <UnderConstruction />,
   // },
-  // {
-  //   title: SHOP_PLATES_ROUTE.title,
-  //   route: SHOP_PLATES_ROUTE.route,
-  //   iconClass: 'fa-solid fa-cart-shopping',
-  //   functionalComponent: () => <UnderConstruction />,
-  // },
-  // Hidden Routes
+  {
+    title: SHOP_PLATES_ROUTE.title,
+    route: SHOP_PLATES_ROUTE.route,
+    iconClass: 'fa-solid fa-cart-shopping',
+    hidden: true,
+    functionalComponent: () => <UnderConstruction />,
+  },
 ];
 
 const getFunctionalComponent = (
