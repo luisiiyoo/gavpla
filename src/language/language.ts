@@ -58,12 +58,18 @@ export const TRANSLATIONS = {
   },
   Error: {
     en: {
+      ReturnToHome: 'Return to home page',
+      RefreshPage: 'Refresh page',
+      PageNotFound: 'Page not found.',
       InternalError:
         'An unexpected error occurred, please try refreshing the page. If the error persists, contact the page administrator.',
       BadRequestError:
         'An error occurred with the information provided, please try again.',
     },
     es: {
+      ReturnToHome: 'Regresar a la página de inicio',
+      RefreshPage: 'Refrescar página',
+      PageNotFound: 'Página no encontrada.',
       InternalError:
         'Ocurrió un error inesperado, por favor intente refrescar la página. Si el error persiste, contacte al administrador de la página.',
       BadRequestError:

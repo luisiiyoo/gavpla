@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:900);
-@import url(https://fonts.googleapis.com/css?family=Open + Sans);
 
 .Error {
   align-items: center;
@@ -15,29 +14,60 @@
 
 .Error-Message {
   color: var(--font-color-app);
-  /* text-transform: capitalize; */
-  margin: 25px 0 20px 0;
+  margin: 40px 20px 40px 20px;
+  font-size: larger;
 }
 
 .Error-Label span {
-  position: relative;
-  background: var(--color-app);
   color: var(--font-color-app);
-  font-size: larger;
+  font-size: medium;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  /* transition: all 0.5s; */
+  /* cursor: pointer; */
+  animation-name: errorBackgroundAnimation;
+  animation: errorBackgroundAnimation 4s alternate infinite;
+}
+
+@keyframes errorBackgroundAnimation {
+  33% {
+    background: var(--color-app);
+  }
+  66% {
+    background: var(--background-color);
+  }
+  99% {
+    background: var(--color-app);
+  }
+}
+
+.ErrorButton {
+  /* position: relative; */
+  background: var(--color-app) !important;
+  color: var(--font-color-app) !important;
+  border-color: var(--color-app) !important;
   padding: 10px 20px;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   transition: all 0.5s;
   cursor: pointer;
+  font-size: small !important;
+  box-shadow: 5px 5px 2px #000;
+  -moz-box-shadow: 5px 5px 2px #000;
+  -webkit-box-shadow: 5px 5px 2px #000;
+  -khtml-box-shadow: 5px 5px 2px #000;
+  border-radius: 5px;
 }
 
-.Error-Label span:hover {
-  background: var(--dark-color-app);
-  color: var(--font-color-app);
-  -webkit-animation: jelly 0.5s;
-  -moz-animation: jelly 0.5s;
-  -ms-animation: jelly 0.5s;
-  -o-animation: jelly 0.5s;
-  animation: jelly 0.5s;
+.ErrorButton:hover {
+  background: var(--dark-color-app) !important;
+  color: var(--font-color-app) !important;
+  -webkit-animation: jelly 0.5s !important;
+  -moz-animation: jelly 0.5s !important;
+  -ms-animation: jelly 0.5s !important;
+  -o-animation: jelly 0.5s !important;
+  animation: jelly 0.5s !important;
 }

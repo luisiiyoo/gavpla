@@ -7,11 +7,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation-name: example;
+  animation-name: shadowAnimation;
   filter: drop-shadow(0 0 1rem white);
-  animation: example 1.5s alternate infinite;
+  animation: shadowAnimation 1.5s alternate infinite;
 }
-@keyframes example {
+@keyframes shadowAnimation {
   /* 33% {filter: drop-shadow(0 0 1.75rem green);}
   66% {filter: drop-shadow(0 0 1.75rem white);}
   99% {filter: drop-shadow(0 0 1.75rem red);} */

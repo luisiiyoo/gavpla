@@ -18,7 +18,6 @@ const HomePage: React.FC = () => {
     script.async = true;
     // Load the script inside the specific div with the id "mapContainer"
     const mapContainer = document.getElementById('mapContainer');
-    console.log('ey');
     if (mapContainer) {
       mapContainer.appendChild(script);
     }
