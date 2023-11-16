@@ -241,8 +241,18 @@ export const OptionsPanel = ({
             label: stateCodes[code],
           }))}
           onChange={(newValue: any, actionMeta: ActionMeta<unknown>) => {
+            const indexDF = newValue.map((e) => e.value).indexOf('DF');
+            const indexCDMX = newValue.map((e) => e.value).indexOf('CDMX');
+            if (indexDF > -1 && indexCDMX === -1) {
+              newValue.splice(indexDF, 1);
+            }
+            if (indexCDMX > -1 && indexDF === -1) {
+              newValue.splice(indexCDMX, 1);
+            }
+
             const codes = newValue.map((selected) => selected.value);
             codes.sort();
+            console.log('luis', newValue);
             selectRegionCodesHandler(codes);
             return newValue;
           }}

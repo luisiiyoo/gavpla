@@ -1155,7 +1155,7 @@
           {
             "type": "Polygon",
             "properties": {
-              "STATE_CODE": "DF",
+              "STATE_CODE": "CDMX",
               "GEO_ID": 1812
             },
             "arcs": [

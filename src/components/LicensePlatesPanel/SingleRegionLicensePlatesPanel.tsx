@@ -40,26 +40,31 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
   });
 
   let regionCodesToFilter: Array<string>;
+  let regionCodes: Array<string>;
   let title: string;
   if (regionCode === 'NATIONAL') {
     title = TRANSLATIONS.RegionNames[languageCode].NATIONAL;
     regionCodesToFilter = Object.keys(stateCodes);
+    regionCodes = [regionCode];
   } else if (regionCode === 'METROPOLITAN') {
     title = TRANSLATIONS.RegionNames[languageCode].METROPOLITAN;
-    regionCodesToFilter = ['DF', 'MEX'];
-  } else if (regionCode === 'DF') {
-    title = `${stateCodes[regionCode]} / Ciudad de México`;
-    regionCodesToFilter = [regionCode];
+    regionCodesToFilter = ['DF', 'CDMX', 'MEX'];
+    regionCodes = [regionCode];
+  } else if (regionCode === 'DF' || regionCode === 'CDMX') {
+    title = `${stateCodes['CDMX']} ( ${stateCodes['DF']} )`;
+    regionCodesToFilter = ['DF', 'CDMX'];
+    regionCodes = ['DF', 'CDMX'];
   } else {
     title = stateCodes[regionCode];
     regionCodesToFilter = [regionCode];
+    regionCodes = [regionCode];
   }
 
   useConstructor(async () => {
     try {
       setIsLoading(true);
       const params: BEQueryLicensePlatesData = {
-        region_code: regionCode,
+        region_codes: regionCodes,
         from_year: availableYears.from_year,
         to_year: availableYears.to_year,
       };

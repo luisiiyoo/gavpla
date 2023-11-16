@@ -69,9 +69,9 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa-solid fa-bus',
     childs: [
       {
-        title: 'MEX - DF',
-        idChild: 'mex-df',
-        route: `${METROPOLITAN_ROUTE.route}/mex-df`,
+        title: 'MEX - CDMX',
+        idChild: 'mex-cdmx',
+        route: `${METROPOLITAN_ROUTE.route}/mex-cdmx`,
         functionalComponent: () => (
           <SingleRegionLicensePlatesPanel regionCode={'METROPOLITAN'} />
         ),

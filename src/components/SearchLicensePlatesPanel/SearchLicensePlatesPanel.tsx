@@ -177,12 +177,22 @@ export const SearchLicensePlatesPanel: React.FC = () => {
                   const index = selectedCodes.indexOf(code);
                   const newSelectedCodes = [...selectedCodes];
                   if (index > -1) {
+                    console.log(code);
                     newSelectedCodes.splice(index, 1);
+                    if (code === 'CDMX') {
+                      const indexDF = newSelectedCodes.indexOf('DF');
+                      if (indexDF > -1) newSelectedCodes.splice(indexDF, 1);
+                    }
                   } else {
                     newSelectedCodes.push(code);
-                    newSelectedCodes.sort();
+                    if (code === 'CDMX') {
+                      newSelectedCodes.push('DF');
+                    }
                   }
-                  setSelectedCodes(newSelectedCodes);
+                  const uniqueCodes = new Set(newSelectedCodes);
+                  const newSelectedCodesSorted = Array.from(uniqueCodes);
+                  newSelectedCodesSorted.sort();
+                  setSelectedCodes(newSelectedCodesSorted);
                 }
               }}
             />
