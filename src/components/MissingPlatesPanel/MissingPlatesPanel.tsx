@@ -141,6 +141,11 @@ const MissingPlatesPanel = () => {
     setFilteredYears(filterYearsByState(stateCode));
   };
 
+  // Remove CDMX
+  let stateCodeOptions: string[] = Object.keys(stateCodes)
+  const index = stateCodeOptions.indexOf("CDMX");
+  if (index > -1) stateCodeOptions.splice(index, 1);
+
   return !!error.message ? (
     <ErrorDisplay message={error.message} statusCode={error.statusCode} />
   ) : (
@@ -169,7 +174,7 @@ const MissingPlatesPanel = () => {
           filteredYears={filteredYears}
           yearOptions={YEAR_OPTIONS}
           filteredStates={filteredStates}
-          stateOptions={Object.keys(stateCodes)}
+          stateOptions={stateCodeOptions}
         />
       </div>
     </>
