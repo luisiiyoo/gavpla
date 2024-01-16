@@ -86,11 +86,11 @@ export const TRANSLATIONS = {
   },
   RegionNames: {
     en: {
-      NATIONAL: 'National',
+      NATIONAL: 'Federal',
       METROPOLITAN: 'Metropolitan',
     },
     es: {
-      NATIONAL: 'Nacional',
+      NATIONAL: 'Federal',
       METROPOLITAN: 'Metropolitano',
     },
   },
@@ -114,7 +114,7 @@ export const TRANSLATIONS = {
       [HOME_ROUTE.route]: 'Inicio',
       [NEWS_ROUTE.route]: 'Novedades',
       [STATES_ROUTE.route]: 'Estados',
-      [NATIONAL_ROUTE.route]: 'Nacional',
+      [NATIONAL_ROUTE.route]: 'Federal',
       [METROPOLITAN_ROUTE.route]: 'Metropolitano',
       [SEARCH_ROUTE.route]: 'Buscar',
       [DONATIONS_ROUTE.route]: 'Donaciones',
@@ -170,7 +170,8 @@ export const TRANSLATIONS = {
         stateGroupName: 'State',
         placeholderRegionSelection: 'Select',
         titleRegionSelection: 'Filter by state',
-        titleYearsSelection: 'Filter by Years',
+        titleYearsSelection: 'Filter by years',
+        titleVehicleSelection: 'Filter by vehicle type',
         placeholderFromYearsSelection: 'From',
         placeholderToYearsSelection: 'To',
       },
@@ -187,6 +188,7 @@ export const TRANSLATIONS = {
         placeholderRegionSelection: 'Selecciona',
         titleRegionSelection: 'Filtrar por estado',
         titleYearsSelection: 'Filtrar por año',
+        titleVehicleSelection: 'Filtrar por tipo vehículo',
         placeholderFromYearsSelection: 'De',
         placeholderToYearsSelection: 'Hasta',
       },
@@ -239,7 +241,7 @@ export const TRANSLATIONS = {
       DFSeries: {
         Header: 'DF - Car, Motorcycle and Bike License Plate',
         Body:
-          'The following 3 plates belong to the year 1994 and 1995, the largest belonged to a car, the medium one to a motorcycle and the smallest to a bicycle.',
+          'The following 3 plates belong to the year 1974 and 1975, the largest belonged to a car, the medium one to a motorcycle and the smallest to a bicycle.',
       },
     },
     es: {
@@ -256,7 +258,7 @@ export const TRANSLATIONS = {
       DFSeries: {
         Header: 'DF - Car, Motorcycle and Bike License Plate',
         Body:
-          'Las siguientes 3 placas pertenecen al año 1994 y 1995, la más grande perteneció a un carro, la mediana a una motocicleta y la más chica a una bicicleta.',
+          'Las siguientes 3 placas pertenecen al año 1974 y 1975, la más grande perteneció a un carro, la mediana a una motocicleta y la más chica a una bicicleta.',
       },
     },
   },
