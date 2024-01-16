@@ -168,30 +168,42 @@ export const OptionsPanel = ({
       <div className="OptionsPanel-VehicleTypes">
         <h4>{translation.OptionsPanel.titleVehicleSelection}</h4>
         <Form className="OptionsPanel-FormVehicleTypes">
-            <FormGroup switch>
-              <Input type="switch" role="switch" />
-              <Label check><i className="fa-solid fa-car" /></Label>
-            </FormGroup>
-            <FormGroup switch>
-              <Input type="switch" role="switch" />
-              <Label check><i className="fa-solid fa-bus" /></Label>
-            </FormGroup>
-            <FormGroup switch>
-              <Input type="switch" role="switch" />
-              <Label check><i className="fa-solid fa-flag" /></Label>
-            </FormGroup>
-            <FormGroup switch>
-              <Input type="switch" role="switch" />
-              <Label check><i className="fa-solid fa-arrow-down-up-across-line" /></Label>
-            </FormGroup>
-            <FormGroup switch>
-              <Input type="switch" role="switch" />
-              <Label check><i className="fa-solid fa-motorcycle" /></Label>
-            </FormGroup>
-            <FormGroup switch>
-              <Input type="switch" role="switch" />
-              <Label check><i className="fa-solid fa-bicycle" /></Label>
-            </FormGroup>
+          <FormGroup switch>
+            <Input type="switch" role="switch" />
+            <Label check>
+              <i className="fa-solid fa-car" />
+            </Label>
+          </FormGroup>
+          <FormGroup switch>
+            <Input type="switch" role="switch" />
+            <Label check>
+              <i className="fa-solid fa-bus" />
+            </Label>
+          </FormGroup>
+          <FormGroup switch>
+            <Input type="switch" role="switch" />
+            <Label check>
+              <i className="fa-solid fa-flag" />
+            </Label>
+          </FormGroup>
+          <FormGroup switch>
+            <Input type="switch" role="switch" />
+            <Label check>
+              <i className="fa-solid fa-arrow-down-up-across-line" />
+            </Label>
+          </FormGroup>
+          <FormGroup switch>
+            <Input type="switch" role="switch" />
+            <Label check>
+              <i className="fa-solid fa-motorcycle" />
+            </Label>
+          </FormGroup>
+          <FormGroup switch>
+            <Input type="switch" role="switch" />
+            <Label check>
+              <i className="fa-solid fa-bicycle" />
+            </Label>
+          </FormGroup>
         </Form>
       </div>
 
@@ -252,7 +264,7 @@ export const OptionsPanel = ({
           />
         </div>
       </div>
-      
+
       <div className="OptionsPanel-SelectRegion">
         <h4>{translation.OptionsPanel.titleRegionSelection}</h4>
         <Select

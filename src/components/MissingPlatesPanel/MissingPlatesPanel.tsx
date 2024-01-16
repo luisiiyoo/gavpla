@@ -142,8 +142,8 @@ const MissingPlatesPanel = () => {
   };
 
   // Remove CDMX
-  let stateCodeOptions: string[] = Object.keys(stateCodes)
-  const index = stateCodeOptions.indexOf("CDMX");
+  let stateCodeOptions: string[] = Object.keys(stateCodes);
+  const index = stateCodeOptions.indexOf('CDMX');
   if (index > -1) stateCodeOptions.splice(index, 1);
 
   return !!error.message ? (

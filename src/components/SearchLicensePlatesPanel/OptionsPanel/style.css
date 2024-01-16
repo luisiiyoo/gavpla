@@ -47,28 +47,26 @@
   }
 }
 
-.OptionsPanel-VehicleTypes{
+.OptionsPanel-VehicleTypes {
   margin-bottom: 10px;
 }
 
-
 .form-check-input {
-  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%239f131a%27/></svg>") !important;
+  background-image: url('data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%239f131a%27/></svg>') !important;
 }
 .form-check-input:checked {
   background-color: var(--dark-color-app) !important;
   border-color: var(--dark-color-app) !important;
-  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23FFF%27/></svg>") !important;
+  background-image: url('data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23FFF%27/></svg>') !important;
 }
 
 .form-check-input:focus {
   border-color: var(--dark-color-app) !important;
-  /* border-color: #fff !important; */
   outline: 0;
   box-shadow: none !important;
 }
 
-.OptionsPanel-FormVehicleTypes{
+.OptionsPanel-FormVehicleTypes {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
@@ -81,9 +79,8 @@
   font-size: large;
 }
 
-
 @media only screen and (max-device-width: 500px) {
-  .OptionsPanel-FormVehicleTypes{
+  .OptionsPanel-FormVehicleTypes {
     grid-template-columns: auto auto;
     font-size: medium;
   }
