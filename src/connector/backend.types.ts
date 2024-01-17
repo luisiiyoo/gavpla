@@ -46,6 +46,7 @@ export interface SerchRequestArgs {
   country_code?: string;
   from_year: number;
   to_year: number;
+  exclude_vehicle_types?: string[];
 }
 
 export interface BELicensePlatesData {

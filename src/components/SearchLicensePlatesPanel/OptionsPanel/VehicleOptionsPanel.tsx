@@ -41,7 +41,7 @@ export const VehicleOptionsPanel = ({
   const transalation = TRANSLATIONS.Search[languageCode];
   // console.log(Object.keys(vehicleTypes))
 
-  const [searchUnknown, setSearchUnknown] = useState<boolean>(true);
+  //   const [searchUnknown, setSearchUnknown] = useState<boolean>(true);
   const [searchMotorcycles, setSearchMotorcycles] = useState<boolean>(true);
   const [searchBicycles, setSearchBicycles] = useState<boolean>(true);
   const [searchAmbulance, setSearchAmbulance] = useState<boolean>(true);
@@ -106,7 +106,7 @@ export const VehicleOptionsPanel = ({
           stateValue={searchMotorcycles}
           stateHandler={() => {
             setSearchMotorcycles(!searchMotorcycles);
-            handleVechileFilter(!searchMotorcycles, ['MOTORCYCLES']);
+            handleVechileFilter(!searchMotorcycles, ['MOTORCYCLE']);
           }}
         />
         <VehicleOption
@@ -236,14 +236,14 @@ export const VehicleOptionsPanel = ({
             ]);
           }}
         />
-        <VehicleOption
+        {/* <VehicleOption
           iconClassName="fa-solid fa-question"
           stateValue={searchUnknown}
           stateHandler={() => {
             setSearchUnknown(!searchUnknown);
             handleVechileFilter(!searchUnknown, ['UNKNOWN']);
           }}
-        />
+        /> */}
       </Form>
     </div>
   );

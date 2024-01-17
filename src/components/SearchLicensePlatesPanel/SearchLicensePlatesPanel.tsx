@@ -40,6 +40,7 @@ export const SearchLicensePlatesPanel: React.FC = () => {
     region_codes: [],
     from_year: availableYears.from_year,
     to_year: availableYears.to_year,
+    exclude_vehicle_types: [],
   });
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     requestArgs.region_codes,
@@ -47,32 +48,52 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   const [fromYear, setFromYear] = useState<number>(1968);
   const [toYear, setToYear] = useState<number>(1969);
   const [excludedVehicleTypes, setExcludedVehicleTypes] = useState<Set<string>>(
-    new Set(), //['MOTORCYCLE', 'BICYCLE', 'TRICYCLE']
+    new Set(),
   );
 
+  const getArrayOfExcludedVehicleTypes = (uniqueTypes): string[] => {
+    const excludedTypes: string[] = Array.from(uniqueTypes);
+    excludedTypes.sort((a, b) => a.localeCompare(b));
+    return excludedTypes;
+  };
+
+  // console.log(getArrayOfExcludedVehicleTypes(excludedVehicleTypes)+ "!=="+ getArrayOfExcludedVehicleTypes(requestArgs.exclude_vehicle_types))
   const areThereDifferences: boolean = [
     JSON.stringify(selectedCodes) !== JSON.stringify(requestArgs.region_codes),
     fromYear !== requestArgs.from_year,
     toYear !== requestArgs.to_year,
+    JSON.stringify(getArrayOfExcludedVehicleTypes(excludedVehicleTypes)) !==
+      JSON.stringify(
+        getArrayOfExcludedVehicleTypes(requestArgs.exclude_vehicle_types),
+      ),
   ].some((item) => item);
 
   const requestDataToBE = async (): Promise<number> => {
     try {
       setIsLoading(true);
-      const codes =
+      const codes: string[] =
         selectedCodes.length === 0 ? Object.keys(stateCodes) : selectedCodes;
+
+      const excludeVehicleTypes = getArrayOfExcludedVehicleTypes(
+        excludedVehicleTypes,
+      );
+      // codes.concat(["METROPOLITAN", "NATIONAL"])
+
       const params: BEQueryLicensePlatesData = {
-        region_codes: codes,
+        region_codes: codes.concat(['METROPOLITAN', 'NATIONAL']),
         from_year: fromYear,
         to_year: toYear,
+        exclude_vehicle_types: excludeVehicleTypes,
       };
       const platesData: BELicensePlatesData[] = await connector.getLicensePlatesData(
         userID,
         params,
       );
+
       setPlatesDataArray(platesData);
       setRequestArgs({
         region_codes: selectedCodes,
+        exclude_vehicle_types: excludeVehicleTypes,
         from_year: fromYear,
         to_year: toYear,
       });
@@ -115,6 +136,9 @@ export const SearchLicensePlatesPanel: React.FC = () => {
         setPlatesDataArray([]);
         setRequestArgs({
           region_codes: selectedCodes,
+          exclude_vehicle_types: getArrayOfExcludedVehicleTypes(
+            excludedVehicleTypes,
+          ),
           from_year: fromYear,
           to_year: toYear,
         });
