@@ -71,7 +71,7 @@
   margin-left: 10%;
   margin-right: 10%;
   display: inline-grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto;
   align-content: space-evenly;
   justify-items: center;
   align-items: center;
@@ -79,9 +79,18 @@
   font-size: large;
 }
 
+@media only screen and (max-device-width: 1000px) {
+  .OptionsPanel-FormVehicleTypes {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+    font-size: large;
+  }
+}
+
 @media only screen and (max-device-width: 500px) {
   .OptionsPanel-FormVehicleTypes {
-    grid-template-columns: auto auto;
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
     font-size: medium;
   }
 }

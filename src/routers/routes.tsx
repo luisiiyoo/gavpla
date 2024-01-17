@@ -122,7 +122,7 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
         titleName="BICYCLE"
-        vehicle_types={['BICYCLE']}
+        vehicle_types={['BICYCLE', 'TRICYCLE']}
         hideStateName={false}
         hideYears={false}
         hideVehicleType={true}

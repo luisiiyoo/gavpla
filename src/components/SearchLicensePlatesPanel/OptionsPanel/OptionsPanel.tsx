@@ -9,16 +9,19 @@ import {
 } from 'src/connector/backend.types';
 import { sortInplaceAlphabetically } from 'src/utils';
 import { TRANSLATIONS } from 'src/language';
-import { Form, Input, FormGroup, Label } from 'reactstrap';
+import { Input } from 'reactstrap';
 import { DEFAULT_FONT_COLOR, SELECTED_FONT_COLOR } from 'src/utils/constants';
+import { VehicleOptionsPanel } from './VehicleOptionsPanel';
 
 export interface OptionsPanelProps {
   fromYear: number;
   toYear: number;
   selectedCodes: string[];
+  excludedVehicleTypes: Set<string>;
   setFromYear: (year: number) => void;
   setToYear: (year: number) => void;
   selectRegionCodesHandler: (codes: string[]) => void;
+  setExcludedVehicleTypes: (selectedTypes: Set<string>) => void;
   requestArgs: SerchRequestArgs;
 }
 
@@ -98,6 +101,8 @@ export const OptionsPanel = ({
   selectRegionCodesHandler,
   setFromYear,
   setToYear,
+  excludedVehicleTypes,
+  setExcludedVehicleTypes,
   requestArgs,
 }: OptionsPanelProps) => {
   const {
@@ -125,6 +130,7 @@ export const OptionsPanel = ({
 
   const hasDifferencesOnSelect =
     JSON.stringify(selectedCodes) === JSON.stringify(requestArgs.region_codes);
+
   const selectStyles: StylesConfig = {
     menu: (styles) => ({
       ...styles,
@@ -165,48 +171,10 @@ export const OptionsPanel = ({
   }
   return (
     <div className="OptionsPanel">
-      <div className="OptionsPanel-VehicleTypes">
-        <h4>{translation.OptionsPanel.titleVehicleSelection}</h4>
-        <Form className="OptionsPanel-FormVehicleTypes">
-          <FormGroup switch>
-            <Input type="switch" role="switch" />
-            <Label check>
-              <i className="fa-solid fa-car" />
-            </Label>
-          </FormGroup>
-          <FormGroup switch>
-            <Input type="switch" role="switch" />
-            <Label check>
-              <i className="fa-solid fa-bus" />
-            </Label>
-          </FormGroup>
-          <FormGroup switch>
-            <Input type="switch" role="switch" />
-            <Label check>
-              <i className="fa-solid fa-flag" />
-            </Label>
-          </FormGroup>
-          <FormGroup switch>
-            <Input type="switch" role="switch" />
-            <Label check>
-              <i className="fa-solid fa-arrow-down-up-across-line" />
-            </Label>
-          </FormGroup>
-          <FormGroup switch>
-            <Input type="switch" role="switch" />
-            <Label check>
-              <i className="fa-solid fa-motorcycle" />
-            </Label>
-          </FormGroup>
-          <FormGroup switch>
-            <Input type="switch" role="switch" />
-            <Label check>
-              <i className="fa-solid fa-bicycle" />
-            </Label>
-          </FormGroup>
-        </Form>
-      </div>
-
+      <VehicleOptionsPanel
+        excludedVehicleTypes={excludedVehicleTypes}
+        setExcludedVehicleTypes={setExcludedVehicleTypes}
+      />
       <div className="OptionsPanel-SelectYear">
         <h4>{translation.OptionsPanel.titleYearsSelection}</h4>
         <div className="OptionsPanel-SelectYear-Range">

@@ -46,6 +46,9 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   );
   const [fromYear, setFromYear] = useState<number>(1968);
   const [toYear, setToYear] = useState<number>(1969);
+  const [excludedVehicleTypes, setExcludedVehicleTypes] = useState<Set<string>>(
+    new Set(), //['MOTORCYCLE', 'BICYCLE', 'TRICYCLE']
+  );
 
   const areThereDifferences: boolean = [
     JSON.stringify(selectedCodes) !== JSON.stringify(requestArgs.region_codes),
@@ -146,6 +149,8 @@ export const SearchLicensePlatesPanel: React.FC = () => {
           setToYear={setToYear}
           selectedCodes={selectedCodes}
           selectRegionCodesHandler={setSelectedCodes}
+          excludedVehicleTypes={excludedVehicleTypes}
+          setExcludedVehicleTypes={setExcludedVehicleTypes}
           requestArgs={requestArgs}
         />
         <div
