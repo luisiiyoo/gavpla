@@ -15,6 +15,7 @@ import { handleErrorMessage, useConstructor } from 'src/utils';
 import ErrorDisplay from 'src/components/ErrorDisplay';
 import { getTranslation } from 'src/language';
 
+const EXCLUDE_VEHICLES = ['FRONTIER', 'MOTORCYCLE', 'BICYCLE', 'TRICYCLE'];
 const YEAR_OPTIONS = [
   '1968-1969',
   '1970-1971',
@@ -28,7 +29,6 @@ const YEAR_OPTIONS = [
   '1986-1991',
   '1992-1997',
 ];
-const EXCLUDE_VEHICLES = ['FRONTIER'];
 export interface MissingPlatesPanelProps {}
 
 const MissingPlatesPanel = () => {
