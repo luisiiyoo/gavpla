@@ -77,10 +77,9 @@ export const SearchLicensePlatesPanel: React.FC = () => {
       const excludeVehicleTypes = getArrayOfExcludedVehicleTypes(
         excludedVehicleTypes,
       );
-      // codes.concat(["METROPOLITAN", "NATIONAL"])
 
       const params: BEQueryLicensePlatesData = {
-        region_codes: codes.concat(['METROPOLITAN', 'NATIONAL']),
+        region_codes: codes.concat(['METROPOLITAN', 'NATIONAL']), // Here
         from_year: fromYear,
         to_year: toYear,
         exclude_vehicle_types: excludeVehicleTypes,
