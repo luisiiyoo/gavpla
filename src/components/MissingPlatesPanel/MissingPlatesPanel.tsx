@@ -132,13 +132,13 @@ const MissingPlatesPanel = () => {
   };
 
   const selectStateHandler = (stateCode: string) => {
-    if (stateCode === selectedState) return;
+    const newSelection: string = stateCode === 'CDMX' ? 'DF' : stateCode;
+    if (newSelection === selectedState) return;
 
-    setSelectedState(stateCode);
+    setSelectedState(newSelection);
     setSelectedYear('');
-
-    setFilteredStates([stateCode]);
-    setFilteredYears(filterYearsByState(stateCode));
+    setFilteredStates([newSelection]);
+    setFilteredYears(filterYearsByState(newSelection));
   };
 
   // Remove CDMX

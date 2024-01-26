@@ -196,7 +196,7 @@ export const TRANSLATIONS = {
         placeholderToYearsSelection: 'Hasta',
         selectAllVehicleTypes: 'Seleccionar todos los tipos',
         deselectAllVehicleTypes: 'Deseleccionar todos los tipos',
-        selectFederalAndMetropolitanRegions: 'Incliur Federal y Metropolitano',
+        selectFederalAndMetropolitanRegions: 'Incluir Federal y Metropolitano',
       },
       SearchButtonLabel: 'Buscar',
       SameSearchParametersWarning: 'No hay nuevos parámetros para buscar.',

@@ -55,10 +55,9 @@ const MissingDetailsPanel = ({
               <p>
                 <strong>{`${translation['State']} : ${stateCodes[selectedState]}`}</strong>
                 <br />
-                {/* {`${filteredYears.length} plates in the collection, ${missingYears.length} missing.`} */}
-                {`${translation['MissingDetails']['Having']} : ${filteredYears.length}   -   ${translation['MissingDetails']['Missing']} : ${missingYears.length}`}
-              </p>
-              <p>
+                {/* {`${translation['MissingDetails']['Having']} : ${filteredYears.length}   -   ${translation['MissingDetails']['Missing']} : ${missingYears.length}`} */}
+                {`${translation['MissingDetails']['Missing']} : ${missingYears.length}`}
+                <br />
                 {missingYears.map((year, key) => (
                   <span key={key} className="YearChoice MissingItem">
                     {year}
@@ -72,9 +71,9 @@ const MissingDetailsPanel = ({
               <p>
                 <strong>{`${translation['Year']} : ${selectedYear}`}</strong>
                 <br />
-                {`${translation['MissingDetails']['Having']} : ${filteredStates.length}   -   ${translation['MissingDetails']['Missing']} : ${missingStats.length}`}
-              </p>
-              <p>
+                {/* {`${translation['MissingDetails']['Having']} : ${filteredStates.length}   -   ${translation['MissingDetails']['Missing']} : ${missingStats.length}`} */}
+                {`${translation['MissingDetails']['Missing']} : ${missingStats.length}`}
+                <br />
                 {missingStats.map((state, key) => (
                   <span key={key} className="YearChoice MissingItem">
                     {stateCodes[state]}
