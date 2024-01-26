@@ -6,11 +6,14 @@ import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { BELicensePlateRegionCodes } from 'src/connector/backend.types';
 import { sortInplaceAlphabetically } from 'src/utils';
 import { DEFAULT_FONT_COLOR, SELECTED_FONT_COLOR } from 'src/utils/constants';
+import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 export interface RegionOptionsPanelProps {
   hasDifferencesOnSelect: boolean;
   selectedCodes: string[];
   selectRegionCodesHandler: (codes: string[]) => void;
+  onlyStates: boolean;
+  onlyStatesHandler: (flag: boolean) => void;
 }
 
 export interface SelectOption {
@@ -27,6 +30,8 @@ export const RegionOptionsPanel = ({
   hasDifferencesOnSelect,
   selectedCodes,
   selectRegionCodesHandler,
+  onlyStates,
+  onlyStatesHandler,
 }: RegionOptionsPanelProps) => {
   const { languageCode, stateCodes }: StateType = useSelector(
     (state) => state.main,
@@ -95,6 +100,20 @@ export const RegionOptionsPanel = ({
   return (
     <div className="OptionsPanel-SelectRegion">
       <h4>{translation.OptionsPanel.titleRegionSelection}</h4>
+      <Form className="OptionsPanel-MainChoice">
+        <FormGroup switch>
+          <Input
+            type="switch"
+            checked={onlyStates}
+            onChange={() => {
+              onlyStatesHandler(!onlyStates);
+            }}
+          />
+          <Label check>
+            {translation.OptionsPanel.selectFederalAndMetropolitanRegions}
+          </Label>
+        </FormGroup>
+      </Form>
       <Select
         className="react-select-container"
         name="AreaSelectOptions"

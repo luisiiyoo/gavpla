@@ -66,8 +66,8 @@
   box-shadow: none !important;
 }
 
-.OptionsPanel-FormSelectAllVehicleTypes {
-  width: 80%;
+.OptionsPanel-MainChoice {
+  width: 85%;
   margin-left: 10%;
   margin-right: 10%;
   display: inline-grid;
@@ -76,7 +76,7 @@
   justify-items: center;
   align-items: center;
   text-align: center;
-  font-size: medium;
+  font-size: small;
 }
 
 .OptionsPanel-FormVehicleTypes {

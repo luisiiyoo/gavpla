@@ -45,7 +45,7 @@ export const VehicleOptionsPanel = ({
   setExcludedVehicleTypes,
 }: VehicleOptionsPanelProps) => {
   const { languageCode }: StateType = useSelector((state) => state.main);
-  const transalation = TRANSLATIONS.Search[languageCode];
+  const translation = TRANSLATIONS.Search[languageCode];
 
   const [searchCars, setSearchCars] = useState<boolean>(true);
   const CAR_TYPES: string[] = [
@@ -58,10 +58,10 @@ export const VehicleOptionsPanel = ({
     'SPF-RENTAL',
   ];
 
-  const [searchBicycles, setSearchBicycles] = useState<boolean>(true);
+  const [searchBicycles, setSearchBicycles] = useState<boolean>(false);
   const BICYCLE_TYPES: string[] = ['BICYCLE', 'TRICYCLE'];
 
-  const [searchMotorcycles, setSearchMotorcycles] = useState<boolean>(true);
+  const [searchMotorcycles, setSearchMotorcycles] = useState<boolean>(false);
   const MOTORCYCLE_TYPES: string[] = ['MOTORCYCLE'];
 
   const [searchEcoFriendly, setSearchEcoFriendly] = useState<boolean>(true);
@@ -123,27 +123,27 @@ export const VehicleOptionsPanel = ({
   );
   const FRONTIER_TYPES: string[] = ['FRONTIER'];
 
-  const [searchFederalVehicles, setSearchFederalVehicles] = useState<boolean>(
-    true,
-  );
-  const FEDERAL_TYPES: string[] = [
-    'SAF',
-    'SAF-TRAILER',
-    'SCT',
-    'SCT-BUS',
-    'SCT-TRAILER',
-    'SCT-TRANSFER',
-    'SCT-TRUCK',
-    'SET',
-    'SET-TOURIST',
-    'SPF',
-    'SPF-BUS',
-    'SPF-CAR',
-    'SPF-FRONTIER',
-    'SPF-RENTAL',
-    'SPF-TRAILER',
-    'SPF-TRUCK',
-  ];
+  // const [searchFederalVehicles, setSearchFederalVehicles] = useState<boolean>(
+  //   true,
+  // );
+  // const FEDERAL_TYPES: string[] = [
+  //   'SAF',
+  //   'SAF-TRAILER',
+  //   'SCT',
+  //   'SCT-BUS',
+  //   'SCT-TRAILER',
+  //   'SCT-TRANSFER',
+  //   'SCT-TRUCK',
+  //   'SET',
+  //   'SET-TOURIST',
+  //   'SPF',
+  //   'SPF-BUS',
+  //   'SPF-CAR',
+  //   'SPF-FRONTIER',
+  //   'SPF-RENTAL',
+  //   'SPF-TRAILER',
+  //   'SPF-TRUCK',
+  // ];
 
   const [searchUnknown, setSearchUnknown] = useState<boolean>(true);
   const UNKNOWN_TYPES: string[] = ['UNKNOWN'];
@@ -223,12 +223,12 @@ export const VehicleOptionsPanel = ({
       setStateValue: setSearchFrontierVehicles,
       types: FRONTIER_TYPES,
     },
-    'FEDERAL-TYPES': {
-      iconClassName: 'fa-solid fa-flag',
-      stateValue: searchFederalVehicles,
-      setStateValue: setSearchFederalVehicles,
-      types: FEDERAL_TYPES,
-    },
+    // 'FEDERAL-TYPES': {
+    //   iconClassName: 'fa-solid fa-flag',
+    //   stateValue: searchFederalVehicles,
+    //   setStateValue: setSearchFederalVehicles,
+    //   types: FEDERAL_TYPES,
+    // },
     'UNKNOWN-TYPES': {
       iconClassName: 'fa-solid fa-question',
       stateValue: searchUnknown,
@@ -249,8 +249,8 @@ export const VehicleOptionsPanel = ({
 
   return (
     <div className="OptionsPanel-VehicleTypes">
-      <h4>{transalation.OptionsPanel.titleVehicleSelection}</h4>
-      <Form className="OptionsPanel-FormSelectAllVehicleTypes">
+      <h4>{translation.OptionsPanel.titleVehicleSelection}</h4>
+      <Form className="OptionsPanel-MainChoice">
         <FormGroup switch>
           <Input
             type="switch"
@@ -276,8 +276,8 @@ export const VehicleOptionsPanel = ({
           />
           <Label check>
             {selectAllVechicleTypes
-              ? transalation.OptionsPanel.deselectAllVehicleTypes
-              : transalation.OptionsPanel.selectAllVehicleTypes}
+              ? translation.OptionsPanel.deselectAllVehicleTypes
+              : translation.OptionsPanel.selectAllVehicleTypes}
           </Label>
         </FormGroup>
       </Form>

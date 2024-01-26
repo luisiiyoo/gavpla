@@ -16,6 +16,8 @@ export interface OptionsPanelProps {
   setToYear: (year: number) => void;
   selectRegionCodesHandler: (codes: string[]) => void;
   setExcludedVehicleTypes: (selectedTypes: Set<string>) => void;
+  onlyStates: boolean;
+  onlyStatesHandler: (flag: boolean) => void;
   requestArgs: SerchRequestArgs;
 }
 
@@ -28,6 +30,8 @@ export const OptionsPanel = ({
   setToYear,
   excludedVehicleTypes,
   setExcludedVehicleTypes,
+  onlyStates,
+  onlyStatesHandler,
   requestArgs,
 }: OptionsPanelProps) => {
   const { availableYears }: StateType = useSelector((state) => state.main);
@@ -67,6 +71,8 @@ export const OptionsPanel = ({
         hasDifferencesOnSelect={hasDifferencesOnSelect}
         selectedCodes={selectedCodes}
         selectRegionCodesHandler={selectRegionCodesHandler}
+        onlyStates={onlyStates}
+        onlyStatesHandler={onlyStatesHandler}
       />
     </div>
   );
