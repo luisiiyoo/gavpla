@@ -46,8 +46,8 @@ export const SearchLicensePlatesPanel: React.FC = () => {
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     requestArgs.region_codes,
   );
-  const [fromYear, setFromYear] = useState<number>(1974);
-  const [toYear, setToYear] = useState<number>(1975);
+  const [fromYear, setFromYear] = useState<number>(1968);
+  const [toYear, setToYear] = useState<number>(1999);
   const [excludedVehicleTypes, setExcludedVehicleTypes] = useState<Set<string>>(
     new Set(['BICYCLE', 'TRICYCLE', 'MOTORCYCLE']),
   );

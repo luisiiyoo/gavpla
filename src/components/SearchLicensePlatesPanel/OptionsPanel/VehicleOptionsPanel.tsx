@@ -47,11 +47,14 @@ export const VehicleOptionsPanel = ({
   const { languageCode }: StateType = useSelector((state) => state.main);
   const translation = TRANSLATIONS.Search[languageCode];
 
+  const [searchDealer, setSearchDealer] = useState<boolean>(true);
+  const DEALER_TYPES: string[] = ['DEALER'];
+
   const [searchCars, setSearchCars] = useState<boolean>(true);
   const CAR_TYPES: string[] = [
     'ANTIQUE-CAR',
     'COMMERCIAL-CAR',
-    'DEALER',
+
     'PRIVATE-CAR',
     'PROVISIONAL',
     'SPF-CAR',
@@ -151,6 +154,12 @@ export const VehicleOptionsPanel = ({
   // Control vars
   const [selectAllVechicleTypes, setSelectAllVechicleTypes] = useState(true);
   const vehicleOptions: VehicleTypeOptions = {
+    'DEALER-TYPES': {
+      iconClassName: 'fa-solid fa-car-on',
+      stateValue: searchDealer,
+      setStateValue: setSearchDealer,
+      types: DEALER_TYPES,
+    },
     'CAR-TYPES': {
       iconClassName: 'fa-solid fa-car',
       stateValue: searchCars,
