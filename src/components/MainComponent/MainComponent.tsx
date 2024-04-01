@@ -23,10 +23,13 @@ export const MainComponent: React.FC = () => {
   );
 
   useConstructor(async () => {
-    try {
-      dispatch(setError({}));
-      dispatch(setIsLoading(true));
+    dispatch(setError({}));
+    dispatch(setIsLoading(true));
 
+    let attemp = 1;
+    const attempsLimit = 3;
+
+    const pullGeneralData = async (): Promise<void> => {
       // Get user ID from BE
       const userID = await connector.getUserID(true);
       dispatch(setUserID(userID));
@@ -45,11 +48,32 @@ export const MainComponent: React.FC = () => {
       // Get available years from BE
       const availableYears = await connector.getLicensePlatesAvailableYears();
       dispatch(setAvailableYears(availableYears));
-    } catch (error) {
-      dispatch(setError(handleErrorMessage(error, languageCode)));
-    } finally {
-      dispatch(setIsLoading(false));
+    };
+
+    function timeout(delay: number) {
+      return new Promise((res) => setTimeout(res, delay));
     }
+
+    while (attemp <= attempsLimit) {
+      try {
+        await pullGeneralData();
+        attemp = attempsLimit;
+      } catch (err) {
+        const errMsg = (err as Error).message;
+        console.log(`Attemp ${attemp} failed: ${errMsg}`);
+        const isConnectionError: boolean =
+          errMsg.includes('SSL connection has been closed') ||
+          errMsg.includes('Unable to stablish connection');
+        if (attemp < attempsLimit && isConnectionError) {
+          await await timeout(5000);
+        } else {
+          dispatch(setError(handleErrorMessage(err, languageCode)));
+          attemp = attempsLimit;
+        }
+      }
+      attemp++;
+    }
+    dispatch(setIsLoading(false));
   });
 
   return (
