@@ -10,17 +10,17 @@
   border-color: green; */
 }
 img {
-  width: 90%;
+  width: 94%;
   height: auto;
   border-radius: 5px;
 }
 
 .MOTORCYCLE-IMG {
-  width: 57%;
+  /* width: 57%; */
 }
 
 .BICYCLE-IMG {
-  width: 43%;
+  /* width: 43%; */
 }
 
 @media only screen and (min-device-width: 400px) {
