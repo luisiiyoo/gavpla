@@ -5,13 +5,12 @@ import {
   BEQueryLicensePlatesData,
 } from 'src/connector/backend.types';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
-import { handleErrorMessage, toTitleCase, useConstructor } from 'src/utils';
+import { handleErrorMessage, useConstructor } from 'src/utils';
 import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import { LicensePlatesPanel } from './LicensePlatesPanel';
-import { TRANSLATIONS } from 'src/language';
 
 export interface YearSerieLicensePlatesPanelProps {
   title: string;
@@ -36,12 +35,9 @@ const YearSerieLicensePlatesPanel: React.FC<YearSerieLicensePlatesPanelProps> = 
   hideYears,
   hideVehicleType,
 }) => {
-  const {
-    userID,
-    additionalRegionCodes,
-    stateCodes,
-    languageCode,
-  }: StateType = useSelector((state) => state.main);
+  const { userID, languageCode }: StateType = useSelector(
+    (state) => state.main,
+  );
   const [platesDataArray, setPlatesDataArray] = useState<BELicensePlatesData[]>(
     [],
   );
@@ -57,12 +53,7 @@ const YearSerieLicensePlatesPanel: React.FC<YearSerieLicensePlatesPanelProps> = 
       const params: BEQueryLicensePlatesData = {
         from_year: fromYear,
         to_year: toYear,
-        // region_codes: [
-        // ...Object.keys(stateCodes),
-        // ...Object.keys(additionalRegionCodes)
-        // ]
       };
-      // regionCodes && (params.region_codes = regionCodes);
       vehicle_types && (params.vehicle_types = vehicle_types);
       exclude_vehicle_types &&
         (params.exclude_vehicle_types = exclude_vehicle_types);
