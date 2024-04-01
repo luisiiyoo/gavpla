@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.a8e9c682.chunk.css",
-    "main.js": "/static/js/main.06b5e240.chunk.js",
-    "main.js.map": "/static/js/main.06b5e240.chunk.js.map",
+    "main.css": "/static/css/main.387a8f96.chunk.css",
+    "main.js": "/static/js/main.446ca177.chunk.js",
+    "main.js.map": "/static/js/main.446ca177.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ee8a6cf4.js",
     "runtime-main.js.map": "/static/js/runtime-main.ee8a6cf4.js.map",
     "static/css/2.f41c74a6.chunk.css": "/static/css/2.f41c74a6.chunk.css",
-    "static/js/2.9350bc22.chunk.js": "/static/js/2.9350bc22.chunk.js",
-    "static/js/2.9350bc22.chunk.js.map": "/static/js/2.9350bc22.chunk.js.map",
+    "static/js/2.a4c03cf6.chunk.js": "/static/js/2.a4c03cf6.chunk.js",
+    "static/js/2.a4c03cf6.chunk.js.map": "/static/js/2.a4c03cf6.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.5cc9779d00c3e78da54c9cc3f4a14d8f.js": "/precache-manifest.5cc9779d00c3e78da54c9cc3f4a14d8f.js",
+    "precache-manifest.8aea014dfffe382c2f3363241e16d3c2.js": "/precache-manifest.8aea014dfffe382c2f3363241e16d3c2.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.f41c74a6.chunk.css.map": "/static/css/2.f41c74a6.chunk.css.map",
-    "static/css/main.a8e9c682.chunk.css.map": "/static/css/main.a8e9c682.chunk.css.map",
-    "static/js/2.9350bc22.chunk.js.LICENSE.txt": "/static/js/2.9350bc22.chunk.js.LICENSE.txt",
+    "static/css/main.387a8f96.chunk.css.map": "/static/css/main.387a8f96.chunk.css.map",
+    "static/js/2.a4c03cf6.chunk.js.LICENSE.txt": "/static/js/2.a4c03cf6.chunk.js.LICENSE.txt",
     "static/media/DFPlates.jpg": "/static/media/DFPlates.d4c27feb.jpg",
-    "static/media/GAVPLA.png": "/static/media/GAVPLA.6ecfe4e6.png",
+    "static/media/GAVPLA.png": "/static/media/GAVPLA.a71c2d7b.png",
     "static/media/antiquePlates.jpg": "/static/media/antiquePlates.73a5f342.jpg",
     "static/media/mx.png": "/static/media/mx.df568fd5.png",
     "static/media/us.png": "/static/media/us.218f936f.png"
@@ -23,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.ee8a6cf4.js",
     "static/css/2.f41c74a6.chunk.css",
-    "static/js/2.9350bc22.chunk.js",
-    "static/css/main.a8e9c682.chunk.css",
-    "static/js/main.06b5e240.chunk.js"
+    "static/js/2.a4c03cf6.chunk.js",
+    "static/css/main.387a8f96.chunk.css",
+    "static/js/main.446ca177.chunk.js"
   ]
 }
