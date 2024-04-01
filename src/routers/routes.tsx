@@ -13,14 +13,19 @@ import {
   NEWS_ROUTE,
   BICYCLE_ROUTE,
   SHOP_PLATES_ROUTE,
+  BY_YEARS_ROUTE,
 } from './constants';
-import { MEXICO_STATE_CODE_TO_STATE_NAME } from 'src/utils/constants';
+import {
+  MEXICO_STATE_CODE_TO_STATE_NAME,
+  MEXICO_YEAR_SERIES,
+} from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
 import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
 import NewsPanel from 'src/components/NewsPanel/NewsPanel';
+import YearSerieLicensePlatesPanel from 'src/components/LicensePlatesPanel/YearSerieLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -41,6 +46,63 @@ const navigationItems: NavItem[] = [
     route: NEWS_ROUTE.route,
     iconClass: 'fa-solid fa-newspaper',
     functionalComponent: () => <NewsPanel />,
+  },
+  // {
+  //   title: BY_YEARS_ROUTE.title,
+  //   route: BY_YEARS_ROUTE.route,
+  //   iconClass: 'fa-solid fa-hourglass-half',
+  //   functionalComponent: () => (
+  // <YearSerieLicensePlatesPanel
+  //   displayMap={true}
+  //   fromYear={1968}
+  //   toYear={1969}
+  //   exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE', 'TRICYCLE']}
+  //   hideStateName={false}
+  //   hideYears={false}
+  //   hideVehicleType={false}
+  // />
+  //   ),
+  // },
+  {
+    title: BY_YEARS_ROUTE.title,
+    route: BY_YEARS_ROUTE.route,
+    iconClass: 'fa-solid fa-hourglass-half',
+    childs: MEXICO_YEAR_SERIES.map(([fromYear, toYear]) => {
+      const title = `${fromYear} - ${toYear}`;
+      const subRoutetitle = `${fromYear}-${toYear}`;
+      return {
+        title: title,
+        idChild: subRoutetitle,
+        route: `${BY_YEARS_ROUTE.route}/${subRoutetitle}`,
+        functionalComponent: () => (
+          <YearSerieLicensePlatesPanel
+            title={title}
+            displayMap={true}
+            fromYear={fromYear}
+            toYear={toYear}
+            exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE', 'TRICYCLE']}
+            hideStateName={false}
+            hideYears={false}
+            hideVehicleType={false}
+          />
+        ),
+      };
+    }),
+
+    // ...Array.from(
+    //   MEXICO_STATE_CODE_TO_STATE_NAME,
+    //   ([stateCode, stateName]) => ({
+    //     title: stateName,
+    //     idChild: stateCode,
+    //     route: `${STATES_ROUTE.route}/${stateCode}`,
+    //     functionalComponent: () => (
+    //       <SingleRegionLicensePlatesPanel
+    //         regionCode={stateCode}
+    //         exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE']}
+    //       />
+    //     ),
+    //   }),
+    // ),
   },
   {
     title: STATES_ROUTE.title,

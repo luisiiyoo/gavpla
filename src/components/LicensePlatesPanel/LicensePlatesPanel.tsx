@@ -13,6 +13,7 @@ export interface LicensePlatesPanelProps {
   hideStateName?: boolean;
   hideYears?: boolean;
   hideVehicleType?: boolean;
+  displayMap?: boolean;
   staticMap: boolean;
   selectStateHandler: (state: string) => void;
 }
@@ -22,6 +23,7 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   regionCodesToFilter,
   staticMap,
   selectStateHandler,
+  displayMap = true,
   hideStateName = false,
   hideYears = false,
   hideVehicleType = false,
@@ -35,11 +37,14 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
     Array.from(new Set(platesDataArray.map((d) => d.region_code)));
   return (
     <div className="LicensePlatesPanel">
-      <MxMap
-        selectStateHandler={selectStateHandler}
-        filteredStates={filteredStates}
-        staticMap={staticMap}
-      />
+      {!displayMap ? undefined : (
+        <MxMap
+          selectStateHandler={selectStateHandler}
+          filteredStates={filteredStates}
+          staticMap={staticMap}
+        />
+      )}
+
       <div className="LicensePlatesPanel-LicensePlateItems">
         {platesDataArray
           .sort((a, b) => a.from_year - b.from_year)

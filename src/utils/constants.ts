@@ -47,6 +47,30 @@ export const storageVarNames = {
   VECHICLE_TYPES: 'vechicleTypes',
   REGION_CODES: 'regionCodes',
 };
+export const MEXICO_YEAR_SERIES: Array<Array<number>> = [
+  [1920, 1929],
+  [1930, 1939],
+  [1940, 1949],
+  [1950, 1953],
+  [1954, 1955],
+  [1956, 1957],
+  [1958, 1959],
+  [1960, 1961],
+  [1962, 1963],
+  [1964, 1965],
+  [1966, 1967],
+  [1968, 1969],
+  [1970, 1971],
+  [1972, 1973],
+  [1974, 1975],
+  [1976, 1977],
+  [1978, 1979],
+  [1980, 1981],
+  [1982, 1983],
+  [1984, 1985],
+  [1986, 1991],
+  [1992, 1997],
+];
 
 export const MEXICO_STATE_CODE_TO_STATE_NAME: Map<string, string> = new Map([
   ['AGS', 'Aguascalientes'],

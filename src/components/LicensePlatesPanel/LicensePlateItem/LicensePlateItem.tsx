@@ -5,7 +5,7 @@ import {
   BEVehicleTypes,
 } from 'src/connector/backend.types';
 import NotFoundImage from 'src/images/image-not-found.png';
-import './style.css';
+import './LicensePlateItem.css';
 // import { MexMap } from '../Maps/MexMap';
 import { useSelector } from 'react-redux';
 import { ES_LANGUAGE, TRANSLATIONS } from 'src/language/language';

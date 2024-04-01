@@ -30,6 +30,11 @@ export const FRONTIER_ROUTE = {
   route: `${LICENSE_PLATES}/frontier`,
 };
 
+export const BY_YEARS_ROUTE = {
+  title: 'By Years',
+  route: `${LICENSE_PLATES}/year-series`,
+};
+
 export const NATIONAL_ROUTE = {
   title: 'Federal',
   route: `${LICENSE_PLATES}/federal`,

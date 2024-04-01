@@ -13,6 +13,7 @@ import {
   FRONTIER_ROUTE,
   MISSING_PLATES_ROUTE,
   MOTORCYCLE_ROUTE,
+  BY_YEARS_ROUTE,
   BICYCLE_ROUTE,
 } from 'src/routers/constants';
 
@@ -106,6 +107,7 @@ export const TRANSLATIONS = {
       [THANKS_ROUTE.route]: THANKS_ROUTE.title,
       [SHOP_PLATES_ROUTE.route]: SHOP_PLATES_ROUTE.title,
       [FRONTIER_ROUTE.route]: FRONTIER_ROUTE.title,
+      [BY_YEARS_ROUTE.route]: BY_YEARS_ROUTE.title,
       [MISSING_PLATES_ROUTE.route]: MISSING_PLATES_ROUTE.title,
       [MOTORCYCLE_ROUTE.route]: MOTORCYCLE_ROUTE.title,
       [BICYCLE_ROUTE.route]: BICYCLE_ROUTE.title,
@@ -121,6 +123,7 @@ export const TRANSLATIONS = {
       [THANKS_ROUTE.route]: 'Agradecimientos',
       [SHOP_PLATES_ROUTE.route]: 'Comprar Placas',
       [FRONTIER_ROUTE.route]: 'Fronteriza',
+      [BY_YEARS_ROUTE.route]: 'Por Años',
       [MISSING_PLATES_ROUTE.route]: 'Placas Faltantes',
       [MOTORCYCLE_ROUTE.route]: 'Motocicleta',
       [BICYCLE_ROUTE.route]: 'Bicicleta',
