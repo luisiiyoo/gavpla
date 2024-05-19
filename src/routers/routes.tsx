@@ -4,7 +4,7 @@ import { AbstractNavItem, NavItem } from './Router.types';
 import {
   SEARCH_ROUTE,
   HOME_ROUTE,
-  STATES_ROUTE,
+  BY_STATES_ROUTE,
   NATIONAL_ROUTE,
   METROPOLITAN_ROUTE,
   FRONTIER_ROUTE,
@@ -47,22 +47,6 @@ const navigationItems: NavItem[] = [
     iconClass: 'fa-solid fa-newspaper',
     functionalComponent: () => <NewsPanel />,
   },
-  // {
-  //   title: BY_YEARS_ROUTE.title,
-  //   route: BY_YEARS_ROUTE.route,
-  //   iconClass: 'fa-solid fa-hourglass-half',
-  //   functionalComponent: () => (
-  // <YearSerieLicensePlatesPanel
-  //   displayMap={true}
-  //   fromYear={1968}
-  //   toYear={1969}
-  //   exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE', 'TRICYCLE']}
-  //   hideStateName={false}
-  //   hideYears={false}
-  //   hideVehicleType={false}
-  // />
-  //   ),
-  // },
   {
     title: BY_YEARS_ROUTE.title,
     route: BY_YEARS_ROUTE.route,
@@ -88,25 +72,10 @@ const navigationItems: NavItem[] = [
         ),
       };
     }),
-
-    // ...Array.from(
-    //   MEXICO_STATE_CODE_TO_STATE_NAME,
-    //   ([stateCode, stateName]) => ({
-    //     title: stateName,
-    //     idChild: stateCode,
-    //     route: `${STATES_ROUTE.route}/${stateCode}`,
-    //     functionalComponent: () => (
-    //       <SingleRegionLicensePlatesPanel
-    //         regionCode={stateCode}
-    //         exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE']}
-    //       />
-    //     ),
-    //   }),
-    // ),
   },
   {
-    title: STATES_ROUTE.title,
-    route: STATES_ROUTE.route,
+    title: BY_STATES_ROUTE.title,
+    route: BY_STATES_ROUTE.route,
     iconClass: 'fa-solid fa-car',
     childs: [
       ...Array.from(
@@ -114,7 +83,7 @@ const navigationItems: NavItem[] = [
         ([stateCode, stateName]) => ({
           title: stateName,
           idChild: stateCode,
-          route: `${STATES_ROUTE.route}/${stateCode}`,
+          route: `${BY_STATES_ROUTE.route}/${stateCode}`,
           functionalComponent: () => (
             <SingleRegionLicensePlatesPanel
               regionCode={stateCode}
@@ -124,44 +93,6 @@ const navigationItems: NavItem[] = [
         }),
       ),
     ],
-  },
-  {
-    title: METROPOLITAN_ROUTE.title,
-    route: METROPOLITAN_ROUTE.route,
-    iconClass: 'fa-solid fa-bus',
-    childs: [
-      {
-        title: 'MEX - CDMX',
-        idChild: 'mex-cdmx',
-        route: `${METROPOLITAN_ROUTE.route}/mex-cdmx`,
-        functionalComponent: () => (
-          <SingleRegionLicensePlatesPanel regionCode={'METROPOLITAN'} />
-        ),
-      },
-    ],
-  },
-  {
-    title: NATIONAL_ROUTE.title,
-    route: NATIONAL_ROUTE.route,
-    iconClass: 'fa-solid fa-flag',
-    functionalComponent: () => (
-      <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
-    ),
-  },
-  {
-    title: FRONTIER_ROUTE.title,
-    route: FRONTIER_ROUTE.route,
-    iconClass: 'fa-solid fa-arrow-down-up-across-line',
-    functionalComponent: () => (
-      <MultipleRegionLicensePlatesPanel
-        titleName="FRONTIER"
-        regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
-        vehicle_types={['FRONTIER']}
-        hideStateName={false}
-        hideYears={false}
-        hideVehicleType={true}
-      />
-    ),
   },
   {
     title: MOTORCYCLE_ROUTE.title,
@@ -192,6 +123,44 @@ const navigationItems: NavItem[] = [
     ),
   },
   {
+    title: FRONTIER_ROUTE.title,
+    route: FRONTIER_ROUTE.route,
+    iconClass: 'fa-solid fa-arrow-down-up-across-line',
+    functionalComponent: () => (
+      <MultipleRegionLicensePlatesPanel
+        titleName="FRONTIER"
+        regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
+        vehicle_types={['FRONTIER']}
+        hideStateName={false}
+        hideYears={false}
+        hideVehicleType={true}
+      />
+    ),
+  },
+  {
+    title: NATIONAL_ROUTE.title,
+    route: NATIONAL_ROUTE.route,
+    iconClass: 'fa-solid fa-flag',
+    functionalComponent: () => (
+      <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
+    ),
+  },
+  {
+    title: METROPOLITAN_ROUTE.title,
+    route: METROPOLITAN_ROUTE.route,
+    iconClass: 'fa-solid fa-city',
+    childs: [
+      {
+        title: 'MEX - CDMX',
+        idChild: 'mex-cdmx',
+        route: `${METROPOLITAN_ROUTE.route}/mex-cdmx`,
+        functionalComponent: () => (
+          <SingleRegionLicensePlatesPanel regionCode={'METROPOLITAN'} />
+        ),
+      },
+    ],
+  },
+  {
     title: SEARCH_ROUTE.title,
     route: SEARCH_ROUTE.route,
     iconClass: 'fa fw fa-magnifying-glass',
@@ -220,7 +189,7 @@ const navigationItems: NavItem[] = [
     title: SHOP_PLATES_ROUTE.title,
     route: SHOP_PLATES_ROUTE.route,
     iconClass: 'fa-solid fa-cart-shopping',
-    hidden: true,
+    hidden: false,
     functionalComponent: () => <UnderConstruction />,
   },
 ];

@@ -4,7 +4,7 @@ import {
   SEARCH_ROUTE,
   DONATIONS_ROUTE,
   HOME_ROUTE,
-  STATES_ROUTE,
+  BY_STATES_ROUTE,
   THANKS_ROUTE,
   NATIONAL_ROUTE,
   NEWS_ROUTE,
@@ -99,7 +99,7 @@ export const TRANSLATIONS = {
     en: {
       [HOME_ROUTE.route]: 'Home',
       [NEWS_ROUTE.route]: NEWS_ROUTE.title,
-      [STATES_ROUTE.route]: STATES_ROUTE.title,
+      [BY_STATES_ROUTE.route]: BY_STATES_ROUTE.title,
       [NATIONAL_ROUTE.route]: NATIONAL_ROUTE.title,
       [METROPOLITAN_ROUTE.route]: METROPOLITAN_ROUTE.title,
       [SEARCH_ROUTE.route]: SEARCH_ROUTE.title,
@@ -115,7 +115,7 @@ export const TRANSLATIONS = {
     es: {
       [HOME_ROUTE.route]: 'Inicio',
       [NEWS_ROUTE.route]: 'Novedades',
-      [STATES_ROUTE.route]: 'Estados',
+      [BY_STATES_ROUTE.route]: 'Por Estados',
       [NATIONAL_ROUTE.route]: 'Federal',
       [METROPOLITAN_ROUTE.route]: 'Metropolitano',
       [SEARCH_ROUTE.route]: 'Buscar',

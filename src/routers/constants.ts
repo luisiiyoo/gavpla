@@ -20,8 +20,8 @@ export const BICYCLE_ROUTE = {
   route: `${LICENSE_PLATES}/bicycle`,
 };
 
-export const STATES_ROUTE = {
-  title: 'States',
+export const BY_STATES_ROUTE = {
+  title: 'By States',
   route: `${LICENSE_PLATES}/states`,
 };
 
