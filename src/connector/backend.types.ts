@@ -60,6 +60,7 @@ export interface BELicensePlatesData {
   region_code: string;
   vehicle_type: string;
   user_plate_id: string;
+  state_codes: string | null;
 }
 
 export interface BEStateData {

@@ -14,15 +14,15 @@ export interface LicensePlatesPanelProps {
   hideYears?: boolean;
   hideVehicleType?: boolean;
   displayMap?: boolean;
-  staticMap: boolean;
+  staticMap?: boolean;
   selectStateHandler: (state: string) => void;
 }
 
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   platesDataArray,
   regionCodesToFilter,
-  staticMap,
   selectStateHandler,
+  staticMap = true,
   displayMap = true,
   hideStateName = false,
   hideYears = false,

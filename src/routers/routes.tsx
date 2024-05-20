@@ -26,6 +26,7 @@ import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesP
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
 import NewsPanel from 'src/components/NewsPanel/NewsPanel';
 import YearSerieLicensePlatesPanel from 'src/components/LicensePlatesPanel/YearSerieLicensePlatesPanel';
+import MetropolitanLicensePlatesPanel from 'src/components/LicensePlatesPanel/MetropolitanLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -149,16 +150,7 @@ const navigationItems: NavItem[] = [
     title: METROPOLITAN_ROUTE.title,
     route: METROPOLITAN_ROUTE.route,
     iconClass: 'fa-solid fa-city',
-    childs: [
-      {
-        title: 'MEX - CDMX',
-        idChild: 'mex-cdmx',
-        route: `${METROPOLITAN_ROUTE.route}/mex-cdmx`,
-        functionalComponent: () => (
-          <SingleRegionLicensePlatesPanel regionCode={'METROPOLITAN'} />
-        ),
-      },
-    ],
+    functionalComponent: () => <MetropolitanLicensePlatesPanel />,
   },
   {
     title: SEARCH_ROUTE.title,

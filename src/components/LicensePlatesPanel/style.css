@@ -23,6 +23,10 @@ img {
   /* width: 43%; */
 }
 
+.MetropolitanLicensePlatesPanel-Areas {
+  padding-top: 3vh;
+}
+
 @media only screen and (min-device-width: 200px) {
   .LicensePlatesPanel-LicensePlateItems {
     grid-template-columns: repeat(2, minmax(1rem, 1fr));
