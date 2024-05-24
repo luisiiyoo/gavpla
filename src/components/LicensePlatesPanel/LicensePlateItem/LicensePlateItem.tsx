@@ -6,10 +6,10 @@ import {
 } from 'src/connector/backend.types';
 import NotFoundImage from 'src/images/image-not-found.png';
 import './LicensePlateItem.css';
-// import { MexMap } from '../Maps/MexMap';
 import { useSelector } from 'react-redux';
 import { ES_LANGUAGE, TRANSLATIONS } from 'src/language/language';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
+import { VehicleIconsMap } from 'src/utils/vehicle_types';
 
 export interface LicensePlateItemProps {
   userID: string;
@@ -47,6 +47,14 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
   } else {
     vehicle_type = vehicle_type.replace('-', ' ');
   }
+
+  const vehicleIcon = (
+    <i
+      className={
+        'VehicleIcon ' + VehicleIconsMap.get(vehicle_type.replace(' ', '-'))
+      }
+    />
+  );
   return (
     <div className="LicensePlateItem">
       <div className="LicensePlateItem-Header">
@@ -57,7 +65,10 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
           <div className="LicensePlateItem-Years">{years}</div>
         )}
         {hideVehicleType ? undefined : (
-          <div className="LicensePlateItem-VehicleType">{vehicle_type}</div>
+          <div className="LicensePlateItem-VehicleType">
+            {/* {vehicleIcon} &nbsp; */}
+            {vehicleIcon} {vehicle_type}
+          </div>
         )}
       </div>
       <div className="LicensePlateItem-Image">

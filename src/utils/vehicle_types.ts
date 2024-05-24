@@ -1,11 +1,11 @@
-export interface VehicleType {
+interface VehicleType {
   types: string[];
   iconClassName: string;
 }
 
 export const DealerVehicle: VehicleType = {
   iconClassName: 'fa-solid fa-car-on',
-  types: ['DEALER'],
+  types: ['DEALER', 'PROVISIONAL'],
 };
 
 export const TaxiVehicle: VehicleType = {
@@ -19,7 +19,6 @@ export const CarVehicle: VehicleType = {
     'ANTIQUE-CAR',
     'COMMERCIAL-CAR',
     'PRIVATE-CAR',
-    'PROVISIONAL',
     'SPF-CAR',
     'SPF-RENTAL',
   ],
@@ -120,6 +119,9 @@ export const FederalVehicle: VehicleType = {
     'SPF-RENTAL',
     'SPF-TRAILER',
     'SPF-TRUCK',
+    'SRE',
+    'SRE-CONSULAR',
+    'SRE-DIPLOMAT',
   ],
 };
 
@@ -127,3 +129,30 @@ export const MetropolitanVehicle: VehicleType = {
   iconClassName: 'fa-solid fa-city',
   types: ['METROPOLITAN'],
 };
+
+export const Vechicles: VehicleType[] = [
+  DealerVehicle,
+  TaxiVehicle,
+  CarVehicle,
+  BicycleVehicle,
+  MotorcycleVehicle,
+  EcoVehicle,
+  HandicappedVehicle,
+  BusVehicle,
+  TruckVehicle,
+  TrailerVehicle,
+  PoliceVehicle,
+  AmbulanceVehicle,
+  FrontierVehicle,
+  UnknownVehicle,
+  FederalVehicle,
+  MetropolitanVehicle,
+];
+
+const aux: Map<string, string>[] = Vechicles.map(
+  (v) => new Map<string, string>(v.types.map((t) => [t, v.iconClassName])),
+);
+const aux_entries = aux.map((a) => [...a.entries()]);
+export const VehicleIconsMap = new Map(
+  aux_entries.reduce((all, a) => [...all, ...a], []),
+);
