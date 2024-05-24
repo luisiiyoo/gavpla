@@ -3,6 +3,22 @@ import { TRANSLATIONS } from 'src/language/language';
 import { useSelector } from 'react-redux';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
+import {
+  AmbulanceVehicle,
+  BicycleVehicle,
+  BusVehicle,
+  CarVehicle,
+  DealerVehicle,
+  EcoVehicle,
+  FrontierVehicle,
+  HandicappedVehicle,
+  MotorcycleVehicle,
+  PoliceVehicle,
+  TaxiVehicle,
+  TrailerVehicle,
+  TruckVehicle,
+  UnknownVehicle,
+} from 'src/utils/vehicle_types';
 
 export interface VehicleOptionProps {
   stateValue: boolean;
@@ -48,201 +64,131 @@ export const VehicleOptionsPanel = ({
   const translation = TRANSLATIONS.Search[languageCode];
 
   const [searchDealer, setSearchDealer] = useState<boolean>(true);
-  const DEALER_TYPES: string[] = ['DEALER'];
 
   const [searchCars, setSearchCars] = useState<boolean>(true);
-  const CAR_TYPES: string[] = [
-    'ANTIQUE-CAR',
-    'COMMERCIAL-CAR',
-
-    'PRIVATE-CAR',
-    'PROVISIONAL',
-    'SPF-CAR',
-    'SPF-RENTAL',
-  ];
 
   const [searchBicycles, setSearchBicycles] = useState<boolean>(false);
-  const BICYCLE_TYPES: string[] = ['BICYCLE', 'TRICYCLE'];
 
   const [searchMotorcycles, setSearchMotorcycles] = useState<boolean>(false);
-  const MOTORCYCLE_TYPES: string[] = ['MOTORCYCLE'];
 
   const [searchEcoFriendly, setSearchEcoFriendly] = useState<boolean>(true);
-  const ECO_TYPES: string[] = ['ECO-FRIENDLY'];
 
   const [searchHandicapped, setSearchHandicapped] = useState<boolean>(true);
-  const HANDICAPPED_TYPES: string[] = ['HANDICAPPED'];
 
   const [searchBus, setSearchBus] = useState<boolean>(true);
-  const BUS_TYPES: string[] = [
-    'BUS',
-    'COMMERCIAL-BUS',
-    'MICROBUS',
-    'PRIVATE-BUS',
-    'SCT-BUS',
-    'SPF-BUS',
-  ];
 
   const [searchTaxi, setSearchTaxi] = useState<boolean>(true);
-  const TAXI_TYPES: string[] = ['TAXI'];
 
   const [searchTruck, setSearchTruck] = useState<boolean>(true);
-  const TRUCK_TYPES: string[] = [
-    'COMMERCIAL-TRUCK',
-    'PRIVATE-TRUCK',
-    'SAF-TRUCK',
-    'SCT-TRUCK',
-    'SPF-TRUCK',
-    'TRUCK',
-  ];
 
   const [searchTrailer, setSearchTrailer] = useState<boolean>(true);
-  const TRAILER_TYPES: string[] = [
-    'COMMERCIAL-TRAILER',
-    'PRIVATE-TRAILER',
-    'SAF-TRAILER',
-    'SCT-TRAILER',
-    'SPF-TRAILER',
-    'TRAILER',
-  ];
 
   const [searchPolice, setSearchPolice] = useState<boolean>(true);
-  const POLICE_TYPES: string[] = [
-    'FEDERAL-POLICE',
-    'MEXICAN-NAVY',
-    'MINISTERIAL-POLICE',
-    'POLICE',
-  ];
 
   const [searchAmbulance, setSearchAmbulance] = useState<boolean>(true);
-  const AMBULANCE_TYPES: string[] = [
-    'AMBULANCE',
-    'CIVIL-PROTECTION',
-    'FIREFIGHTER',
-  ];
 
   const [searchFrontierVehicles, setSearchFrontierVehicles] = useState<boolean>(
     true,
   );
-  const FRONTIER_TYPES: string[] = ['FRONTIER'];
 
   // const [searchFederalVehicles, setSearchFederalVehicles] = useState<boolean>(
   //   true,
   // );
-  // const FEDERAL_TYPES: string[] = [
-  //   'SAF',
-  //   'SAF-TRAILER',
-  //   'SCT',
-  //   'SCT-BUS',
-  //   'SCT-TRAILER',
-  //   'SCT-TRANSFER',
-  //   'SCT-TRUCK',
-  //   'SET',
-  //   'SET-TOURIST',
-  //   'SPF',
-  //   'SPF-BUS',
-  //   'SPF-CAR',
-  //   'SPF-FRONTIER',
-  //   'SPF-RENTAL',
-  //   'SPF-TRAILER',
-  //   'SPF-TRUCK',
-  // ];
 
   const [searchUnknown, setSearchUnknown] = useState<boolean>(true);
-  const UNKNOWN_TYPES: string[] = ['UNKNOWN'];
 
   // Control vars
   const [selectAllVechicleTypes, setSelectAllVechicleTypes] = useState(true);
   const vehicleOptions: VehicleTypeOptions = {
     'DEALER-TYPES': {
-      iconClassName: 'fa-solid fa-car-on',
+      iconClassName: DealerVehicle.iconClassName,
       stateValue: searchDealer,
       setStateValue: setSearchDealer,
-      types: DEALER_TYPES,
+      types: DealerVehicle.types,
     },
     'CAR-TYPES': {
-      iconClassName: 'fa-solid fa-car',
+      iconClassName: CarVehicle.iconClassName,
       stateValue: searchCars,
       setStateValue: setSearchCars,
-      types: CAR_TYPES,
+      types: CarVehicle.types,
     },
     'BICYCLE-TYPES': {
-      iconClassName: 'fa-solid fa-bicycle',
+      iconClassName: BicycleVehicle.iconClassName,
       stateValue: searchBicycles,
       setStateValue: setSearchBicycles,
-      types: BICYCLE_TYPES,
+      types: BicycleVehicle.types,
     },
     'MOTORCYCLE-TYPES': {
-      iconClassName: 'fa-solid fa-motorcycle',
+      iconClassName: MotorcycleVehicle.iconClassName,
       stateValue: searchMotorcycles,
       setStateValue: setSearchMotorcycles,
-      types: MOTORCYCLE_TYPES,
+      types: MotorcycleVehicle.types,
     },
     'ECO-TYPES': {
-      iconClassName: 'fa-solid fa-seedling',
+      iconClassName: EcoVehicle.iconClassName,
       stateValue: searchEcoFriendly,
       setStateValue: setSearchEcoFriendly,
-      types: ECO_TYPES,
+      types: EcoVehicle.types,
     },
     'HANDICAPPED-TYPES': {
-      iconClassName: 'fa-solid fa-wheelchair-move',
+      iconClassName: HandicappedVehicle.iconClassName,
       stateValue: searchHandicapped,
       setStateValue: setSearchHandicapped,
-      types: HANDICAPPED_TYPES,
+      types: HandicappedVehicle.types,
     },
     'BUS-TYPES': {
-      iconClassName: 'fa-solid fa-bus',
+      iconClassName: BusVehicle.iconClassName,
       stateValue: searchBus,
       setStateValue: setSearchBus,
-      types: BUS_TYPES,
+      types: BusVehicle.types,
     },
     'TAXI-TYPES': {
-      iconClassName: 'fa-solid fa-taxi',
+      iconClassName: TaxiVehicle.iconClassName,
       stateValue: searchTaxi,
       setStateValue: setSearchTaxi,
-      types: TAXI_TYPES,
+      types: TaxiVehicle.types,
     },
     'TRUCK-TYPES': {
-      iconClassName: 'fa-solid fa-truck',
+      iconClassName: TruckVehicle.iconClassName,
       stateValue: searchTruck,
       setStateValue: setSearchTruck,
-      types: TRUCK_TYPES,
+      types: TruckVehicle.types,
     },
     'TRAILER-TYPES': {
-      iconClassName: 'fa-solid fa-trailer',
+      iconClassName: TrailerVehicle.iconClassName,
       stateValue: searchTrailer,
       setStateValue: setSearchTrailer,
-      types: TRAILER_TYPES,
+      types: TrailerVehicle.types,
     },
     'POLICE-TYPES': {
-      iconClassName: 'fa-solid fa-person-military-rifle',
+      iconClassName: PoliceVehicle.iconClassName,
       stateValue: searchPolice,
       setStateValue: setSearchPolice,
-      types: POLICE_TYPES,
+      types: PoliceVehicle.types,
     },
     'AMBULANCE-TYPES': {
-      iconClassName: 'fa-solid fa-truck-medical',
+      iconClassName: AmbulanceVehicle.iconClassName,
       stateValue: searchAmbulance,
       setStateValue: setSearchAmbulance,
-      types: AMBULANCE_TYPES,
+      types: AmbulanceVehicle.types,
     },
     'FRONTIER-TYPES': {
-      iconClassName: 'fa-solid fa-arrow-down-up-across-line',
+      iconClassName: FrontierVehicle.iconClassName,
       stateValue: searchFrontierVehicles,
       setStateValue: setSearchFrontierVehicles,
-      types: FRONTIER_TYPES,
+      types: FrontierVehicle.types,
     },
     // 'FEDERAL-TYPES': {
-    //   iconClassName: 'fa-solid fa-flag',
+    //   iconClassName: FederalVehicle.iconClassName,
     //   stateValue: searchFederalVehicles,
     //   setStateValue: setSearchFederalVehicles,
-    //   types: FEDERAL_TYPES,
+    //   types: FederalVehicle.types,
     // },
     'UNKNOWN-TYPES': {
-      iconClassName: 'fa-solid fa-question',
+      iconClassName: UnknownVehicle.iconClassName,
       stateValue: searchUnknown,
       setStateValue: setSearchUnknown,
-      types: UNKNOWN_TYPES,
+      types: UnknownVehicle.types,
     },
   };
 

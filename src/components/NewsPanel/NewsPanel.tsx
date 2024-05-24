@@ -20,6 +20,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { getTranslation } from 'src/language';
 import imgAntiquePlates from 'src/images/news/antiquePlates.jpg';
 import imgDFPlates from 'src/images/news/DFPlates.jpg';
+import {
+  BicycleVehicle,
+  BusVehicle,
+  CarVehicle,
+  MotorcycleVehicle,
+  TaxiVehicle,
+  TrailerVehicle,
+  TruckVehicle,
+} from 'src/utils/vehicle_types';
 
 export interface NewsPanelProps {
   numLatestSamples?: number;
@@ -122,15 +131,13 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ numLatestSamples = 20 }) => {
               <p>{translation['NewPlates']['Body']}</p>
 
               <h3 className="Vechicle-Icons">
-                <i className="fa-solid fa-car-side" /> &nbsp;
-                <i className="fa-solid fa-bus" />
+                <i className={CarVehicle.iconClassName} /> &nbsp;
+                <i className={BusVehicle.iconClassName} />
                 &nbsp;
-                <i className="fa-solid fa-van-shuttle" /> &nbsp;
-                <i className="fa-solid fa-truck-pickup" />
+                <i className={TruckVehicle.iconClassName} /> &nbsp;
+                <i className={TrailerVehicle.iconClassName} />
                 &nbsp;
-                <i className="fa-solid fa-taxi" />
-                &nbsp;
-                <i className="fa-solid fa-truck-moving" />
+                <i className={TaxiVehicle.iconClassName} />
                 &nbsp;
               </h3>
               <div className="NewsPanel-Carousel">
@@ -144,7 +151,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ numLatestSamples = 20 }) => {
 
               {/* <hr/> */}
               <h3 className="Vechicle-Icons">
-                <i className="fa-solid fa-motorcycle" /> &nbsp;
+                <i className={MotorcycleVehicle.iconClassName} /> &nbsp;
               </h3>
               <div className="NewsPanel-Carousel">
                 <UncontrolledCarousel
@@ -157,7 +164,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ numLatestSamples = 20 }) => {
 
               {/* <hr/> */}
               <h3 className="Vechicle-Icons">
-                <i className="fa-solid fa-bicycle" /> &nbsp;
+                <i className={BicycleVehicle.iconClassName} /> &nbsp;
               </h3>
               <div className="NewsPanel-Carousel">
                 <UncontrolledCarousel

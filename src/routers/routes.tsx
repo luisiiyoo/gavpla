@@ -27,6 +27,14 @@ import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/
 import NewsPanel from 'src/components/NewsPanel/NewsPanel';
 import YearSerieLicensePlatesPanel from 'src/components/LicensePlatesPanel/YearSerieLicensePlatesPanel';
 import MetropolitanLicensePlatesPanel from 'src/components/LicensePlatesPanel/MetropolitanLicensePlatesPanel';
+import {
+  BicycleVehicle,
+  CarVehicle,
+  FederalVehicle,
+  FrontierVehicle,
+  MetropolitanVehicle,
+  MotorcycleVehicle,
+} from 'src/utils/vehicle_types';
 
 const navigationItems: NavItem[] = [
   {
@@ -77,7 +85,7 @@ const navigationItems: NavItem[] = [
   {
     title: BY_STATES_ROUTE.title,
     route: BY_STATES_ROUTE.route,
-    iconClass: 'fa-solid fa-car',
+    iconClass: CarVehicle.iconClassName,
     childs: [
       ...Array.from(
         MEXICO_STATE_CODE_TO_STATE_NAME,
@@ -98,7 +106,7 @@ const navigationItems: NavItem[] = [
   {
     title: MOTORCYCLE_ROUTE.title,
     route: MOTORCYCLE_ROUTE.route,
-    iconClass: 'fa-solid fa-motorcycle',
+    iconClass: MotorcycleVehicle.iconClassName,
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
         titleName="MOTORCYCLE"
@@ -112,7 +120,7 @@ const navigationItems: NavItem[] = [
   {
     title: BICYCLE_ROUTE.title,
     route: BICYCLE_ROUTE.route,
-    iconClass: 'fa-solid fa-bicycle',
+    iconClass: BicycleVehicle.iconClassName,
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
         titleName="BICYCLE"
@@ -126,7 +134,7 @@ const navigationItems: NavItem[] = [
   {
     title: FRONTIER_ROUTE.title,
     route: FRONTIER_ROUTE.route,
-    iconClass: 'fa-solid fa-arrow-down-up-across-line',
+    iconClass: FrontierVehicle.iconClassName,
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
         titleName="FRONTIER"
@@ -141,7 +149,7 @@ const navigationItems: NavItem[] = [
   {
     title: NATIONAL_ROUTE.title,
     route: NATIONAL_ROUTE.route,
-    iconClass: 'fa-solid fa-flag',
+    iconClass: FederalVehicle.iconClassName,
     functionalComponent: () => (
       <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
     ),
@@ -149,7 +157,7 @@ const navigationItems: NavItem[] = [
   {
     title: METROPOLITAN_ROUTE.title,
     route: METROPOLITAN_ROUTE.route,
-    iconClass: 'fa-solid fa-city',
+    iconClass: MetropolitanVehicle.iconClassName,
     functionalComponent: () => <MetropolitanLicensePlatesPanel />,
   },
   {
