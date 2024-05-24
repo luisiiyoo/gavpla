@@ -36,7 +36,8 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
     ? transalation[data.region_code]
     : stateCodes[data.region_code];
 
-  let vehicle_type = data.vehicle_type;
+  const rawVehicleType = data.vehicle_type;
+  let vehicle_type = rawVehicleType;
   let years =
     data.from_year === data.to_year
       ? data.from_year
@@ -51,7 +52,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
   const vehicleIcon = (
     <i
       className={
-        'VehicleIcon ' + VehicleIconsMap.get(vehicle_type.replace(' ', '-'))
+        'VehicleIcon ' + VehicleIconsMap.get(rawVehicleType.replace(' ', '-'))
       }
     />
   );
@@ -66,14 +67,13 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
         )}
         {hideVehicleType ? undefined : (
           <div className="LicensePlateItem-VehicleType">
-            {/* {vehicleIcon} &nbsp; */}
             {vehicleIcon} {vehicle_type}
           </div>
         )}
       </div>
       <div className="LicensePlateItem-Image">
         <img
-          className={`${data.vehicle_type}-IMG`}
+          className={`${rawVehicleType}-IMG`}
           src={
             connector.getUserLicensePlatesImageURL(
               userID,
