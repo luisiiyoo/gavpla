@@ -14,6 +14,7 @@ import {
   BICYCLE_ROUTE,
   SHOP_PLATES_ROUTE,
   BY_YEARS_ROUTE,
+  INFORMATION_ROUTE,
 } from './constants';
 import {
   MEXICO_STATE_CODE_TO_STATE_NAME,
@@ -35,6 +36,7 @@ import {
   MetropolitanVehicle,
   MotorcycleVehicle,
 } from 'src/utils/vehicle_types';
+import LicensePlateInformationPanel from 'src/components/LicensePlateInformationPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -55,6 +57,12 @@ const navigationItems: NavItem[] = [
     route: NEWS_ROUTE.route,
     iconClass: 'fa-solid fa-newspaper',
     functionalComponent: () => <NewsPanel />,
+  },
+  {
+    title: INFORMATION_ROUTE.title,
+    route: INFORMATION_ROUTE.route,
+    iconClass: 'fa-solid fa-book-bookmark',
+    functionalComponent: () => <LicensePlateInformationPanel />,
   },
   {
     title: BY_YEARS_ROUTE.title,

@@ -10,6 +10,11 @@ export const NEWS_ROUTE = {
   route: 'news',
 };
 
+export const INFORMATION_ROUTE = {
+  title: 'Information',
+  route: 'info',
+};
+
 export const MOTORCYCLE_ROUTE = {
   title: 'Motorcycle',
   route: `${LICENSE_PLATES}/motorcycle`,

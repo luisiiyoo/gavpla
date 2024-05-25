@@ -15,6 +15,7 @@ import {
   MOTORCYCLE_ROUTE,
   BY_YEARS_ROUTE,
   BICYCLE_ROUTE,
+  INFORMATION_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -99,6 +100,7 @@ export const TRANSLATIONS = {
     en: {
       [HOME_ROUTE.route]: 'Home',
       [NEWS_ROUTE.route]: NEWS_ROUTE.title,
+      [INFORMATION_ROUTE.route]: INFORMATION_ROUTE.title,
       [BY_STATES_ROUTE.route]: BY_STATES_ROUTE.title,
       [NATIONAL_ROUTE.route]: NATIONAL_ROUTE.title,
       [METROPOLITAN_ROUTE.route]: METROPOLITAN_ROUTE.title,
@@ -115,6 +117,7 @@ export const TRANSLATIONS = {
     es: {
       [HOME_ROUTE.route]: 'Inicio',
       [NEWS_ROUTE.route]: 'Novedades',
+      [INFORMATION_ROUTE.route]: 'Información',
       [BY_STATES_ROUTE.route]: 'Por Estados',
       [NATIONAL_ROUTE.route]: 'Federal',
       [METROPOLITAN_ROUTE.route]: 'Metropolitano',
@@ -163,6 +166,14 @@ export const TRANSLATIONS = {
           'En esta página web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas Mexicanas. Éste sitio aún está en proceso de desarrollo, te invito a seguir visitándolo, sigo agregando nuevas placas a la coleción.',
         author: 'Autor',
       },
+    },
+  },
+  InformationPage: {
+    en: {
+      title: 'Information',
+    },
+    es: {
+      title: 'Información',
     },
   },
   Search: {

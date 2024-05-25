@@ -1,0 +1,21 @@
+:root {
+  --bg-color-A-1968-1969: #165fa8;
+  --border-color-A-1968-1969: #165fa8;
+  --font-color-A-1968-1969: white;
+}
+
+.Olimpycs {
+  font-weight: bold;
+}
+
+.LP-1968-1969 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BL BC BC BC BR BR';
+  border-color: var(--border-color-A-1968-1969);
+}
+
+.Color-A-1968-1969 {
+  background-color: var(--bg-color-A-1968-1969);
+  color: var(--font-color-A-1968-1969);
+}

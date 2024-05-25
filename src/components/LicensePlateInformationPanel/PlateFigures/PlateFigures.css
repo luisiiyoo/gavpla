@@ -1,0 +1,65 @@
+.Body {
+  font-size: 1.6em;
+  line-height: 1.15em;
+}
+.Footer {
+  font-size: 0.7em;
+}
+.Header {
+  font-size: 0.7em;
+}
+
+.TL {
+  grid-area: TL;
+  padding: 0em;
+}
+.TC {
+  grid-area: TC;
+  padding: 0em;
+}
+.TR {
+  grid-area: TR;
+  padding: 0em;
+}
+
+.ML {
+  grid-area: ML;
+}
+.MC {
+  grid-area: MC;
+}
+.MR {
+  grid-area: MR;
+}
+
+.BL {
+  grid-area: BL;
+}
+.BC {
+  grid-area: BC;
+}
+.BR {
+  grid-area: BR;
+}
+
+.LicensePlateContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LicensePlate {
+  border-radius: 5px;
+  padding: 0.1em 0.1em;
+  text-align: center;
+  font-family: Sans-serif;
+  text-shadow: 0px 0.07em 0px #808080;
+  width: 7.3em;
+  /* height: 3.0em; */
+}
+
+.LP {
+  display: grid;
+  padding: 0.08em 0.1em;
+  border: 0.1em solid white;
+}
