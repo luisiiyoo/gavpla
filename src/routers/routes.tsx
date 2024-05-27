@@ -30,7 +30,6 @@ import YearSerieLicensePlatesPanel from 'src/components/LicensePlatesPanel/YearS
 import MetropolitanLicensePlatesPanel from 'src/components/LicensePlatesPanel/MetropolitanLicensePlatesPanel';
 import {
   BicycleVehicle,
-  CarVehicle,
   FederalVehicle,
   FrontierVehicle,
   MetropolitanVehicle,
@@ -93,7 +92,7 @@ const navigationItems: NavItem[] = [
   {
     title: BY_STATES_ROUTE.title,
     route: BY_STATES_ROUTE.route,
-    iconClass: CarVehicle.iconClassName,
+    iconClass: 'fa-solid fa-map-location-dot',
     childs: [
       ...Array.from(
         MEXICO_STATE_CODE_TO_STATE_NAME,

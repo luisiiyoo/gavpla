@@ -256,7 +256,7 @@ export const Frontier: React.FC<PlateInfoProps> = ({ stateCode }) => (
 );
 
 // Tipe D
-export const Federal: React.FC = () => (
+export const FederalSPF: React.FC = () => (
   <div className="LicensePlateContainer">
     <div className={`LicensePlate ${COLOR_D}`}>
       <div className={LP_D}>

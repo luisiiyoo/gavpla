@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 
@@ -43,7 +43,7 @@ const LicensePlateInformationPanel: React.FC = () => {
 
         <LP_72_73.Frontier stateCode={frontierStateCode} />
 
-        <LP_72_73.Federal />
+        <LP_72_73.FederalSPF />
       </p>
     </div>
   );
