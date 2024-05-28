@@ -168,7 +168,7 @@ export interface FiguresContentType {
   DFPrivateTrailer?: React.FC;
   Dealer: React.FC<PlateInfoProps>;
   Provisional?: React.FC<PlateInfoProps>;
-  Frontier: React.FC<PlateInfoProps>;
+  Frontier?: React.FC<PlateInfoProps>;
   FederalSPF?: React.FC;
   FederalSPFCar?: React.FC;
   FederalSPFBus?: React.FC;
@@ -408,7 +408,7 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
             <tr>
               <td>
                 <FrontierHeader />
-                <figures.Frontier stateCode={frontierStateCode} />
+                {!!figures.Frontier &&<figures.Frontier stateCode={frontierStateCode} />}
               </td>
             </tr>
           </tbody>
