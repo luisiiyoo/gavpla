@@ -149,7 +149,7 @@ export const FederalHeader = () => {
   );
 };
 
-export interface FiguresType {
+export interface FiguresContentType {
   PrivateCar: React.FC<PlateInfoProps>;
   DFPrivateCar: React.FC;
   Truck: React.FC<PlateInfoProps>;
@@ -173,7 +173,7 @@ export interface FiguresType {
 }
 
 export interface LicensePlateFigures {
-  figures: FiguresType;
+  figures: FiguresContentType;
 }
 
 export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({

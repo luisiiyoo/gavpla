@@ -176,6 +176,16 @@ export const TRANSLATIONS = {
       title: 'Información',
     },
   },
+  IdentifyPlatesByVehiclePage: {
+    en: {
+      title: 'Identify License Places By Vehicle Type',
+      select: 'Select',
+    },
+    es: {
+      title: 'Identificar Placas Por Tipo De Vehículo',
+      select: 'Selectiona',
+    },
+  },
   Search: {
     en: {
       title: 'Search License Plates in the Collection',

@@ -1,23 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
-import './PlateFigures/PlateFigures.css';
+import './LicensePlateInformationPanel.css';
 import * as figures_72_73 from './PlateFigures/72_73/72_73';
-import LicensePlateFigures from './PlateFigures/PlateFigures';
+import LicensePlateFigures, {
+  FiguresContentType,
+} from './PlateFigures/PlateFigures';
 
 const LicensePlateInformationPanel: React.FC = () => {
   const {
     main: { languageCode },
   } = useSelector((state) => state);
-  const translation = getTranslation(languageCode, 'InformationPage');
+  const translation = getTranslation(
+    languageCode,
+    'IdentifyPlatesByVehiclePage',
+  );
+  const [selectedYearSeries, setSelectedYearSeries] = useState('1972 - 1973');
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+  const itemsMap = new Map<string, FiguresContentType>();
+  itemsMap.set('1972 - 1973', figures_72_73);
+
+  const yearsOptions = Array.from(itemsMap.keys());
+  const selectedContent = itemsMap.get(selectedYearSeries);
   return (
     <div className="LicensePlateInformationPanel">
       <h2>{translation['title']}</h2>
-
-      <h4>1972 - 1973</h4>
-      <LicensePlateFigures figures={figures_72_73} />
+      <div className="LicensePlateInformationPanel-Options">
+        <Dropdown isOpen={dropdownOpen} toggle={toggle} direction="down">
+          <DropdownToggle caret color="white">
+            {translation['select']}
+          </DropdownToggle>
+          <DropdownMenu>
+            {yearsOptions.map((option) => (
+              <DropdownItem
+                key={option}
+                onClick={() => {
+                  setSelectedYearSeries(option);
+                }}
+              >
+                {option}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+      {!!selectedContent && (
+        <div className="LicensePlateInformationPanel-Figures">
+          <h4>{selectedYearSeries}</h4>
+          <LicensePlateFigures figures={selectedContent} />
+        </div>
+      )}
     </div>
   );
 };

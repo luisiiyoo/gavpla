@@ -1,3 +1,18 @@
+.LicensePlateInformationPanel-Options {
+  text-align: center;
+  padding: 2vh;
+  width: 100%;
+}
+.LicensePlateInformationPanel-Figures {
+  padding-top: 1vh;
+}
+
+.dropdown > button {
+  background-color: var(--dark-color-app);
+  color: var(--font-color-app);
+  font-size: medium;
+}
+
 .Body {
   font-size: 1.6em;
   line-height: 1.15em;
@@ -56,7 +71,13 @@
   font-family: Sans-serif;
   text-shadow: 0px 0.07em 0px #808080;
   width: 7.3em;
-  /* height: 3.0em; */
+
+  /* Shadows */
+  box-shadow: 10px 10px 5px #000;
+  -moz-box-shadow: 10px 10px 5px #000;
+  -webkit-box-shadow: 10px 10px 5px #000;
+  -khtml-box-shadow: 10px 10px 5px #000;
+  border-radius: 5px;
 }
 
 .LP {
@@ -90,7 +111,6 @@ td > .VehicleTypeHeader {
 @media only screen and (max-width: 760px) {
   thead {
     display: none;
-    height: 0;
   }
   td > .VehicleTypeHeader {
     display: block;
