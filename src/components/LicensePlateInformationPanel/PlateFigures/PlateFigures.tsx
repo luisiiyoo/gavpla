@@ -117,6 +117,18 @@ export const DealerHeader = () => {
   );
 };
 
+export const ProvisionalHeader = () => {
+  const { languageCode, vehicleTypes }: StateType = useSelector(
+    (state) => state.main,
+  );
+  return (
+    <span className="VehicleTypeHeader">
+      {Vehicles.DealerVehicle.icon} &nbsp;
+      {transalateVehicleType(languageCode, 'PROVISIONAL', vehicleTypes)}
+    </span>
+  );
+};
+
 export const FrontierHeader = () => {
   const { languageCode, vehicleTypes }: StateType = useSelector(
     (state) => state.main,
@@ -155,6 +167,7 @@ export interface FiguresType {
   PrivateTrailer: React.FC<PlateInfoProps>;
   DFPrivateTrailer?: React.FC;
   Dealer: React.FC<PlateInfoProps>;
+  Provisional?: React.FC<PlateInfoProps>;
   Frontier: React.FC<PlateInfoProps>;
   FederalSPF: React.FC;
 }
@@ -194,7 +207,7 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
   const hasPrivateBus = !!figures.PrivateBus || !!figures.DFPrivateBus;
   const hasPrivateTrailer =
     !!figures.PrivateTrailer || !!figures.DFPrivateTrailer;
-  const hasDealer = !!figures.Dealer;
+  const hasDealer = !!figures.Dealer || !!figures.Provisional;
   const hasFrontier = !!figures.Frontier;
   const hasFederal = !!figures.FederalSPF;
   return (
@@ -301,7 +314,7 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
           </tr>
         </tbody>
       </table>
-      {/* PrivateBus - PrivateTrailer - Dealer */}
+      {/* PrivateBus - PrivateTrailer */}
       <table>
         <thead>
           <tr>
@@ -313,11 +326,6 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
             {hasPrivateTrailer && (
               <th>
                 <PrivateTrailerHeader />
-              </th>
-            )}
-            {hasDealer && (
-              <th>
-                <DealerHeader />
               </th>
             )}
           </tr>
@@ -342,15 +350,40 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                 {!!figures.DFPrivateTrailer && <figures.DFPrivateTrailer />}
               </td>
             )}
-            {hasDealer && (
-              <td>
-                <DealerHeader />
-                <figures.Dealer stateCode={stateCode} />
-              </td>
-            )}
           </tr>
         </tbody>
       </table>
+
+      {/* Dealer - Provisional */}
+      {hasDealer && (
+        <table>
+          <thead>
+            <tr>
+              {!!figures.Dealer && (
+                <th>
+                  <DealerHeader />
+                </th>
+              )}
+              {!!figures.Provisional && (
+                <th>
+                  <ProvisionalHeader />
+                </th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <DealerHeader />
+                {!!figures.Dealer && <figures.Dealer stateCode={stateCode} />}
+                {!!figures.Provisional && (
+                  <figures.Provisional stateCode={stateCode} />
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
 
       {/* Frontier */}
       {hasFrontier && (

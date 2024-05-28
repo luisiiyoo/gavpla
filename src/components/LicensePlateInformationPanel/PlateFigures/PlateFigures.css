@@ -46,6 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 1vh;
 }
 
 .LicensePlate {
@@ -62,4 +63,59 @@
   display: grid;
   padding: 0.08em 0.1em;
   border: 0.1em solid white;
+}
+
+.LicensePlateFigures {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+td {
+  padding-bottom: 2vh;
+}
+
+.VehicleTypeHeader {
+  font-size: medium;
+}
+td > .VehicleTypeHeader {
+  display: none;
+}
+
+@media only screen and (max-width: 760px) {
+  thead {
+    display: none;
+    height: 0;
+  }
+  td > .VehicleTypeHeader {
+    display: block;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+  tr {
+    overflow: hidden;
+  }
+  td {
+    padding: 1vh;
+  }
+  td.cell-time,
+  td.cell-pax,
+  td.cell-name,
+  td.cell-mobile {
+    float: left;
+    width: 50%;
+  }
 }
