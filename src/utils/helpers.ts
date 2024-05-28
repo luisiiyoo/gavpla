@@ -182,9 +182,9 @@ export const randomStateCode = (): string => {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-export const randomFrontierStateCode = (): string => {
+export const randomFrontierStateCode = (prefix: string = ''): string => {
   const arr = ['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS'];
-  return arr[Math.floor(Math.random() * arr.length)];
+  return `${prefix} ${arr[Math.floor(Math.random() * arr.length)]}`;
 };
 
 export const transalateVehicleType = (

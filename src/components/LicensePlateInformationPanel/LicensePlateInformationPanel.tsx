@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 
 import './PlateFigures/PlateFigures.css';
-import LicensePlateFigures_72_73 from './PlateFigures/72_73/72_73';
+import * as figures_72_73 from './PlateFigures/72_73/72_73';
+import LicensePlateFigures from './PlateFigures/PlateFigures';
 
 const LicensePlateInformationPanel: React.FC = () => {
   const {
@@ -16,7 +17,7 @@ const LicensePlateInformationPanel: React.FC = () => {
       <h2>{translation['title']}</h2>
 
       <h4>1972 - 1973</h4>
-      <LicensePlateFigures_72_73 />
+      <LicensePlateFigures figures={figures_72_73} />
     </div>
   );
 };
