@@ -169,7 +169,11 @@ export interface FiguresContentType {
   Dealer: React.FC<PlateInfoProps>;
   Provisional?: React.FC<PlateInfoProps>;
   Frontier: React.FC<PlateInfoProps>;
-  FederalSPF: React.FC;
+  FederalSPF?: React.FC;
+  FederalSPFCar?: React.FC;
+  FederalSPFBus?: React.FC;
+  FederalSPFTrailer?: React.FC;
+  FederalSPFTruck?: React.FC;
 }
 
 export interface LicensePlateFigures {
@@ -209,7 +213,12 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
     !!figures.PrivateTrailer || !!figures.DFPrivateTrailer;
   const hasDealer = !!figures.Dealer || !!figures.Provisional;
   const hasFrontier = !!figures.Frontier;
-  const hasFederal = !!figures.FederalSPF;
+  const hasFederal =
+    !!figures.FederalSPF ||
+    !!figures.FederalSPFCar ||
+    !!figures.FederalSPFBus ||
+    !!figures.FederalSPFTruck ||
+    !!figures.FederalSPFTrailer;
   return (
     <div className="LicensePlateFigures">
       {/* PrivateCar - Truck - Taxi */}
@@ -421,6 +430,34 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
               <td>
                 <FederalHeader />
                 {!!figures.FederalSPF && <figures.FederalSPF />}
+                {!!figures.FederalSPFCar && (
+                  <>
+                    <span className="SubIcon">{Vehicles.CarVehicle.icon}</span>
+                    <figures.FederalSPFCar />
+                  </>
+                )}
+                {!!figures.FederalSPFTrailer && (
+                  <>
+                    <span className="SubIcon">
+                      {Vehicles.TrailerVehicle.icon}
+                    </span>
+                    <figures.FederalSPFTrailer />
+                  </>
+                )}
+                {!!figures.FederalSPFTruck && (
+                  <>
+                    <span className="SubIcon">
+                      {Vehicles.TruckVehicle.icon}
+                    </span>
+                    <figures.FederalSPFTruck />
+                  </>
+                )}
+                {!!figures.FederalSPFBus && (
+                  <>
+                    <span className="SubIcon">{Vehicles.BusVehicle.icon}</span>
+                    <figures.FederalSPFBus />
+                  </>
+                )}
               </td>
             </tr>
           </tbody>

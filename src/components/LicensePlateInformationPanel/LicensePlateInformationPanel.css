@@ -69,7 +69,8 @@
   padding: 0.1em 0.1em;
   text-align: center;
   font-family: Sans-serif;
-  text-shadow: 0px 0.07em 0px #808080;
+  text-shadow: 0px 0.05em 0px #808080;
+  /* text-shadow: 0px 0.07em 0px #808080; */
   width: 7.3em;
 
   /* Shadows */
@@ -138,4 +139,8 @@ td > .VehicleTypeHeader {
     float: left;
     width: 50%;
   }
+}
+
+.SubIcon {
+  font-size: medium;
 }
