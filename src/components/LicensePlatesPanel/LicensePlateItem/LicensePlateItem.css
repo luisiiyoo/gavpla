@@ -31,3 +31,105 @@
 .VehicleIcon {
   text-shadow: 1px 2px 2px var(--color-app);
 }
+
+.LicensePlateFigures {
+  text-align: center;
+}
+
+table {
+  /* border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd; */
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* @media screen and (max-width: 600px) {
+  .LicensePlateFigures > table {
+    border: 0;
+  }
+
+  .LicensePlateFigures > table caption {
+    font-size: 1.3em;
+  }
+  
+  .LicensePlateFigures > table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .LicensePlateFigures > table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  .LicensePlateFigures > table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  .LicensePlateFigures > table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .LicensePlateFigures > table td:last-child {
+    border-bottom: 0;
+  }
+} 
+*/
+.VehicleTypeHeader {
+  font-size: medium;
+}
+td > .VehicleTypeHeader {
+  display: none;
+}
+
+@media only screen and (max-width: 760px) {
+  thead {
+    display: none;
+    height: 0;
+  }
+  td > .VehicleTypeHeader {
+    display: block;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+  tr {
+    overflow: hidden;
+  }
+  td {
+    padding: 0;
+  }
+  td.cell-time,
+  td.cell-pax,
+  td.cell-name,
+  td.cell-mobile {
+    float: left;
+    width: 50%;
+  }
+}

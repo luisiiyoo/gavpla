@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ReactNotificationOptions } from 'react-notifications-component';
+import { BEVehicleTypes } from 'src/connector/backend.types';
 import { getTranslation } from 'src/language';
+import { ES_LANGUAGE } from 'src/language/language';
 import { AbstractError } from './error.types';
 
 export const timestampToDateStr = (timestamp: number): string => {
@@ -141,4 +143,59 @@ export const handleErrorMessage = (error: any, languageCode: string) => {
   }
 
   return { message: transalatedErrorMessage, statusCode };
+};
+
+export const randomStateCode = (): string => {
+  const arr = [
+    'AGS',
+    'BC',
+    'BCS',
+    'CAMP',
+    'CHIH',
+    'CHIS',
+    'COAH',
+    'COL',
+    'DGO',
+    'GRO',
+    'GTO',
+    'HGO',
+    'JAL',
+    'MEX',
+    'MICH',
+    'MOR',
+    'NAY',
+    'NL',
+    'OAX',
+    'PUE',
+    'QR',
+    'QRO',
+    'SIN',
+    'SLP',
+    'SON',
+    'TAB',
+    'TAMPS',
+    'TLAX',
+    'VER',
+    'YUC',
+    'ZAC',
+  ];
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
+export const randomFrontierStateCode = (): string => {
+  const arr = ['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS'];
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
+export const transalateVehicleType = (
+  languageCode: string,
+  vehicleType: string,
+  vechicleTypes: BEVehicleTypes,
+): string => {
+  if (languageCode === ES_LANGUAGE) {
+    vehicleType = vechicleTypes[vehicleType].toUpperCase();
+  } else {
+    vehicleType = vehicleType.replace('-', ' ');
+  }
+  return vehicleType;
 };

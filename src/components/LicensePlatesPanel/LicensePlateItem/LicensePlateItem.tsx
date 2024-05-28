@@ -7,9 +7,10 @@ import {
 import NotFoundImage from 'src/images/image-not-found.png';
 import './LicensePlateItem.css';
 import { useSelector } from 'react-redux';
-import { ES_LANGUAGE, TRANSLATIONS } from 'src/language/language';
+import { TRANSLATIONS } from 'src/language/language';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { VehicleIconsMap } from 'src/utils/vehicle_types';
+import { transalateVehicleType } from 'src/utils';
 
 export interface LicensePlateItemProps {
   userID: string;
@@ -36,26 +37,18 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
     ? transalation[data.region_code]
     : stateCodes[data.region_code];
 
-  const rawVehicleType = data.vehicle_type;
-  let vehicle_type = rawVehicleType;
+  const rawVehicleType = data.vehicle_type.replace(' ', '-');
+  const vehicleTypeTranslated = transalateVehicleType(
+    languageCode,
+    data.vehicle_type,
+    vechicleTypes,
+  );
   let years =
     data.from_year === data.to_year
       ? data.from_year
       : `${data.from_year}-${data.to_year}`;
 
-  if (languageCode === ES_LANGUAGE) {
-    vehicle_type = vechicleTypes[vehicle_type].toUpperCase();
-  } else {
-    vehicle_type = vehicle_type.replace('-', ' ');
-  }
-
-  const vehicleIcon = (
-    <i
-      className={
-        'VehicleIcon ' + VehicleIconsMap.get(rawVehicleType.replace(' ', '-'))
-      }
-    />
-  );
+  const vehicleIcon = VehicleIconsMap.get(rawVehicleType);
   return (
     <div className="LicensePlateItem">
       <div className="LicensePlateItem-Header">
@@ -67,7 +60,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
         )}
         {hideVehicleType ? undefined : (
           <div className="LicensePlateItem-VehicleType">
-            {vehicleIcon} {vehicle_type}
+            {vehicleIcon} {vehicleTypeTranslated}
           </div>
         )}
       </div>
