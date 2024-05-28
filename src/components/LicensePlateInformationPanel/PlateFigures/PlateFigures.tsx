@@ -29,7 +29,7 @@ export const TruckHeader = () => {
   );
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.CarVehicle.icon} &nbsp;
+      {Vehicles.TruckVehicle.icon} &nbsp;
       {transalateVehicleType(languageCode, 'TRUCK', vehicleTypes)}
     </span>
   );
@@ -41,7 +41,7 @@ export const TaxiHeader = () => {
   );
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.CarVehicle.icon} &nbsp;
+      {Vehicles.TaxiVehicle.icon} &nbsp;
       {transalateVehicleType(languageCode, 'TAXI', vehicleTypes)}
     </span>
   );
@@ -128,7 +128,7 @@ export const FrontierHeader = () => {
     </span>
   );
 };
-export const FederalSPFHeader = () => {
+export const FederalHeader = () => {
   return (
     <span className="VehicleTypeHeader">
       {Vehicles.FederalVehicle.icon} &nbsp;
@@ -151,7 +151,9 @@ export interface FiguresType {
   CommercialTrailer: React.FC<PlateInfoProps>;
   DFCommercialTrailer: React.FC;
   PrivateBus: React.FC<PlateInfoProps>;
+  DFPrivateBus?: React.FC;
   PrivateTrailer: React.FC<PlateInfoProps>;
+  DFPrivateTrailer?: React.FC;
   Dealer: React.FC<PlateInfoProps>;
   Frontier: React.FC<PlateInfoProps>;
   FederalSPF: React.FC;
@@ -181,41 +183,68 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
     };
   }, []);
 
+  const hasPrivateCar = !!figures.PrivateCar || !!figures.DFPrivateCar;
+  const hasTruck = !!figures.Truck || !!figures.DFTruck;
+  const hasTaxi = !!figures.Taxi || !!figures.DFTaxi;
+  const hasCommercialBus = !!figures.CommercialBus || !!figures.DFCommercialBus;
+  const hasCommercialTruck =
+    !!figures.CommercialTruck || !!figures.DFCommercialTruck;
+  const hasCommercialTrailer =
+    !!figures.CommercialTrailer || !!figures.DFCommercialTrailer;
+  const hasPrivateBus = !!figures.PrivateBus || !!figures.DFPrivateBus;
+  const hasPrivateTrailer =
+    !!figures.PrivateTrailer || !!figures.DFPrivateTrailer;
+  const hasDealer = !!figures.Dealer;
+  const hasFrontier = !!figures.Frontier;
+  const hasFederal = !!figures.FederalSPF;
   return (
     <div className="LicensePlateFigures">
-      {/* <h4>1972 - 1973</h4> */}
       {/* PrivateCar - Truck - Taxi */}
       <table>
         <thead>
           <tr>
-            <th>
-              <PrivateCarHeader />
-            </th>
-            <th>
-              <TruckHeader />
-            </th>
-            <th>
-              <TaxiHeader />
-            </th>
+            {hasPrivateCar && (
+              <th>
+                <PrivateCarHeader />
+              </th>
+            )}
+            {hasTruck && (
+              <th>
+                <TruckHeader />
+              </th>
+            )}
+            {hasTaxi && (
+              <th>
+                <TaxiHeader />
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              <PrivateCarHeader />
-              <figures.PrivateCar stateCode={stateCode} />
-              <figures.DFPrivateCar />
-            </td>
-            <td>
-              <TruckHeader />
-              <figures.Truck stateCode={stateCode} />
-              <figures.DFTruck />
-            </td>
-            <td>
-              <TaxiHeader />
-              <figures.Taxi stateCode={stateCode} />
-              <figures.DFTaxi />
-            </td>
+            {hasPrivateCar && (
+              <td>
+                <PrivateCarHeader />
+                {!!figures.PrivateCar && (
+                  <figures.PrivateCar stateCode={stateCode} />
+                )}
+                {!!figures.DFPrivateCar && <figures.DFPrivateCar />}
+              </td>
+            )}
+            {hasTruck && (
+              <td>
+                <TruckHeader />
+                {!!figures.Truck && <figures.Truck stateCode={stateCode} />}
+                {!!figures.DFTruck && <figures.DFTruck />}
+              </td>
+            )}
+            {hasTaxi && (
+              <td>
+                <TaxiHeader />
+                {!!figures.Taxi && <figures.Taxi stateCode={stateCode} />}
+                {!!figures.DFTaxi && <figures.DFTaxi />}
+              </td>
+            )}
           </tr>
         </tbody>
       </table>
@@ -223,34 +252,52 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
       <table>
         <thead>
           <tr>
-            <th>
-              <CommercialBusHeader />
-            </th>
-            <th>
-              <CommercialTruckHeader />
-            </th>
-            <th>
-              <CommercialTrailerHeader />
-            </th>
+            {hasCommercialBus && (
+              <th>
+                <CommercialBusHeader />
+              </th>
+            )}
+            {!!hasCommercialTruck && (
+              <th>
+                <CommercialTruckHeader />
+              </th>
+            )}
+            {!!hasCommercialTrailer && (
+              <th>
+                <CommercialTrailerHeader />
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              <CommercialBusHeader />
-              <figures.CommercialBus stateCode={stateCode} />
-              <figures.DFCommercialBus />
-            </td>
-            <td>
-              <CommercialTruckHeader />
-              <figures.CommercialTruck stateCode={stateCode} />
-              <figures.DFCommercialTruck />
-            </td>
-            <td>
-              <CommercialTrailerHeader />
-              <figures.CommercialTrailer stateCode={stateCode} />
-              <figures.DFCommercialTrailer />
-            </td>
+            {hasCommercialBus && (
+              <td>
+                <CommercialBusHeader />
+                {!!figures.CommercialBus && (
+                  <figures.CommercialBus stateCode={stateCode} />
+                )}
+                {!!figures.DFCommercialBus && <figures.DFCommercialBus />}
+              </td>
+            )}
+            {hasCommercialTruck && (
+              <td>
+                <CommercialTruckHeader />
+                {!!figures.CommercialTruck && (
+                  <figures.CommercialTruck stateCode={stateCode} />
+                )}
+                {!!figures.CommercialTruck && <figures.DFCommercialTruck />}
+              </td>
+            )}
+            {hasCommercialTrailer && (
+              <td>
+                <CommercialTrailerHeader />
+                {!!figures.CommercialTrailer && (
+                  <figures.CommercialTrailer stateCode={stateCode} />
+                )}
+                {!!figures.CommercialTrailer && <figures.DFCommercialTrailer />}
+              </td>
+            )}
           </tr>
         </tbody>
       </table>
@@ -258,60 +305,94 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
       <table>
         <thead>
           <tr>
-            <th>
-              <PrivateBusHeader />
-            </th>
-            <th>
-              <PrivateTrailerHeader />
-            </th>
-            <th>
-              <DealerHeader />
-            </th>
+            {hasPrivateBus && (
+              <th>
+                <PrivateBusHeader />
+              </th>
+            )}
+            {hasPrivateTrailer && (
+              <th>
+                <PrivateTrailerHeader />
+              </th>
+            )}
+            {hasDealer && (
+              <th>
+                <DealerHeader />
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              <PrivateBusHeader />
-              <figures.PrivateBus stateCode={stateCode} />
-            </td>
-            <td>
-              <PrivateTrailerHeader />
-              <figures.PrivateTrailer stateCode={stateCode} />
-            </td>
-            <td>
-              <DealerHeader />
-              <figures.Dealer stateCode={stateCode} />
-            </td>
+            {hasPrivateBus && (
+              <td>
+                <PrivateBusHeader />
+                {!!figures.PrivateBus && (
+                  <figures.PrivateBus stateCode={stateCode} />
+                )}
+                {!!figures.DFPrivateBus && <figures.DFPrivateBus />}
+              </td>
+            )}
+            {hasPrivateTrailer && (
+              <td>
+                <PrivateTrailerHeader />
+                {!!figures.PrivateTrailer && (
+                  <figures.PrivateTrailer stateCode={stateCode} />
+                )}
+                {!!figures.DFPrivateTrailer && <figures.DFPrivateTrailer />}
+              </td>
+            )}
+            {hasDealer && (
+              <td>
+                <DealerHeader />
+                <figures.Dealer stateCode={stateCode} />
+              </td>
+            )}
           </tr>
         </tbody>
       </table>
 
-      {/* Frontier - FederalSPF */}
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <FrontierHeader />
-            </th>
-            <th>
-              <FederalSPFHeader />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <FrontierHeader />
-              <figures.Frontier stateCode={frontierStateCode} />
-            </td>
-            <td>
-              <FederalSPFHeader />
-              <figures.FederalSPF />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {/* Frontier */}
+      {hasFrontier && (
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <FrontierHeader />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <FrontierHeader />
+                <figures.Frontier stateCode={frontierStateCode} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+
+      {/* FederalSPF */}
+      {hasFederal && (
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <FederalHeader />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <FederalHeader />
+                {!!figures.FederalSPF && <figures.FederalSPF />}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
