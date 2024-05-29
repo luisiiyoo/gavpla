@@ -1,21 +1,94 @@
 :root {
-  --bg-color-A-1968-1969: #165fa8;
-  --border-color-A-1968-1969: #165fa8;
-  --font-color-A-1968-1969: white;
+  --bg-color-A-1968-1969: #fff;
+  --border-color-A-1968-1969: #fff;
+  --font-color-A-1968-1969: #8f4749;
+
+  --bg-color-B-1968-1969: #165fa8;
+  --border-color-B-1968-1969: #165fa8;
+  --font-color-B-1968-1969: #fff;
+
+  /* --bg-color-C-1968-1969: #165fa8;
+  --border-color-C-1968-1969: #165fa8;
+  --font-color-C-1968-1969: #fff; */
+
+  --bg-color-D-1968-1969: #fff;
+  --border-color-D-1968-1969: #fff;
+  --font-color-D-1968-1969: #2c8b77;
+
+  --bg-color-E-1968-1969: #f0a635;
+  --border-color-E-1968-1969: #f0a635;
+  --font-color-E-1968-1969: #000;
 }
 
 .Olimpycs {
   font-weight: bold;
 }
 
-.LP-1968-1969 {
+.LP-A-1968-1969 {
   grid-template-areas:
-    'TL TL TL TC TR TR TR'
+    'TC TC TC TC TC TC TC'
     'BL BL BC BC BC BR BR';
   border-color: var(--border-color-A-1968-1969);
 }
-
 .Color-A-1968-1969 {
   background-color: var(--bg-color-A-1968-1969);
   color: var(--font-color-A-1968-1969);
+}
+
+.LP-B-1968-1969 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BL BL BC BC BC BR BR';
+  border-color: var(--border-color-B-1968-1969);
+}
+.Color-B-1968-1969 {
+  background-color: var(--bg-color-B-1968-1969);
+  color: var(--font-color-B-1968-1969);
+}
+
+.LP-C-1968-1969 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BL BL BC BC BC BR BR';
+  border-color: var(--border-color-C-1968-1969);
+}
+.Color-C-1968-1969 {
+  background-color: var(--bg-color-C-1968-1969);
+  color: var(--font-color-C-1968-1969);
+}
+
+.LP-D-1968-1969 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BL BL BC BC BC BR BR';
+  border-color: var(--border-color-D-1968-1969);
+}
+.Color-D-1968-1969 {
+  background-color: var(--bg-color-D-1968-1969);
+  color: var(--font-color-D-1968-1969);
+}
+
+.LP-E-1968-1969 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BL BL BC BC BC BR BR';
+  border-color: var(--border-color-E-1968-1969);
+}
+.Color-E-1968-1969 {
+  background-color: var(--bg-color-E-1968-1969);
+  color: var(--font-color-E-1968-1969);
+}
+
+.LP-X-1968-1969 {
+  grid-template-areas:
+    'ML TL TL TL TR TR TR'
+    'MC BL BL BC BC BR BR';
+  border-color: var(--border-color-A-1968-1969);
+}
+
+.LP-Y-1968-1969 {
+  grid-template-areas:
+    'TL TR TR TR TR TR TR'
+    'BL BR BR BR BR BR BR';
+  border-color: var(--border-color-B-1968-1969);
 }

@@ -17,6 +17,9 @@ const LP_B = 'LP LP-B-1970-1971';
 const COLOR_D = 'Color-D-1970-1971';
 const LP_D = 'LP LP-D-1970-1971';
 
+const COLOR_E = 'Color-E-1970-1971';
+const LP_E = 'LP LP-E-1970-1971';
+
 // Tipe A
 export const PrivateCar: React.FC<PlateInfoProps> = ({
   stateCode = randomStateCode(),
@@ -336,6 +339,21 @@ export const FederalSPFTruck: React.FC = () => (
         <div className="BL Footer">70</div>
         <div className="BC Footer">S.P.F. &nbsp; MEX.</div>
         <div className="BR Footer">71</div>
+      </div>
+    </div>
+  </div>
+);
+
+export const FederalSCT: React.FC = () => (
+  <div className="LicensePlateContainer">
+    <div className={`LicensePlate ${COLOR_E}`}>
+      <div className={LP_E}>
+        <div className="TL Body">{'##A'}</div>
+        <div className="TC Body"> &#xb7; </div>
+        <div className="TR Body">{'#'.repeat(2)}</div>
+        <div className="BL Footer SmallText">70</div>
+        <div className="BC Footer SmallText">S.C.T. TRASLADO</div>
+        <div className="BR Footer SmallText">71</div>
       </div>
     </div>
   </div>

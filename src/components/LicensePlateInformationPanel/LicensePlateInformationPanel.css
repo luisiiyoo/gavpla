@@ -37,6 +37,20 @@
   margin: 0;
 }
 
+.HorizontalText {
+  /* padding: 0.1em; */
+  font-size: 0.8em;
+  line-height: 1.7em;
+  padding: 0;
+  text-align: left;
+}
+
+.VerticalText {
+  font-size: 1.4em;
+  line-height: 0.9em;
+  font-weight: bold;
+}
+
 .TL {
   grid-area: TL;
   padding: 0em;

@@ -14,6 +14,10 @@
   --bg-color-D-1970-1971: #f7b039;
   --border-color-D-1970-1971: #000;
   --font-color-D-1970-1971: #000;
+
+  --bg-color-E-1970-1971: #fff;
+  --border-color-E-1970-1971: #2c8b77;
+  --font-color-E-1970-1971: #2c8b77;
 }
 
 .LP-A-1970-1971 {
@@ -62,4 +66,15 @@
 .Color-D-1970-1971 {
   background-color: var(--bg-color-D-1970-1971);
   color: var(--font-color-D-1970-1971);
+}
+
+.LP-E-1970-1971 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-E-1970-1971);
+}
+.Color-E-1970-1971 {
+  background-color: var(--bg-color-E-1970-1971);
+  color: var(--font-color-E-1970-1971);
 }

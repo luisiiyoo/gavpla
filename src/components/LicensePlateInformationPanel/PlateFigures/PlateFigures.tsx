@@ -177,16 +177,22 @@ export const FederalSAFHeader = () => {
 
 export interface FiguresContentType {
   PrivateCar: React.FC<PlateInfoProps>;
+  PrivateCar2?: React.FC<PlateInfoProps>;
   DFPrivateCar: React.FC;
   Truck: React.FC<PlateInfoProps>;
-  DFTruck: React.FC;
+  DFTruck?: React.FC;
   Taxi: React.FC<PlateInfoProps>;
+  Taxi2?: React.FC<PlateInfoProps>;
   DFTaxi: React.FC;
+  DFTaxi2?: React.FC;
   CommercialBus: React.FC<PlateInfoProps>;
+  CommercialBus2?: React.FC<PlateInfoProps>;
   DFCommercialBus: React.FC;
   CommercialTruck: React.FC<PlateInfoProps>;
+  CommercialTruck2?: React.FC<PlateInfoProps>;
   DFCommercialTruck: React.FC;
   CommercialTrailer: React.FC<PlateInfoProps>;
+  CommercialTrailer2?: React.FC<PlateInfoProps>;
   DFCommercialTrailer: React.FC;
   PrivateBus: React.FC<PlateInfoProps>;
   DFPrivateBus?: React.FC;
@@ -235,14 +241,23 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
     };
   }, []);
 
-  const hasPrivateCar = !!figures.PrivateCar || !!figures.DFPrivateCar;
+  const hasPrivateCar =
+    !!figures.PrivateCar || !!figures.PrivateCar2 || !!figures.DFPrivateCar;
   const hasTruck = !!figures.Truck || !!figures.DFTruck;
-  const hasTaxi = !!figures.Taxi || !!figures.DFTaxi;
-  const hasCommercialBus = !!figures.CommercialBus || !!figures.DFCommercialBus;
+  const hasTaxi =
+    !!figures.Taxi || !!figures.Taxi2 || !!figures.DFTaxi || !!figures.DFTaxi2;
+  const hasCommercialBus =
+    !!figures.CommercialBus ||
+    !!figures.CommercialBus2 ||
+    !!figures.DFCommercialBus;
   const hasCommercialTruck =
-    !!figures.CommercialTruck || !!figures.DFCommercialTruck;
+    !!figures.CommercialTruck ||
+    !!figures.CommercialTruck2 ||
+    !!figures.DFCommercialTruck;
   const hasCommercialTrailer =
-    !!figures.CommercialTrailer || !!figures.DFCommercialTrailer;
+    !!figures.CommercialTrailer ||
+    !!figures.CommercialTrailer2 ||
+    !!figures.DFCommercialTrailer;
   const hasPrivateBus = !!figures.PrivateBus || !!figures.DFPrivateBus;
   const hasPrivateTrailer =
     !!figures.PrivateTrailer || !!figures.DFPrivateTrailer;
@@ -295,6 +310,9 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                 {!!figures.PrivateCar && (
                   <figures.PrivateCar stateCode={stateCode} />
                 )}
+                {!!figures.PrivateCar2 && (
+                  <figures.PrivateCar2 stateCode={stateCode} />
+                )}
                 {!!figures.DFPrivateCar && <figures.DFPrivateCar />}
               </td>
             )}
@@ -309,7 +327,9 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
               <td>
                 <TaxiHeader />
                 {!!figures.Taxi && <figures.Taxi stateCode={stateCode} />}
+                {!!figures.Taxi2 && <figures.Taxi2 stateCode={stateCode} />}
                 {!!figures.DFTaxi && <figures.DFTaxi />}
+                {!!figures.DFTaxi2 && <figures.DFTaxi2 />}
               </td>
             )}
           </tr>
@@ -344,6 +364,9 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                 {!!figures.CommercialBus && (
                   <figures.CommercialBus stateCode={stateCode} />
                 )}
+                {!!figures.CommercialBus2 && (
+                  <figures.CommercialBus2 stateCode={stateCode} />
+                )}
                 {!!figures.DFCommercialBus && <figures.DFCommercialBus />}
               </td>
             )}
@@ -353,7 +376,10 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                 {!!figures.CommercialTruck && (
                   <figures.CommercialTruck stateCode={stateCode} />
                 )}
-                {!!figures.CommercialTruck && <figures.DFCommercialTruck />}
+                {!!figures.CommercialTruck2 && (
+                  <figures.CommercialTruck2 stateCode={stateCode} />
+                )}
+                {!!figures.DFCommercialTruck && <figures.DFCommercialTruck />}
               </td>
             )}
             {hasCommercialTrailer && (
@@ -361,6 +387,9 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                 <CommercialTrailerHeader />
                 {!!figures.CommercialTrailer && (
                   <figures.CommercialTrailer stateCode={stateCode} />
+                )}
+                {!!figures.CommercialTrailer2 && (
+                  <figures.CommercialTrailer2 stateCode={stateCode} />
                 )}
                 {!!figures.CommercialTrailer && <figures.DFCommercialTrailer />}
               </td>
