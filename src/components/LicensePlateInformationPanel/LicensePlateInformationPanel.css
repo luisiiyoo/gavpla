@@ -184,6 +184,7 @@ td > .VehicleTypeHeader {
 .ReferenceLink {
   color: #fff;
   text-decoration: none;
+  font-size: medium;
 }
 
 /* unvisited link */

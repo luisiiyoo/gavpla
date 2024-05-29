@@ -9,8 +9,8 @@ const LP_A = 'LP LP-A-1968-1969';
 const COLOR_B = 'Color-B-1968-1969';
 const LP_B = 'LP LP-B-1968-1969';
 
-const COLOR_C = 'Color-C-1968-1969';
-const LP_C = 'LP LP-C-1968-1969';
+// const COLOR_C = 'Color-C-1968-1969';
+// const LP_C = 'LP LP-C-1968-1969';
 
 const COLOR_D = 'Color-D-1968-1969';
 const LP_D = 'LP LP-D-1968-1969';
@@ -19,7 +19,7 @@ const COLOR_E = 'Color-E-1968-1969';
 const LP_E = 'LP LP-E-1968-1969';
 
 const LP_X = 'LP LP-X-1968-1969';
-const LP_Y = 'LP LP-Y-1968-1969';
+// const LP_Y = 'LP LP-Y-1968-1969';
 
 const OlimpycSpan: React.FC = () => (
   <span className="Olimpycs">&#8757;&there4;</span>

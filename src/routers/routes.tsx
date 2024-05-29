@@ -14,7 +14,8 @@ import {
   BICYCLE_ROUTE,
   SHOP_PLATES_ROUTE,
   BY_YEARS_ROUTE,
-  INFORMATION_ROUTE,
+  ABBREVIATIONS_ROUTE,
+  IDENTIFY_PLATES_ROUTE,
 } from './constants';
 import {
   MEXICO_STATE_CODE_TO_STATE_NAME,
@@ -36,6 +37,7 @@ import {
   MotorcycleVehicle,
 } from 'src/utils/vehicle_types';
 import LicensePlateInformationPanel from 'src/components/LicensePlateInformationPanel';
+import AbbreviationsPanel from 'src/components/LicensePlateInformationPanel/AbbreviationsPanel/AbbreviationsPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -58,11 +60,41 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => <NewsPanel />,
   },
   {
-    title: INFORMATION_ROUTE.title,
-    route: INFORMATION_ROUTE.route,
+    title: ABBREVIATIONS_ROUTE.title,
+    route: ABBREVIATIONS_ROUTE.route,
     iconClass: 'fa-solid fa-book-bookmark',
+    functionalComponent: () => <AbbreviationsPanel />,
+  },
+  {
+    title: IDENTIFY_PLATES_ROUTE.title,
+    route: IDENTIFY_PLATES_ROUTE.route,
+    iconClass: 'fa-solid fa-circle-info',
     functionalComponent: () => <LicensePlateInformationPanel />,
   },
+  // {
+  //   title: INFORMATION_ROUTE.title,
+  //   route: INFORMATION_ROUTE.route,
+  //   iconClass: 'fa-solid fa-book-bookmark',
+  //   functionalComponent: () => <LicensePlateInformationPanel />,
+  //   childs: [
+  //   //   {
+  //   //   title: ABBREVIATIONS_ROUTE.title,
+  //   //   idChild: ABBREVIATIONS_ROUTE.route,
+  //   //   route: ABBREVIATIONS_ROUTE.route,
+  //   //   functionalComponent: () => (
+  //   //     <AbbreviationsPanel />
+  //   //   ),
+  //   // },
+  //   {
+  //     title: IDENTIFY_PLATES_ROUTE.title,
+  //     idChild: IDENTIFY_PLATES_ROUTE.route,
+  //     route: IDENTIFY_PLATES_ROUTE.route,
+  //     functionalComponent: () => (
+  //       <LicensePlateInformationPanel />
+  //     ),
+  //   }
+  // ],
+  // },
   {
     title: BY_YEARS_ROUTE.title,
     route: BY_YEARS_ROUTE.route,
@@ -196,7 +228,7 @@ const navigationItems: NavItem[] = [
     title: SHOP_PLATES_ROUTE.title,
     route: SHOP_PLATES_ROUTE.route,
     iconClass: 'fa-solid fa-cart-shopping',
-    hidden: false,
+    hidden: true,
     functionalComponent: () => <UnderConstruction />,
   },
 ];

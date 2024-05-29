@@ -83,7 +83,7 @@ const LicensePlateInformationPanel: React.FC = () => {
           </div>
 
           <div className="LicensePlateInformationPanel-References">
-            <h4>{translation["references"]}: </h4>
+            <h4>{translation['references']}: </h4>
 
             <a
               className="ReferenceLink"

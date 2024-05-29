@@ -16,6 +16,8 @@ import {
   BY_YEARS_ROUTE,
   BICYCLE_ROUTE,
   INFORMATION_ROUTE,
+  ABBREVIATIONS_ROUTE,
+  IDENTIFY_PLATES_ROUTE,
 } from 'src/routers/constants';
 
 interface languageType {
@@ -101,6 +103,8 @@ export const TRANSLATIONS = {
       [HOME_ROUTE.route]: 'Home',
       [NEWS_ROUTE.route]: NEWS_ROUTE.title,
       [INFORMATION_ROUTE.route]: INFORMATION_ROUTE.title,
+      [ABBREVIATIONS_ROUTE.route]: ABBREVIATIONS_ROUTE.title,
+      [IDENTIFY_PLATES_ROUTE.route]: IDENTIFY_PLATES_ROUTE.title,
       [BY_STATES_ROUTE.route]: BY_STATES_ROUTE.title,
       [NATIONAL_ROUTE.route]: NATIONAL_ROUTE.title,
       [METROPOLITAN_ROUTE.route]: METROPOLITAN_ROUTE.title,
@@ -118,6 +122,8 @@ export const TRANSLATIONS = {
       [HOME_ROUTE.route]: 'Inicio',
       [NEWS_ROUTE.route]: 'Novedades',
       [INFORMATION_ROUTE.route]: 'Información',
+      [ABBREVIATIONS_ROUTE.route]: 'Abreviaturas',
+      [IDENTIFY_PLATES_ROUTE.route]: 'Identificar Placas',
       [BY_STATES_ROUTE.route]: 'Por Estados',
       [NATIONAL_ROUTE.route]: 'Federal',
       [METROPOLITAN_ROUTE.route]: 'Metropolitano',
@@ -174,6 +180,18 @@ export const TRANSLATIONS = {
     },
     es: {
       title: 'Información',
+    },
+  },
+  AbbreviationsPanel: {
+    en: {
+      title: 'Abbreviations',
+      states: 'States',
+      organizations: 'Organizations',
+    },
+    es: {
+      title: 'Abreviaturas',
+      states: 'Estados',
+      organizations: 'Organizaciónes',
     },
   },
   IdentifyPlatesByVehiclePage: {

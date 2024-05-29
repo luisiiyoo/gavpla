@@ -15,6 +15,16 @@ export const INFORMATION_ROUTE = {
   route: 'info',
 };
 
+export const IDENTIFY_PLATES_ROUTE = {
+  title: 'Identify Plates',
+  route: `${INFORMATION_ROUTE.route}/identify-plates`,
+};
+
+export const ABBREVIATIONS_ROUTE = {
+  title: 'Abbreviations',
+  route: `${INFORMATION_ROUTE.route}/abbreviations`,
+};
+
 export const MOTORCYCLE_ROUTE = {
   title: 'Motorcycle',
   route: `${LICENSE_PLATES}/motorcycle`,

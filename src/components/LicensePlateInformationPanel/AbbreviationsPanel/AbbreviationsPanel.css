@@ -1,0 +1,31 @@
+.AbbreviationsPanel {
+  text-align: center;
+  padding: 2vh;
+  width: 100%;
+  color: var(--font-color-app);
+  font-size: medium;
+}
+
+.AbbreviationsPanel-Block {
+  padding: 1.5vh;
+}
+.Abbreviations {
+  font-weight: bold;
+  /* color: var(--color-app); */
+  text-shadow: 1px 2px 2px var(--color-app);
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /*---*/
+  column-count: 3;
+  column-gap: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 750px) {
+  ul {
+    column-count: 1;
+  }
+}
