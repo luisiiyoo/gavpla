@@ -1,0 +1,97 @@
+:root {
+  --bg-color-A-1986-1991: #e2d999;
+  --border-color-A-1986-1991: #1b456e;
+  --font-color-A-1986-1991: #1b456e;
+
+  --bg-color-B-1986-1991: #191f3b;
+  --border-color-B-1986-1991: #fff;
+  --font-color-B-1986-1991: #fff;
+
+  --bg-color-C-1986-1991: #87c9ec;
+  --border-color-C-1986-1991: #000;
+  --font-color-C-1986-1991: #000;
+
+  --bg-color-D-1986-1991: #e2d999;
+  --border-color-D-1986-1991: #1b456e;
+  --font-color-D-1986-1991: #1b456e;
+
+  --bg-color-E-1986-1991: #94c28e;
+  --border-color-E-1986-1991: #1b456e;
+  --font-color-E-1986-1991: #1b456e;
+
+  --bg-color-F-1986-1991: #f38d13;
+  --border-color-F-1986-1991: #000;
+  --font-color-F-1986-1991: #000;
+}
+
+.LP-A-1986-1991 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-A-1986-1991);
+}
+
+.Color-A-1986-1991 {
+  background-color: var(--bg-color-A-1986-1991);
+  color: var(--font-color-A-1986-1991);
+}
+
+.LP-B-1986-1991 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-B-1986-1991);
+}
+
+.Color-B-1986-1991 {
+  background-color: var(--bg-color-B-1986-1991);
+  color: var(--font-color-B-1986-1991);
+}
+
+.LP-C-1986-1991 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-C-1986-1991);
+}
+
+.Color-C-1986-1991 {
+  background-color: var(--bg-color-C-1986-1991);
+  color: var(--font-color-C-1986-1991);
+}
+
+.LP-D-1986-1991 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-D-1986-1991);
+}
+
+.Color-D-1986-1991 {
+  background-color: var(--bg-color-D-1986-1991);
+  color: var(--font-color-D-1986-1991);
+}
+
+.LP-E-1986-1991 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-E-1986-1991);
+}
+
+.Color-E-1986-1991 {
+  background-color: var(--bg-color-E-1986-1991);
+  color: var(--font-color-E-1986-1991);
+}
+
+.LP-F-1986-1991 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-E-1986-1991);
+}
+
+.Color-F-1986-1991 {
+  background-color: var(--bg-color-F-1986-1991);
+  color: var(--font-color-F-1986-1991);
+}

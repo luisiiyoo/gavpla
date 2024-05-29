@@ -144,7 +144,7 @@ export const FederalSPFHeader = () => {
   return (
     <span className="VehicleTypeHeader">
       {Vehicles.FederalVehicle.icon} &nbsp;
-      {'FEDERAL S.P.F.'}
+      {'FEDERAL - S.P.F.'}
     </span>
   );
 };
@@ -152,7 +152,7 @@ export const FederalSETHeader = () => {
   return (
     <span className="VehicleTypeHeader">
       {Vehicles.FederalVehicle.icon} &nbsp;
-      {'FEDERAL S.E.T.'}
+      {'FEDERAL - S.E.T.'}
     </span>
   );
 };
@@ -161,7 +161,16 @@ export const FederalSCTHeader = () => {
   return (
     <span className="VehicleTypeHeader">
       {Vehicles.FederalVehicle.icon} &nbsp;
-      {'FEDERAL S.C.T.'}
+      {'FEDERAL - S.C.T.'}
+    </span>
+  );
+};
+
+export const FederalSAFHeader = () => {
+  return (
+    <span className="VehicleTypeHeader">
+      {Vehicles.FederalVehicle.icon} &nbsp;
+      {'FEDERAL - S.A.F.'}
     </span>
   );
 };
@@ -193,6 +202,9 @@ export interface FiguresContentType {
   FederalSPFTruck?: React.FC;
   FederalSET?: React.FC;
   FederalSCT?: React.FC;
+  FederalSAF?: React.FC;
+  FederalSAFBus?: React.FC;
+  FederalSAFTrailer?: React.FC;
 }
 
 export interface LicensePlateFigures {
@@ -240,6 +252,10 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
     !!figures.FederalSPFTrailer;
   const hasFederalSET = !!figures.FederalSET;
   const hasFederalSCT = !!figures.FederalSCT;
+  const hasFederalSAF =
+    !!figures.FederalSAF ||
+    !!figures.FederalSAFBus ||
+    !!figures.FederalSAFTrailer;
   return (
     <div className="LicensePlateFigures">
       {/* PrivateCar - Truck - Taxi */}
@@ -521,6 +537,40 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
               <td>
                 <FederalSCTHeader />
                 {!!figures.FederalSCT && <figures.FederalSCT />}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      {/* FederalSAF */}
+      {hasFederalSAF && (
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <FederalSAFHeader />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <FederalSAFHeader />
+                {!!figures.FederalSAF && <figures.FederalSAF />}
+                {!!figures.FederalSAFBus && (
+                  <>
+                    <span className="SubIcon">{Vehicles.BusVehicle.icon}</span>
+                    <figures.FederalSAFBus />
+                  </>
+                )}
+                {!!figures.FederalSAFTrailer && (
+                  <>
+                    <span className="SubIcon">
+                      {Vehicles.TrailerVehicle.icon}
+                    </span>
+                    <figures.FederalSAFTrailer />
+                  </>
+                )}
               </td>
             </tr>
           </tbody>

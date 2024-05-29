@@ -17,6 +17,7 @@ import * as figures_78_79 from './PlateFigures/78_79/78_79';
 import * as figures_80_81 from './PlateFigures/80_81/80_81';
 import * as figures_82_83 from './PlateFigures/82_83/82_83';
 import * as figures_84_85 from './PlateFigures/84_85/84_85';
+import * as figures_86_91 from './PlateFigures/86_91/86_91';
 
 import LicensePlateFigures, {
   FiguresContentType,
@@ -30,7 +31,7 @@ const LicensePlateInformationPanel: React.FC = () => {
     languageCode,
     'IdentifyPlatesByVehiclePage',
   );
-  const [selectedYearSeries, setSelectedYearSeries] = useState('1982-1983');
+  const [selectedYearSeries, setSelectedYearSeries] = useState('1986-1991');
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
@@ -44,6 +45,7 @@ const LicensePlateInformationPanel: React.FC = () => {
   itemsMap.set('1980-1981', figures_80_81);
   itemsMap.set('1982-1983', figures_82_83);
   itemsMap.set('1984-1985', figures_84_85);
+  itemsMap.set('1986-1991', figures_86_91);
 
   const yearsOptions = Array.from(itemsMap.keys());
   const selectedContent = itemsMap.get(selectedYearSeries);
