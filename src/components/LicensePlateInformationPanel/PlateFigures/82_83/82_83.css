@@ -1,0 +1,65 @@
+:root {
+  --bg-color-A-1982-1983: #e5efeb;
+  --border-color-A-1982-1983: #e5efeb;
+  --font-color-A-1982-1983: #4c748f;
+
+  --bg-color-B-1982-1983: #e5efeb;
+  --border-color-B-1982-1983: #e5efeb;
+  --font-color-B-1982-1983: green;
+
+  --bg-color-C-1982-1983: #f39855;
+  --border-color-C-1982-1983: #f39855;
+  --font-color-C-1982-1983: #000;
+
+  --bg-color-D-1982-1983: #8bceec;
+  --border-color-D-1982-1983: #8bceec;
+  --font-color-D-1982-1983: #000;
+}
+
+.LP-A-1982-1983 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-A-1982-1983);
+}
+
+.Color-A-1982-1983 {
+  background-color: var(--bg-color-A-1982-1983);
+  color: var(--font-color-A-1982-1983);
+}
+
+.LP-B-1982-1983 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-B-1982-1983);
+}
+
+.Color-B-1982-1983 {
+  background-color: var(--bg-color-B-1982-1983);
+  color: var(--font-color-B-1982-1983);
+}
+
+.LP-C-1982-1983 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-C-1982-1983);
+}
+
+.Color-C-1982-1983 {
+  background-color: var(--bg-color-C-1982-1983);
+  color: var(--font-color-C-1982-1983);
+}
+
+.LP-D-1982-1983 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-D-1982-1983);
+}
+
+.Color-D-1982-1983 {
+  background-color: var(--bg-color-D-1982-1983);
+  color: var(--font-color-D-1982-1983);
+}

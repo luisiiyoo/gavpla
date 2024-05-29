@@ -1,19 +1,23 @@
 :root {
   --bg-color-A-1978-1979: #000;
-  --border-color-A-1978-1979: yellow;
-  --font-color-A-1978-1979: yellow;
+  --border-color-A-1978-1979: #e89531;
+  --font-color-A-1978-1979: #e89531;
 
   --bg-color-B-1978-1979: #fff;
   --border-color-B-1978-1979: green;
   --font-color-B-1978-1979: green;
 
-  --bg-color-C-1978-1979: blue;
+  --bg-color-C-1978-1979: #0c1d52;
   --border-color-C-1978-1979: #fff;
   --font-color-C-1978-1979: #fff;
 
-  --bg-color-D-1978-1979: yellow;
+  --bg-color-D-1978-1979: #e0a63f;
   --border-color-D-1978-1979: #000;
   --font-color-D-1978-1979: #000;
+
+  --bg-color-E-1978-1979: #fff;
+  --border-color-E-1978-1979: #c74112;
+  --font-color-E-1978-1979: #c74112;
 }
 
 .LP-A-1978-1979 {
@@ -62,4 +66,16 @@
 .Color-D-1978-1979 {
   background-color: var(--bg-color-D-1978-1979);
   color: var(--font-color-D-1978-1979);
+}
+
+.LP-E-1978-1979 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-E-1978-1979);
+}
+
+.Color-E-1978-1979 {
+  background-color: var(--bg-color-E-1978-1979);
+  color: var(--font-color-E-1978-1979);
 }

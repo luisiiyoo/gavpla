@@ -3,22 +3,19 @@ import React from 'react';
 import { randomFrontierStateCode, randomStateCode } from 'src/utils';
 
 import { PlateInfoProps } from '../PlateFigures';
-import './78_79.css';
+import './82_83.css';
 
-const COLOR_A = 'Color-A-1978-1979';
-const LP_A = 'LP LP-A-1978-1979';
+const COLOR_A = 'Color-A-1982-1983';
+const LP_A = 'LP LP-A-1982-1983';
 
-const COLOR_B = 'Color-B-1978-1979';
-const LP_B = 'LP LP-B-1978-1979';
+const COLOR_B = 'Color-B-1982-1983';
+const LP_B = 'LP LP-B-1982-1983';
 
-const COLOR_C = 'Color-C-1978-1979';
-const LP_C = 'LP LP-C-1978-1979';
+const COLOR_C = 'Color-C-1982-1983';
+const LP_C = 'LP LP-C-1982-1983';
 
-const COLOR_D = 'Color-D-1978-1979';
-const LP_D = 'LP LP-D-1978-1979';
-
-const COLOR_E = 'Color-E-1978-1979';
-const LP_E = 'LP LP-E-1978-1979';
+const COLOR_D = 'Color-D-1982-1983';
+const LP_D = 'LP LP-D-1982-1983';
 
 // Tipe A
 export const DFPrivateCar: React.FC = () => (
@@ -28,9 +25,9 @@ export const DFPrivateCar: React.FC = () => (
         <div className="TL Body">{'#'.repeat(3)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'A'.repeat(3)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">D.F. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -43,9 +40,9 @@ export const DFTruck: React.FC = () => (
         <div className="TL Body">{'#'.repeat(4)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'A'.repeat(2)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">D.F. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -60,9 +57,9 @@ export const PrivateCar: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'A'.repeat(3)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(3)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -77,9 +74,9 @@ export const Truck: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'A'.repeat(2)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(4)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -94,9 +91,9 @@ export const Dealer: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{''}</div>
         <div className="TC Body">{`${'A'.repeat(2)} ${'#'.repeat(2)}`}</div>
         <div className="TR Body">{''}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; DEM.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -111,9 +108,9 @@ export const PrivateBus: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'A'.repeat(3)}</div>
         <div className="TC Body"> {''}</div>
         <div className="TR Body">{'#'.repeat(1)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -128,9 +125,9 @@ export const PrivateTrailer: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'A'.repeat(2)}</div>
         <div className="TC Body"> {''}</div>
         <div className="TR Body">{'#'.repeat(3)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -145,9 +142,9 @@ export const DFTaxi: React.FC = () => (
         <div className="TL Body">{'#'.repeat(3)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(2)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">D.F. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -159,9 +156,9 @@ export const DFCommercialBus: React.FC = () => (
         <div className="TL Body">{'#'.repeat(1)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(5)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">D.F. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -173,9 +170,9 @@ export const DFCommercialTruck: React.FC = () => (
         <div className="TL Body">{'#'.repeat(3)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(3)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">D.F. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -187,9 +184,9 @@ export const DFCommercialTrailer: React.FC = () => (
         <div className="TL Body">{'#'.repeat(5)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(1)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">D.F. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -204,9 +201,9 @@ export const Taxi: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'#'.repeat(2)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'A'.repeat(3)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -221,9 +218,9 @@ export const CommercialTruck: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'A'.repeat(3)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(2)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -238,9 +235,9 @@ export const CommercialBus: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'#'.repeat(5)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'A'.repeat(1)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -255,9 +252,9 @@ export const CommercialTrailer: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'A'.repeat(1)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'#'.repeat(5)}</div>
-        <div className="BL Footer">78</div>
+        <div className="BL Footer">82</div>
         <div className="BC Footer">{stateCode}. &nbsp; MEX.</div>
-        <div className="BR Footer">79</div>
+        <div className="BR Footer">83</div>
       </div>
     </div>
   </div>
@@ -273,37 +270,23 @@ export const Frontier: React.FC<PlateInfoProps> = ({
         <div className="TL Body">{'#'.repeat(3)}</div>
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'A'.repeat(3)}</div>
-        <div className="BL Footer SmallText">78</div>
+        <div className="BL Footer SmallText">82</div>
         <div className="BC Footer SmallText">FRONT {stateCode} MEX</div>
-        <div className="BR Footer SmallText">79</div>
+        <div className="BR Footer SmallText">83</div>
       </div>
     </div>
   </div>
 );
 
-// Type D
-export const FederalSPF: React.FC = () => (
+// Tipe D
+export const FederalSCT: React.FC = () => (
   <div className="LicensePlateContainer">
     <div className={`LicensePlate ${COLOR_D}`}>
       <div className={LP_D}>
         <div className="TC Body"> {`A ${'#'.repeat(3)}`} </div>
         <div className="BL Footer SmallText">SCT</div>
         <div className="BC Footer SmallText">TRANSLADO</div>
-        <div className="BR Footer SmallText">1978</div>
-      </div>
-    </div>
-  </div>
-);
-
-// Type E
-export const FederalSCT: React.FC = () => (
-  <div className="LicensePlateContainer">
-    <div className={`LicensePlate ${COLOR_E}`}>
-      <div className={LP_E}>
-        <div className="TC Body"> {`A${'#'.repeat(4)}`} &#9641; </div>
-        <div className="BL Footer SmallText">SPF</div>
-        <div className="BC Footer SmallText">MEX</div>
-        <div className="BR Footer SmallText">1978</div>
+        <div className="BR Footer SmallText">1982</div>
       </div>
     </div>
   </div>

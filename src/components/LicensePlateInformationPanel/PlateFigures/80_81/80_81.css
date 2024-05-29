@@ -1,18 +1,18 @@
 :root {
-  --bg-color-A-1980-1981: green;
-  --border-color-A-1980-1981: #fff;
+  --bg-color-A-1980-1981: #094630;
+  --border-color-A-1980-1981: #094630;
   --font-color-A-1980-1981: #fff;
 
-  --bg-color-B-1980-1981: red;
-  --border-color-B-1980-1981: #fff;
+  --bg-color-B-1980-1981: #73331b;
+  --border-color-B-1980-1981: #73331b;
   --font-color-B-1980-1981: #fff;
 
-  --bg-color-C-1980-1981: gray;
-  --border-color-C-1980-1981: yellow;
-  --font-color-C-1980-1981: yellow;
+  --bg-color-C-1980-1981: #404044;
+  --border-color-C-1980-1981: #404044;
+  --font-color-C-1980-1981: #e76f2f;
 
-  --bg-color-D-1980-1981: red;
-  --border-color-D-1980-1981: red;
+  --bg-color-D-1980-1981: #b13130;
+  --border-color-D-1980-1981: #b13130;
   --font-color-D-1980-1981: #fff;
 }
 
