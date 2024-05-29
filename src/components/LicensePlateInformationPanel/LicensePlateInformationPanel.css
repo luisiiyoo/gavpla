@@ -30,6 +30,12 @@
   line-height: 2.3em;
   font-weight: bold;
 }
+.X-SmallText {
+  font-size: 0.35em;
+  line-height: 1.3em;
+  font-weight: bold;
+  margin: 0;
+}
 
 .TL {
   grid-area: TL;
@@ -46,12 +52,15 @@
 
 .ML {
   grid-area: ML;
+  padding: 0em;
 }
 .MC {
   grid-area: MC;
+  padding: 0em;
 }
 .MR {
   grid-area: MR;
+  padding: 0em;
 }
 
 .BL {

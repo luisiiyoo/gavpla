@@ -193,6 +193,7 @@ export interface FiguresContentType {
   PrivateTrailer: React.FC<PlateInfoProps>;
   DFPrivateTrailer?: React.FC;
   Dealer: React.FC<PlateInfoProps>;
+  Dealer2?: React.FC<PlateInfoProps>;
   Provisional?: React.FC<PlateInfoProps>;
   Frontier?: React.FC<PlateInfoProps>;
   FederalSPF?: React.FC;
@@ -200,6 +201,9 @@ export interface FiguresContentType {
   FederalSPFBus?: React.FC;
   FederalSPFTrailer?: React.FC;
   FederalSPFTruck?: React.FC;
+  FederalSPFRental?: React.FC;
+  FederalSPFRental2?: React.FC;
+  FederalSPFBorder?: React.FC;
   FederalSET?: React.FC;
   FederalSCT?: React.FC;
   FederalSAF?: React.FC;
@@ -242,14 +246,18 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
   const hasPrivateBus = !!figures.PrivateBus || !!figures.DFPrivateBus;
   const hasPrivateTrailer =
     !!figures.PrivateTrailer || !!figures.DFPrivateTrailer;
-  const hasDealer = !!figures.Dealer || !!figures.Provisional;
+  const hasDealer =
+    !!figures.Dealer || !!figures.Dealer2 || !!figures.Provisional;
   const hasFrontier = !!figures.Frontier;
   const hasFederalSPF =
     !!figures.FederalSPF ||
     !!figures.FederalSPFCar ||
     !!figures.FederalSPFBus ||
     !!figures.FederalSPFTruck ||
-    !!figures.FederalSPFTrailer;
+    !!figures.FederalSPFTrailer ||
+    !!figures.FederalSPFRental ||
+    !!figures.FederalSPFRental2 ||
+    !!figures.FederalSPFBorder;
   const hasFederalSET = !!figures.FederalSET;
   const hasFederalSCT = !!figures.FederalSCT;
   const hasFederalSAF =
@@ -422,6 +430,7 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
               <td>
                 <DealerHeader />
                 {!!figures.Dealer && <figures.Dealer stateCode={stateCode} />}
+                {!!figures.Dealer2 && <figures.Dealer2 stateCode={stateCode} />}
                 {!!figures.Provisional && (
                   <figures.Provisional stateCode={stateCode} />
                 )}
@@ -495,6 +504,30 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                   <>
                     <span className="SubIcon">{Vehicles.BusVehicle.icon}</span>
                     <figures.FederalSPFBus />
+                  </>
+                )}
+                {!!figures.FederalSPFRental && (
+                  <>
+                    <span className="SubIcon">
+                      {Vehicles.TruckVehicle.icon}
+                    </span>
+                    <figures.FederalSPFRental />
+                  </>
+                )}
+                {!!figures.FederalSPFRental2 && (
+                  <>
+                    <span className="SubIcon">
+                      {Vehicles.TrailerVehicle.icon}
+                    </span>
+                    <figures.FederalSPFRental2 />
+                  </>
+                )}
+                {!!figures.FederalSPFBorder && (
+                  <>
+                    <span className="SubIcon">
+                      {Vehicles.FrontierVehicle.icon}
+                    </span>
+                    <figures.FederalSPFBorder />
                   </>
                 )}
               </td>

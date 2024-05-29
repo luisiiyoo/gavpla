@@ -1,0 +1,143 @@
+:root {
+  --bg-color-A-1992-1997: #fff;
+  --border-color-A-1992-1997: #197f3b;
+  --font-color-A-1992-1997: #197f3b;
+
+  --bg-color-B-1992-1997: #f38d13;
+  --border-color-B-1992-1997: #fff;
+  --font-color-B-1992-1997: #fff;
+
+  --bg-color-C-1992-1997: #e5b323;
+  --border-color-C-1992-1997: #56b65c;
+  --font-color-C-1992-1997: #56b65c;
+
+  --bg-color-D-1992-1997: #fff;
+  --border-color-D-1992-1997: #197f3b;
+  --font-color-D-1992-1997: #197f3b;
+
+  --bg-color-E-1992-1997: #0f8d78;
+  --border-color-E-1992-1997: #fff;
+  --font-color-E-1992-1997: #fff;
+
+  --bg-color-F-1992-1997: #306fab;
+  --border-color-F-1992-1997: #fff;
+  --font-color-F-1992-1997: #fff;
+
+  --bg-color-G-1992-1997: #835a35;
+  --border-color-G-1992-1997: #fff;
+  --font-color-G-1992-1997: #fff;
+
+  --bg-color-H-1992-1997: #cdb094;
+  --border-color-H-1992-1997: #80675e;
+  --font-color-H-1992-1997: #80675e;
+
+  --bg-color-I-1992-1997: #fff;
+  --border-color-I-1992-1997: #3c5487;
+  --font-color-I-1992-1997: #3c5487;
+}
+
+.LP-A-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-A-1992-1997);
+}
+
+.Color-A-1992-1997 {
+  background-color: var(--bg-color-A-1992-1997);
+  color: var(--font-color-A-1992-1997);
+}
+
+.LP-B-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-B-1992-1997);
+}
+
+.Color-B-1992-1997 {
+  background-color: var(--bg-color-B-1992-1997);
+  color: var(--font-color-B-1992-1997);
+}
+
+.LP-C-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-C-1992-1997);
+}
+
+.Color-C-1992-1997 {
+  background-color: var(--bg-color-C-1992-1997);
+  color: var(--font-color-C-1992-1997);
+}
+
+.LP-D-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-D-1992-1997);
+}
+
+.Color-D-1992-1997 {
+  background-color: var(--bg-color-D-1992-1997);
+  color: var(--font-color-D-1992-1997);
+}
+
+.LP-E-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-E-1992-1997);
+}
+
+.Color-E-1992-1997 {
+  background-color: var(--bg-color-E-1992-1997);
+  color: var(--font-color-E-1992-1997);
+}
+
+.LP-F-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-E-1992-1997);
+}
+
+.Color-F-1992-1997 {
+  background-color: var(--bg-color-F-1992-1997);
+  color: var(--font-color-F-1992-1997);
+}
+
+.LP-G-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-G-1992-1997);
+}
+.Color-G-1992-1997 {
+  background-color: var(--bg-color-G-1992-1997);
+  color: var(--font-color-G-1992-1997);
+}
+
+.LP-H-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-H-1992-1997);
+}
+.Color-H-1992-1997 {
+  background-color: var(--bg-color-H-1992-1997);
+  color: var(--font-color-H-1992-1997);
+}
+
+.LP-I-1992-1997 {
+  grid-template-areas:
+    'TC TC TC TC TC TC TC'
+    'MC MC MC MC MC MC MC'
+    'BC BC BC BC BC BC BC';
+  border-color: var(--border-color-I-1992-1997);
+}
+.Color-I-1992-1997 {
+  background-color: var(--bg-color-I-1992-1997);
+  color: var(--font-color-I-1992-1997);
+}
