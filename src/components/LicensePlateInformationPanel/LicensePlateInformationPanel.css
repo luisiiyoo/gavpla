@@ -174,3 +174,30 @@ td > .VehicleTypeHeader {
 .SubIcon {
   font-size: medium;
 }
+
+.LicensePlateInformationPanel-References {
+  text-align: center;
+  padding: 2vh;
+  width: 100%;
+}
+
+.ReferenceLink {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: #fff;
+}
+
+/* mouse over link */
+a:hover {
+  color: var(--color-app);
+}

@@ -76,10 +76,25 @@ const LicensePlateInformationPanel: React.FC = () => {
         </Dropdown>
       </div>
       {!!selectedContent && (
-        <div className="LicensePlateInformationPanel-Figures">
-          <h4>{selectedYearSeries.replace('-', ' - ')}</h4>
-          <LicensePlateFigures figures={selectedContent} />
-        </div>
+        <>
+          <div className="LicensePlateInformationPanel-Figures">
+            <h4>{selectedYearSeries.replace('-', ' - ')}</h4>
+            <LicensePlateFigures figures={selectedContent} />
+          </div>
+
+          <div className="LicensePlateInformationPanel-References">
+            <h4>{translation["references"]}: </h4>
+
+            <a
+              className="ReferenceLink"
+              href="https://mexicoplates.moini.net/num.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Moini.net (Jim Moini's License Plates)
+            </a>
+          </div>
+        </>
       )}
     </div>
   );

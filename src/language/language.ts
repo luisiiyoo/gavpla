@@ -180,10 +180,12 @@ export const TRANSLATIONS = {
     en: {
       title: 'Identify License Places By Vehicle Type',
       select: 'Select',
+      references: 'References',
     },
     es: {
       title: 'Identificar Placas Por Tipo De Vehículo',
       select: 'Selectiona',
+      references: 'Referencias',
     },
   },
   Search: {
