@@ -24,6 +24,13 @@
   font-size: 0.7em;
 }
 
+.FRONTIER {
+  /* padding: 0.1em; */
+  font-size: 0.5em;
+  line-height: 2em;
+  font-weight: bold;
+}
+
 .TL {
   grid-area: TL;
   padding: 0em;

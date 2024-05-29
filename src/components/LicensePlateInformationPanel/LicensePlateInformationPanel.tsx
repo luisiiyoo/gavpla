@@ -9,8 +9,10 @@ import {
 } from 'reactstrap';
 
 import './LicensePlateInformationPanel.css';
-import * as figures_72_73 from './PlateFigures/72_73/72_73';
 import * as figures_70_71 from './PlateFigures/70_71/70_71';
+import * as figures_72_73 from './PlateFigures/72_73/72_73';
+import * as figures_74_75 from './PlateFigures/74_75/74_75';
+
 import LicensePlateFigures, {
   FiguresContentType,
 } from './PlateFigures/PlateFigures';
@@ -23,14 +25,15 @@ const LicensePlateInformationPanel: React.FC = () => {
     languageCode,
     'IdentifyPlatesByVehiclePage',
   );
-  const [selectedYearSeries, setSelectedYearSeries] = useState('1970 - 1971');
+  const [selectedYearSeries, setSelectedYearSeries] = useState('1974-1975');
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   const itemsMap = new Map<string, FiguresContentType>();
-  itemsMap.set('1970 - 1971', figures_70_71);
-  itemsMap.set('1972 - 1973', figures_72_73);
+  itemsMap.set('1970-1971', figures_70_71);
+  itemsMap.set('1972-1973', figures_72_73);
+  itemsMap.set('1974-1975', figures_74_75);
 
   const yearsOptions = Array.from(itemsMap.keys());
   const selectedContent = itemsMap.get(selectedYearSeries);

@@ -140,11 +140,19 @@ export const FrontierHeader = () => {
     </span>
   );
 };
-export const FederalHeader = () => {
+export const FederalSPFHeader = () => {
   return (
     <span className="VehicleTypeHeader">
       {Vehicles.FederalVehicle.icon} &nbsp;
-      {'FEDERAL'}
+      {'FEDERAL S.P.F.'}
+    </span>
+  );
+};
+export const FederalSETHeader = () => {
+  return (
+    <span className="VehicleTypeHeader">
+      {Vehicles.FederalVehicle.icon} &nbsp;
+      {'FEDERAL S.E.T.'}
     </span>
   );
 };
@@ -174,6 +182,7 @@ export interface FiguresContentType {
   FederalSPFBus?: React.FC;
   FederalSPFTrailer?: React.FC;
   FederalSPFTruck?: React.FC;
+  FederalSET?: React.FC;
 }
 
 export interface LicensePlateFigures {
@@ -213,12 +222,13 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
     !!figures.PrivateTrailer || !!figures.DFPrivateTrailer;
   const hasDealer = !!figures.Dealer || !!figures.Provisional;
   const hasFrontier = !!figures.Frontier;
-  const hasFederal =
+  const hasFederalSPF =
     !!figures.FederalSPF ||
     !!figures.FederalSPFCar ||
     !!figures.FederalSPFBus ||
     !!figures.FederalSPFTruck ||
     !!figures.FederalSPFTrailer;
+  const hasFederalSET = !!figures.FederalSET;
   return (
     <div className="LicensePlateFigures">
       {/* PrivateCar - Truck - Taxi */}
@@ -408,7 +418,9 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
             <tr>
               <td>
                 <FrontierHeader />
-                {!!figures.Frontier &&<figures.Frontier stateCode={frontierStateCode} />}
+                {!!figures.Frontier && (
+                  <figures.Frontier stateCode={frontierStateCode} />
+                )}
               </td>
             </tr>
           </tbody>
@@ -416,19 +428,19 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
       )}
 
       {/* FederalSPF */}
-      {hasFederal && (
+      {hasFederalSPF && (
         <table>
           <thead>
             <tr>
               <th>
-                <FederalHeader />
+                <FederalSPFHeader />
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <FederalHeader />
+                <FederalSPFHeader />
                 {!!figures.FederalSPF && <figures.FederalSPF />}
                 {!!figures.FederalSPFCar && (
                   <>
@@ -458,6 +470,26 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
                     <figures.FederalSPFBus />
                   </>
                 )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      {/* FederalSET */}
+      {hasFederalSET && (
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <FederalSETHeader />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <FederalSETHeader />
+                {!!figures.FederalSET && <figures.FederalSET />}
               </td>
             </tr>
           </tbody>
