@@ -53,7 +53,7 @@ export const PrivateCar2: React.FC<PlateInfoProps> = ({
     <div className={`LicensePlate ${COLOR_A}`}>
       <div className={LP_A}>
         <div className="TC Body">
-          {'A '.repeat(2)}
+          {'A'.repeat(2)} {' '}
           {'#'.repeat(4)}
         </div>
         <div className="BL Footer">MEX 68</div>
