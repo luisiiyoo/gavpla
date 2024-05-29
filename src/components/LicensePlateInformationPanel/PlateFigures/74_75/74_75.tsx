@@ -271,7 +271,7 @@ export const Frontier: React.FC<PlateInfoProps> = ({
         <div className="TC Body"> {''} </div>
         <div className="TR Body">{'A'.repeat(3)}</div>
         <div className="BL Footer">74</div>
-        <div className="BC Footer FRONTIER">FRONT {stateCode}. MEX.</div>
+        <div className="BC Footer FRONTIER">FRONT {stateCode} MEX</div>
         <div className="BR Footer">75</div>
       </div>
     </div>
