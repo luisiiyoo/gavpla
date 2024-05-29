@@ -54,7 +54,7 @@
 
 .LP-D-1978-1979 {
   grid-template-areas:
-    'TL TL TL TC TR TR TR'
+    'TC TC TC TC TC TC TC'
     'BL BC BC BC BC BC BR';
   border-color: var(--border-color-D-1978-1979);
 }
