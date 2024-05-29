@@ -13,6 +13,7 @@ import * as figures_70_71 from './PlateFigures/70_71/70_71';
 import * as figures_72_73 from './PlateFigures/72_73/72_73';
 import * as figures_74_75 from './PlateFigures/74_75/74_75';
 import * as figures_76_77 from './PlateFigures/76_77/76_77';
+import * as figures_78_79 from './PlateFigures/78_79/78_79';
 
 import LicensePlateFigures, {
   FiguresContentType,
@@ -36,6 +37,7 @@ const LicensePlateInformationPanel: React.FC = () => {
   itemsMap.set('1972-1973', figures_72_73);
   itemsMap.set('1974-1975', figures_74_75);
   itemsMap.set('1976-1977', figures_76_77);
+  itemsMap.set('1978-1979', figures_78_79);
 
   const yearsOptions = Array.from(itemsMap.keys());
   const selectedContent = itemsMap.get(selectedYearSeries);
@@ -63,7 +65,7 @@ const LicensePlateInformationPanel: React.FC = () => {
       </div>
       {!!selectedContent && (
         <div className="LicensePlateInformationPanel-Figures">
-          <h4>{selectedYearSeries.replace("-", " - ")}</h4>
+          <h4>{selectedYearSeries.replace('-', ' - ')}</h4>
           <LicensePlateFigures figures={selectedContent} />
         </div>
       )}
