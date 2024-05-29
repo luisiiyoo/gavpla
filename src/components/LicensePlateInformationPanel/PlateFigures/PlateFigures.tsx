@@ -157,6 +157,15 @@ export const FederalSETHeader = () => {
   );
 };
 
+export const FederalSCTHeader = () => {
+  return (
+    <span className="VehicleTypeHeader">
+      {Vehicles.FederalVehicle.icon} &nbsp;
+      {'FEDERAL S.C.T.'}
+    </span>
+  );
+};
+
 export interface FiguresContentType {
   PrivateCar: React.FC<PlateInfoProps>;
   DFPrivateCar: React.FC;
@@ -183,6 +192,7 @@ export interface FiguresContentType {
   FederalSPFTrailer?: React.FC;
   FederalSPFTruck?: React.FC;
   FederalSET?: React.FC;
+  FederalSCT?: React.FC;
 }
 
 export interface LicensePlateFigures {
@@ -229,6 +239,7 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
     !!figures.FederalSPFTruck ||
     !!figures.FederalSPFTrailer;
   const hasFederalSET = !!figures.FederalSET;
+  const hasFederalSCT = !!figures.FederalSCT;
   return (
     <div className="LicensePlateFigures">
       {/* PrivateCar - Truck - Taxi */}
@@ -490,6 +501,26 @@ export const LicensePlateFigures: React.FC<LicensePlateFigures> = ({
               <td>
                 <FederalSETHeader />
                 {!!figures.FederalSET && <figures.FederalSET />}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      {/* FederalSCT */}
+      {hasFederalSCT && (
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <FederalSCTHeader />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <FederalSCTHeader />
+                {!!figures.FederalSCT && <figures.FederalSCT />}
               </td>
             </tr>
           </tbody>

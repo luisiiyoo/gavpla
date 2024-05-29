@@ -1,0 +1,65 @@
+:root {
+  --bg-color-A-1976-1977: #8bceec;
+  --border-color-A-1976-1977: #8bceec;
+  --font-color-A-1976-1977: #000;
+
+  --bg-color-B-1976-1977: #d2c5a4;
+  --border-color-B-1976-1977: #d2c5a4;
+  --font-color-B-1976-1977: #000;
+
+  --bg-color-C-1976-1977: #c03529;
+  --border-color-C-1976-1977: #c03529;
+  --font-color-C-1976-1977: #fff;
+
+  --bg-color-D-1976-1977: #d6a330;
+  --border-color-D-1976-1977: #d6a330;
+  --font-color-D-1976-1977: #0a3c77;
+}
+
+.LP-A-1976-1977 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-A-1976-1977);
+}
+
+.Color-A-1976-1977 {
+  background-color: var(--bg-color-A-1976-1977);
+  color: var(--font-color-A-1976-1977);
+}
+
+.LP-B-1976-1977 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-B-1976-1977);
+}
+
+.Color-B-1976-1977 {
+  background-color: var(--bg-color-B-1976-1977);
+  color: var(--font-color-B-1976-1977);
+}
+
+.LP-C-1976-1977 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-C-1976-1977);
+}
+
+.Color-C-1976-1977 {
+  background-color: var(--bg-color-C-1976-1977);
+  color: var(--font-color-C-1976-1977);
+}
+
+.LP-D-1976-1977 {
+  grid-template-areas:
+    'TL TL TL TC TR TR TR'
+    'BL BC BC BC BC BC BR';
+  border-color: var(--border-color-D-1976-1977);
+}
+
+.Color-D-1976-1977 {
+  background-color: var(--bg-color-D-1976-1977);
+  color: var(--font-color-D-1976-1977);
+}
