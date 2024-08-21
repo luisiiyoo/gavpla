@@ -143,7 +143,7 @@ export const FrontierHeader = () => {
 export const FederalSPFHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.FederalVehicle.icon} &nbsp;
+      {Vehicles.DiplomaticVehicle.icon} &nbsp;
       {'FEDERAL - S.P.F.'}
     </span>
   );
@@ -151,7 +151,7 @@ export const FederalSPFHeader = () => {
 export const FederalSETHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.FederalVehicle.icon} &nbsp;
+      {Vehicles.DiplomaticVehicle.icon} &nbsp;
       {'FEDERAL - S.E.T.'}
     </span>
   );
@@ -160,7 +160,7 @@ export const FederalSETHeader = () => {
 export const FederalSCTHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.FederalVehicle.icon} &nbsp;
+      {Vehicles.DiplomaticVehicle.icon} &nbsp;
       {'FEDERAL - S.C.T.'}
     </span>
   );
@@ -169,7 +169,7 @@ export const FederalSCTHeader = () => {
 export const FederalSAFHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.FederalVehicle.icon} &nbsp;
+      {Vehicles.DiplomaticVehicle.icon} &nbsp;
       {'FEDERAL - S.A.F.'}
     </span>
   );

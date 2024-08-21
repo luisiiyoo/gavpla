@@ -9,6 +9,7 @@ import {
   BusVehicle,
   CarVehicle,
   DealerVehicle,
+  DiplomaticVehicle,
   EcoVehicle,
   FrontierVehicle,
   HandicappedVehicle,
@@ -16,6 +17,7 @@ import {
   PoliceVehicle,
   TaxiVehicle,
   TrailerVehicle,
+  TransferVehicle,
   TruckVehicle,
   UnknownVehicle,
 } from 'src/utils/vehicle_types';
@@ -91,9 +93,12 @@ export const VehicleOptionsPanel = ({
     true,
   );
 
-  // const [searchFederalVehicles, setSearchFederalVehicles] = useState<boolean>(
-  //   true,
-  // );
+  const [searchTransferVehicles, setSearchTransferVehicles] = useState<boolean>(
+    true,
+  );
+  const [diplomaticTransferVehicles, setDiplomaticTransferVehicles] = useState<
+    boolean
+  >(true);
 
   const [searchUnknown, setSearchUnknown] = useState<boolean>(true);
 
@@ -178,12 +183,18 @@ export const VehicleOptionsPanel = ({
       setStateValue: setSearchFrontierVehicles,
       types: FrontierVehicle.types,
     },
-    // 'FEDERAL-TYPES': {
-    //   iconClassName: FederalVehicle.iconClassName,
-    //   stateValue: searchFederalVehicles,
-    //   setStateValue: setSearchFederalVehicles,
-    //   types: FederalVehicle.types,
-    // },
+    'TRANSFER-TYPES': {
+      iconClassName: TransferVehicle.iconClassName,
+      stateValue: searchTransferVehicles,
+      setStateValue: setSearchTransferVehicles,
+      types: TransferVehicle.types,
+    },
+    'DIPLOMATIC-TYPES': {
+      iconClassName: DiplomaticVehicle.iconClassName,
+      stateValue: diplomaticTransferVehicles,
+      setStateValue: setDiplomaticTransferVehicles,
+      types: DiplomaticVehicle.types,
+    },
     'UNKNOWN-TYPES': {
       iconClassName: UnknownVehicle.iconClassName,
       stateValue: searchUnknown,

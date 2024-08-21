@@ -16,34 +16,28 @@ export const DealerVehicle: VehicleType = {
 const taxiVehicleClassName = 'fa-solid fa-taxi';
 export const TaxiVehicle: VehicleType = {
   iconClassName: taxiVehicleClassName,
-  types: ['TAXI'],
+  types: ['TAXI', 'FRONTIER-TAXI'],
   icon: <i className={`VehicleIcon ${taxiVehicleClassName}`} />,
 };
 
 const carVehicleClassName = 'fa-solid fa-car-side';
 export const CarVehicle: VehicleType = {
-  iconClassName: 'fa-solid fa-car-side',
-  types: [
-    'ANTIQUE-CAR',
-    'COMMERCIAL-CAR',
-    'PRIVATE-CAR',
-    'SPF-CAR',
-    'SPF-RENTAL',
-  ],
+  iconClassName: carVehicleClassName,
+  types: ['ANTIQUE-CAR', 'COMMERCIAL-CAR', 'PRIVATE-CAR', 'CAR', 'RENTAL'],
   icon: <i className={`VehicleIcon ${carVehicleClassName}`} />,
 };
 
 const bicycleVehicleClassName = 'fa-solid fa-bicycle';
 export const BicycleVehicle: VehicleType = {
-  iconClassName: 'fa-solid fa-bicycle',
-  types: ['BICYCLE', 'TRICYCLE'],
+  iconClassName: bicycleVehicleClassName,
+  types: ['BICYCLE', 'TRICYCLE', 'BICYCLE-POLICE'],
   icon: <i className={`VehicleIcon ${bicycleVehicleClassName}`} />,
 };
 
 const motorcycleVehicleClassName = 'fa-solid fa-motorcycle';
 export const MotorcycleVehicle: VehicleType = {
-  iconClassName: 'fa-solid fa-motorcycle',
-  types: ['MOTORCYCLE'],
+  iconClassName: motorcycleVehicleClassName,
+  types: ['MOTORCYCLE', 'MOTORCYCLE-POLICE', 'MOTORCYCLE-AMBULANCE'],
   icon: <i className={`VehicleIcon ${motorcycleVehicleClassName}`} />,
 };
 
@@ -69,8 +63,8 @@ export const BusVehicle: VehicleType = {
     'COMMERCIAL-BUS',
     'MICROBUS',
     'PRIVATE-BUS',
-    'SCT-BUS',
-    'SPF-BUS',
+    'FRONTIER-BUS',
+    'TOURIST',
   ],
   icon: <i className={`VehicleIcon ${busVehicleClassName}`} />,
 };
@@ -78,14 +72,7 @@ export const BusVehicle: VehicleType = {
 const truckVehicleClassName = 'fa-solid fa-truck';
 export const TruckVehicle: VehicleType = {
   iconClassName: truckVehicleClassName,
-  types: [
-    'COMMERCIAL-TRUCK',
-    'PRIVATE-TRUCK',
-    'SAF-TRUCK',
-    'SCT-TRUCK',
-    'SPF-TRUCK',
-    'TRUCK',
-  ],
+  types: ['COMMERCIAL-TRUCK', 'PRIVATE-TRUCK', 'TRUCK', 'FRONTIER-TRUCK'],
   icon: <i className={`VehicleIcon ${truckVehicleClassName}`} />,
 };
 
@@ -95,18 +82,34 @@ export const TrailerVehicle: VehicleType = {
   types: [
     'COMMERCIAL-TRAILER',
     'PRIVATE-TRAILER',
-    'SAF-TRAILER',
-    'SCT-TRAILER',
-    'SPF-TRAILER',
     'TRAILER',
+    'FRONTIER-TRAILER',
   ],
   icon: <i className={`VehicleIcon ${trailerVehicleClassName}`} />,
+};
+
+const transferVehicleClassName = 'fa-solid fa-truck-moving';
+export const TransferVehicle: VehicleType = {
+  iconClassName: transferVehicleClassName,
+  types: ['TRANSFER', 'FRONTIER-TRANSFER'],
+  icon: <i className={`VehicleIcon ${transferVehicleClassName}`} />,
 };
 
 const policeVehicleClassName = 'fa-solid fa-person-military-rifle';
 export const PoliceVehicle: VehicleType = {
   iconClassName: policeVehicleClassName,
-  types: ['FEDERAL-POLICE', 'MEXICAN-NAVY', 'MINISTERIAL-POLICE', 'POLICE'],
+  types: [
+    'POLICE',
+    'STATE-POLICE',
+    'MUNICIPAL-POLICE',
+    'FEDERAL-POLICE',
+    'MINISTERIAL-POLICE',
+    'MEXICAN-NAVY',
+    'FRONTIER-POLICE',
+    'HIGHWAY-PATROL',
+    'BICYCLE-POLICE',
+    'MOTORCYCLE-POLICE',
+  ],
   icon: <i className={`VehicleIcon ${policeVehicleClassName}`} />,
 };
 
@@ -119,8 +122,16 @@ export const AmbulanceVehicle: VehicleType = {
 
 const frontierVehicleClassName = 'fa-solid fa-arrow-down-up-across-line';
 export const FrontierVehicle: VehicleType = {
-  iconClassName: 'fa-solid fa-arrow-down-up-across-line',
-  types: ['FRONTIER'],
+  iconClassName: frontierVehicleClassName,
+  types: [
+    'FRONTIER',
+    'FRONTIER-CAR',
+    'FRONTIER-TRAILER',
+    'FRONTIER-TRUCK',
+    'FRONTIER-TAXI',
+    'FRONTIER-BUS',
+    'FRONTIER-TRANSFER',
+  ],
   icon: <i className={`VehicleIcon ${frontierVehicleClassName}`} />,
 };
 
@@ -131,31 +142,11 @@ export const UnknownVehicle: VehicleType = {
   icon: <i className={`VehicleIcon ${unknownVehicleClassName}`} />,
 };
 
-const federalVehicleClassName = 'fa-solid fa-flag';
-export const FederalVehicle: VehicleType = {
-  iconClassName: 'fa-solid fa-flag',
-  types: [
-    'SAF',
-    'SAF-TRAILER',
-    'SCT',
-    'SCT-BUS',
-    'SCT-TRAILER',
-    'SCT-TRANSFER',
-    'SCT-TRUCK',
-    'SET',
-    'SET-TOURIST',
-    'SPF',
-    'SPF-BUS',
-    'SPF-CAR',
-    'SPF-FRONTIER',
-    'SPF-RENTAL',
-    'SPF-TRAILER',
-    'SPF-TRUCK',
-    'SRE',
-    'SRE-CONSULAR',
-    'SRE-DIPLOMAT',
-  ],
-  icon: <i className={`VehicleIcon ${federalVehicleClassName}`} />,
+const diplomaticVehicleClassName = 'fa-solid fa-handshake';
+export const DiplomaticVehicle: VehicleType = {
+  iconClassName: diplomaticVehicleClassName,
+  types: ['CONSULAR', 'DIPLOMAT', 'INTERNATIONAL'],
+  icon: <i className={`VehicleIcon ${diplomaticVehicleClassName}`} />,
 };
 
 const metropolitanVehicleClassName = 'fa-solid fa-city';
@@ -180,7 +171,8 @@ export const Vechicles: VehicleType[] = [
   AmbulanceVehicle,
   FrontierVehicle,
   UnknownVehicle,
-  FederalVehicle,
+  TransferVehicle,
+  DiplomaticVehicle,
   MetropolitanVehicle,
 ];
 

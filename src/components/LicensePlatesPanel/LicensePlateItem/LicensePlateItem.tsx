@@ -49,6 +49,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
       : `${data.from_year}-${data.to_year}`;
 
   const vehicleIcon = VehicleIconsMap.get(rawVehicleType);
+  const orgInitialsValue = data.org_initials && ` (${data.org_initials})`;
   return (
     <div className="LicensePlateItem">
       <div className="LicensePlateItem-Header">
@@ -60,7 +61,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
         )}
         {hideVehicleType ? undefined : (
           <div className="LicensePlateItem-VehicleType">
-            {vehicleIcon} {vehicleTypeTranslated}
+            {vehicleIcon} {vehicleTypeTranslated} {orgInitialsValue}
           </div>
         )}
       </div>

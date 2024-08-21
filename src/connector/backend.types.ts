@@ -61,6 +61,7 @@ export interface BELicensePlatesData {
   vehicle_type: string;
   user_plate_id: string;
   state_codes: string | null;
+  org_initials: string | null;
 }
 
 export interface BEStateData {

@@ -17,6 +17,7 @@ import { Button } from 'reactstrap';
 import { store } from 'react-notifications-component';
 import { LicensePlatesPanel } from '../LicensePlatesPanel/LicensePlatesPanel';
 import connector from 'src/connector';
+import { BicycleVehicle, MotorcycleVehicle } from 'src/utils/vehicle_types';
 
 export const SearchLicensePlatesPanel: React.FC = () => {
   const {
@@ -41,17 +42,19 @@ export const SearchLicensePlatesPanel: React.FC = () => {
     from_year: availableYears.from_year,
     to_year: availableYears.to_year,
     exclude_vehicle_types: [],
-    only_states: false,
+    only_states: true,
   });
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     requestArgs.region_codes,
   );
-  const [fromYear, setFromYear] = useState<number>(1968);
-  const [toYear, setToYear] = useState<number>(1999);
+  const [fromYear, setFromYear] = useState<number>(1974);
+  const [toYear, setToYear] = useState<number>(1975);
   const [excludedVehicleTypes, setExcludedVehicleTypes] = useState<Set<string>>(
-    new Set(['BICYCLE', 'TRICYCLE', 'MOTORCYCLE']),
+    new Set([...BicycleVehicle.types, ...MotorcycleVehicle.types]),
   );
-  const [onlyStates, setOnlyStates] = useState<boolean>(false);
+  const [onlyStates, setOnlyStates] = useState<boolean>(
+    requestArgs.only_states,
+  );
 
   const getArrayOfExcludedVehicleTypes = (uniqueTypes): string[] => {
     const excludedTypes: string[] = Array.from(uniqueTypes);

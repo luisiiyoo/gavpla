@@ -31,7 +31,6 @@ import YearSerieLicensePlatesPanel from 'src/components/LicensePlatesPanel/YearS
 import MetropolitanLicensePlatesPanel from 'src/components/LicensePlatesPanel/MetropolitanLicensePlatesPanel';
 import {
   BicycleVehicle,
-  FederalVehicle,
   FrontierVehicle,
   MetropolitanVehicle,
   MotorcycleVehicle,
@@ -149,7 +148,7 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
         titleName="MOTORCYCLE"
-        vehicle_types={['MOTORCYCLE']}
+        vehicle_types={MotorcycleVehicle.types}
         hideStateName={false}
         hideYears={false}
         hideVehicleType={true}
@@ -163,7 +162,7 @@ const navigationItems: NavItem[] = [
     functionalComponent: () => (
       <MultipleRegionLicensePlatesPanel
         titleName="BICYCLE"
-        vehicle_types={['BICYCLE', 'TRICYCLE']}
+        vehicle_types={BicycleVehicle.types}
         hideStateName={false}
         hideYears={false}
         hideVehicleType={true}
@@ -178,7 +177,7 @@ const navigationItems: NavItem[] = [
       <MultipleRegionLicensePlatesPanel
         titleName="FRONTIER"
         regionCodes={['BC', 'BCS', 'CHIH', 'COAH', 'SON', 'TAMPS']}
-        vehicle_types={['FRONTIER']}
+        vehicle_types={FrontierVehicle.types}
         hideStateName={false}
         hideYears={false}
         hideVehicleType={true}
@@ -188,7 +187,7 @@ const navigationItems: NavItem[] = [
   {
     title: NATIONAL_ROUTE.title,
     route: NATIONAL_ROUTE.route,
-    iconClass: FederalVehicle.iconClassName,
+    iconClass: 'fa-solid fa-flag',
     functionalComponent: () => (
       <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
     ),
