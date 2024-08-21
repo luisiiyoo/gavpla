@@ -8,6 +8,7 @@ import {
 } from 'src/utils';
 import { useSelector } from 'react-redux';
 
+const FederalVehicleIcon = <i className={`VehicleIcon fa-solid fa-flag`} />;
 export interface PlateInfoProps {
   stateCode?: string;
 }
@@ -143,7 +144,7 @@ export const FrontierHeader = () => {
 export const FederalSPFHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.DiplomaticVehicle.icon} &nbsp;
+      {FederalVehicleIcon} &nbsp;
       {'FEDERAL - S.P.F.'}
     </span>
   );
@@ -151,7 +152,7 @@ export const FederalSPFHeader = () => {
 export const FederalSETHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.DiplomaticVehicle.icon} &nbsp;
+      {FederalVehicleIcon} &nbsp;
       {'FEDERAL - S.E.T.'}
     </span>
   );
@@ -160,7 +161,7 @@ export const FederalSETHeader = () => {
 export const FederalSCTHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.DiplomaticVehicle.icon} &nbsp;
+      {FederalVehicleIcon} &nbsp;
       {'FEDERAL - S.C.T.'}
     </span>
   );
@@ -169,7 +170,7 @@ export const FederalSCTHeader = () => {
 export const FederalSAFHeader = () => {
   return (
     <span className="VehicleTypeHeader">
-      {Vehicles.DiplomaticVehicle.icon} &nbsp;
+      {FederalVehicleIcon} &nbsp;
       {'FEDERAL - S.A.F.'}
     </span>
   );
