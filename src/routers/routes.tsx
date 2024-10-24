@@ -34,6 +34,7 @@ import {
   FrontierVehicle,
   MetropolitanVehicle,
   MotorcycleVehicle,
+  NO_CAR_VEHICLES,
 } from 'src/utils/vehicle_types';
 import LicensePlateInformationPanel from 'src/components/LicensePlateInformationPanel';
 import AbbreviationsPanel from 'src/components/LicensePlateInformationPanel/AbbreviationsPanel/AbbreviationsPanel';
@@ -111,7 +112,7 @@ const navigationItems: NavItem[] = [
             displayMap={true}
             fromYear={fromYear}
             toYear={toYear}
-            exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE', 'TRICYCLE']}
+            exclude_vehicle_types={NO_CAR_VEHICLES}
             hideStateName={false}
             hideYears={false}
             hideVehicleType={false}
@@ -134,7 +135,7 @@ const navigationItems: NavItem[] = [
           functionalComponent: () => (
             <SingleRegionLicensePlatesPanel
               regionCode={stateCode}
-              exclude_vehicle_types={['MOTORCYCLE', 'BICYCLE']}
+              exclude_vehicle_types={NO_CAR_VEHICLES}
             />
           ),
         }),
