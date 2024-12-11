@@ -23,7 +23,7 @@ import {
 } from 'src/utils/constants';
 import UnderConstruction from 'src/components/UnderConstruction/UnderConstruction';
 import SearchLicensePlatesPanel from 'src/components/SearchLicensePlatesPanel/SearchLicensePlatesPanel';
-import SingleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
+import { FederalLicensePlatesPanel } from 'src/components/LicensePlatesPanel/FederalLicensePlatesPanel';
 import MissingPlatesPanel from 'src/components/MissingPlatesPanel/MissingPlatesPanel';
 import MultipleRegionLicensePlatesPanel from 'src/components/LicensePlatesPanel/MultipleRegionLicensePlatesPanel';
 import NewsPanel from 'src/components/NewsPanel/NewsPanel';
@@ -38,6 +38,7 @@ import {
 } from 'src/utils/vehicle_types';
 import LicensePlateInformationPanel from 'src/components/LicensePlateInformationPanel';
 import AbbreviationsPanel from 'src/components/LicensePlateInformationPanel/AbbreviationsPanel/AbbreviationsPanel';
+import { SingleRegionLicensePlatesPanel } from 'src/components/LicensePlatesPanel/SingleRegionLicensePlatesPanel';
 
 const navigationItems: NavItem[] = [
   {
@@ -133,10 +134,7 @@ const navigationItems: NavItem[] = [
           idChild: stateCode,
           route: `${BY_STATES_ROUTE.route}/${stateCode}`,
           functionalComponent: () => (
-            <SingleRegionLicensePlatesPanel
-              regionCode={stateCode}
-              exclude_vehicle_types={NO_CAR_VEHICLES}
-            />
+            <SingleRegionLicensePlatesPanel regionCode={stateCode} />
           ),
         }),
       ),
@@ -189,9 +187,7 @@ const navigationItems: NavItem[] = [
     title: NATIONAL_ROUTE.title,
     route: NATIONAL_ROUTE.route,
     iconClass: 'fa-solid fa-flag',
-    functionalComponent: () => (
-      <SingleRegionLicensePlatesPanel regionCode={'NATIONAL'} />
-    ),
+    functionalComponent: () => <FederalLicensePlatesPanel />,
   },
   {
     title: METROPOLITAN_ROUTE.title,

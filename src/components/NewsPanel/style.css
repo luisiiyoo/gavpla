@@ -46,7 +46,10 @@
   color: white !important;
   /* width: 80%; */
   font-size: medium !important;
-  padding-bottom: 20px !important;
+  padding-bottom: 10px !important;
+}
+.accordion-body {
+  padding: 0 10px !important;
 }
 
 .accordion-button:not(.show) {

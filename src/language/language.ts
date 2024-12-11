@@ -57,7 +57,7 @@ export const TRANSLATIONS = {
     es: {
       FRONTIER: 'Placas Fronterizas',
       MOTORCYCLE: 'Placas de Motocicleta',
-      BICYCLE: 'Plascas de Bicicleta',
+      BICYCLE: 'Placas de Bicicleta',
     },
   },
   Error: {
@@ -83,9 +83,15 @@ export const TRANSLATIONS = {
   VehicleTypes: {
     en: {
       FRONTIER: 'Frontier',
+      MOTORCYCLE: 'Motorcycle',
+      BICYCLE: 'Bicycle',
+      OTHER_VECHICLES: 'Other Vehicles',
     },
     es: {
       FRONTIER: 'Fronteriza',
+      MOTORCYCLE: 'Motocicleta',
+      BICYCLE: 'Bicicleta',
+      OTHER_VECHICLES: 'Otros Vehículos',
     },
   },
   RegionNames: {
