@@ -184,5 +184,7 @@ export const VehicleIconsMap = new Map(
   aux_entries.reduce((all, a) => [...all, ...a], []),
 );
 
-
-export const NO_CAR_VEHICLES: string[] = [...MotorcycleVehicle.types, ...BicycleVehicle.types];
+export const NO_CAR_VEHICLES: string[] = [
+  ...MotorcycleVehicle.types,
+  ...BicycleVehicle.types,
+];

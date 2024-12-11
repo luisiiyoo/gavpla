@@ -1,4 +1,4 @@
-.LicensePlatesPanel-LicensePlateItems {
+.LicensePlateItemsPanel {
   display: grid;
   /* height: inherit; */
   align-content: center;
@@ -28,19 +28,19 @@ img {
 }
 
 @media only screen and (min-device-width: 200px) {
-  .LicensePlatesPanel-LicensePlateItems {
+  .LicensePlateItemsPanel {
     grid-template-columns: repeat(2, minmax(1rem, 1fr));
   }
 }
 
 @media only screen and (min-device-width: 600px) {
-  .LicensePlatesPanel-LicensePlateItems {
+  .LicensePlateItemsPanel {
     grid-template-columns: repeat(3, minmax(1rem, 1fr));
   }
 }
 
 @media only screen and (min-device-width: 1000px) {
-  .LicensePlatesPanel-LicensePlateItems {
+  .LicensePlateItemsPanel {
     grid-template-columns: repeat(4, minmax(1rem, 1fr));
   }
 }

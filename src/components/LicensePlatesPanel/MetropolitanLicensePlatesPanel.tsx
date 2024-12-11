@@ -11,7 +11,6 @@ import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
-import { LicensePlatesPanel } from './LicensePlatesPanel';
 import { METROPOLITAN_ROUTE } from 'src/routers/constants';
 
 import {
@@ -21,6 +20,7 @@ import {
   AccordionBody,
 } from 'reactstrap';
 import { MxMap } from '../Maps/MxMap';
+import { LicensePlateItemsPanel } from './LicensePlateItemsPanel/LicensePlateItemsPanel';
 
 export interface MetropolitanLicensePlatesPanelProps {}
 
@@ -118,12 +118,9 @@ const MetropolitanLicensePlatesPanel: React.FC<MetropolitanLicensePlatesPanelPro
                         .join(' - ')}
                     </AccordionHeader>
                     <AccordionBody accordionId={statesCodes}>
-                      <LicensePlatesPanel
+                      <LicensePlateItemsPanel
                         platesDataArray={licensePlates}
                         hideStateName={true}
-                        displayMap={false}
-                        selectStateHandler={(val) => {}}
-                        regionCodesToFilter={statesCodes.split('-')}
                       />
                     </AccordionBody>
                   </AccordionItem>

@@ -1,22 +1,17 @@
 import React from 'react';
-import { BELicensePlatesData } from 'src/connector/backend.types';
 
-import { LicensePlateItem } from './LicensePlateItem/LicensePlateItem';
-import { useSelector } from 'react-redux';
-import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { MxMap } from '../Maps/MxMap';
-import './style.css';
+import {
+  LicensePlateItemsPanel,
+  LicensePlateItemsPanelProps,
+} from './LicensePlateItemsPanel/LicensePlateItemsPanel';
 
-export interface LicensePlatesPanelProps {
-  platesDataArray: BELicensePlatesData[];
+export type LicensePlatesPanelProps = LicensePlateItemsPanelProps & {
   regionCodesToFilter?: string[];
-  hideStateName?: boolean;
-  hideYears?: boolean;
-  hideVehicleType?: boolean;
   displayMap?: boolean;
   staticMap?: boolean;
   selectStateHandler: (state: string) => void;
-}
+};
 
 export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   platesDataArray,
@@ -28,10 +23,6 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
   hideYears = false,
   hideVehicleType = false,
 }) => {
-  const { vehicleTypes, userID }: StateType = useSelector(
-    (state) => state.main,
-  );
-
   const filteredStates =
     regionCodesToFilter ||
     Array.from(new Set(platesDataArray.map((d) => d.region_code)));
@@ -44,22 +35,12 @@ export const LicensePlatesPanel: React.FC<LicensePlatesPanelProps> = ({
           staticMap={staticMap}
         />
       )}
-
-      <div className="LicensePlatesPanel-LicensePlateItems">
-        {platesDataArray
-          .sort((a, b) => a.from_year - b.from_year)
-          .map((plateData) => (
-            <LicensePlateItem
-              data={plateData}
-              userID={userID}
-              vechicleTypes={vehicleTypes}
-              key={plateData.plate_id_code}
-              hideStateName={hideStateName}
-              hideYears={hideYears}
-              hideVehicleType={hideVehicleType}
-            />
-          ))}
-      </div>
+      <LicensePlateItemsPanel
+        platesDataArray={platesDataArray}
+        hideStateName={hideStateName}
+        hideYears={hideYears}
+        hideVehicleType={hideVehicleType}
+      />
     </div>
   );
 };

@@ -11,7 +11,8 @@ import ErrorDisplay from '../ErrorDisplay';
 import Header from '../Header';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
-import { LicensePlatesPanel } from './LicensePlatesPanel';
+import { MxMap } from '../Maps/MxMap';
+import { LicensePlateItemsPanel } from './LicensePlateItemsPanel/LicensePlateItemsPanel';
 
 export interface SingleRegionLicensePlatesPanelProps {
   regionCode: string;
@@ -91,12 +92,15 @@ const SingleRegionLicensePlatesPanel: React.FC<SingleRegionLicensePlatesPanelPro
       ) : (
         <div className="SingleRegionLicensePlatesPanel">
           <Header title={toTitleCase(title)} />
-          <LicensePlatesPanel
+          <MxMap
+            selectStateHandler={(val) => {}}
+            filteredStates={regionCodesToFilter}
+            staticMap={true}
+          />
+          <LicensePlateItemsPanel
             platesDataArray={platesDataArray}
             hideStateName={true}
-            staticMap={true}
-            selectStateHandler={(val) => {}}
-            regionCodesToFilter={regionCodesToFilter}
+            // hideVehicleType={hideVehicleType}
           />
         </div>
       )}
