@@ -4,12 +4,8 @@
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 10px 14px;
-  background: linear-gradient(
-    180deg,
-    #7a383f 0%,
-    #5c2a31 42%,
-    #4a2228 100%
-  );
+  /* background: var(--bulb-channel-chassis-bg); */
+  background: var(--header-section-bg);
   border: 2px solid var(--charcoal);
   border-radius: 6px;
   box-shadow:

@@ -76,7 +76,7 @@
 }
 
 .ChildNavItem {
-  background: linear-gradient(180deg, #3d1f18 0%, #24120e 100%) !important;
+  background: var(--nav-chrome-gradient-vertical) !important;
 }
 
 .ChildNavItem .NavSubItemText {
@@ -90,7 +90,7 @@
 }
 
 [class*='sidenav---sidenav-subnav---'] {
-  background: linear-gradient(180deg, #3d1f18 0%, #1c0e0b 100%) !important;
+  background: var(--nav-chrome-gradient-vertical) !important;
   border-left: 2px solid rgba(201, 162, 39, 0.35);
 }
 

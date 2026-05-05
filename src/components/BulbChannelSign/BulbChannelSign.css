@@ -39,7 +39,7 @@
 
 .BulbChannelSign-chassis {
   padding: 12px 6px 16px;
-  background: radial-gradient(ellipse 100% 80% at 50% 0%, #3a3a3a 0%, #181818 100%);
+  background: var(--bulb-channel-chassis-bg);
   border-radius: 0 0 8px 8px;
   min-width: 0;
 }

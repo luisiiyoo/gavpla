@@ -20,6 +20,9 @@
   --selected-item-font-color: var(--white);
   --filtered-item-font-color: #fdf8f0;
 
+  /* Accordion header text (closed state); expanded uses --offwhite in NewsPanel */
+  --accordion-button-color: var(--cream);
+
   /* Shared overlay/surface tokens */
   --panel-overlay-bg: rgba(0, 0, 0, 0.8);
   --panel-overlay-bg-soft: rgba(0, 0, 0, 0.62);
@@ -34,18 +37,33 @@
   --gold-glow-subtle: rgba(232, 199, 107, 0.06);
   --gold-glow-strong: rgba(232, 199, 107, 0.4);
 
+  /* Bulb sign chassis + matching section chrome (metal face) */
+  --bulb-channel-chassis-bg: radial-gradient(
+    ellipse 100% 80% at 50% 0%,
+    #3a3a3a 0%,
+    #181818 100%
+  );
+
+  /* Header section */
+  --header-section-bg: linear-gradient(
+    180deg,
+    #7a383f 0%,
+    #5c2a31 42%,
+    #4a2228 100%
+  );
+
   /* Sidebar + language bar — shared background tints & label text */
   --nav-chrome-label-color: #ffffff;
   --nav-chrome-gradient-vertical: linear-gradient(
     180deg,
-    rgba(42, 24, 18, 0.78) 0%,
-    rgba(26, 15, 12, 0.82) 52%,
+    rgba(42, 24, 18, 0.8) 0%,
+    rgba(26, 15, 12, 0.83) 52%,
     rgba(19, 10, 8, 0.86) 100%
   );
   --nav-chrome-gradient-horizontal: linear-gradient(
     90deg,
-    rgba(42, 24, 18, 0.78) 0%,
-    rgba(26, 15, 12, 0.8) 50%,
+    rgba(42, 24, 18, 0.8) 0%,
+    rgba(26, 15, 12, 0.83) 50%,
     rgba(19, 10, 8, 0.86) 100%
   );
 
@@ -136,9 +154,7 @@ h4 {
 .MxMap,
 .OptionsPanel,
 .YearsPanel,
-.Collapsible,
-.ChildNavItem,
-[class*='sidenav---sidenav-subnav---'] {
+.Collapsible {
   background: var(--panel-overlay-bg) !important;
 }
 
@@ -200,7 +216,7 @@ h4 {
 }
 
 .accordion-button {
-  color: var(--cream) !important;
+  color: var(--accordion-button-color) !important;
   text-shadow: 1px 1px 0 var(--charcoal) !important;
 }
 
