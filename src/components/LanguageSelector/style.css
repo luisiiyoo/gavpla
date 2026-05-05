@@ -1,6 +1,6 @@
 .LanguageSelector {
-  color: var(--cream);
-  background: linear-gradient(90deg, rgba(74, 40, 32, 0.97), rgba(114, 47, 55, 0.55));
+  color: var(--nav-chrome-label-color);
+  background: var(--nav-chrome-gradient-horizontal);
   text-align: right;
   font-size: clamp(12px, 1.55vh, 14px);
   font-family: 'Merriweather', Georgia, serif;

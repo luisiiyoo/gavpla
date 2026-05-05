@@ -34,6 +34,21 @@
   --gold-glow-subtle: rgba(232, 199, 107, 0.06);
   --gold-glow-strong: rgba(232, 199, 107, 0.4);
 
+  /* Sidebar + language bar — shared background tints & label text */
+  --nav-chrome-label-color: #ffffff;
+  --nav-chrome-gradient-vertical: linear-gradient(
+    180deg,
+    rgba(42, 24, 18, 0.78) 0%,
+    rgba(26, 15, 12, 0.82) 52%,
+    rgba(19, 10, 8, 0.86) 100%
+  );
+  --nav-chrome-gradient-horizontal: linear-gradient(
+    90deg,
+    rgba(42, 24, 18, 0.78) 0%,
+    rgba(26, 15, 12, 0.8) 50%,
+    rgba(19, 10, 8, 0.86) 100%
+  );
+
   /* Layout */
   --container-app-height: 100vh;
 }
@@ -115,7 +130,6 @@ h4 {
 /* Requested translucent black panels over wall background */
 .HomePage,
 .AbbreviationsPanel,
-/* .LicensePlateInformationPanel, */
 .VehicleTypeHeader,
 .LicensePlateItem,
 .accordion-item,
@@ -127,6 +141,7 @@ h4 {
 [class*='sidenav---sidenav-subnav---'] {
   background: var(--panel-overlay-bg) !important;
 }
+
 
 @keyframes shine {
   0% {

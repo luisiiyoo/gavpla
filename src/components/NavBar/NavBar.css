@@ -1,16 +1,42 @@
 .NavBar-Icon {
   font-size: 1.45em;
   vertical-align: middle;
-  color: var(--cream);
+  color: var(--gold-spot) !important;
   text-shadow: 1px 1px 0 var(--charcoal);
 }
 
 .SideNavBar {
-  background: linear-gradient(180deg, #2a1812 0%, #1a0f0c 55%, #130a08 100%) !important;
+  background: var(--nav-chrome-gradient-vertical) !important;
   border-right: 2px solid #0d0806;
   box-shadow: 6px 0 18px var(--shadow-strong), inset -1px 0 0 rgba(232, 199, 107, 0.12);
   height: var(--container-app-height);
   width: 64px;
+}
+
+.SideNavBar .NavItemText,
+.SideNavBar .NavSubItemText {
+  color: var(--nav-chrome-label-color);
+}
+
+/*
+ * react-sidenav defaults nav label to #f9dcdd with long chained selectors.
+ * Match that depth so --nav-chrome-label-color wins (same white as LanguageSelector).
+ */
+.SideNavBar
+  [class*='sidenav---sidenav-nav---']
+  > [class*='sidenav---sidenav-navitem']
+  > [class*='navitem']
+  [class*='navtext'] {
+  color: var(--nav-chrome-label-color) !important;
+}
+
+.SideNavBar
+  [class*='sidenav---sidenav-nav---']
+  > [class*='sidenav---sidenav-navitem']
+  > [class*='navitem']
+  [class*='navtext']
+  > * {
+  color: inherit !important;
 }
 
 .SideNavBarExpanded {
@@ -29,7 +55,6 @@
   font-size: 0.92em;
   vertical-align: middle;
   opacity: 0.98;
-  color: var(--cream);
 }
 
 .SideNavBar .sidenav-navitem:hover {
@@ -37,11 +62,17 @@
   box-shadow: inset 0 0 20px rgba(232, 199, 107, 0.12);
 }
 
-.SideNavBar .sidenav-navitem:hover .NavBar-Icon,
+.SideNavBar .sidenav-navitem:hover .NavBar-Icon {
+  color: var(--gold-spot) !important;
+  text-shadow:
+    1px 1px 0 var(--charcoal),
+    0 0 14px rgba(232, 199, 107, 0.55);
+}
+
 .SideNavBar .sidenav-navitem:hover .NavItemText,
 .SideNavBar .sidenav-navitem:hover .NavSubItemText {
-  color: var(--offwhite) !important;
-  text-shadow: 0 0 12px rgba(232, 199, 107, 0.45);
+  color: var(--nav-chrome-label-color) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
 }
 
 .ChildNavItem {
@@ -49,13 +80,13 @@
 }
 
 .ChildNavItem .NavSubItemText {
-  color: #fdf8f0 !important;
+  color: var(--nav-chrome-label-color) !important;
   text-shadow: 1px 1px 0 var(--charcoal);
 }
 
 .ChildNavItem:hover .NavSubItemText {
-  color: var(--offwhite) !important;
-  text-shadow: 0 0 10px rgba(232, 199, 107, 0.4);
+  color: var(--nav-chrome-label-color) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
 [class*='sidenav---sidenav-subnav---'] {
@@ -66,14 +97,14 @@
 [class*='sidenav---sidenav-subnav---']
   > [class*='sidenav---sidenav-subnavitem---']
   > [class*='sidenav---navitem---'] {
-  color: #fdf8f0 !important;
+  color: var(--nav-chrome-label-color) !important;
 }
 
 [class*='sidenav---sidenav-subnav---']
   > [class*='sidenav---sidenav-subnavitem---']
   > [class*='sidenav---navitem---']:hover {
   background-color: rgba(114, 47, 55, 0.5) !important;
-  color: var(--offwhite) !important;
+  color: var(--nav-chrome-label-color) !important;
 }
 
 @media only screen and (max-device-height: 500px) {
