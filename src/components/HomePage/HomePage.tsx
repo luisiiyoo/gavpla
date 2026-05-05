@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getTranslation } from 'src/language';
 import GAVPLA from 'src/images/GAVPLA.png';
+import BulbChannelSign from 'src/components/BulbChannelSign';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
@@ -13,10 +14,17 @@ const HomePage: React.FC = () => {
   return (
     <div className="HomePage" style={{}}>
       <>
-        <h2>{translation['title']}</h2>
+        <h2 className="HomePage-visuallyHidden">{translation['title']}</h2>
+
+        <div className="HomePage-BulbChannel">
+          <BulbChannelSign
+            brandText='GAVPLA'
+            subtitle="Galería Virtual de Placas Antiguas"
+          />
+        </div>
 
         <div className="HomePage-Logo">
-          <img src={GAVPLA} alt="GAVPLA" />
+          <img src={GAVPLA} alt={translation['title']} />
         </div>
 
         <br />

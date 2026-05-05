@@ -1,0 +1,205 @@
+/* Theater / Vegas-style channel letters + incandescent bulbs on letter paths */
+
+.BulbChannelSign {
+  --metal-dark: #1e1e1e;
+  --metal-mid: #3a3a3a;
+  --well-gold-1: #f4c56a;
+  --well-gold-2: #c2782a;
+  --well-gold-deep: #7a4818;
+  --bulb-hot: #fffef6;
+  --bulb-amber: #ffd14a;
+
+  width: 100%;
+  max-width: min(680px, 100%);
+  margin-inline: auto;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+}
+
+.BulbChannelSign-mount {
+  border-radius: 10px;
+  padding: 6px;
+  background: linear-gradient(160deg, #2d2d2d 0%, #121212 50%, #1a1a1a 100%);
+  border: 3px solid #0a0a0a;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.BulbChannelSign-topRim {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: clamp(3px, 1.2vw, 7px);
+  padding: 6px 10px 10px;
+  background: linear-gradient(180deg, #353535 0%, #1f1f1f 100%);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid #0d0d0d;
+}
+
+.BulbChannelSign-chassis {
+  padding: 12px 6px 16px;
+  background: radial-gradient(ellipse 100% 80% at 50% 0%, #3a3a3a 0%, #181818 100%);
+  border-radius: 0 0 8px 8px;
+  min-width: 0;
+}
+
+/* One row: letters share width equally and shrink on narrow viewports */
+.BulbChannelSign-letters {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(2px, 1.2vmin, 8px);
+  width: 100%;
+  min-width: 0;
+}
+
+.BulbChannelSign-letterCell {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 3.5rem;
+  line-height: 0;
+}
+
+.BulbChannelSign-letterSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+}
+
+.BulbChannelSign-channelStroke {
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+}
+
+/* Rim bulbs (top strip) — HTML circles */
+.BulbChannelSign-bulb {
+  flex: 0 0 auto;
+  width: clamp(7px, 2vw, 11px);
+  height: clamp(7px, 2vw, 11px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 36%,
+    var(--bulb-hot) 0%,
+    var(--bulb-amber) 42%,
+    #d09830 78%,
+    #6a4a28 100%
+  );
+  border: 1px solid rgba(20, 14, 8, 0.9);
+  box-shadow:
+    0 0 2px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(255, 230, 150, 0.95),
+    0 0 16px rgba(255, 190, 60, 0.65),
+    0 0 26px rgba(255, 140, 40, 0.35),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+    inset 1px 2px 1px rgba(255, 255, 255, 0.35);
+  animation: BulbChannelSign-bulbPulse 2.4s ease-in-out infinite;
+}
+
+/* Letter-path bulbs: bloom is SVG filter on each circle; only dimmer “filament” pulse here */
+.BulbChannelSign-bulbSvg {
+  animation: BulbChannelSign-bulbPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes BulbChannelSign-bulbPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+/* White “neon” subtitle */
+.BulbChannelSign-subtitle {
+  margin: clamp(14px, 3vh, 22px) auto 0;
+  max-width: 26em;
+  text-align: center;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: clamp(0.88rem, 2.6vw, 1.125rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: #fdfeff;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 1),
+    0 0 12px rgba(220, 235, 255, 0.95),
+    0 0 24px rgba(180, 210, 255, 0.7),
+    0 0 42px rgba(140, 180, 255, 0.45);
+  animation: BulbChannelSign-whiteFlicker 2.8s ease-in-out infinite;
+}
+
+@keyframes BulbChannelSign-whiteFlicker {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 1),
+      0 0 12px rgba(220, 235, 255, 0.95),
+      0 0 24px rgba(180, 210, 255, 0.7),
+      0 0 42px rgba(140, 180, 255, 0.45);
+  }
+  12% {
+    opacity: 0.82;
+    filter: brightness(0.9);
+  }
+  13% {
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+  41% {
+    opacity: 0.55;
+    filter: brightness(0.75);
+    text-shadow:
+      0 0 2px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(200, 220, 255, 0.55);
+  }
+  42% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  68% {
+    opacity: 0.88;
+  }
+  69% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .BulbChannelSign-topRim {
+    gap: 2px;
+    padding: 4px 4px 8px;
+  }
+
+  .BulbChannelSign-chassis {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .BulbChannelSign-letters {
+    gap: 1px;
+  }
+
+  .BulbChannelSign-letterCell {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .BulbChannelSign-bulb,
+  .BulbChannelSign-bulbSvg,
+  .BulbChannelSign-subtitle {
+    animation: none !important;
+  }
+
+  .BulbChannelSign-bulb,
+  .BulbChannelSign-bulbSvg {
+    opacity: 0.95;
+  }
+}

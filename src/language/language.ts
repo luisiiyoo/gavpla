@@ -163,6 +163,10 @@ export const TRANSLATIONS = {
   HomePage: {
     en: {
       title: 'GAVPLA - Galería Virtual de Placas Antiguas',
+      bulbChannelSign: {
+        brand: 'GAVPLA',
+        subtitle: 'Virtual Gallery of Antique License Plates',
+      },
       body: {
         p1: 'Welcome to my personal virtual gallery of antique license plates.',
         p2:
@@ -172,6 +176,10 @@ export const TRANSLATIONS = {
     },
     es: {
       title: 'GAVPLA - Galería Virtual de Placas Antiguas',
+      bulbChannelSign: {
+        brand: 'GAVPLA',
+        subtitle: 'Galería Virtual de Placas Antiguas',
+      },
       body: {
         p1: 'Bienvenidos a mi Galería Virtual de Placas Antiguas.',
         p2:

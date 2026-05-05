@@ -15,4 +15,7 @@
   line-height: 20px;
   padding: 20px 0;
   text-align: left;
+
+  color: var(--gold-spot) !important;
+  font-weight: bold !important;
 }

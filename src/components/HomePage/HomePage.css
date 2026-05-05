@@ -13,15 +13,17 @@
 }
 
 .HomePage-Logo {
-  width: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
-  animation: shadowAnimation 1.5s alternate infinite;
+  margin: 0 auto clamp(8px, 2vh, 16px);
+  animation: HomePage-logoBlink 1.5s ease-in-out alternate infinite;
 }
 
-@keyframes shadowAnimation {
+@keyframes HomePage-logoBlink {
+  0% {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
+  }
   100% {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.55))
       drop-shadow(0 0 18px var(--gold-spot));
@@ -29,10 +31,29 @@
 }
 
 .HomePage-Logo img {
-  padding-top: 1.2vh;
-  width: clamp(210px, 30%, 360px);
+  display: block;
+  width: clamp(200px, 28vw, 340px);
   height: auto;
-  border-radius:23px;
+  border-radius: 22px;
+}
+
+.HomePage-BulbChannel {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto clamp(12px, 2.5vh, 24px);
+  max-width: min(680px, 100%);
+}
+
+.HomePage-visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .HomePage p {
@@ -62,8 +83,12 @@
   .HomePage {
     font-size: 1rem;
   }
-  .HomePage-Logo img {
-    width: clamp(220px, 48%, 330px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .HomePage-Logo {
+    animation: none;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
   }
 }
 
@@ -73,8 +98,9 @@
     width: 100%;
     padding: 14px 10px 24px;
   }
+
   .HomePage-Logo img {
-    width: min(300px, 100%);
+    width: min(300px, 88vw);
   }
 }
 
