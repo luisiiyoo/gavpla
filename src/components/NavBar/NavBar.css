@@ -8,7 +8,7 @@
 .SideNavBar {
   background: linear-gradient(180deg, #2a1812 0%, #1a0f0c 55%, #130a08 100%) !important;
   border-right: 2px solid #0d0806;
-  box-shadow: 6px 0 18px rgba(0, 0, 0, 0.55), inset -1px 0 0 rgba(232, 199, 107, 0.12);
+  box-shadow: 6px 0 18px var(--shadow-strong), inset -1px 0 0 rgba(232, 199, 107, 0.12);
   height: var(--container-app-height);
   width: 64px;
 }
@@ -40,7 +40,7 @@
 .SideNavBar .sidenav-navitem:hover .NavBar-Icon,
 .SideNavBar .sidenav-navitem:hover .NavItemText,
 .SideNavBar .sidenav-navitem:hover .NavSubItemText {
-  color: #fffef5 !important;
+  color: var(--offwhite) !important;
   text-shadow: 0 0 12px rgba(232, 199, 107, 0.45);
 }
 
@@ -54,7 +54,7 @@
 }
 
 .ChildNavItem:hover .NavSubItemText {
-  color: #fffef5 !important;
+  color: var(--offwhite) !important;
   text-shadow: 0 0 10px rgba(232, 199, 107, 0.4);
 }
 
@@ -73,7 +73,7 @@
   > [class*='sidenav---sidenav-subnavitem---']
   > [class*='sidenav---navitem---']:hover {
   background-color: rgba(114, 47, 55, 0.5) !important;
-  color: #fffef5 !important;
+  color: var(--offwhite) !important;
 }
 
 @media only screen and (max-device-height: 500px) {

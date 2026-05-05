@@ -45,6 +45,14 @@ const selectStyles: StylesConfig = {
     ...provided,
     height: selectHeight,
   }),
+  menu: (provided) => ({
+    ...provided,
+    zIndex: 9999,
+  }),
+  menuPortal: (base) => ({
+    ...base,
+    zIndex: 9999,
+  }),
 };
 
 interface SelectLabelComponentProps {
@@ -87,6 +95,8 @@ const LanguageSelector = () => {
       {translation['label']}:{' '}
       <Select
         className="LanguageSelector-Dropdown"
+        menuPortalTarget={document.body}
+        menuPosition="fixed"
         options={languages.map((lang) => ({
           value: lang.languageCode,
           label: lang.languageCode,

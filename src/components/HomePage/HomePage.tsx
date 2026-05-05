@@ -38,6 +38,7 @@ const HomePage: React.FC = () => {
         </div>
 
         <br />
+        <br />
         <p>{translation['body']['p1']}</p>
 
         <div id="mapContainer">
@@ -49,8 +50,6 @@ const HomePage: React.FC = () => {
 
         <div className="Author">
           <h3>{translation['body']['author']}</h3>
-          {/* <ul>
-          <li> */}
           Luis González Guzmán
           <br />
           &nbsp; &nbsp;
@@ -78,8 +77,6 @@ const HomePage: React.FC = () => {
           >
             <i className="fa-brands fa-square-facebook" />
           </a>
-          {/* </li>
-        </ul> */}
         </div>
       </>
     </div>

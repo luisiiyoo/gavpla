@@ -10,7 +10,7 @@
   text-align: center;
   padding: 0 16px;
   background: rgba(0, 0, 0, 0.72);
-  color: #fffbe8;
+  color: var(--offwhite);
   letter-spacing: clamp(0.18rem, 0.9vw, 0.55rem);
   font-size: clamp(1.6rem, 4.2vw, 3.6rem);
   font-weight: 700;

@@ -38,8 +38,11 @@
   width: 15%;
 }
 
+.NewsPanel p {
+  background: var(--panel-overlay-bg) !important;
+}
 .accordion-item {
-  background: linear-gradient(165deg, rgba(45, 26, 20, 0.95), rgba(26, 14, 10, 0.97)) !important;
+  background: inherit !important;
   border-color: rgba(27, 27, 27, 0.9) !important;
   border-width: 2px !important;
   color: var(--font-color-app) !important;

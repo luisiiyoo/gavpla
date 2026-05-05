@@ -11,8 +11,7 @@
 }
 .Abbreviations {
   font-weight: bold;
-  /* color: var(--color-app); */
-  text-shadow: 1px 2px 2px var(--color-app);
+  text-shadow: 1px 3px 3px var(--color-app);
 }
 ul {
   margin: 0;

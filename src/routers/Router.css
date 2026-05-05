@@ -11,15 +11,33 @@
   position: relative;
   /* Real brick wall background */
   background-color: #000;
-  background-image: url('/assets/mx-garage-wall-afternoon.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
 }
 
 .BodyComponent > * {
   position: relative;
   z-index: 1;
+}
+
+.BodyBackgroundLayer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.BodyBackgroundLayer--next {
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+}
+
+.BodyBackgroundLayer--next.is-visible {
+  opacity: 1;
 }
 
 .BodyComponent--expanded {
@@ -61,6 +79,9 @@
   .BodyComponent {
     padding-bottom: 16px;
     padding-right: 0;
+  }
+
+  .BodyBackgroundLayer {
     /* On very small screens, show a closer crop of the image */
     background-position: 60% 40%;
     background-size: auto 130%;

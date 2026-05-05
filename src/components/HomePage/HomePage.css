@@ -7,9 +7,9 @@
   border-radius: 8px;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 10px 36px rgba(0, 0, 0, 0.5),
+    0 10px 36px var(--shadow-strong),
     0 0 0 1px rgba(201, 162, 39, 0.22),
-    inset 0 0 42px rgba(232, 199, 107, 0.06);
+    inset 0 0 42px var(--gold-glow-subtle);
 }
 
 .HomePage-Logo {
@@ -24,7 +24,7 @@
 @keyframes shadowAnimation {
   100% {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 18px rgba(232, 199, 107, 0.35));
+      drop-shadow(0 0 18px var(--gold-spot));
   }
 }
 
@@ -42,6 +42,10 @@
   color: var(--font-color-app);
 }
 
+/* .HomePage h3 {
+  color: var(--gold-spot);
+} */
+
 .AuthorLink {
   color: var(--gold-spot);
   transition: color 0.2s ease, filter 0.2s ease;
@@ -53,8 +57,8 @@
 }
 
 .AuthorLink:hover {
-  color: #fffbe8;
-  filter: drop-shadow(0 0 8px rgba(232, 199, 107, 0.55));
+  color: var(--offwhite);
+  filter: drop-shadow(0 0 10px rgba(232, 199, 107, 0.55));
 }
 
 @media (max-width: 1000px) {
