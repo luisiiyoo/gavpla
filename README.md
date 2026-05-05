@@ -2,23 +2,31 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Prerequisites
 
-- Node.js 12.x
-- yarn
+- Node.js 18.x (LTS)
+- Yarn 1.22.x (Classic)
+
+> Note: this project currently uses `react-scripts@3`, so commands include `NODE_OPTIONS=--openssl-legacy-provider` for Node 18 compatibility.
 
 If you aldready have the prerequisities, you are good to go!. If not, you can use `brew` to install the prerequisites.
 
 To install brew go to : [Brew home page](https://brew.sh/)
 
-Install prerequisities using brew:
+Install prerequisites using brew:
 
 ```
-brew install node
+brew install node@18
 ```
 
 and
 
 ```
 brew install yarn
+```
+
+If you use `nvm`, run:
+
+```bash
+nvm use
 ```
 
 ## Install dependencies
@@ -44,13 +52,13 @@ https://dev.to/calvinpak/how-to-read-write-google-sheets-with-react-193l
 
 When yarn finishes the installation of dependencies you are ready to launch the app.
 
-To run the app try:
+To run the app:
 
 ```
-yarn dev
+yarn start
 ```
 
-Open [http://localhost:3030](http://localhost:3030) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <!-- ## Available Scripts
 

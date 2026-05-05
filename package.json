@@ -8,9 +8,10 @@
     "url": "https://www.linkedin.com/in/luis-gonz%C3%A1lez-guzm%C3%A1n-2b464b139/"
   },
   "engines": {
-    "node": "12.x",
-    "yarn": "1.x"
+    "node": ">=18 <19",
+    "yarn": "1.22.x"
   },
+  "packageManager": "yarn@1.22.22",
   "private": true,
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.1",
@@ -41,13 +42,13 @@
   "scripts": {
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
-    "start:development": "HTTPS=false HOST=$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}') PORT=20000 react-scripts start",
-    "start:local": "HTTPS=false HOST=localhost PORT=10000 react-scripts start",
-    "start:production": "HTTPS=false HOST=0.0.0.0 PORT=40000 react-scripts start",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:development": "NODE_OPTIONS=--openssl-legacy-provider HTTPS=false HOST=$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}') PORT=20000 react-scripts start",
+    "start:local": "NODE_OPTIONS=--openssl-legacy-provider HTTPS=false HOST=localhost PORT=10000 react-scripts start",
+    "start:production": "NODE_OPTIONS=--openssl-legacy-provider HTTPS=false HOST=0.0.0.0 PORT=40000 react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "heroku-postbuild": "yarn run build",
-    "test": "react-scripts test",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --cache --ext .ts,.tsx --format=pretty --fix ./",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css, md}'",
