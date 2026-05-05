@@ -172,6 +172,12 @@ export const TRANSLATIONS = {
         p2:
           "In this website I mix two of my hobbies, developing apps and collecting Mexican license plates. This website is still in progress, keep visiting this page I'm constantly adding new items to the collection.",
         author: 'Author',
+        authorName: 'Luis González Guzmán',
+        authorBio:
+          'He is a Senior Full-Stack Software Developer with over 9 years of experience building scalable web applications, booking and payment systems. He specializes in Python and React, with background in computer vision and machine learning, and holds a Master’s degree in Computer Science from the Instituto Nacional de Astrofísica, Óptica y Electrónica.',
+        stackIntro: 'Powered by',
+        stackTechAria:
+          'Python, React, PostgreSQL, Google Cloud Platform, and Docker',
       },
     },
     es: {
@@ -185,6 +191,12 @@ export const TRANSLATIONS = {
         p2:
           'En esta página web combino mis dos pasatiempos, desarrollar aplicaciones web y coleccionar placas Mexicanas. Éste sitio aún está en proceso de desarrollo, te invito a seguir visitándolo, sigo agregando nuevas placas a la coleción.',
         author: 'Autor',
+        authorName: 'Luis González Guzmán',
+        authorBio:
+          'Es desarrollador Full-Stack Senior con más de 9 años de experiencia construyendo aplicaciones web escalables y sistemas de reservas y pagos. Se especializa en Python y React; cuenta con formación en visión por computadora y aprendizaje automático, y cursó la Maestría en Ciencias Computacionales en el Instituto Nacional de Astrofísica, Óptica y Electrónica.',
+        stackIntro: 'Impulsado por',
+        stackTechAria:
+          'Python, React, PostgreSQL, Google Cloud Platform y Docker',
       },
     },
   },

@@ -65,18 +65,30 @@
 }
 
 .AuthorLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2rem, 5.5vw, 2.65rem);
+  min-width: clamp(44px, 12vw, 56px);
+  min-height: clamp(44px, 12vw, 56px);
+  line-height: 1;
   color: var(--gold-spot);
-  transition: color 0.2s ease, filter 0.2s ease;
+  text-decoration: none;
+  transition: color 0.2s ease, filter 0.2s ease, transform 0.2s ease;
 }
 
-.AuthorLink a {
-  color: inherit;
-  text-decoration: none;
+.AuthorLink i {
+  display: block;
 }
 
 .AuthorLink:hover {
   color: var(--offwhite);
   filter: drop-shadow(0 0 10px rgba(232, 199, 107, 0.55));
+  transform: translateY(-2px);
+}
+
+.AuthorLink:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 1000px) {
@@ -89,6 +101,16 @@
   .HomePage-Logo {
     animation: none;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
+  }
+
+  .HomeStack-icon i,
+  .HomeStack-icon svg,
+  .HomeStack-svgLogo {
+    animation: none !important;
+  }
+
+  .AuthorLink:hover {
+    transform: none;
   }
 }
 
@@ -107,4 +129,105 @@
 .Author {
   text-align: center;
   padding-bottom: 40px;
+}
+
+.Author-name {
+  margin: 0 0 14px;
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+  font-weight: 600;
+  color: var(--offwhite);
+}
+
+.HomeStack {
+  text-align: center;
+  padding: 8px clamp(10px, 3vw, 20px) 36px;
+  margin-top: 4px;
+  border-radius: 8px;
+}
+
+.HomeStack-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 5vw, 36px);
+  margin: 6px auto 0;
+}
+
+.HomeStack-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2rem, 5.5vw, 2.65rem);
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+}
+
+.HomeStack-icon i,
+.HomeStack-icon svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.HomeStack-icon i {
+  animation: HomeStack-techFloat 2.75s ease-in-out infinite;
+  will-change: transform;
+}
+
+.HomeStack-svgLogo {
+  animation: HomeStack-techFloat 2.75s ease-in-out infinite;
+  animation-delay: 0.7s;
+  will-change: transform;
+}
+
+.HomeStack-icon--python i {
+  color: #7ec8e3;
+  animation-delay: 0s;
+}
+
+.HomeStack-icon--react i {
+  color: #6ddafb;
+  animation-delay: 0.35s;
+}
+
+.HomeStack-icon--postgres {
+  color: #6ba3c7;
+}
+
+.HomeStack-icon--gcp i {
+  color: #8ab4f8;
+  animation-delay: 1.05s;
+}
+
+.HomeStack-icon--docker i {
+  color: #5bb4e8;
+  animation-delay: 1.4s;
+}
+
+@keyframes HomeStack-techFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.Author-bio {
+  text-align: center;
+  line-height: 1.7;
+  margin: 0 auto 22px;
+  max-width: min(720px, 96%);
+  color: var(--font-color-app);
+}
+
+.Author-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 5vw, 36px);
+  justify-content: center;
+  align-items: center;
 }
