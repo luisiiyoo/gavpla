@@ -1,23 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
 .Loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  color: var(--font-color-app);
-  letter-spacing: 1rem;
-  font-size: 120%;
+  text-align: center;
+  padding: 0 16px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fffbe8;
+  letter-spacing: clamp(0.18rem, 0.9vw, 0.55rem);
+  font-size: clamp(1.6rem, 4.2vw, 3.6rem);
+  font-weight: 700;
   font-family: Lato, sans-serif;
   text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1.15;
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(232, 199, 107, 0.75);
 }
 
 .Loader-Span {
-  animation: blur 1.5s alternate infinite;
+  animation: blur 1s alternate infinite;
 }
 
 @keyframes blur {
   to {
-    filter: blur(5px);
+    filter: blur(2px);
+    opacity: 0.8;
   }
 }
