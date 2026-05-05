@@ -32,6 +32,7 @@
   padding-top: 1.2vh;
   width: clamp(210px, 30%, 360px);
   height: auto;
+  border-radius:23px;
 }
 
 .HomePage p {
@@ -41,10 +42,6 @@
   width: min(800px, 94%);
   color: var(--font-color-app);
 }
-
-/* .HomePage h3 {
-  color: var(--gold-spot);
-} */
 
 .AuthorLink {
   color: var(--gold-spot);
