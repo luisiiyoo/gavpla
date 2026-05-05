@@ -1,15 +1,16 @@
 .LanguageSelector {
-  color: var(--font-color-app);
-  background-color: var(--dark-color-app);
+  color: var(--cream);
+  background: linear-gradient(90deg, rgba(74, 40, 32, 0.97), rgba(114, 47, 55, 0.55));
   text-align: right;
-  font-size: 2vh;
-  height: var(--language-selector-height);
-  /* height: 3%; */
-  /* justify-content: left; */
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  /* margin: 0 0 0 0;
-    padding: 0 0 0 0; */
+  font-size: clamp(12px, 1.55vh, 14px);
+  font-family: 'Merriweather', Georgia, serif;
+  min-height: 42px;
+  padding: 9px 14px;
+  border-bottom: 2px solid #0d0806;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -18px 32px rgba(232, 199, 107, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .LanguageSelector-Dropdown {
@@ -17,4 +18,5 @@
   position: relative;
   height: inherit;
   text-align: left;
+  min-width: 120px;
 }

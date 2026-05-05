@@ -11,29 +11,27 @@ import NavBar from '../components/NavBar';
 import './Router.css';
 import LanguagueSwithcer from 'src/components/LanguageSelector';
 
-const MAX_NAVBAR_MARGIN = 240;
-const MIN_NAVBAR_MARGIN = 64;
-
 const BodyComponent: React.FC<BodyComponentProps> = ({ isExpandedNavBar }) => {
   return (
     <div
-      className="BodyComponent"
-      style={{
-        marginLeft: isExpandedNavBar ? MAX_NAVBAR_MARGIN : MIN_NAVBAR_MARGIN,
-      }}
+      className={`BodyComponent ${
+        isExpandedNavBar ? 'BodyComponent--expanded' : 'BodyComponent--collapsed'
+      }`}
     >
       <LanguagueSwithcer />
-      <Switch>
-        {navigationFCItems.map((item, key) => (
-          <Route
-            key={key}
-            path={`/${item.route}`}
-            exact={true}
-            component={item.functionalComponent}
-          />
-        ))}
-        <Route component={() => <PageNotFound />} />
-      </Switch>
+      <div className="BodyContent">
+        <Switch>
+          {navigationFCItems.map((item, key) => (
+            <Route
+              key={key}
+              path={`/${item.route}`}
+              exact={true}
+              component={item.functionalComponent}
+            />
+          ))}
+          <Route component={() => <PageNotFound />} />
+        </Switch>
+      </div>
     </div>
   );
 };

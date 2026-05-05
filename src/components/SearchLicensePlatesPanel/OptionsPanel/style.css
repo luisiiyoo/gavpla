@@ -1,6 +1,17 @@
 .OptionsPanel {
-  font-size: small;
+  font-size: 0.95rem;
   text-align: center;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 18px 16px 12px;
+  background: linear-gradient(165deg, rgba(55, 32, 28, 0.95), rgba(28, 16, 12, 0.97));
+  border: 2px solid var(--charcoal);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 162, 39, 0.2),
+    inset 0 0 36px rgba(232, 199, 107, 0.05);
 }
 
 .OptionsPanel-SelectRegion {
@@ -8,9 +19,11 @@
   display: block;
   align-items: center;
 }
+
 .react-select-container {
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  border-radius: 6px;
 }
 
 .OptionsPanel-SelectYear {
@@ -19,32 +32,26 @@
 }
 
 .OptionsPanel-SelectYear-Range {
-  display: inline-grid;
-  grid-template-columns: auto auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 320px));
   align-content: space-evenly;
   justify-items: center;
-  gap: 15px;
-  margin: 0px;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
   align-items: center;
   text-align: center;
 }
 
 .InputYear {
-  height: 30px;
-  width: 30vw;
+  height: 36px;
+  width: min(280px, 100%);
   text-align: center;
-  font-size: small;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-@media only screen and (max-device-width: 500px) {
-  .OptionsPanel {
-    font-size: xx-small;
-  }
-  .InputYear {
-    font-size: xx-small;
-  }
+  font-size: 0.92rem;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  background-color: rgba(22, 12, 9, 0.92);
+  color: var(--font-color-app);
 }
 
 .OptionsPanel-VehicleTypes {
@@ -52,11 +59,12 @@
 }
 
 .form-check-input {
-  background-image: url('data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%239f131a%27/></svg>') !important;
+  background-image: url('data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23722F37%27/></svg>') !important;
 }
+
 .form-check-input:checked {
-  background-color: var(--dark-color-app) !important;
-  border-color: var(--dark-color-app) !important;
+  background-color: var(--color-app) !important;
+  border-color: var(--color-app) !important;
   background-image: url('data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23FFF%27/></svg>') !important;
 }
 
@@ -67,43 +75,54 @@
 }
 
 .OptionsPanel-MainChoice {
-  width: 85%;
-  margin-left: 10%;
-  margin-right: 10%;
-  display: inline-grid;
-  grid-template-columns: auto;
+  width: min(840px, 94%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
   align-content: space-evenly;
   justify-items: center;
   align-items: center;
   text-align: center;
-  font-size: small;
+  font-size: 0.92rem;
 }
 
 .OptionsPanel-FormVehicleTypes {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-  display: inline-grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+  width: min(900px, 96%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   align-content: space-evenly;
   justify-items: center;
   align-items: center;
   text-align: center;
-  font-size: large;
+  gap: 8px 6px;
+  font-size: 1.1rem;
 }
 
-@media only screen and (max-device-width: 1000px) {
+@media (max-width: 1000px) {
   .OptionsPanel-FormVehicleTypes {
-    display: inline-grid;
-    grid-template-columns: auto auto auto auto auto;
-    font-size: large;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    font-size: 1rem;
   }
 }
 
-@media only screen and (max-device-width: 500px) {
+@media (max-width: 500px) {
+  .OptionsPanel {
+    font-size: 0.82rem;
+    padding: 12px 8px;
+  }
+
+  .InputYear {
+    font-size: 0.82rem;
+    width: min(260px, 100%);
+  }
+
+  .OptionsPanel-SelectYear-Range {
+    grid-template-columns: 1fr;
+  }
+
   .OptionsPanel-FormVehicleTypes {
-    display: inline-grid;
-    grid-template-columns: auto auto auto;
-    font-size: medium;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    font-size: 0.92rem;
   }
 }

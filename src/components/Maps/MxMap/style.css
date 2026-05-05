@@ -1,29 +1,31 @@
 .MxMap {
-  display: grid;
-  /* align-content: left; */
-  grid-template-columns: auto;
-  justify-content: center;
-  /* border-style:solid; */
-  /* width: 50%; */
-
-  /* width: 99%; */
-  margin: 0px 10px 0px 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  display: block;
+  width: min(760px, 100%);
+  margin: 0 auto;
+  background: linear-gradient(165deg, rgba(52, 30, 24, 0.96), rgba(26, 15, 12, 0.98));
+  border: 2px solid var(--charcoal);
+  border-radius: 8px;
+  padding: 10px 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 0 40px rgba(232, 199, 107, 0.06);
 }
 
 .MxMap-Geo {
-  display: flex;
-  width: 33vw;
-  height: auto;
-  align-content: center;
-  text-align: center;
-  justify-content: center;
-  /* border-style: double;
-  border-color: red; */
+  display: block;
+  width: 100%;
+  min-width: 0;
 }
 
-@media only screen and (max-device-width: 400px) {
+.MxMap-Geo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
   .MxMap-Geo {
-    width: 65vw;
+    width: 100%;
   }
 }

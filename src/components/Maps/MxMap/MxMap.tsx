@@ -12,7 +12,6 @@ import {
   get_default_bg_color,
   get_filtered_font_color,
   get_hover_bg_color,
-  get_selected_bg_color,
 } from 'src/utils/helpers';
 import './style.css';
 
@@ -27,6 +26,9 @@ export const MxMap: React.FC<MxMapProps> = ({
   filteredStates,
   staticMap,
 }) => {
+  const selectedStateFill = '#722f37';
+  const selectedStateStroke = '#e8c76b';
+
   return (
     <div className="MxMap">
       <div className="MxMap-Geo">
@@ -64,7 +66,7 @@ export const MxMap: React.FC<MxMapProps> = ({
                     }}
                     fill={
                       filteredStates.includes(stateCode)
-                        ? get_selected_bg_color()
+                        ? selectedStateFill
                         : // :
                           // ? get_filtered_bg_color()
                           get_default_bg_color()
@@ -72,7 +74,9 @@ export const MxMap: React.FC<MxMapProps> = ({
                     style={{
                       default: {
                         strokeWidth: 1,
-                        stroke: get_hover_bg_color(),
+                        stroke: filteredStates.includes(stateCode)
+                          ? selectedStateStroke
+                          : get_hover_bg_color(),
                         outline: 'none',
                       },
                       hover: {

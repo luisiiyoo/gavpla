@@ -1,25 +1,73 @@
 .BodyComponent {
-  color: white;
-  /* flex-grow: 2; */
+  color: var(--font-color-app);
   height: var(--container-app-height);
-  /* height: super; */
-  /* overflow: scroll !important; */
-  /* padding: 10px 15px 10px 15px; */
-  /* margin-top: 0; */
-  overflow: overlay;
-  /* overflow-y: auto; */
+  overflow-y: auto;
   overflow-x: hidden;
-  /* width: 100%; */
-  /* max-width: 100%; */
-  padding-bottom: 15px;
+  padding-bottom: 20px;
+  padding-right: 8px;
+  transition: margin-left 0.25s ease;
+  width: calc(100% - 64px);
+
+  position: relative;
+  /* Real brick wall background */
+  background-color: #000;
+  background-image: url('/assets/mx-garage-wall-afternoon.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.BodyComponent > * {
+  position: relative;
+  z-index: 1;
+}
+
+.BodyComponent--expanded {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+}
+
+.BodyComponent--collapsed {
+  margin-left: 64px;
+  width: calc(100% - 64px);
+}
+
+.BodyContent {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  padding: 12px 10px 14px;
 }
 
 .Routes {
-  /* display: flex; */
   height: var(--container-app-height);
-  /* height: super; */
   overflow: hidden;
   width: 100%;
   max-width: 100%;
-  /* height: 100%; */
+}
+
+@media (max-width: 1000px) {
+  .BodyComponent--expanded {
+    margin-left: 64px;
+    width: calc(100% - 64px);
+  }
+
+  .BodyComponent--collapsed {
+    margin-left: 64px;
+    width: calc(100% - 64px);
+  }
+}
+
+@media (max-width: 700px) {
+  .BodyComponent {
+    padding-bottom: 16px;
+    padding-right: 0;
+    /* On very small screens, show a closer crop of the image */
+    background-position: 60% 40%;
+    background-size: auto 130%;
+  }
+
+  .BodyContent {
+    width: 100%;
+    padding: 8px 6px 10px;
+  }
 }

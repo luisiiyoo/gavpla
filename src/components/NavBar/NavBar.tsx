@@ -34,7 +34,9 @@ const renderNavItem: RenderNavItem = (
       subnavClassName="ChildNavItem"
       subnavStyle={{
         height: isOverPopulated ? '50vh' : 'inherit',
-        overflow: 'overlay',
+        overflow: 'auto',
+        background: 'linear-gradient(180deg, #3d1f18 0%, #1c0e0b 100%)',
+        borderLeft: '2px solid rgba(201,162,39,0.35)',
       }}
       onClick={(e) => {
         const selectedHasChilds: boolean = !!item.childs;

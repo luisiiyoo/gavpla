@@ -1,14 +1,13 @@
 .NewsPanel {
   display: grid;
-  /* height: inherit; */
   align-content: center;
   text-align: center;
   grid-template-columns: auto;
 }
+
 .NewsPanel-Carousel {
   display: flex;
   justify-content: center;
-  /* padding-top: 0PX; */
   padding-bottom: 10px;
 }
 
@@ -16,21 +15,21 @@
   padding-top: 10px;
   padding-bottom: 5px;
 }
+
 .PlatesCarousel {
   height: auto;
-  box-shadow: 10px 10px 5px #000;
-  -moz-box-shadow: 10px 10px 5px #000;
-  -webkit-box-shadow: 10px 10px 5px #000;
-  -khtml-box-shadow: 10px 10px 5px #000;
-  border-radius: 5px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55), 0 0 0 2px rgba(27, 27, 27, 0.8);
+  border-radius: 4px;
 }
+
 .PlatesCarousel img {
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .CAR {
   width: 40%;
 }
+
 .MOTORCYCLE {
   width: 25%;
 }
@@ -40,52 +39,67 @@
 }
 
 .accordion-item {
-  background-color: var(--background-color) !important;
-  /* background-color: rgba(255, 255, 255, 0.9)  !important; */
-  border-color: var(--background-color) !important;
-  color: white !important;
-  /* width: 80%; */
+  background: linear-gradient(165deg, rgba(45, 26, 20, 0.95), rgba(26, 14, 10, 0.97)) !important;
+  border-color: rgba(27, 27, 27, 0.9) !important;
+  border-width: 2px !important;
+  color: var(--font-color-app) !important;
   font-size: medium !important;
   padding-bottom: 10px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 22px rgba(0, 0, 0, 0.45),
+    inset 0 0 28px rgba(232, 199, 107, 0.04);
 }
+
 .accordion-body {
   padding: 0 10px !important;
 }
 
 .accordion-button:not(.show) {
-  color: #ffffff !important;
-  background-color: var(--dark-color-app) !important;
-  border-color: var(--dark-color-app) !important;
-  /* box-shadow: red !important; */
-
-  /* box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%); */
-  padding: 10px !important;
-
-  font-weight: bolder;
-  font-size: large !important;
+  color: var(--cream) !important;
+  background: linear-gradient(
+    180deg,
+    #5c3432 0%,
+    var(--wine-red-deep) 100%
+  ) !important;
+  border-color: var(--charcoal) !important;
+  padding: 12px !important;
+  font-weight: 700;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1rem !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 var(--charcoal) !important;
 }
+
+.accordion-button:not(.collapsed) {
+  color: #fffef5 !important;
+  background: linear-gradient(180deg, #6f3a3e 0%, #4a2528 100%) !important;
+  box-shadow: inset 0 -2px 0 rgba(232, 199, 107, 0.25),
+    inset 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
 .NewsImage {
   width: 40%;
   height: auto;
-  box-shadow: 10px 10px 5px #000;
-  -moz-box-shadow: 10px 10px 5px #000;
-  -webkit-box-shadow: 10px 10px 5px #000;
-  -khtml-box-shadow: 10px 10px 5px #000;
-  border-radius: 5px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+  border-radius: 4px;
+  border: 2px solid rgba(232, 199, 107, 0.25);
 }
 
 .accordion-button:active {
-  background-color: white !important;
+  background-color: #722f37 !important;
 }
 
 .accordion-button:after {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f5f5dc'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
 @media only screen and (max-device-width: 500px) {
   .CAR {
     width: 70%;
   }
+
   .MOTORCYCLE {
     width: 55%;
   }
@@ -93,12 +107,15 @@
   .BICYCLE {
     width: 40%;
   }
+
   .accordion-item {
     font-size: smaller !important;
   }
+
   .accordion-button:not(.show) {
     font-size: small !important;
   }
+
   .NewsImage {
     width: 80%;
   }

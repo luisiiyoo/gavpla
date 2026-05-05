@@ -1,6 +1,6 @@
 .MissingDetailsPanel-Body {
   border-style: double;
-  border-color: var(--selected-item-font-color);
+  border-color: rgba(201, 162, 39, 0.45);
   padding-top: 15px;
 }
 
@@ -16,9 +16,27 @@
 }
 
 .Collapsible__trigger {
-  padding: 10px 15px;
+  padding: 11px 16px;
   width: 100%;
-  border-radius: 25px;
-  font-size: small;
-  background-color: var(--dark-color-app);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  font-family: 'Cinzel', Georgia, serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: linear-gradient(180deg, #6f3f3f 0%, #722f37 52%, var(--wine-red-deep) 100%);
+  border: 2px solid var(--charcoal);
+  text-shadow: 1px 1px 0 var(--charcoal);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 14px rgba(0, 0, 0, 0.45),
+    inset 0 0 24px rgba(232, 199, 107, 0.07);
+}
+
+.Collapsible__trigger:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 6px 20px rgba(232, 199, 107, 0.22),
+    inset 0 0 28px rgba(232, 199, 107, 0.1);
 }

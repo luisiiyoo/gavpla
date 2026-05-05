@@ -1,7 +1,11 @@
 .NavBarHeader {
   background-color: inherit;
-  color: var(--font-color-app);
+  color: var(--cream);
   white-space: nowrap;
+  font-family: 'Cinzel', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-shadow: 1px 1px 0 var(--charcoal);
 }
 
 .NavBarHeader-Title {

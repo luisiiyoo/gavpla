@@ -8,7 +8,7 @@ export interface TitleProps {
 
 const Header = ({ title, subTitle }: TitleProps) => {
   return (
-    <div className="Header">
+    <div className="SectionHeader">
       <h2>{title}</h2>
       {/* <br/> */}
       {subTitle ? <h3>{subTitle}</h3> : undefined}
