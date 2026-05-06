@@ -5,11 +5,13 @@ import './BulbChannelSign.css';
 export interface BulbChannelSignProps {
   brandText?: string;
   subtitle: string;
+  withDividerLights?: boolean;
 }
 
 const BulbChannelSign: React.FC<BulbChannelSignProps> = ({
   brandText = 'GAVPLA',
   subtitle,
+  withDividerLights = false,
 }) => {
   const letters = useMemo(() => brandText.toUpperCase().split(''), [brandText]);
 
@@ -19,17 +21,9 @@ const BulbChannelSign: React.FC<BulbChannelSignProps> = ({
   );
 
   const topStripCount = 18;
-
-  return (
-    <div className="BulbChannelSign" role="img" aria-label={ariaLabel}>
-      <div className="BulbChannelSign-mount">
-        <div className="BulbChannelSign-chassis">
-          <div className="BulbChannelSign-letters" aria-hidden>
-            {letters.map((ch, li) => (
-              <BulbChannelLetter key={`${li.toString()}-${ch}`} letter={ch} letterIndex={li} />
-            ))}
-          </div>
-          <div className="BulbChannelSign-topRim" aria-hidden>
+  const TopRimLights = (
+    !withDividerLights ? undefined :
+    <div className="BulbChannelSign-topRim" aria-hidden>
             {Array.from({ length: topStripCount }, (_, i) => (
               <span
                 key={`strip-${i.toString()}`}
@@ -40,6 +34,19 @@ const BulbChannelSign: React.FC<BulbChannelSignProps> = ({
               />
             ))}
           </div>
+  )
+
+  return (
+    <div className="BulbChannelSign" role="img" aria-label={ariaLabel}>
+      <div className="BulbChannelSign-mount">
+        <div className="BulbChannelSign-chassis">
+          {TopRimLights}
+          <div className="BulbChannelSign-letters" aria-hidden>
+            {letters.map((ch, li) => (
+              <BulbChannelLetter key={`${li.toString()}-${ch}`} letter={ch} letterIndex={li} />
+            ))}
+          </div>
+          {TopRimLights}
           <p className="BulbChannelSign-subtitle">{subtitle}</p>
         </div>
       </div>

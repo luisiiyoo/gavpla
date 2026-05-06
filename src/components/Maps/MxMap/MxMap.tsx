@@ -12,6 +12,8 @@ import {
   get_default_bg_color,
   get_filtered_font_color,
   get_hover_bg_color,
+  get_selected_bg_color,
+  get_selected_border_color,
 } from 'src/utils/helpers';
 import './style.css';
 
@@ -26,8 +28,8 @@ export const MxMap: React.FC<MxMapProps> = ({
   filteredStates,
   staticMap,
 }) => {
-  const selectedStateFill = '#722f37';
-  const selectedStateStroke = '#e8c76b';
+  const selectedStateFill = get_selected_bg_color();
+  const selectedStateStroke = get_selected_border_color();
 
   return (
     <div className="MxMap">

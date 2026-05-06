@@ -52,6 +52,11 @@ export const get_selected_bg_color = () =>
     '--selected-item-bg-color',
   );
 
+export const get_selected_border_color = () =>
+  getComputedStyle(document.documentElement).getPropertyValue(
+    '--selected-item-border-color',
+  );
+
 export const get_hover_font_color = () =>
   getComputedStyle(document.documentElement).getPropertyValue(
     '--hover-item-font-color',

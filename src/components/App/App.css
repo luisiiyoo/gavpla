@@ -15,10 +15,11 @@
 
   /* Interactive map + selection colors */
   --hover-item-bg-color: var(--cream);
-  --default-item-bg-color: #2c1812;
-  --selected-item-bg-color: #722f37;
+  --default-item-bg-color: var(--dark-color-app);
+  --selected-item-bg-color: var(--color-app);
+  --selected-item-border-color: var(--gold-spot);
   --selected-item-font-color: var(--white);
-  --filtered-item-font-color: #fdf8f0;
+  --filtered-item-font-color:var(--white);
 
   /* Accordion header text (closed state); expanded uses --offwhite in NewsPanel */
   --accordion-button-color: var(--cream);
