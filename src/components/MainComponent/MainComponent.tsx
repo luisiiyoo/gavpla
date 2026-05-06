@@ -12,7 +12,9 @@ import {
 } from 'src/redux/actions/Main/Main';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import Routes from 'src/routers';
+import { storageVarNames } from 'src/utils/constants';
 import { handleErrorMessage, useConstructor } from 'src/utils';
+import frontConfig from 'src/config/server';
 import ErrorDisplay from '../ErrorDisplay';
 import Loader from '../Loader';
 
@@ -30,8 +32,8 @@ export const MainComponent: React.FC = () => {
     const attempsLimit = 3;
 
     const pullGeneralData = async (): Promise<void> => {
-      // Get user ID from BE
-      const userID = await connector.getUserID(true);
+      // Prefer session cached user ID to skip an extra GET on repeat visits.
+      const userID = await connector.getUserID(false);
       dispatch(setUserID(userID));
 
       // Get vehicle types from BE
@@ -48,6 +50,20 @@ export const MainComponent: React.FC = () => {
       // Get available years from BE
       const availableYears = await connector.getLicensePlatesAvailableYears();
       dispatch(setAvailableYears(availableYears));
+
+      // Warm inventory cache only if we can obtain a token (cached or via client_id).
+      const hasStoredToken = !!localStorage.getItem(
+        storageVarNames.defaultAccessTokenID,
+      );
+      const canRequestToken = !!frontConfig.ACCESS_TOKEN_CLIENT_ID;
+      if (hasStoredToken || canRequestToken) {
+        try {
+          const accessTokenID = await connector.getDefaultAccessTokenID();
+          await connector.getMexicoCarPlatesInventory(accessTokenID);
+        } catch (inventoryErr) {
+          console.warn('Inventory cache warmup skipped:', inventoryErr);
+        }
+      }
     };
 
     function timeout(delay: number) {

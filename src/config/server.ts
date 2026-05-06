@@ -7,6 +7,8 @@ interface FrontendConfig {
   SERVER_NAME: string;
   BACKEND_HOST: string;
   DEFAULT_USERNAME: string;
+  /** Optional. Required to fetch `/access_token` when no token is in localStorage. */
+  ACCESS_TOKEN_CLIENT_ID: string;
 }
 
 const getEnvironmentValue = (varName: string): string => {
@@ -24,6 +26,8 @@ const frontConfig: FrontendConfig = {
   SERVER_NAME: getEnvironmentValue('SERVER_NAME'),
   BACKEND_HOST: getEnvironmentValue('BACKEND_HOST'),
   DEFAULT_USERNAME: getEnvironmentValue('DEFAULT_USERNAME'),
+  ACCESS_TOKEN_CLIENT_ID:
+    process.env.REACT_APP_ACCESS_TOKEN_CLIENT_ID?.trim() ?? '',
 };
 
 export default frontConfig;

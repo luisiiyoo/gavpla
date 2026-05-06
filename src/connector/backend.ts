@@ -20,7 +20,7 @@ import {
   BELicensePlateAvailableYears,
 } from './backend.types';
 
-const { BACKEND_HOST, DEFAULT_USERNAME } = frontConfig;
+const { BACKEND_HOST, DEFAULT_USERNAME, ACCESS_TOKEN_CLIENT_ID } = frontConfig;
 
 export class BackendConnector {
   private async handleRequest({ method, url, data, params }: RequestDetails) {
@@ -165,14 +165,23 @@ export class BackendConnector {
   }
 
   async getDefaultAccessTokenID(): Promise<string> {
-    try {
-      const tokenID: string | null = localStorage.getItem(
-        storageVarNames.defaultAccessTokenID,
+    const tokenID: string | null = localStorage.getItem(
+      storageVarNames.defaultAccessTokenID,
+    );
+
+    if (tokenID) return tokenID;
+
+    if (!ACCESS_TOKEN_CLIENT_ID) {
+      throw new AbstractError(
+        'Set REACT_APP_ACCESS_TOKEN_CLIENT_ID in .env to obtain an access token, or store a token in localStorage first.',
+        400,
       );
+    }
 
-      if (!!tokenID) return tokenID;
-
-      const url = `${BACKEND_HOST}/access_token?client_id=${''}`;
+    try {
+      const url = `${BACKEND_HOST}/access_token?client_id=${encodeURIComponent(
+        ACCESS_TOKEN_CLIENT_ID,
+      )}`;
       const result: GetAccessTokenResponse = await this.handleRequest({
         method: 'GET',
         url,
@@ -211,51 +220,81 @@ export class BackendConnector {
     return result;
   }
 
+  private async fetchCarPlatesInventoryAndCache(
+    accessTokenID: string,
+    metadataModifiedDate: Date,
+  ) {
+    const mexicoCarPlatesInventory = await this.getCarPlatesInventory(
+      accessTokenID,
+    );
+    localStorage.setItem(
+      storageVarNames.lastUpdate,
+      metadataModifiedDate.toISOString(),
+    );
+    localStorage.setItem(
+      storageVarNames.mexicoCarPlatesInventory,
+      JSON.stringify(mexicoCarPlatesInventory),
+    );
+    return mexicoCarPlatesInventory;
+  }
+
+  /**
+   * Car-plates inventory cache: compares local lastUpdate to Google Drive/Sheet
+   * modifiedTime from getResourcesMetadata. Refetches when sources are newer.
+   * If metadata request fails, returns cached JSON when present.
+   */
   async getMexicoCarPlatesInventory(
     accessTokenID: string,
   ): Promise<Map<string, BEStateData>> {
-    const metadataModifiedDate: Date = await this.getMetadataModifiedDate(
-      accessTokenID,
-    );
+    let metadataModifiedDate: Date;
+    try {
+      metadataModifiedDate = await this.getMetadataModifiedDate(accessTokenID);
+    } catch (err) {
+      const raw = localStorage.getItem(
+        storageVarNames.mexicoCarPlatesInventory,
+      );
+      if (raw) {
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.removeItem(storageVarNames.mexicoCarPlatesInventory);
+        }
+      }
+      throw err;
+    }
 
-    const lastUpdate: null | string = localStorage.getItem(
+    const lastUpdate: string | null = localStorage.getItem(
       storageVarNames.lastUpdate,
     );
     const isDeprecated: boolean =
       !lastUpdate || new Date(lastUpdate) < metadataModifiedDate;
 
     if (isDeprecated) {
-      console.log('Fetching Mexican Car License Plates data');
-      // pull fresh data
-      const mexicoCarPlatesInventory = await this.getCarPlatesInventory(
+      return this.fetchCarPlatesInventoryAndCache(
         accessTokenID,
+        metadataModifiedDate,
       );
-      console.log('mexicoCarPlatesInventory: ', mexicoCarPlatesInventory);
+    }
 
-      // Set local storage variables
-      localStorage.setItem(
-        storageVarNames.lastUpdate,
-        metadataModifiedDate.toISOString(),
+    const cached = localStorage.getItem(
+      storageVarNames.mexicoCarPlatesInventory,
+    );
+    if (!cached) {
+      return this.fetchCarPlatesInventoryAndCache(
+        accessTokenID,
+        metadataModifiedDate,
       );
-      localStorage.setItem(
-        storageVarNames.mexicoCarPlatesInventory,
-        JSON.stringify(mexicoCarPlatesInventory),
+    }
+
+    try {
+      return JSON.parse(cached);
+    } catch (error) {
+      localStorage.removeItem(storageVarNames.mexicoCarPlatesInventory);
+      localStorage.removeItem(storageVarNames.lastUpdate);
+      return this.fetchCarPlatesInventoryAndCache(
+        accessTokenID,
+        metadataModifiedDate,
       );
-      return mexicoCarPlatesInventory;
-    } else {
-      try {
-        console.log('Using Mexican Car License Plates stored data');
-        const mexicoCarPlatesInventoryJSON:
-          | string
-          | null = localStorage.getItem(
-          storageVarNames.mexicoCarPlatesInventory,
-        );
-        // Return existing data
-        return JSON.parse(mexicoCarPlatesInventoryJSON || '{}');
-      } catch (error) {
-        localStorage.removeItem(storageVarNames.mexicoCarPlatesInventory);
-        throw error;
-      }
     }
   }
 }
