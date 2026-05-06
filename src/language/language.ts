@@ -152,6 +152,26 @@ export const TRANSLATIONS = {
       label: 'Idioma',
     },
   },
+  LicensePlateItemModal: {
+    en: {
+      close: 'Close',
+      state: 'State',
+      years: 'Years',
+      vehicleType: 'Vehicle type',
+      regionCode: 'Region code',
+      stateCodes: 'State codes',
+      orgInitials: 'Org. initials',
+    },
+    es: {
+      close: 'Cerrar',
+      state: 'Estado',
+      years: 'Años',
+      vehicleType: 'Tipo de vehículo',
+      regionCode: 'Código de región',
+      stateCodes: 'Códigos de estado',
+      orgInitials: 'Siglas org.',
+    },
+  },
   UnderConstruction: {
     en: {
       message: 'Sorry, this page is under construction.',
