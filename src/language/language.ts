@@ -213,7 +213,7 @@ export const TRANSLATIONS = {
         author: 'Autor',
         authorName: 'Luis González Guzmán',
         authorBio:
-          'Es desarrollador Full-Stack Senior con más de 9 años de experiencia construyendo aplicaciones web escalables y sistemas de reservas y pagos. Se especializa en Python y React; cuenta con formación en visión por computadora y aprendizaje automático, y cursó la Maestría en Ciencias Computacionales en el Instituto Nacional de Astrofísica, Óptica y Electrónica.',
+          'Es desarrollador Full-Stack Senior con más de 9 años de experiencia desarrollando aplicaciones web escalables, sistemas de reservas y sistemas de pagos. Se especializa en Python y React; cuenta con formación en visión por computadora y aprendizaje automático, y cursó la Maestría en Ciencias Computacionales en el Instituto Nacional de Astrofísica, Óptica y Electrónica.',
         stackIntro: 'Impulsado por',
         stackTechAria:
           'Python, React, PostgreSQL, Google Cloud Platform y Docker',
