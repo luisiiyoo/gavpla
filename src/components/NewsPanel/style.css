@@ -39,7 +39,7 @@
 }
 
 .NewsPanel p {
-  background: var(--panel-overlay-bg) !important;
+  background: var(--content-surface-scrim) !important;
 }
 .accordion-item {
   background: inherit !important;

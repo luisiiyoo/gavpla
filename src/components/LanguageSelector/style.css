@@ -1,3 +1,4 @@
+/* Misma línea visual que SideNavBar; no --content-surface-scrim. */
 .LanguageSelector {
   color: var(--nav-chrome-label-color);
   background: var(--nav-chrome-gradient-horizontal);

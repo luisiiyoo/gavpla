@@ -5,6 +5,7 @@
   text-shadow: 1px 1px 0 var(--charcoal);
 }
 
+/* Fondo chrome del nav — no usar --content-surface-scrim (velado del contenido principal). */
 .SideNavBar {
   background: var(--nav-chrome-gradient-vertical) !important;
   border-right: 2px solid #0d0806;

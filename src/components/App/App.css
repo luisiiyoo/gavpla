@@ -24,9 +24,13 @@
   /* Accordion header text (closed state); expanded uses --offwhite in NewsPanel */
   --accordion-button-color: var(--cream);
 
-  /* Shared overlay/surface tokens */
-  --panel-overlay-bg: rgba(0, 0, 0, 0.8);
-  --panel-overlay-bg-soft: rgba(0, 0, 0, 0.62);
+  /*
+   * Único velado oscuro sobre el muro/contenido. Ajusta solo aquí.
+   * No usar en .SideNavBar ni .LanguageSelector (usan --nav-chrome-gradient-*).
+   */
+  --content-surface-scrim: rgba(0, 0, 0, 0.83);
+  /* Alias legado por si algo externo aún referencia el nombre viejo */
+  --panel-overlay-bg: var(--content-surface-scrim);
   --surface-border-soft: rgba(201, 162, 39, 0.28);
   --surface-border-muted: rgba(201, 162, 39, 0.18);
   --shadow-soft: rgba(0, 0, 0, 0.4);
@@ -146,7 +150,7 @@ h4 {
   font-weight: bold !important;
 }
 
-/* Requested translucent black panels over wall background */
+/* Paneles sobre el muro — mismo oscurecimiento (--content-surface-scrim); excluye nav / selector de idioma */
 .HomePage,
 .AbbreviationsPanel,
 .VehicleTypeHeader,
@@ -156,7 +160,7 @@ h4 {
 .OptionsPanel,
 .YearsPanel,
 .Collapsible {
-  background: var(--panel-overlay-bg) !important;
+  background: var(--content-surface-scrim) !important;
 }
 
 

@@ -99,7 +99,7 @@ button.LicensePlateItem:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: var(--content-surface-scrim);
 }
 
 .LicensePlateItem-ModalShell {
