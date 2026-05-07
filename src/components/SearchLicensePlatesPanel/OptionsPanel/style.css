@@ -50,8 +50,20 @@
   font-size: 0.92rem;
   border-radius: 6px;
   border: 1px solid rgba(201, 162, 39, 0.45);
-  background-color: rgba(22, 12, 9, 0.92);
-  color: var(--font-color-app);
+  background-color: var(--white);
+  color: var(--charcoal);
+}
+
+.InputYear:is(.form-control) {
+  background-color: var(--white);
+}
+
+.InputYear:is(.form-control):focus {
+  background-color: var(--white);
+}
+
+.InputYear::placeholder {
+  color: rgba(27, 27, 27, 0.45);
 }
 
 .OptionsPanel-VehicleTypes {
