@@ -29,15 +29,17 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ message, statusCode }) => {
   };
   return (
     <div className="Error">
-      <div className="Error-Label" data-testid="ErrorLabel">
-        <span>
-          {' '}
-          <i className="fa-solid fa-triangle-exclamation"></i>{' '}
-          {`Error ${statusCodeStr} - ${statusCodeName}`}{' '}
-        </span>
-      </div>
-      <div className="Error-Message" data-testid="ErrorMessage">
-        {message}
+      <div className="Error-TextContainer">
+        <div className="Error-Label" data-testid="ErrorLabel">
+          <span>
+            {' '}
+            <i className="fa-solid fa-triangle-exclamation"></i>{' '}
+            {`Error ${statusCodeStr} - ${statusCodeName}`}{' '}
+          </span>
+        </div>
+        <div className="Error-Message" data-testid="ErrorMessage">
+          {message}
+        </div>
       </div>
 
       <Button className={`ErrorButton`} onClick={handleReturnToHome}>

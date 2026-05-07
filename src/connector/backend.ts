@@ -21,8 +21,86 @@ import {
 } from './backend.types';
 
 const { BACKEND_HOST, DEFAULT_USERNAME, ACCESS_TOKEN_CLIENT_ID } = frontConfig;
+const STATIC_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+const LICENSE_PLATES_CACHE_TTL_MS = 15 * 60 * 1000;
+const SESSION_CACHE_PREFIX = 'beCache::';
+
+type CachedPayload<T> = {
+  expiresAt: number;
+  value: T;
+};
 
 export class BackendConnector {
+  private inflightRequests = new Map<string, Promise<any>>();
+
+  private getSessionCacheKey(key: string): string {
+    return `${SESSION_CACHE_PREFIX}${key}`;
+  }
+
+  private serializeQueryParams(queryParams: BEQueryLicensePlatesData): string {
+    return JSON.stringify({
+      ...queryParams,
+      region_codes: [...(queryParams.region_codes || [])].sort(),
+      vehicle_types: [...(queryParams.vehicle_types || [])].sort(),
+      exclude_vehicle_types: [...(queryParams.exclude_vehicle_types || [])].sort(),
+    });
+  }
+
+  private getCachedSessionValue<T>(cacheKey: string): T | null {
+    const rawValue = sessionStorage.getItem(this.getSessionCacheKey(cacheKey));
+    if (!rawValue) return null;
+    try {
+      const parsed = JSON.parse(rawValue) as CachedPayload<T>;
+      if (!parsed.expiresAt || Date.now() > parsed.expiresAt) {
+        sessionStorage.removeItem(this.getSessionCacheKey(cacheKey));
+        return null;
+      }
+      return parsed.value;
+    } catch {
+      sessionStorage.removeItem(this.getSessionCacheKey(cacheKey));
+      return null;
+    }
+  }
+
+  private setCachedSessionValue<T>(
+    cacheKey: string,
+    value: T,
+    ttlMs: number,
+  ): void {
+    const payload: CachedPayload<T> = {
+      expiresAt: Date.now() + ttlMs,
+      value,
+    };
+    sessionStorage.setItem(
+      this.getSessionCacheKey(cacheKey),
+      JSON.stringify(payload),
+    );
+  }
+
+  private async getOrSetSessionCache<T>(
+    cacheKey: string,
+    ttlMs: number,
+    fetcher: () => Promise<T>,
+  ): Promise<T> {
+    const cachedValue = this.getCachedSessionValue<T>(cacheKey);
+    if (cachedValue !== null) return cachedValue;
+
+    const pendingRequest = this.inflightRequests.get(cacheKey);
+    if (pendingRequest) return pendingRequest as Promise<T>;
+
+    const request = (async () => {
+      const result = await fetcher();
+      this.setCachedSessionValue(cacheKey, result, ttlMs);
+      return result;
+    })();
+    this.inflightRequests.set(cacheKey, request as Promise<any>);
+    try {
+      return await request;
+    } finally {
+      this.inflightRequests.delete(cacheKey);
+    }
+  }
+
   private async handleRequest({ method, url, data, params }: RequestDetails) {
     try {
       const resp = await axios({
@@ -75,56 +153,84 @@ export class BackendConnector {
   async getLicensePlatesStateCodes(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateRegionCodes> {
-    const url = `${BACKEND_HOST}/license-plates/state-codes?country_code=${countryCode}`;
-    const result: BELicensePlateRegionCodes = await this.handleRequest({
-      method: 'GET',
-      url,
-    });
-    return result;
+    return this.getOrSetSessionCache<BELicensePlateRegionCodes>(
+      `stateCodes:${countryCode}`,
+      STATIC_CACHE_TTL_MS,
+      async () => {
+        const url = `${BACKEND_HOST}/license-plates/state-codes?country_code=${countryCode}`;
+        return this.handleRequest({
+          method: 'GET',
+          url,
+        });
+      },
+    );
   }
 
   async getLicensePlatesAvailableYears(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateAvailableYears> {
-    const url = `${BACKEND_HOST}/license-plates/available-years?country_code=${countryCode}`;
-    const result: BELicensePlateAvailableYears = await this.handleRequest({
-      method: 'GET',
-      url,
-    });
-    return result;
+    return this.getOrSetSessionCache<BELicensePlateAvailableYears>(
+      `availableYears:${countryCode}`,
+      STATIC_CACHE_TTL_MS,
+      async () => {
+        const url = `${BACKEND_HOST}/license-plates/available-years?country_code=${countryCode}`;
+        return this.handleRequest({
+          method: 'GET',
+          url,
+        });
+      },
+    );
   }
 
   async getLicensePlatesAdditionalRegionCodes(
     countryCode: string = 'MX',
   ): Promise<BELicensePlateRegionCodes> {
-    const url = `${BACKEND_HOST}/license-plates/additional-region-codes?country_code=${countryCode}`;
-    const result: BELicensePlateRegionCodes = await this.handleRequest({
-      method: 'GET',
-      url,
-    });
-    return result;
+    return this.getOrSetSessionCache<BELicensePlateRegionCodes>(
+      `additionalRegionCodes:${countryCode}`,
+      STATIC_CACHE_TTL_MS,
+      async () => {
+        const url = `${BACKEND_HOST}/license-plates/additional-region-codes?country_code=${countryCode}`;
+        return this.handleRequest({
+          method: 'GET',
+          url,
+        });
+      },
+    );
   }
 
   async getVehicleTypes(countryCode: string = 'MX'): Promise<BEVehicleTypes> {
-    const url = `${BACKEND_HOST}/license-plates/vehicle-types?country_code=${countryCode}`;
-    const result: BEVehicleTypes = await this.handleRequest({
-      method: 'GET',
-      url,
-    });
-    return result;
+    return this.getOrSetSessionCache<BEVehicleTypes>(
+      `vehicleTypes:${countryCode}`,
+      STATIC_CACHE_TTL_MS,
+      async () => {
+        const url = `${BACKEND_HOST}/license-plates/vehicle-types?country_code=${countryCode}`;
+        return this.handleRequest({
+          method: 'GET',
+          url,
+        });
+      },
+    );
   }
 
   async getLicensePlatesData(
     userId: string,
     queryParams: BEQueryLicensePlatesData,
   ): Promise<BELicensePlatesData[]> {
-    const url = `${BACKEND_HOST}/users/${userId}/license-plates/`;
-    const result: BELicensePlatesData[] = await this.handleRequest({
-      method: 'GET',
-      url,
-      params: queryParams,
-    });
-    return result;
+    const cacheKey = `licensePlates:${userId}:${this.serializeQueryParams(
+      queryParams,
+    )}`;
+    return this.getOrSetSessionCache<BELicensePlatesData[]>(
+      cacheKey,
+      LICENSE_PLATES_CACHE_TTL_MS,
+      async () => {
+        const url = `${BACKEND_HOST}/users/${userId}/license-plates/`;
+        return this.handleRequest({
+          method: 'GET',
+          url,
+          params: queryParams,
+        });
+      },
+    );
   }
 
   getUserLicensePlatesImageURL(userId: string, userPlateId: string): string {

@@ -12,6 +12,7 @@ import { TRANSLATIONS } from 'src/language/language';
 import { StateType } from 'src/redux/reducers/Main/Main.types';
 import { VehicleIconsMap } from 'src/utils/vehicle_types';
 import { transalateVehicleType } from 'src/utils';
+import LazyImage from 'src/components/LazyImage';
 
 export interface LicensePlateItemProps {
   userID: string;
@@ -114,7 +115,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
               </button>
               <div className="LicensePlateItem-ModalBody">
                 <div className="LicensePlateItem-ModalImage">
-                  <img
+                  <LazyImage
                     className={`LicensePlateItem-ModalImg ${rawVehicleType}-IMG`}
                     src={imageUrl}
                     alt={data.plate_id_code}
@@ -196,7 +197,7 @@ export const LicensePlateItem: React.FC<LicensePlateItemProps> = ({
           )}
         </div>
         <div className="LicensePlateItem-Image">
-          <img
+          <LazyImage
             className={`${rawVehicleType}-IMG`}
             src={imageUrl}
             alt={data.plate_id_code}

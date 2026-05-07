@@ -29,6 +29,7 @@ import {
   TrailerVehicle,
   TruckVehicle,
 } from 'src/utils/vehicle_types';
+import LazyImage from 'src/components/LazyImage';
 
 export interface NewsPanelProps {
   numLatestSamples?: number;
@@ -185,7 +186,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ numLatestSamples = 20 }) => {
               <p>{translation['DFSeries']['Body']}</p>
 
               {/* <div className="NewsPanel-Carousel"> */}
-              <img className="NewsImage" src={imgDFPlates} alt="img" />
+              <LazyImage className="NewsImage" src={imgDFPlates} alt="img" />
               {/* </div> */}
             </AccordionBody>
           </AccordionItem>
@@ -198,7 +199,7 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ numLatestSamples = 20 }) => {
               <p>{translation['AntiquePlates']['Body']}</p>
 
               {/* <div className="NewsPanel-Carousel"> */}
-              <img className="NewsImage" src={imgAntiquePlates} alt="img" />
+              <LazyImage className="NewsImage" src={imgAntiquePlates} alt="img" />
               {/* </div> */}
             </AccordionBody>
           </AccordionItem>

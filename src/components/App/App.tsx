@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'src/redux/store';
+import { initNetworkDiagnostics } from 'src/utils/networkDiagnostics';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import './App.css';
@@ -16,6 +17,10 @@ const App: React.FC = () => {
     document.addEventListener('contextmenu', blockContextMenu);
     return () =>
       document.removeEventListener('contextmenu', blockContextMenu);
+  }, []);
+
+  useEffect(() => {
+    return initNetworkDiagnostics();
   }, []);
 
   return (
