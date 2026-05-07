@@ -19,6 +19,13 @@ import {
   BELicensePlatesData,
   BELicensePlateAvailableYears,
 } from './backend.types';
+import {
+  recordApiCacheHit,
+  recordApiCacheMiss,
+  recordApiError,
+  recordApiRequest,
+  recordApiResponse,
+} from 'src/utils/networkDiagnostics';
 
 const { BACKEND_HOST, DEFAULT_USERNAME, ACCESS_TOKEN_CLIENT_ID } = frontConfig;
 const STATIC_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
@@ -31,7 +38,56 @@ type CachedPayload<T> = {
 };
 
 export class BackendConnector {
+  private static interceptorsRegistered = false;
   private inflightRequests = new Map<string, Promise<any>>();
+
+  constructor() {
+    if (BackendConnector.interceptorsRegistered) return;
+    BackendConnector.interceptorsRegistered = true;
+    axios.interceptors.request.use((config) => {
+      recordApiRequest(config.url);
+      return config;
+    });
+    axios.interceptors.response.use(
+      (response) => {
+        recordApiResponse(
+          response.config?.url,
+          response.data,
+          response.headers as Record<string, string | number | undefined>,
+        );
+        return response;
+      },
+      (error) => {
+        recordApiError();
+        return Promise.reject(error);
+      },
+    );
+  }
+
+  private isStaleUserNotFoundError(error: unknown, userId: string): boolean {
+    if (!(error instanceof AbstractError)) return false;
+    if (error.statusCode !== 404) return false;
+    const msg = error.message.toLowerCase();
+    return msg.includes(userId.toLowerCase()) && msg.includes('not found');
+  }
+
+  private async withFreshUserIDRetry<T>(
+    userId: string,
+    requestForUser: (effectiveUserId: string) => Promise<T>,
+  ): Promise<T> {
+    try {
+      return await requestForUser(userId);
+    } catch (error) {
+      if (!this.isStaleUserNotFoundError(error, userId)) {
+        throw error;
+      }
+      const freshUserID = await this.getUserID(true);
+      if (!freshUserID || freshUserID === userId) {
+        throw error;
+      }
+      return requestForUser(freshUserID);
+    }
+  }
 
   private getSessionCacheKey(key: string): string {
     return `${SESSION_CACHE_PREFIX}${key}`;
@@ -83,10 +139,17 @@ export class BackendConnector {
     fetcher: () => Promise<T>,
   ): Promise<T> {
     const cachedValue = this.getCachedSessionValue<T>(cacheKey);
-    if (cachedValue !== null) return cachedValue;
+    if (cachedValue !== null) {
+      recordApiCacheHit();
+      return cachedValue;
+    }
 
     const pendingRequest = this.inflightRequests.get(cacheKey);
-    if (pendingRequest) return pendingRequest as Promise<T>;
+    if (pendingRequest) {
+      recordApiCacheHit();
+      return pendingRequest as Promise<T>;
+    }
+    recordApiCacheMiss();
 
     const request = (async () => {
       const result = await fetcher();
@@ -136,17 +199,14 @@ export class BackendConnector {
     fresh: boolean = true,
     username: string = DEFAULT_USERNAME,
   ): Promise<string> {
-    let userID: string | null = sessionStorage.getItem(storageVarNames.USER_ID);
-    if (!userID || fresh) {
-      const url = `${BACKEND_HOST}/users/?username=${username}`;
-      const result: BEUserInfo = await this.handleRequest({
-        method: 'GET',
-        url,
-      });
-
-      userID = result.user_id;
-      sessionStorage.setItem(storageVarNames.USER_ID, userID);
-    }
+    const url = `${BACKEND_HOST}/users/?username=${username}`;
+    const result: BEUserInfo = await this.handleRequest({
+      method: 'GET',
+      url,
+    });
+    const userID = result.user_id;
+    // Keep latest user id available for debugging/inspection only.
+    sessionStorage.setItem(storageVarNames.USER_ID, userID);
     return userID;
   }
 
@@ -216,38 +276,52 @@ export class BackendConnector {
     userId: string,
     queryParams: BEQueryLicensePlatesData,
   ): Promise<BELicensePlatesData[]> {
-    const cacheKey = `licensePlates:${userId}:${this.serializeQueryParams(
-      queryParams,
-    )}`;
-    return this.getOrSetSessionCache<BELicensePlatesData[]>(
-      cacheKey,
-      LICENSE_PLATES_CACHE_TTL_MS,
-      async () => {
-        const url = `${BACKEND_HOST}/users/${userId}/license-plates/`;
-        return this.handleRequest({
-          method: 'GET',
-          url,
-          params: queryParams,
-        });
-      },
-    );
+    return this.withFreshUserIDRetry(userId, async (effectiveUserId) => {
+      const cacheKey = `licensePlates:${effectiveUserId}:${this.serializeQueryParams(
+        queryParams,
+      )}`;
+      return this.getOrSetSessionCache<BELicensePlatesData[]>(
+        cacheKey,
+        LICENSE_PLATES_CACHE_TTL_MS,
+        async () => {
+          const url = `${BACKEND_HOST}/users/${effectiveUserId}/license-plates/`;
+          return this.handleRequest({
+            method: 'GET',
+            url,
+            params: queryParams,
+          });
+        },
+      );
+    });
+  }
+
+  private getUserLicensePlatesImageURLByUserId(
+    userId: string,
+    userPlateId: string,
+  ): string {
+    return `${BACKEND_HOST}/users/${userId}/license-plates/${userPlateId}/image`;
   }
 
   getUserLicensePlatesImageURL(userId: string, userPlateId: string): string {
-    const url = `${BACKEND_HOST}/users/${userId}/license-plates/${userPlateId}/image`;
-    return url;
+    const latestUserID = sessionStorage.getItem(storageVarNames.USER_ID);
+    const effectiveUserID = latestUserID || userId;
+    return this.getUserLicensePlatesImageURLByUserId(effectiveUserID, userPlateId);
   }
 
   async getUserLicensePlatesImage(
     userId: string,
     userPlateId: string,
   ): Promise<HTMLImageElement> {
-    const url = `${BACKEND_HOST}/users/${userId}/license-plates/${userPlateId}/image`;
-    const result: HTMLImageElement = await this.handleRequest({
-      method: 'GET',
-      url,
+    return this.withFreshUserIDRetry(userId, async (effectiveUserId) => {
+      const url = this.getUserLicensePlatesImageURLByUserId(
+        effectiveUserId,
+        userPlateId,
+      );
+      return this.handleRequest({
+        method: 'GET',
+        url,
+      });
     });
-    return result;
   }
 
   // --------------------------

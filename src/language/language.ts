@@ -247,8 +247,8 @@ export const TRANSLATIONS = {
       references: 'References',
     },
     es: {
-      title: 'Identificar Placas Por Tipo De Vehículo',
-      select: 'Selectiona',
+      title: 'Identifica Placas Por Tipo De Vehículo',
+      select: 'Selecciona',
       references: 'Referencias',
     },
   },

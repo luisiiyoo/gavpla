@@ -1,8 +1,11 @@
 type NetworkDiagnosticsSummary = {
   totalEntries: number;
+  totalTransferBytes: number;
   transferKB: number;
+  totalDecodedBytes: number;
   decodedKB: number;
   byInitiator: Record<string, number>;
+  byInitiatorCount: Record<string, number>;
   imageRequests: number;
   imageTransferKB: number;
   repeatedImageRequests: number;
@@ -10,11 +13,96 @@ type NetworkDiagnosticsSummary = {
   repeatedImageCacheHits: number;
 };
 
+type ApiDiagnosticsSummary = {
+  requests: number;
+  responses: number;
+  errors: number;
+  estimatedResponseKB: number;
+  byEndpointKB: Record<string, number>;
+  cacheHits: number;
+  cacheMisses: number;
+};
+
 const DIAG_FLAG_KEY = 'networkDiagnostics';
 const DIAG_INTERVAL_MS = 15000;
+const apiDiagnosticsSummary: ApiDiagnosticsSummary = {
+  requests: 0,
+  responses: 0,
+  errors: 0,
+  estimatedResponseKB: 0,
+  byEndpointKB: {},
+  cacheHits: 0,
+  cacheMisses: 0,
+};
 
 export const isNetworkDiagnosticsEnabled = (): boolean =>
   localStorage.getItem(DIAG_FLAG_KEY) === '1';
+
+const normalizeEndpoint = (url?: string): string => {
+  if (!url) return 'unknown';
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return parsed.pathname;
+  } catch {
+    return url.split('?')[0];
+  }
+};
+
+const estimateResponseBytes = (
+  data: unknown,
+  headers?: Record<string, string | number | undefined>,
+): number => {
+  const contentLengthRaw =
+    headers?.['content-length'] ??
+    headers?.['Content-Length'] ??
+    headers?.['CONTENT-LENGTH'];
+  const contentLength = Number(contentLengthRaw);
+  if (Number.isFinite(contentLength) && contentLength > 0) return contentLength;
+  try {
+    if (typeof data === 'string') return data.length;
+    return JSON.stringify(data).length;
+  } catch {
+    return 0;
+  }
+};
+
+export const recordApiRequest = (url?: string): void => {
+  if (!isNetworkDiagnosticsEnabled()) return;
+  apiDiagnosticsSummary.requests += 1;
+  const endpoint = normalizeEndpoint(url);
+  if (!apiDiagnosticsSummary.byEndpointKB[endpoint]) {
+    apiDiagnosticsSummary.byEndpointKB[endpoint] = 0;
+  }
+};
+
+export const recordApiResponse = (
+  url: string | undefined,
+  data: unknown,
+  headers?: Record<string, string | number | undefined>,
+): void => {
+  if (!isNetworkDiagnosticsEnabled()) return;
+  apiDiagnosticsSummary.responses += 1;
+  const endpoint = normalizeEndpoint(url);
+  const responseKB = estimateResponseBytes(data, headers) / 1024;
+  apiDiagnosticsSummary.estimatedResponseKB += responseKB;
+  apiDiagnosticsSummary.byEndpointKB[endpoint] =
+    (apiDiagnosticsSummary.byEndpointKB[endpoint] || 0) + responseKB;
+};
+
+export const recordApiError = (): void => {
+  if (!isNetworkDiagnosticsEnabled()) return;
+  apiDiagnosticsSummary.errors += 1;
+};
+
+export const recordApiCacheHit = (): void => {
+  if (!isNetworkDiagnosticsEnabled()) return;
+  apiDiagnosticsSummary.cacheHits += 1;
+};
+
+export const recordApiCacheMiss = (): void => {
+  if (!isNetworkDiagnosticsEnabled()) return;
+  apiDiagnosticsSummary.cacheMisses += 1;
+};
 
 export const initNetworkDiagnostics = (): (() => void) => {
   if (
@@ -30,9 +118,12 @@ export const initNetworkDiagnostics = (): (() => void) => {
   const repeatedImageTransferByUrlKB = new Map<string, number>();
   let summary: NetworkDiagnosticsSummary = {
     totalEntries: 0,
+    totalTransferBytes: 0,
     transferKB: 0,
+    totalDecodedBytes: 0,
     decodedKB: 0,
     byInitiator: {},
+    byInitiatorCount: {},
     imageRequests: 0,
     imageTransferKB: 0,
     repeatedImageRequests: 0,
@@ -59,13 +150,32 @@ export const initNetworkDiagnostics = (): (() => void) => {
   const printSummary = () => {
     const byInitiatorRows = Object.entries(summary.byInitiator)
       .sort((a, b) => b[1] - a[1])
-      .map(([type, kb]) => `${type}: ${kb.toFixed(1)}KB`)
+      .map(([type, kb]) => {
+        const count = summary.byInitiatorCount[type] || 0;
+        return `${type}: ${kb.toFixed(2)}KB (${count} reqs)`;
+      })
       .join(' | ');
     const repeatedHitRate =
       summary.repeatedImageRequests === 0
         ? 0
         : (summary.repeatedImageCacheHits / summary.repeatedImageRequests) * 100;
+    const apiCacheDenominator =
+      apiDiagnosticsSummary.cacheHits + apiDiagnosticsSummary.cacheMisses;
+    const apiCacheHitRate =
+      apiCacheDenominator === 0
+        ? 0
+        : (apiDiagnosticsSummary.cacheHits / apiCacheDenominator) * 100;
     const topRepeatedImages = buildTopRepeatedImages();
+    const topApiEndpoints = Object.entries(apiDiagnosticsSummary.byEndpointKB)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([endpoint, kb]) => `${endpoint}: ${kb.toFixed(2)}KB`)
+      .join(' | ');
+
+    const fetchTransferKB = summary.byInitiator.fetch || 0;
+    const fetchRequests = summary.byInitiatorCount.fetch || 0;
+    const xhrTransferKB = summary.byInitiator.xmlhttprequest || 0;
+    const xhrRequests = summary.byInitiatorCount.xmlhttprequest || 0;
 
     console.info(
       `[net-diag] entries=${summary.totalEntries} transfer=${summary.transferKB.toFixed(
@@ -76,10 +186,25 @@ export const initNetworkDiagnostics = (): (() => void) => {
         1,
       )}KB,repeated:${summary.repeatedImageRequests},repeatedTransfer:${summary.repeatedImageTransferKB.toFixed(
         1,
-      )}KB,repeatedCacheHitRate:${repeatedHitRate.toFixed(1)}%}`,
+      )}KB,repeatedCacheHitRate:${repeatedHitRate.toFixed(
+        1,
+      )}%} backendLike={fetch:${fetchTransferKB.toFixed(
+        3,
+      )}KB/${fetchRequests}req,xhr:${xhrTransferKB.toFixed(
+        3,
+      )}KB/${xhrRequests}req,totalBytes:${summary.totalTransferBytes}} api={req:${
+        apiDiagnosticsSummary.requests
+      },res:${apiDiagnosticsSummary.responses},err:${apiDiagnosticsSummary.errors},estResponseKB:${apiDiagnosticsSummary.estimatedResponseKB.toFixed(
+        2,
+      )},cacheHit:${apiDiagnosticsSummary.cacheHits},cacheMiss:${
+        apiDiagnosticsSummary.cacheMisses
+      },cacheHitRate:${apiCacheHitRate.toFixed(1)}%}`,
     );
     if (topRepeatedImages) {
       console.info(`[net-diag] top repeated images => ${topRepeatedImages}`);
+    }
+    if (topApiEndpoints) {
+      console.info(`[net-diag] top api endpoints => ${topApiEndpoints}`);
     }
   };
 
@@ -89,15 +214,21 @@ export const initNetworkDiagnostics = (): (() => void) => {
       if (observed.has(key)) return;
       observed.add(key);
 
-      const transferKB = toKB(entry.transferSize || 0);
-      const decodedKB = toKB(entry.decodedBodySize || 0);
+      const transferBytes = entry.transferSize || 0;
+      const decodedBytes = entry.decodedBodySize || 0;
+      const transferKB = toKB(transferBytes);
+      const decodedKB = toKB(decodedBytes);
       const initiatorType = entry.initiatorType || 'unknown';
 
       summary.totalEntries += 1;
+      summary.totalTransferBytes += transferBytes;
       summary.transferKB += transferKB;
+      summary.totalDecodedBytes += decodedBytes;
       summary.decodedKB += decodedKB;
       summary.byInitiator[initiatorType] =
         (summary.byInitiator[initiatorType] || 0) + transferKB;
+      summary.byInitiatorCount[initiatorType] =
+        (summary.byInitiatorCount[initiatorType] || 0) + 1;
 
       if (!isImageEntry(entry)) return;
 
